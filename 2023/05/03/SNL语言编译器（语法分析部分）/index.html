@@ -20,31 +20,31 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="SNL语言编译器（语法分析部分）项目代码链接 前言该项目是本人在编译原理课设计中的作业项目，本人负责部分为语法分析部分，该篇文章简要说明了整个语法分析部分的实现方案。 前期准备工作语义分析的基础是语法规则，即针对一门特定语言的产生式，所有语义分析的方法都要基于其进行。因此，进行SNL语义分析的主要任务是明确SNL语言的产生式，为方便后续工作的进行，我们将SNL语言的所有产生式（共112条），通过图">
+  <meta name="description" content="SNL语言编译器（语法分析部分）项目代码链接 前言该项目是本人在编译原理课设计中的作业项目，本人负责部分为语法分析部分，该篇文章简要说明了整个语法分析部分的实现方案。 前期准备工作语法分析的基础是语法规则，即针对一门特定语言的产生式，所有语法分析的方法都要基于其进行。因此，进行SNL语法分析的主要任务是明确SNL语言的产生式，为方便后续工作的进行，我们将SNL语言的所有产生式（共112条），通过图">
 <meta property="og:type" content="article">
 <meta property="og:title" content="编译原理课设计SNL语言编译器（语法分析部分）">
-<meta property="og:url" content="http://example.com/2023/05/01/SNL%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%88%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E9%83%A8%E5%88%86%EF%BC%89/index.html">
+<meta property="og:url" content="http://example.com/2023/05/03/SNL%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%88%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E9%83%A8%E5%88%86%EF%BC%89/index.html">
 <meta property="og:site_name" content="Terrence&#39;s Blog">
-<meta property="og:description" content="SNL语言编译器（语法分析部分）项目代码链接 前言该项目是本人在编译原理课设计中的作业项目，本人负责部分为语法分析部分，该篇文章简要说明了整个语法分析部分的实现方案。 前期准备工作语义分析的基础是语法规则，即针对一门特定语言的产生式，所有语义分析的方法都要基于其进行。因此，进行SNL语义分析的主要任务是明确SNL语言的产生式，为方便后续工作的进行，我们将SNL语言的所有产生式（共112条），通过图">
+<meta property="og:description" content="SNL语言编译器（语法分析部分）项目代码链接 前言该项目是本人在编译原理课设计中的作业项目，本人负责部分为语法分析部分，该篇文章简要说明了整个语法分析部分的实现方案。 前期准备工作语法分析的基础是语法规则，即针对一门特定语言的产生式，所有语法分析的方法都要基于其进行。因此，进行SNL语法分析的主要任务是明确SNL语言的产生式，为方便后续工作的进行，我们将SNL语言的所有产生式（共112条），通过图">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/05/01/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%868.jpg">
-<meta property="og:image" content="http://example.com/2023/05/01/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%8610.jpg">
-<meta property="og:image" content="http://example.com/2023/05/01/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%869.jpg">
+<meta property="og:image" content="http://example.com/2023/05/03/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%868.jpg">
+<meta property="og:image" content="http://example.com/2023/05/03/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%8610.jpg">
+<meta property="og:image" content="http://example.com/2023/05/03/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%869.jpg">
 <meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%861.jpg">
-<meta property="og:image" content="http://example.com/2023/05/01/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862.jpg">
+<meta property="og:image" content="http://example.com/2023/05/03/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862.jpg">
 <meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863.jpg">
 <meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%864.jpg">
 <meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865.jpg">
 <meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866.jpg">
 <meta property="og:image" content="http://example.com/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%867.jpg">
-<meta property="article:published_time" content="2023-04-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-05-12T02:33:14.859Z">
+<meta property="article:published_time" content="2023-05-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-05-12T03:02:07.981Z">
 <meta property="article:author" content="Terrence Chen">
 <meta property="article:tag" content="IT guitar movie life">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2023/05/01/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%868.jpg">
+<meta name="twitter:image" content="http://example.com/2023/05/03/images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%868.jpg">
 
-<link rel="canonical" href="http://example.com/2023/05/01/SNL%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%88%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E9%83%A8%E5%88%86%EF%BC%89/">
+<link rel="canonical" href="http://example.com/2023/05/03/SNL%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%88%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E9%83%A8%E5%88%86%EF%BC%89/">
 
 
 <script id="page-configurations">
@@ -168,7 +168,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/01/SNL%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%88%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E9%83%A8%E5%88%86%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/03/SNL%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%88%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E9%83%A8%E5%88%86%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -191,14 +191,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2023-05-01 00:00:00" itemprop="dateCreated datePublished" datetime="2023-05-01T00:00:00+08:00">2023-05-01</time>
+              <time title="创建时间：2023-05-03 00:00:00" itemprop="dateCreated datePublished" datetime="2023-05-03T00:00:00+08:00">2023-05-03</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-05-12 10:33:14" itemprop="dateModified" datetime="2023-05-12T10:33:14+08:00">2023-05-12</time>
+                <time title="修改时间：2023-05-12 11:02:07" itemprop="dateModified" datetime="2023-05-12T11:02:07+08:00">2023-05-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -227,7 +227,7 @@
       
         <h2 id="SNL语言编译器（语法分析部分）"><a href="#SNL语言编译器（语法分析部分）" class="headerlink" title="SNL语言编译器（语法分析部分）"></a>SNL语言编译器（语法分析部分）</h2><p><a target="_blank" rel="noopener" href="https://github.com/thechentr/SNL-complier">项目代码链接</a></p>
 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>该项目是本人在编译原理课设计中的作业项目，本人负责部分为语法分析部分，该篇文章简要说明了整个语法分析部分的实现方案。</p>
-<h3 id="前期准备工作"><a href="#前期准备工作" class="headerlink" title="前期准备工作"></a>前期准备工作</h3><p>语义分析的基础是语法规则，即针对一门特定语言的产生式，所有语义分析的方法都要基于其进行。因此，进行SNL语义分析的主要任务是明确SNL语言的产生式，为方便后续工作的进行，我们将SNL语言的所有产生式（共112条），通过图片文字识别，以纯文本形式录入到了txt文件中，其中，符号形式的中级符被我们 按照教材上的定义，替换成了相应的字符串，并在所有 终极符前添加了@符号以和非终极符进行区分，部分产生式文档及符号对照表如下：</p>
+<h3 id="前期准备工作"><a href="#前期准备工作" class="headerlink" title="前期准备工作"></a>前期准备工作</h3><p>语法分析的基础是语法规则，即针对一门特定语言的产生式，所有语法分析的方法都要基于其进行。因此，进行SNL语法分析的主要任务是明确SNL语言的产生式，为方便后续工作的进行，我们将SNL语言的所有产生式（共112条），通过图片文字识别，以纯文本形式录入到了txt文件中，其中，符号形式的中级符被我们 按照教材上的定义，替换成了相应的字符串，并在所有 终极符前添加了@符号以和非终极符进行区分，部分产生式文档及符号对照表如下：</p>
 <img src="../images/编译原理8.jpg" alt="产生式文档" style="zoom: 30%;" />
 
 <img src="../images/编译原理10.jpg" alt="符号对照表" style="zoom: 50%;" />
@@ -279,7 +279,10 @@
     <a href="/2023/02/08/%E5%85%B3%E4%BA%8E%E8%AE%B0%E5%BF%86/" rel="prev" title="写在前面">
       <i class="fa fa-chevron-left"></i> 写在前面
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2023/05/12/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%82%E6%BC%94%E5%87%BA/" rel="next" title="无人应答-朝阳音乐节">
+      无人应答-朝阳音乐节 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -354,14 +357,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
