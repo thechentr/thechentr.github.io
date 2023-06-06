@@ -26,7 +26,7 @@
 <meta property="og:site_name" content="Terrence&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Terrence Chen">
-<meta property="article:tag" content="IT guitar movie life">
+<meta property="article:tag" content="IT music movie life">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://example.com/">
@@ -100,7 +100,7 @@
       <h1 class="site-title">Terrence's Blog</h1>
       <span class="logo-line-after"><i></i></span>
     </a>
-      <p class="site-subtitle" itemprop="description">welcome</p>
+      <p class="site-subtitle" itemprop="description">welcome to the memohub</p>
   </div>
 
   <div class="site-nav-right">
@@ -156,7 +156,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/24/Hexo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/06/7_%E7%A9%BA%E9%97%B4%E7%A7%AF%E5%88%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/05/24/Hexo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" class="post-title-link" itemprop="url">Hexo博客使用说明</a>
+            <a href="/2023/06/06/7_%E7%A9%BA%E9%97%B4%E7%A7%AF%E5%88%86/" class="post-title-link" itemprop="url">空间积分</a>
         </h2>
 
         <div class="post-meta">
@@ -181,8 +181,172 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-05-24 00:00:00 / 修改时间：10:03:00" itemprop="dateCreated datePublished" datetime="2023-05-24T00:00:00+08:00">2023-05-24</time>
+              <time title="创建时间：2023-06-06 00:00:00 / 修改时间：16:26:56" itemprop="dateCreated datePublished" datetime="2023-06-06T00:00:00+08:00">2023-06-06</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">高等数学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>首先，热烈庆祝考研数学高数部分的基础阶段复习完成，完结撒花🎉！</p>
+<p>本篇对应张宇考研数学基础30讲的第18讲，为数一的专题内容，主要内容为三重积分和第一、第二型曲线曲面积分。</p>
+<hr>
+<h2 id="三重积分"><a href="#三重积分" class="headerlink" title="三重积分"></a>三重积分</h2><p><em>三重积分</em>的本质即通过<em>密度函数</em>求解空间物体的质量，基本形式即：<br>$$<br>\iiint \limits_{\Omega} \rho(x,y,z) \mathrm{d}V<br>$$<br>求解该种积分有三种基本方法（按考虑优先级）：</p>
+<ul>
+<li><p>球面坐标系：适用于积分区域是球的一部分<br>  $$<br>  \iiint \limits_{\Omega} \rho(x,y,z) \mathrm{d}V&#x3D; \int\mathrm{d}\theta \int\mathrm{d}\varphi\int \rho(x,y,z) r^2 \sin{\varphi} \mathrm{d}r<br>  $$</p>
+</li>
+<li><p>先二后一（先积面后积线）：使用与以某一坐标轴为中心的柱体</p>
+</li>
+<li><p>先一后二（先积线后积面）：适用于由两个曲面围成的曲顶柱体</p>
+</li>
+</ul>
+<p>不论是<em>先二后一</em>还是<em>先一后二</em>，不过是将三重积分转换成了<em>定积分</em>和<em>二重积分</em>，在积“面”的时候如果是绕着坐标系的圆的一部分，可以考虑试用极坐标系积该面，也就是我们常说的<em>柱面坐标系</em>，不过不要忘记乘$r$。</p>
+<p>注⚠：</p>
+<p>在三重积分是不能脱离其几何意义，如对某些变量积分时，其余变量是否为常数应考虑在进行该重积分时，这个变量的值是否发生变化，脱离图形而盲目求导就漾银笑话了。</p>
+<h2 id="第一型积分"><a href="#第一型积分" class="headerlink" title="第一型积分"></a>第一型积分</h2><p>与<em>三重积分</em>类似，<em>一型积分</em>的本质为已知<em>密度函数</em>  $$\rho(x, y, z)$$，求解空间曲线&#x2F;曲面的质量（此处使用“质量”并不恰当，因为线和面是没有质量的），该型积分的基本思想即：</p>
+<ol>
+<li>使用图形的限定方程对被积函数降维（也就是我们常说的投影），并确定积分范围</li>
+<li><u>使用<em>弧长公式转化为定积分</em></u>  或  <u>使用<em>曲面面积公式</em>转化二重积分</u></li>
+<li>计算积分</li>
+</ol>
+<p>下面就分别来看看这三步在两种积分中如何应用。</p>
+<h3 id="第一型曲线积分"><a href="#第一型曲线积分" class="headerlink" title="第一型曲线积分"></a>第一型曲线积分</h3><ol>
+<li><p>一型曲线积分分为两种，降维方法稍有不同，但最后都将化为定积分：</p>
+<ul>
+<li><p>一型平面曲线积分：降维为关于x或关于y的函数(一般为x)</p>
+</li>
+<li><p>一型空间曲线积分：降维为关于t的函数（选取便于计算的t）</p>
+</li>
+</ul>
+</li>
+<li><p>弧长公式：</p>
+</li>
+</ol>
+<p>$$<br>\mathrm{d}s &#x3D; \sqrt{(x_t’)^2+(y_t’)^2+(z_t’)^2}\mathrm{dt}<br>$$</p>
+<p>  特殊的，当一型平面曲线积分降维为关于x的函数时有<br>$$<br>\mathrm{d}s &#x3D; \sqrt{1+(y_x’)^2}\mathrm{d}x<br>$$</p>
+<ol start="3">
+<li>计算定积分</li>
+</ol>
+<h3 id="第一型曲面积分"><a href="#第一型曲面积分" class="headerlink" title="第一型曲面积分"></a>第一型曲面积分</h3><ol>
+<li><p>曲面降维即投影到坐标轴平面上，但在选择平面时要选择投影后<strong>没有重合点</strong>的平面</p>
+</li>
+<li><p>曲面面积公式：（以投影到$xOy$平面上为例）</p>
+</li>
+</ol>
+<p>$$<br>\mathrm{d}S &#x3D; \sqrt{1+(z_x’)^2+(z_y’)^2}\mathrm{d}x\mathrm{d}y<br>$$</p>
+<ol start="3">
+<li>计算二重积分</li>
+</ol>
+<h2 id="第二型积分"><a href="#第二型积分" class="headerlink" title="第二型积分"></a>第二型积分</h2><p><em>二型积分</em>的本质为：已知<em>向量场</em>：<br>$$<br>F(x, y, z) &#x3D; P(x, y, z) \overrightarrow{i} + Q(x, y, z) \overrightarrow{j} + R(x, y, z) \overrightarrow{k}<br>$$<br> 求解该场中某一曲线的做功或某一曲面的通量问题，观察等式右边，该向量场亦可以看作三个沿坐标轴正方向的<strong>分向量场的叠加</strong>。</p>
+<p>下面分别来看：</p>
+<h3 id="第二次曲线积分"><a href="#第二次曲线积分" class="headerlink" title="第二次曲线积分"></a>第二次曲线积分</h3><p>若一个向量场为力场，则每一点$(x_0, y_0, z_0)$都能确定一个力$P(x_0, y_0, z_0) \overrightarrow{i} + Q(x_0, y_0, z_0) \overrightarrow{j} + R(x_0, y_0, z_0) \overrightarrow{k} $, 若要确定一个单位质量的物体沿该力场中某一特定<strong>有向路径</strong>移动，该力场所做的功，则引出了第二型曲线积分：<br>$$<br>\int \limits_{\Gamma} F(x, y, z) \mathrm{d}s &#x3D; \int \limits_{\Gamma} P(x_0, y_0, z_0) \mathrm{d}x + Q(x_0, y_0, z_0) \mathrm{d}y + R(x_0, y_0, z_0) \mathrm{d}z<br>$$</p>
+<p>结合其物理意义，不难理解，等式右边即三个<strong>分向量场做功的和</strong>，因此完全可以分三个定积分来计算：<br>$$<br>\int \limits_{\Gamma} F(x, y, z) \mathrm{d}s &#x3D; \int \limits_{\Gamma} P(x, y, z) x_t’ \mathrm{d}t + \int \limits_{\Gamma} Q(x, y, z) y_t’ \mathrm{d}t + \int \limits_{\Gamma} R(x, y, z) z_t’ \mathrm{d}t<br>$$</p>
+<p>不过这种方法，需要求出有向路径的<strong>参数方程</strong>，且计算量较大。当满足：</p>
+<ul>
+<li>有向路径是<strong>封闭曲线</strong></li>
+<li>被积函数在封闭区域内<strong>连续</strong></li>
+</ul>
+<p>就可以应用公式，将其转化为关于封闭区域的面积分：</p>
+<ul>
+<li><p><strong>格林公式</strong></p>
+<p>  当积分曲线是$xOy$上的<strong>平面曲线</strong>，则封闭区域则为$xOy$上的平面，此时应用格林公式：<br>  $$<br>  \oint P(x_0, y_0, z_0) \mathrm{d}x + Q(x_0, y_0, z_0) &#x3D; \pm\iint<br>  \left|\begin{matrix}<br> \frac{\partial}{\partial x} &amp; \frac{\partial}{\partial y} \<br> P &amp; Q \<br>\end{matrix}\right|\mathrm{d}x\mathrm{d}y<br>  $$<br>  其中的$\pm$取值为该曲线“法向量”（右手向量）的正负</p>
+</li>
+<li><p><strong>斯托克斯公式</strong></p>
+<p>  当积分曲线是<strong>空间曲线</strong>，则封闭区域则为空间平面，此时应用斯托克斯公式：<br>  $$<br>  \oint P(x_0, y_0, z_0) \mathrm{d}x + Q(x_0, y_0, z_0) &#x3D; \iint<br>  \left|\begin{matrix}<br> cos{\alpha} &amp; cos{\beta} &amp; cos{\gamma}\<br> \frac{\partial}{\partial x} &amp; \frac{\partial}{\partial y} &amp;  \frac{\partial}{\partial z}\<br> P &amp; Q &amp; R\<br>\end{matrix}\right|\mathrm{d}\sigma<br>  $$</p>
+</li>
+</ul>
+<p>​		其中第一行为该曲线“法向量”的三个方向角</p>
+<h3 id="第二型曲面积分"><a href="#第二型曲面积分" class="headerlink" title="第二型曲面积分"></a>第二型曲面积分</h3><p>若一个向量场为电&#x2F;磁场，或某一流体的速度场，若要确定该场通过某一曲面的流量，则引出了第二型曲面积分：<br>$$<br>\iint \limits_{\Sigma} F(x, y, z) \mathrm{d}s &#x3D; \iint \limits_{\Sigma} P(x_0, y_0, z_0) \mathrm{d}y\mathrm{d}z + Q(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}z + R(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}y<br>$$<br>和曲线积分一样，该积分同样等于三个<strong>分向量场通量的和</strong>，即：<br>$$<br>\iint \limits_{\Sigma} F(x, y, z) \mathrm{d}s &#x3D; \iint \limits_{\Sigma} P(x_0, y_0, z_0) \mathrm{d}y\mathrm{d}z +  \iint \limits_{\Sigma} Q(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}z +   \iint \limits_{\Sigma}R(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}y<br>$$<br>和第一型曲面积分一样，使用该方法要求该曲面在坐标轴上的投影不能有重合点！不过，若该曲面满足：</p>
+<ul>
+<li><strong>曲面封闭</strong></li>
+<li>被积函数在封闭空间内<strong>连续</strong></li>
+</ul>
+<p>就可以应用公式，将其转化为关于封闭空间的三重积分，即<strong>高斯公式</strong>：<br>$$<br>\oiint F(x, y, z) \mathrm{d}s &#x3D; \pm\iiint \limits_{\Omega}(\frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z})\mathrm{d}v<br>$$<br>其中的当曲面为外侧时取$+$，内侧取$-$</p>
+<hr>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>以上所述皆为基本方法，尤其是实际题目，想要使用</p>
+<ul>
+<li><strong>格林公式</strong> </li>
+<li><strong>斯托克斯公式</strong></li>
+<li><strong>高斯公式</strong></li>
+</ul>
+<p>往往需要<strong>补充线&#x2F;面</strong>使之封闭或挖去其中<strong>奇点</strong>才可</p>
+<p>此外,第一型积分的应用有时需要读者熟知以下公式:</p>
+<h3 id="计算重心-以平面薄片为例"><a href="#计算重心-以平面薄片为例" class="headerlink" title="计算重心 (以平面薄片为例)"></a>计算重心 (以平面薄片为例)</h3><p>$$<br>\overline{x} &#x3D; \frac{\iint x \rho(x, y) \mathrm{d}s}{\iint \rho(x, y) \mathrm{d}s}<br>$$</p>
+<h3 id="转动惯量"><a href="#转动惯量" class="headerlink" title="转动惯量"></a>转动惯量</h3><p>$$<br>I &#x3D; m r^2<br>$$</p>
+<h3 id="xOy-平面上某一薄片对于某点-x-0-y-0-z-0-沿某一轴方向的引力-以-x-轴为例"><a href="#xOy-平面上某一薄片对于某点-x-0-y-0-z-0-沿某一轴方向的引力-以-x-轴为例" class="headerlink" title="$xOy$平面上某一薄片对于某点$(x_0,y_0,z_0)$沿某一轴方向的引力 (以$x$轴为例)"></a>$xOy$平面上某一薄片对于某点$(x_0,y_0,z_0)$沿某一轴方向的引力 (以$x$轴为例)</h3><p>$$<br>F_x &#x3D; \frac{GMm}{R^2}. \frac{R_x}{R} &#x3D; \iint \limits_{D} \frac{\rho(x, y)}{[(x-x_0)^2 + (y-y_0)^2 + z_0^2]}. \frac{(x - x_0)}{\sqrt{(x-x_0)^2 + (y-y_0)^2 + z_0^2}}\mathrm{d}\sigma<br>$$</p>
+<p>​	</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/24/6_Hexo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Terrence Chen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Terrence's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/24/6_Hexo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" class="post-title-link" itemprop="url">Hexo博客使用说明</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-05-24 00:00:00" itemprop="dateCreated datePublished" datetime="2023-05-24T00:00:00+08:00">2023-05-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-06-06 16:27:40" itemprop="dateModified" datetime="2023-06-06T16:27:40+08:00">2023-06-06</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -208,17 +372,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Hexo博客使用说明"><a href="#Hexo博客使用说明" class="headerlink" title="Hexo博客使用说明"></a>Hexo博客使用说明</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>使用<code>Hexo</code>和<code>git</code>可以使得：</p>
+          <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>使用<code>Hexo</code>和<code>git</code>可以使得：</p>
 <ol>
 <li>在本地使用<em>Markdown</em>格式编辑博客内容</li>
 <li>使用<em>Hexo</em>自动根据主题等配置将博客文件渲染生成网页文件</li>
 <li>使用<em>git</em>发布到网站服务器</li>
 </ol>
 <p>其中，可以修改<em>Hexo</em>的配置，使得生成不同主题的网页，并且可以指定渲染参数（如：是否渲染公式等）</p>
-<h3 id="博客格式"><a href="#博客格式" class="headerlink" title="博客格式"></a>博客格式</h3><p>Hexo的博客源文件都存放在博客根目录的 <code>.\source\_posts</code>  文件夹下，使用<em>Markdown</em>格式编写，不过需要在头部加入 <em>YAML Front Matter</em> 以标明博客信息：</p>
+<h2 id="博客格式"><a href="#博客格式" class="headerlink" title="博客格式"></a>博客格式</h2><p>Hexo的博客源文件都存放在博客根目录的 <code>.\source\_posts</code>  文件夹下，使用<em>Markdown</em>格式编写，不过需要在头部加入 <em>YAML Front Matter</em> 以标明博客信息：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="comment"># 文章网页标题</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">常微分方程</span>  </span><br><span class="line"><span class="comment"># 是否渲染数学公式（需要事先安装hexo-math）</span></span><br><span class="line"><span class="attr">mathjax:</span> <span class="literal">true</span></span><br><span class="line"><span class="comment"># 分类标签，依次为一级分类、二级分类</span></span><br><span class="line"><span class="attr">categories:</span> </span><br><span class="line"><span class="bullet">-</span> <span class="string">知识</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">高等数学</span> </span><br><span class="line"><span class="comment"># 文章创建日期</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2023-5</span><span class="number">-23</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="发布命令"><a href="#发布命令" class="headerlink" title="发布命令"></a>发布命令</h3><p>编辑好博客文件后，在博客的根文件夹中，使用<code>鼠标右键</code>，并在右键菜单中点击<code>Git Base Here</code>，出现<em>Git命令行窗口</em>后，使用以下命令：</p>
+<h2 id="发布命令"><a href="#发布命令" class="headerlink" title="发布命令"></a>发布命令</h2><p>编辑好博客文件后，在博客的根文件夹中，使用<code>鼠标右键</code>，并在右键菜单中点击<code>Git Base Here</code>，出现<em>Git命令行窗口</em>后，使用以下命令：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Hexo clean  <span class="comment"># 清除当前的网页文件（上次生成的）</span></span><br><span class="line">Hexo generate  <span class="comment"># 根据 &quot;博客源文件&quot; 生成 &quot;博客网页文件&quot;</span></span><br><span class="line">Hexo serve  <span class="comment"># 在本地计算机启动网页服务器（启动后可在浏览器中输入 http://localhost:4000/ 预览效果）</span></span><br><span class="line">Hexo deploy  <span class="comment"># 将&quot;博客网页文件&quot;部署到服务器</span></span><br></pre></td></tr></table></figure>
 
       
@@ -239,7 +403,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/23/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/23/5_%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -253,7 +417,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/05/23/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" class="post-title-link" itemprop="url">常微分方程</a>
+            <a href="/2023/05/23/5_%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" class="post-title-link" itemprop="url">常微分方程</a>
         </h2>
 
         <div class="post-meta">
@@ -270,7 +434,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-05-24 09:15:50" itemprop="dateModified" datetime="2023-05-24T09:15:50+08:00">2023-05-24</time>
+                <time title="修改时间：2023-06-06 16:28:09" itemprop="dateModified" datetime="2023-06-06T16:28:09+08:00">2023-06-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -297,9 +461,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="常微分方程"><a href="#常微分方程" class="headerlink" title="常微分方程"></a>常微分方程</h2><p>考研数学终于复习到张宇基础30讲的第13讲了，常微分方程一直是我的一个梦魇，大二期末时也是糊里糊涂地背了很多公式就坐在考场上答卷，成绩自然是很不理想。如今，再次面对这个让我第一次对自己数学能力产生怀疑的领域，却无法再逃避。经过两天的学习，自以为初窥门径，现将所感在此记录，以备今后查证。</p>
+          <p>考研数学终于复习到张宇基础30讲的第13讲了，常微分方程一直是我的一个梦魇，大二期末时也是糊里糊涂地背了很多公式就坐在考场上答卷，成绩自然是很不理想。如今，再次面对这个让我第一次对自己数学能力产生怀疑的领域，却无法再逃避。经过两天的学习，自以为初窥门径，现将所感在此记录，以备今后查证。</p>
 <hr>
-<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p><strong>方程</strong>，即未知量的限定条件，解方程，则是指求解满足该限定条件的未知量的取值。</p>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><strong>方程</strong>，即未知量的限定条件，解方程，则是指求解满足该限定条件的未知量的取值。</p>
 <p><strong>微分方程</strong>，即通过<em>函数的微分</em>对函数进行限制的限制条件，解微分方程，则是指求解满足该限定条件的<em>函数</em>。</p>
 <p>可见，微分方程只不过是方程的一种，这一点我们可以通过与普通方程类比得到：</p>
 <blockquote>
@@ -310,8 +474,7 @@
 </ul>
 </blockquote>
 <p>若无初始条件，则对微分方程求解得到的则是一个函数族（或者说一种函数结构），其函数表示中存在与函数阶数相同数量的独立常数（考研数学不考虑<em>奇解</em>，即不能通过上述”函数表示“表示的特殊的解），这样的解称为<strong>通解</strong>；若将自由常数取成特定的值则称为<strong>特解</strong>。</p>
-<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>梳理清楚一个方程中哪些是未知函数（研究对象），哪些是已知函数（常量），我们就可以据此对微分方程进行分类了：</p>
-<ul>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul>
 <li>根据<em>未知函数</em>最高阶导数阶数的不同，可以将微分方程微分为<strong>k阶微分方程</strong></li>
 <li>根据<strong>自由项</strong>（方程中独立于未知量的常量）是否取零，可分为<strong>齐次微分方程</strong>和<strong>非齐次微分方程</strong></li>
 <li>根据<em>未知函数</em>及其各阶微分是否为线性的，可分为<strong>线性微分方程</strong>和<strong>非线微分方程</strong></li>
@@ -327,11 +490,11 @@
 <p>$e^yy’ + e^y &#x3D; sinx$ 可通过 $u &#x3D; e^y$ 变换为关于 $u$ 的线性微分方程 $u’+u&#x3D;sinx$</p>
 </blockquote>
 <p>将所有可能遇到的微分方程都转化为线性微分后我们就可以根据其阶数和是否其次的特点进行分类、逐个击破了。（以下所提微分方程，若无特殊说明，均为线性微分方程，且默认<strong>最高阶微分前系数为1</strong>）</p>
-<h3 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h3><h4 id="一阶线性微分方程"><a href="#一阶线性微分方程" class="headerlink" title="一阶线性微分方程"></a>一阶线性微分方程</h4><p>在求解该类方程时，主要有两种方法：</p>
+<h2 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h2><h3 id="一阶线性微分方程"><a href="#一阶线性微分方程" class="headerlink" title="一阶线性微分方程"></a>一阶线性微分方程</h3><p>在求解该类方程时，主要有两种方法：</p>
 <ul>
 <li><p>分离变量：通过将 $x、dx$ 和 $y、dy$ 分别放到等号两侧，对两侧同时积分即可</p>
 </li>
-<li><p>公式求解：形如 $y’ + p(x)y &#x3D; q(x)$ 的通解为：<br>$<br>y&#x3D;e^{-\int p(x)dx}.\int e^{\int p(x)dx}.q(x)dx+C<br>$</p>
+<li><p>公式求解：形如 $y’ + p(x)y &#x3D; q(x)$ 的通解为：<br>$<br>y&#x3D;e^{-\int p(x)dx}.(\int e^{\int p(x)dx}.q(x)dx+C)<br>$</p>
 </li>
 </ul>
 <p>在使用这个两种方法时，可根据优先考虑分离变量，若无法分离，则可以使用公式直接求解。并且在解题时，可根据题目形式，考虑交换 $x$ 和 $y$ 的位置，有时会极大的简化求解。</p>
@@ -342,7 +505,7 @@
 <li>可化为线性的一阶伯努利方程（存在 $y^n$）</li>
 </ul>
 <p>不过这两种方程都可以通过替换变化为关于变量 $u$ 的一阶微分方程，通过上述两种方法求解 $u$ 后，再逆替换后就可以解出 $y$ 了！具体替换方法也不必死记硬背，理解原理后自然熟能生巧。</p>
-<h4 id="高阶常系数线性微分方程"><a href="#高阶常系数线性微分方程" class="headerlink" title="高阶常系数线性微分方程"></a>高阶常系数线性微分方程</h4><p>当涉及高阶方程时，未知量（研究对象）前的系数均为常数，所以也称为<em>高阶常系数线性微分方程</em>，在求解该类方程时，首先需要明确一个原理：</p>
+<h3 id="高阶常系数线性微分方程"><a href="#高阶常系数线性微分方程" class="headerlink" title="高阶常系数线性微分方程"></a>高阶常系数线性微分方程</h3><p>当涉及高阶方程时，未知量（研究对象）前的系数均为常数，所以也称为<em>高阶常系数线性微分方程</em>，在求解该类方程时，首先需要明确一个原理：</p>
 <blockquote>
 <p>非齐次微分方程的<strong>通解</strong> &#x3D; 该方程所对应<strong>齐次微分方程</strong>的<strong>通解</strong> + 该方程的一个<strong>特解</strong></p>
 </blockquote>
@@ -352,7 +515,7 @@
 <li>求解该方程的一个<strong>特解</strong> (若方程就是齐次微分方程可省略此步)</li>
 </ol>
 <p>最后将所得结果相加即可，下面依次说明这两步的具体方法：</p>
-<h5 id="求解齐次微分方程的通解"><a href="#求解齐次微分方程的通解" class="headerlink" title="求解齐次微分方程的通解"></a>求解齐次微分方程的通解</h5><p>该部分只需要明确一个原则：</p>
+<h4 id="求解齐次微分方程的通解"><a href="#求解齐次微分方程的通解" class="headerlink" title="求解齐次微分方程的通解"></a>求解齐次微分方程的通解</h4><p>该部分只需要明确一个原则：</p>
 <blockquote>
 <p>解中各项和特征根一一对应！！！</p>
 <p>解中各项和特征根一一对应！！！</p>
@@ -377,7 +540,7 @@
 <p>$x_2&#x3D; 2$ 对应 $Ce^{2x}$ </p>
 <p>可得该方齐次微分方程的通解为 $C_1e^{-4x} + C_2e^{2x}$</p>
 </blockquote>
-<h5 id="求解非齐次微分方程的特解"><a href="#求解非齐次微分方程的特解" class="headerlink" title="求解非齐次微分方程的特解"></a>求解非齐次微分方程的特解</h5><p>该部分计算量较大，不过求解套路也较为固定，只需要：</p>
+<h4 id="求解非齐次微分方程的特解"><a href="#求解非齐次微分方程的特解" class="headerlink" title="求解非齐次微分方程的特解"></a>求解非齐次微分方程的特解</h4><p>该部分计算量较大，不过求解套路也较为固定，只需要：</p>
 <ul>
 <li>设出特解形式（含待定系数）</li>
 <li>带回原方程求解系数</li>
@@ -416,7 +579,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/12/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%82%E6%BC%94%E5%87%BA/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/12/4_%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%82%E6%BC%94%E5%87%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -430,7 +593,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/05/12/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%82%E6%BC%94%E5%87%BA/" class="post-title-link" itemprop="url">无人应答-朝阳音乐节</a>
+            <a href="/2023/05/12/4_%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%82%E6%BC%94%E5%87%BA/" class="post-title-link" itemprop="url">无人应答-朝阳音乐节</a>
         </h2>
 
         <div class="post-meta">
@@ -447,7 +610,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-05-23 18:38:02" itemprop="dateModified" datetime="2023-05-23T18:38:02+08:00">2023-05-23</time>
+                <time title="修改时间：2023-06-06 16:28:27" itemprop="dateModified" datetime="2023-06-06T16:28:27+08:00">2023-06-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -474,7 +637,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="无人应答-朝阳音乐节"><a href="#无人应答-朝阳音乐节" class="headerlink" title="无人应答-朝阳音乐节"></a>无人应答-朝阳音乐节</h2><h3 id="现场视频"><a href="#现场视频" class="headerlink" title="现场视频"></a>现场视频</h3><ul>
+          <h2 id="现场视频"><a href="#现场视频" class="headerlink" title="现场视频"></a>现场视频</h2><ul>
 <li><p><a href="">公路之歌</a> </p>
 </li>
 <li><p><a href="">西湖</a></p>
@@ -488,7 +651,7 @@
 <li><p><a href="">24小时摇滚聚会</a></p>
 </li>
 </ul>
-<h3 id="现场照片"><a href="#现场照片" class="headerlink" title="现场照片"></a>现场照片</h3><p><img src="/../images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%829.jpg" alt="无人应答乐队与观众合照"></p>
+<h2 id="现场照片"><a href="#现场照片" class="headerlink" title="现场照片"></a>现场照片</h2><p><img src="/../images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%829.jpg" alt="无人应答乐队与观众合照"></p>
 <p><img src="/../images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%828.jpg" alt="朝阳音乐节演出所有乐队与观众合照"></p>
 <p><img src="/../images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%8210.jpg" alt="无人应答乐队成员合照"></p>
 <p><img src="/../images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%823.jpg" alt="华丽的口风琴，他向她靠近"></p>
@@ -516,7 +679,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/03/SNL%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%88%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E9%83%A8%E5%88%86%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/03/3_SNL%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%88%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E9%83%A8%E5%88%86%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -530,7 +693,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/05/03/SNL%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%88%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E9%83%A8%E5%88%86%EF%BC%89/" class="post-title-link" itemprop="url">编译原理课设计SNL语言编译器（语法分析部分）</a>
+            <a href="/2023/05/03/3_SNL%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%88%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E9%83%A8%E5%88%86%EF%BC%89/" class="post-title-link" itemprop="url">编译原理课设计SNL语言编译器（语法分析部分）</a>
         </h2>
 
         <div class="post-meta">
@@ -547,7 +710,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-05-12 20:48:37" itemprop="dateModified" datetime="2023-05-12T20:48:37+08:00">2023-05-12</time>
+                <time title="修改时间：2023-06-06 16:28:51" itemprop="dateModified" datetime="2023-06-06T16:28:51+08:00">2023-06-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -574,9 +737,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="SNL语言编译器（语法分析部分）"><a href="#SNL语言编译器（语法分析部分）" class="headerlink" title="SNL语言编译器（语法分析部分）"></a>SNL语言编译器（语法分析部分）</h2><p><a target="_blank" rel="noopener" href="https://github.com/thechentr/SNL-compiler">项目代码链接</a></p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>该项目是本人在编译原理课设计中的作业项目，本人负责部分为语法分析部分，该篇文章简要说明了整个语法分析部分的实现方案。</p>
-<h3 id="前期准备工作"><a href="#前期准备工作" class="headerlink" title="前期准备工作"></a>前期准备工作</h3><p>语法分析的基础是语法规则，即针对一门特定语言的产生式，所有语法分析的方法都要基于其进行。因此，进行SNL语法分析的主要任务是明确SNL语言的产生式，为方便后续工作的进行，我们将SNL语言的所有产生式（共112条），通过图片文字识别，以纯文本形式录入到了txt文件中，其中，符号形式的中级符被我们 按照教材上的定义，替换成了相应的字符串，并在所有 终极符前添加了@符号以和非终极符进行区分，部分产生式文档及符号对照表如下：</p>
+          <p><a target="_blank" rel="noopener" href="https://github.com/thechentr/SNL-compiler">项目代码链接</a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>该项目是本人在编译原理课设计中的作业项目，本人负责部分为语法分析部分，该篇文章简要说明了整个语法分析部分的实现方案。</p>
+<h2 id="前期准备工作"><a href="#前期准备工作" class="headerlink" title="前期准备工作"></a>前期准备工作</h2><p>语法分析的基础是语法规则，即针对一门特定语言的产生式，所有语法分析的方法都要基于其进行。因此，进行SNL语法分析的主要任务是明确SNL语言的产生式，为方便后续工作的进行，我们将SNL语言的所有产生式（共112条），通过图片文字识别，以纯文本形式录入到了txt文件中，其中，符号形式的中级符被我们 按照教材上的定义，替换成了相应的字符串，并在所有 终极符前添加了@符号以和非终极符进行区分，部分产生式文档及符号对照表如下：</p>
 <img src="../images/编译原理8.jpg" alt="产生式文档" style="zoom: 30%;" />
 
 <img src="../images/编译原理10.jpg" alt="符号对照表" style="zoom: 50%;" />
@@ -586,7 +749,7 @@
 
 <p>SNL的语法文法为LL1文法，即对于每个非终结符，都可以通过查看输入Token序列的下一个Token来确定使用哪个产生式进行推导，且推导方式唯一。而实现这种推导的基础是计算每个产生式右部的predict集。因此我们使用 Python语言实现了<strong>基于产生式文本的predict集求解算法</strong>，并用其对SNL语言各产生式的predict集进行求解，最终与教材中的predict集进行对比，经核对后指出了教材中的几处错误：</p>
 <p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%861.jpg" alt="教材中predict集的几处错误"></p>
-<h3 id="相关声明"><a href="#相关声明" class="headerlink" title="相关声明"></a>相关声明</h3><p>在语法分析的代码实现时，考虑到LL(1)语法分析和递归下降语法分析使用相同的终极符、非终极符枚举类型声明，相同的树结点等声明，为方便代码维护、减少代码重复、提高代码可读性与复用性，我们将在语法分析阶段所涉及的必要声明都声明在“<em>PasingDec.h</em>”头文件中，供递归下降共递归下降分析和LL1语法分析使用，其调用关系如下：</p>
+<h2 id="相关声明"><a href="#相关声明" class="headerlink" title="相关声明"></a>相关声明</h2><p>在语法分析的代码实现时，考虑到LL(1)语法分析和递归下降语法分析使用相同的终极符、非终极符枚举类型声明，相同的树结点等声明，为方便代码维护、减少代码重复、提高代码可读性与复用性，我们将在语法分析阶段所涉及的必要声明都声明在“<em>PasingDec.h</em>”头文件中，供递归下降共递归下降分析和LL1语法分析使用，其调用关系如下：</p>
 <img src="../images/编译原理2.jpg" alt="头文件调用关系" style="zoom: 30%;" />
 
 <p>在该头文件中包含了，语法分析阶段所涉及的<strong>所有</strong>必要声明，其内部结构如下：</p>
@@ -594,20 +757,20 @@
 <p>其中终极符和非终结符的枚举,及枚举类型到字符串的转换函数，均由Python代码<strong>自动生成</strong>。</p>
 <p>为实现代码自动生成，我们<strong>简化了语法分析树结点的结构</strong>，仅保留了足够满足语义分析的信息。</p>
 <p>在具体编写程序代码实现两种语法分析时，我们选择采用<strong>面向对象</strong>的编程方式，极大地提高语法分析部分代码的封闭性、可读性。同时，我们充分利用Python语言的优势，编写了自动生成语义分析部分c语言代码的工具，并完善了其通用性，使其可以接受任何一门语言的产生式集合，自动生成相应的c语言递归下降语义分析代码和LL1 语义分析代码，在减小工作量的同时，提高了代码编写的统一性与准确性。</p>
-<h3 id="LL（1）语法分析："><a href="#LL（1）语法分析：" class="headerlink" title="LL（1）语法分析："></a>LL（1）语法分析：</h3><p>LL(1)语法分析采用自顶向下的分析方法，即从最开始的非终结符开始，逐步推导出符合语法规则的程序代码，这种分析方法具有简单、高效的特点，可以有效地检测语法错误。在实现该种方式的语义分析代码时 需要用到多种栈及一种专用的数据结构，即符号栈的结点结构，其结构及LL1语法分析器如下：</p>
+<h2 id="LL（1）语法分析："><a href="#LL（1）语法分析：" class="headerlink" title="LL（1）语法分析："></a>LL（1）语法分析：</h2><p>LL(1)语法分析采用自顶向下的分析方法，即从最开始的非终结符开始，逐步推导出符合语法规则的程序代码，这种分析方法具有简单、高效的特点，可以有效地检测语法错误。在实现该种方式的语义分析代码时 需要用到多种栈及一种专用的数据结构，即符号栈的结点结构，其结构及LL1语法分析器如下：</p>
 <p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%864.jpg" alt="LL1语法分析器结构及符号栈结点的结构"></p>
 <p>其中，实现LL(1)语法分析的关键为LL(1)分析矩阵的初始化工作，即根据SNL语言语法的产生式及其predict集，将产生式中的各个符号按顺序填写到矩阵的对应位置中，由于矩阵的不同位置可能对应相同的产生式，且存在大量重复，为<strong>节约堆区空间</strong>，在构建一个产生式的符号序列之后，我们将该序列的指针作为内容填写到分析矩阵中的多个重复位置，并且使用了与符号栈元素相同的数据结构，使得在对符号栈栈顶非终极符进行推导时，只需按照LL(1)分析矩阵，查找对应符号序列，<strong>直接压入栈中</strong>即可，简化了分析过程。</p>
 <p>并且，在该部分代码的编写中 存在大量冗余重复的工作，我们仍然<strong>使用Python自动生成LL(1)分析矩阵的初始化代码</strong>。其整体思路为，按照产生式右部结构生成符号序列Vector，按照产生式左部及其predict集将符号向量指针填写到矩阵对应位置，如根据第一条产生式生成如下LL(1)分析矩阵初始化代码：</p>
 <p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865.jpg" alt="根据第一条产生式生成的LL(1)分析矩阵初始化代码"></p>
 <p>进行LL(1)语法分析时，只需不断处理符号栈顶，如果是非终结符 则按照分析矩阵进行推导 如果中意符则进行符号匹配，最终以是否符号序列 全部处理完成且符号占为空 作为语法分析是否成功的依据。</p>
 <p>在此基础上，为<strong>规范语法树结构</strong>，使得推导后无子节点的节点 不会连接在语法分析树中，最终使得所有叶结点均为终极符，我们使用节点栈存储其子节点未全部生成的节点，在弹出符号栈“弹栈符号”时，弹出节点栈栈顶结点，并判断是否应将其接入语法分析树中。</p>
-<h3 id="递归下降语法分析："><a href="#递归下降语法分析：" class="headerlink" title="递归下降语法分析："></a>递归下降语法分析：</h3><p>递归下降语法分析器从语法的最高层开始，逐层向下分析。在分析过程中，如果当前的符号是非终结符，则递归调用该非终结符所对应的子程序；如果当前的符号是终结符，则匹配当前的符号，生成相应结点连接到语法树，并将输入指针指向下一个符号。在每个非终结符的处理函数中，根据其一个或多个产生式的Predict集，选择相应的处理方法，因此我们的递归下降语法分析器结构如下：</p>
+<h2 id="递归下降语法分析："><a href="#递归下降语法分析：" class="headerlink" title="递归下降语法分析："></a>递归下降语法分析：</h2><p>递归下降语法分析器从语法的最高层开始，逐层向下分析。在分析过程中，如果当前的符号是非终结符，则递归调用该非终结符所对应的子程序；如果当前的符号是终结符，则匹配当前的符号，生成相应结点连接到语法树，并将输入指针指向下一个符号。在每个非终结符的处理函数中，根据其一个或多个产生式的Predict集，选择相应的处理方法，因此我们的递归下降语法分析器结构如下：</p>
 <p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866.jpg" alt="归下降语法分析器结构"></p>
 <p>实现该种方法的语法分析程序时，关键在于为各个非终结符编写处理程序，从而通过一次完整的递归调用完成语法分析工作。该种语法分析方法虽然逻辑简单 但代码工作量较大，且存在规律性，因此我们仍然<strong>使用Python代码自动生成所有非终结符的处理程序</strong>，其大致思路为:  </p>
 <p>按照所有以该非终极符为左部的产生式，及其相应的 Predict集，按产生式右部顺序进行终极符号匹配或非终极符程序调用，并在无法选择产生式时进行报错。</p>
 <p>同时为避免函数名称标识符与枚举类型标识符重复，我们用“_非终极符名称”为函数命名，并且严格按照predict集合进行推导，即使非终结符只有一条产生式，也仍然判断待处理Token序列头是否属于其predict集合，使得分析过程更加严谨，如非终极符Program的处理程序为：</p>
 <p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%867.jpg" alt="归下降语法分析器结构"></p>
-<h3 id="语法分析部分总结："><a href="#语法分析部分总结：" class="headerlink" title="语法分析部分总结："></a>语法分析部分总结：</h3><p>在该部分，我们仅从产生式出发，求解了SNL语言语法分析中各个产生式的predict集，并实现了两种面向对象、可读性强、代码结构统一的语法分析器.，过程中我们使用Python代码简化工作量，最终达到了</p>
+<h2 id="语法分析部分总结："><a href="#语法分析部分总结：" class="headerlink" title="语法分析部分总结："></a>语法分析部分总结：</h2><p>在该部分，我们仅从产生式出发，求解了SNL语言语法分析中各个产生式的predict集，并实现了两种面向对象、可读性强、代码结构统一的语法分析器.，过程中我们使用Python代码简化工作量，最终达到了</p>
 <p><strong>800行c语言代码 + 250行 python代码 -&gt; 2500行语法分析程序（c语言）</strong></p>
 <p>的效果。更重要的是实现了<strong>通用的C语言语法分析程序生成程序</strong>，该程序以一门特定编程语言的产生式集合作为输入，自动生成其相应的递归下降语法分析程序和LL(1)语法分析程序。</p>
 
@@ -629,7 +792,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/09/%E7%83%AD%E6%B2%B3%EF%BC%88%E7%9B%B8%E4%BF%A1%E6%9C%AA%E6%9D%A5%E7%89%88%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/09/2_%E7%83%AD%E6%B2%B3%EF%BC%88%E7%9B%B8%E4%BF%A1%E6%9C%AA%E6%9D%A5%E7%89%88%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -643,7 +806,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/02/09/%E7%83%AD%E6%B2%B3%EF%BC%88%E7%9B%B8%E4%BF%A1%E6%9C%AA%E6%9D%A5%E7%89%88%EF%BC%89/" class="post-title-link" itemprop="url">热河（相信未来版）吉他谱</a>
+            <a href="/2023/02/09/2_%E7%83%AD%E6%B2%B3%EF%BC%88%E7%9B%B8%E4%BF%A1%E6%9C%AA%E6%9D%A5%E7%89%88%EF%BC%89/" class="post-title-link" itemprop="url">热河（相信未来版）吉他谱</a>
         </h2>
 
         <div class="post-meta">
@@ -709,7 +872,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/08/%E5%85%B3%E4%BA%8E%E8%AE%B0%E5%BF%86/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/08/1_%E5%85%B3%E4%BA%8E%E8%AE%B0%E5%BF%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -723,7 +886,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/02/08/%E5%85%B3%E4%BA%8E%E8%AE%B0%E5%BF%86/" class="post-title-link" itemprop="url">写在前面</a>
+            <a href="/2023/02/08/1_%E5%85%B3%E4%BA%8E%E8%AE%B0%E5%BF%86/" class="post-title-link" itemprop="url">写在前面</a>
         </h2>
 
         <div class="post-meta">
@@ -740,7 +903,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-05-23 18:56:29" itemprop="dateModified" datetime="2023-05-23T18:56:29+08:00">2023-05-23</time>
+                <time title="修改时间：2023-06-06 16:29:10" itemprop="dateModified" datetime="2023-06-06T16:29:10+08:00">2023-06-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -859,7 +1022,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

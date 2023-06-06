@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="首先，热烈庆祝考研数学高数部分的基础阶段复习完成，完结撒花🎉！ 本篇对应张宇考研数学基础30讲的第18讲，为数一的专题内容，主要内容为三重积分和第一、第二型曲线曲面积分。  三重积分三重积分的本质即通过密度函数求解空间物体的质量，基本形式即：$$\iiint \limits_{\Omega} \rho(x,y,z) \mathrm{d}V$$求解该种积分有三种基本方法（按考虑优先级）：  球面坐">
+<meta property="og:type" content="article">
+<meta property="og:title" content="空间积分">
+<meta property="og:url" content="http://example.com/2023/06/06/7_%E7%A9%BA%E9%97%B4%E7%A7%AF%E5%88%86/index.html">
+<meta property="og:site_name" content="Terrence&#39;s Blog">
+<meta property="og:description" content="首先，热烈庆祝考研数学高数部分的基础阶段复习完成，完结撒花🎉！ 本篇对应张宇考研数学基础30讲的第18讲，为数一的专题内容，主要内容为三重积分和第一、第二型曲线曲面积分。  三重积分三重积分的本质即通过密度函数求解空间物体的质量，基本形式即：$$\iiint \limits_{\Omega} \rho(x,y,z) \mathrm{d}V$$求解该种积分有三种基本方法（按考虑优先级）：  球面坐">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-06-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-06-06T08:26:56.282Z">
+<meta property="article:author" content="Terrence Chen">
+<meta property="article:tag" content="IT music movie life">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2023/06/06/7_%E7%A9%BA%E9%97%B4%E7%A7%AF%E5%88%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>空间积分 | Terrence's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Terrence's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">welcome to the memohub</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>时间线</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/06/7_%E7%A9%BA%E9%97%B4%E7%A7%AF%E5%88%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Terrence Chen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Terrence's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          空间积分
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-06-06 00:00:00 / 修改时间：16:26:56" itemprop="dateCreated datePublished" datetime="2023-06-06T00:00:00+08:00">2023-06-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">高等数学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>首先，热烈庆祝考研数学高数部分的基础阶段复习完成，完结撒花🎉！</p>
+<p>本篇对应张宇考研数学基础30讲的第18讲，为数一的专题内容，主要内容为三重积分和第一、第二型曲线曲面积分。</p>
+<hr>
+<h2 id="三重积分"><a href="#三重积分" class="headerlink" title="三重积分"></a>三重积分</h2><p><em>三重积分</em>的本质即通过<em>密度函数</em>求解空间物体的质量，基本形式即：<br>$$<br>\iiint \limits_{\Omega} \rho(x,y,z) \mathrm{d}V<br>$$<br>求解该种积分有三种基本方法（按考虑优先级）：</p>
+<ul>
+<li><p>球面坐标系：适用于积分区域是球的一部分<br>  $$<br>  \iiint \limits_{\Omega} \rho(x,y,z) \mathrm{d}V&#x3D; \int\mathrm{d}\theta \int\mathrm{d}\varphi\int \rho(x,y,z) r^2 \sin{\varphi} \mathrm{d}r<br>  $$</p>
+</li>
+<li><p>先二后一（先积面后积线）：使用与以某一坐标轴为中心的柱体</p>
+</li>
+<li><p>先一后二（先积线后积面）：适用于由两个曲面围成的曲顶柱体</p>
+</li>
+</ul>
+<p>不论是<em>先二后一</em>还是<em>先一后二</em>，不过是将三重积分转换成了<em>定积分</em>和<em>二重积分</em>，在积“面”的时候如果是绕着坐标系的圆的一部分，可以考虑试用极坐标系积该面，也就是我们常说的<em>柱面坐标系</em>，不过不要忘记乘$r$。</p>
+<p>注⚠：</p>
+<p>在三重积分是不能脱离其几何意义，如对某些变量积分时，其余变量是否为常数应考虑在进行该重积分时，这个变量的值是否发生变化，脱离图形而盲目求导就漾银笑话了。</p>
+<h2 id="第一型积分"><a href="#第一型积分" class="headerlink" title="第一型积分"></a>第一型积分</h2><p>与<em>三重积分</em>类似，<em>一型积分</em>的本质为已知<em>密度函数</em>  $$\rho(x, y, z)$$，求解空间曲线&#x2F;曲面的质量（此处使用“质量”并不恰当，因为线和面是没有质量的），该型积分的基本思想即：</p>
+<ol>
+<li>使用图形的限定方程对被积函数降维（也就是我们常说的投影），并确定积分范围</li>
+<li><u>使用<em>弧长公式转化为定积分</em></u>  或  <u>使用<em>曲面面积公式</em>转化二重积分</u></li>
+<li>计算积分</li>
+</ol>
+<p>下面就分别来看看这三步在两种积分中如何应用。</p>
+<h3 id="第一型曲线积分"><a href="#第一型曲线积分" class="headerlink" title="第一型曲线积分"></a>第一型曲线积分</h3><ol>
+<li><p>一型曲线积分分为两种，降维方法稍有不同，但最后都将化为定积分：</p>
+<ul>
+<li><p>一型平面曲线积分：降维为关于x或关于y的函数(一般为x)</p>
+</li>
+<li><p>一型空间曲线积分：降维为关于t的函数（选取便于计算的t）</p>
+</li>
+</ul>
+</li>
+<li><p>弧长公式：</p>
+</li>
+</ol>
+<p>$$<br>\mathrm{d}s &#x3D; \sqrt{(x_t’)^2+(y_t’)^2+(z_t’)^2}\mathrm{dt}<br>$$</p>
+<p>  特殊的，当一型平面曲线积分降维为关于x的函数时有<br>$$<br>\mathrm{d}s &#x3D; \sqrt{1+(y_x’)^2}\mathrm{d}x<br>$$</p>
+<ol start="3">
+<li>计算定积分</li>
+</ol>
+<h3 id="第一型曲面积分"><a href="#第一型曲面积分" class="headerlink" title="第一型曲面积分"></a>第一型曲面积分</h3><ol>
+<li><p>曲面降维即投影到坐标轴平面上，但在选择平面时要选择投影后<strong>没有重合点</strong>的平面</p>
+</li>
+<li><p>曲面面积公式：（以投影到$xOy$平面上为例）</p>
+</li>
+</ol>
+<p>$$<br>\mathrm{d}S &#x3D; \sqrt{1+(z_x’)^2+(z_y’)^2}\mathrm{d}x\mathrm{d}y<br>$$</p>
+<ol start="3">
+<li>计算二重积分</li>
+</ol>
+<h2 id="第二型积分"><a href="#第二型积分" class="headerlink" title="第二型积分"></a>第二型积分</h2><p><em>二型积分</em>的本质为：已知<em>向量场</em>：<br>$$<br>F(x, y, z) &#x3D; P(x, y, z) \overrightarrow{i} + Q(x, y, z) \overrightarrow{j} + R(x, y, z) \overrightarrow{k}<br>$$<br> 求解该场中某一曲线的做功或某一曲面的通量问题，观察等式右边，该向量场亦可以看作三个沿坐标轴正方向的<strong>分向量场的叠加</strong>。</p>
+<p>下面分别来看：</p>
+<h3 id="第二次曲线积分"><a href="#第二次曲线积分" class="headerlink" title="第二次曲线积分"></a>第二次曲线积分</h3><p>若一个向量场为力场，则每一点$(x_0, y_0, z_0)$都能确定一个力$P(x_0, y_0, z_0) \overrightarrow{i} + Q(x_0, y_0, z_0) \overrightarrow{j} + R(x_0, y_0, z_0) \overrightarrow{k} $, 若要确定一个单位质量的物体沿该力场中某一特定<strong>有向路径</strong>移动，该力场所做的功，则引出了第二型曲线积分：<br>$$<br>\int \limits_{\Gamma} F(x, y, z) \mathrm{d}s &#x3D; \int \limits_{\Gamma} P(x_0, y_0, z_0) \mathrm{d}x + Q(x_0, y_0, z_0) \mathrm{d}y + R(x_0, y_0, z_0) \mathrm{d}z<br>$$</p>
+<p>结合其物理意义，不难理解，等式右边即三个<strong>分向量场做功的和</strong>，因此完全可以分三个定积分来计算：<br>$$<br>\int \limits_{\Gamma} F(x, y, z) \mathrm{d}s &#x3D; \int \limits_{\Gamma} P(x, y, z) x_t’ \mathrm{d}t + \int \limits_{\Gamma} Q(x, y, z) y_t’ \mathrm{d}t + \int \limits_{\Gamma} R(x, y, z) z_t’ \mathrm{d}t<br>$$</p>
+<p>不过这种方法，需要求出有向路径的<strong>参数方程</strong>，且计算量较大。当满足：</p>
+<ul>
+<li>有向路径是<strong>封闭曲线</strong></li>
+<li>被积函数在封闭区域内<strong>连续</strong></li>
+</ul>
+<p>就可以应用公式，将其转化为关于封闭区域的面积分：</p>
+<ul>
+<li><p><strong>格林公式</strong></p>
+<p>  当积分曲线是$xOy$上的<strong>平面曲线</strong>，则封闭区域则为$xOy$上的平面，此时应用格林公式：<br>  $$<br>  \oint P(x_0, y_0, z_0) \mathrm{d}x + Q(x_0, y_0, z_0) &#x3D; \pm\iint<br>  \left|\begin{matrix}<br> \frac{\partial}{\partial x} &amp; \frac{\partial}{\partial y} \<br> P &amp; Q \<br>\end{matrix}\right|\mathrm{d}x\mathrm{d}y<br>  $$<br>  其中的$\pm$取值为该曲线“法向量”（右手向量）的正负</p>
+</li>
+<li><p><strong>斯托克斯公式</strong></p>
+<p>  当积分曲线是<strong>空间曲线</strong>，则封闭区域则为空间平面，此时应用斯托克斯公式：<br>  $$<br>  \oint P(x_0, y_0, z_0) \mathrm{d}x + Q(x_0, y_0, z_0) &#x3D; \iint<br>  \left|\begin{matrix}<br> cos{\alpha} &amp; cos{\beta} &amp; cos{\gamma}\<br> \frac{\partial}{\partial x} &amp; \frac{\partial}{\partial y} &amp;  \frac{\partial}{\partial z}\<br> P &amp; Q &amp; R\<br>\end{matrix}\right|\mathrm{d}\sigma<br>  $$</p>
+</li>
+</ul>
+<p>​		其中第一行为该曲线“法向量”的三个方向角</p>
+<h3 id="第二型曲面积分"><a href="#第二型曲面积分" class="headerlink" title="第二型曲面积分"></a>第二型曲面积分</h3><p>若一个向量场为电&#x2F;磁场，或某一流体的速度场，若要确定该场通过某一曲面的流量，则引出了第二型曲面积分：<br>$$<br>\iint \limits_{\Sigma} F(x, y, z) \mathrm{d}s &#x3D; \iint \limits_{\Sigma} P(x_0, y_0, z_0) \mathrm{d}y\mathrm{d}z + Q(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}z + R(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}y<br>$$<br>和曲线积分一样，该积分同样等于三个<strong>分向量场通量的和</strong>，即：<br>$$<br>\iint \limits_{\Sigma} F(x, y, z) \mathrm{d}s &#x3D; \iint \limits_{\Sigma} P(x_0, y_0, z_0) \mathrm{d}y\mathrm{d}z +  \iint \limits_{\Sigma} Q(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}z +   \iint \limits_{\Sigma}R(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}y<br>$$<br>和第一型曲面积分一样，使用该方法要求该曲面在坐标轴上的投影不能有重合点！不过，若该曲面满足：</p>
+<ul>
+<li><strong>曲面封闭</strong></li>
+<li>被积函数在封闭空间内<strong>连续</strong></li>
+</ul>
+<p>就可以应用公式，将其转化为关于封闭空间的三重积分，即<strong>高斯公式</strong>：<br>$$<br>\oiint F(x, y, z) \mathrm{d}s &#x3D; \pm\iiint \limits_{\Omega}(\frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z})\mathrm{d}v<br>$$<br>其中的当曲面为外侧时取$+$，内侧取$-$</p>
+<hr>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>以上所述皆为基本方法，尤其是实际题目，想要使用</p>
+<ul>
+<li><strong>格林公式</strong> </li>
+<li><strong>斯托克斯公式</strong></li>
+<li><strong>高斯公式</strong></li>
+</ul>
+<p>往往需要<strong>补充线&#x2F;面</strong>使之封闭或挖去其中<strong>奇点</strong>才可</p>
+<p>此外,第一型积分的应用有时需要读者熟知以下公式:</p>
+<h3 id="计算重心-以平面薄片为例"><a href="#计算重心-以平面薄片为例" class="headerlink" title="计算重心 (以平面薄片为例)"></a>计算重心 (以平面薄片为例)</h3><p>$$<br>\overline{x} &#x3D; \frac{\iint x \rho(x, y) \mathrm{d}s}{\iint \rho(x, y) \mathrm{d}s}<br>$$</p>
+<h3 id="转动惯量"><a href="#转动惯量" class="headerlink" title="转动惯量"></a>转动惯量</h3><p>$$<br>I &#x3D; m r^2<br>$$</p>
+<h3 id="xOy-平面上某一薄片对于某点-x-0-y-0-z-0-沿某一轴方向的引力-以-x-轴为例"><a href="#xOy-平面上某一薄片对于某点-x-0-y-0-z-0-沿某一轴方向的引力-以-x-轴为例" class="headerlink" title="$xOy$平面上某一薄片对于某点$(x_0,y_0,z_0)$沿某一轴方向的引力 (以$x$轴为例)"></a>$xOy$平面上某一薄片对于某点$(x_0,y_0,z_0)$沿某一轴方向的引力 (以$x$轴为例)</h3><p>$$<br>F_x &#x3D; \frac{GMm}{R^2}. \frac{R_x}{R} &#x3D; \iint \limits_{D} \frac{\rho(x, y)}{[(x-x_0)^2 + (y-y_0)^2 + z_0^2]}. \frac{(x - x_0)}{\sqrt{(x-x_0)^2 + (y-y_0)^2 + z_0^2}}\mathrm{d}\sigma<br>$$</p>
+<p>​	</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/05/24/6_Hexo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" rel="prev" title="Hexo博客使用说明">
+      <i class="fa fa-chevron-left"></i> Hexo博客使用说明
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E9%87%8D%E7%A7%AF%E5%88%86"><span class="nav-number">1.</span> <span class="nav-text">三重积分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%9E%8B%E7%A7%AF%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">第一型积分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%9E%8B%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86"><span class="nav-number">2.1.</span> <span class="nav-text">第一型曲线积分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%9E%8B%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86"><span class="nav-number">2.2.</span> <span class="nav-text">第一型曲面积分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%9E%8B%E7%A7%AF%E5%88%86"><span class="nav-number">3.</span> <span class="nav-text">第二型积分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86"><span class="nav-number">3.1.</span> <span class="nav-text">第二次曲线积分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E5%9E%8B%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86"><span class="nav-number">3.2.</span> <span class="nav-text">第二型曲面积分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-number">4.</span> <span class="nav-text">补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E9%87%8D%E5%BF%83-%E4%BB%A5%E5%B9%B3%E9%9D%A2%E8%96%84%E7%89%87%E4%B8%BA%E4%BE%8B"><span class="nav-number">4.1.</span> <span class="nav-text">计算重心 (以平面薄片为例)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E5%8A%A8%E6%83%AF%E9%87%8F"><span class="nav-number">4.2.</span> <span class="nav-text">转动惯量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xOy-%E5%B9%B3%E9%9D%A2%E4%B8%8A%E6%9F%90%E4%B8%80%E8%96%84%E7%89%87%E5%AF%B9%E4%BA%8E%E6%9F%90%E7%82%B9-x-0-y-0-z-0-%E6%B2%BF%E6%9F%90%E4%B8%80%E8%BD%B4%E6%96%B9%E5%90%91%E7%9A%84%E5%BC%95%E5%8A%9B-%E4%BB%A5-x-%E8%BD%B4%E4%B8%BA%E4%BE%8B"><span class="nav-number">4.3.</span> <span class="nav-text">$xOy$平面上某一薄片对于某点$(x_0,y_0,z_0)$沿某一轴方向的引力 (以$x$轴为例)</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Terrence Chen"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">Terrence Chen</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment-alt"></i>
+    chen_tr@foxmail.com
+  </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-cloud"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Terrence Chen</span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
