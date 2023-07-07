@@ -20,30 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="现场视频 公路之歌   西湖  极恶都市  曾经错过与你  嘿，姑娘  24小时摇滚聚会   现场照片">
+  <meta name="description" content="我们提到过，矩阵，不只可以表示一个向量组，在其是方形时，还可以表示一种线性变换，这节我们讲探索其表示一个二次方程组时的应用。 二次型变量代换代换过程：balabala 可见，通过变量代换，我们可以将一个二次方程，替换为一个只含有平方项的方程。 如何求解代换？ 一种是通过配方，另一种就是将一个矩阵通过“合同变换”将二次型矩阵对角化。 正定矩阵与对角化的奇妙联系">
 <meta property="og:type" content="article">
-<meta property="og:title" content="无人应答-朝阳音乐节">
-<meta property="og:url" content="http://example.com/2023/05/12/4_%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%82%E6%BC%94%E5%87%BA/index.html">
+<meta property="og:title" content="二次型">
+<meta property="og:url" content="http://example.com/2023/06/21/10_%E4%BA%8C%E6%AC%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Terrence&#39;s Blog">
-<meta property="og:description" content="现场视频 公路之歌   西湖  极恶都市  曾经错过与你  嘿，姑娘  24小时摇滚聚会   现场照片">
+<meta property="og:description" content="我们提到过，矩阵，不只可以表示一个向量组，在其是方形时，还可以表示一种线性变换，这节我们讲探索其表示一个二次方程组时的应用。 二次型变量代换代换过程：balabala 可见，通过变量代换，我们可以将一个二次方程，替换为一个只含有平方项的方程。 如何求解代换？ 一种是通过配方，另一种就是将一个矩阵通过“合同变换”将二次型矩阵对角化。 正定矩阵与对角化的奇妙联系">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%829.jpg">
-<meta property="og:image" content="http://example.com/images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%828.jpg">
-<meta property="og:image" content="http://example.com/images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%8210.jpg">
-<meta property="og:image" content="http://example.com/images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%823.jpg">
-<meta property="og:image" content="http://example.com/images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%821.jpg">
-<meta property="og:image" content="http://example.com/images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%824.jpg">
-<meta property="og:image" content="http://example.com/images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%825.jpg">
-<meta property="og:image" content="http://example.com/images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%826.jpg">
-<meta property="og:image" content="http://example.com/images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%827.jpg">
-<meta property="article:published_time" content="2023-05-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-06T08:28:27.485Z">
+<meta property="article:published_time" content="2023-06-20T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-06-25T11:04:42.042Z">
 <meta property="article:author" content="Terrence Chen">
 <meta property="article:tag" content="IT music movie life">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%829.jpg">
 
-<link rel="canonical" href="http://example.com/2023/05/12/4_%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%82%E6%BC%94%E5%87%BA/">
+<link rel="canonical" href="http://example.com/2023/06/21/10_%E4%BA%8C%E6%AC%A1%E5%9E%8B/">
 
 
 <script id="page-configurations">
@@ -56,7 +46,7 @@
   };
 </script>
 
-  <title>无人应答-朝阳音乐节 | Terrence's Blog</title>
+  <title>二次型 | Terrence's Blog</title>
   
 
 
@@ -171,7 +161,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/12/4_%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%82%E6%BC%94%E5%87%BA/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/21/10_%E4%BA%8C%E6%AC%A1%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -184,7 +174,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          无人应答-朝阳音乐节
+          二次型
         </h1>
 
         <div class="post-meta">
@@ -194,14 +184,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2023-05-12 00:00:00" itemprop="dateCreated datePublished" datetime="2023-05-12T00:00:00+08:00">2023-05-12</time>
+              <time title="创建时间：2023-06-21 00:00:00" itemprop="dateCreated datePublished" datetime="2023-06-21T00:00:00+08:00">2023-06-21</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-06-06 16:28:27" itemprop="dateModified" datetime="2023-06-06T16:28:27+08:00">2023-06-06</time>
+                <time title="修改时间：2023-06-25 19:04:42" itemprop="dateModified" datetime="2023-06-25T19:04:42+08:00">2023-06-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -209,11 +199,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9F%B3%E4%B9%90/" itemprop="url" rel="index"><span itemprop="name">音乐</span></a>
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9F%B3%E4%B9%90/%E6%BC%94%E5%87%BA/" itemprop="url" rel="index"><span itemprop="name">演出</span></a>
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">线性代数</span></a>
                 </span>
             </span>
 
@@ -228,30 +218,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="现场视频"><a href="#现场视频" class="headerlink" title="现场视频"></a>现场视频</h2><ul>
-<li><p><a href="">公路之歌</a> </p>
-</li>
-<li><p><a href="">西湖</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ru41147gk/?vd_source=6f8414b47a0218d016a8116a972d69d4">极恶都市</a></p>
-</li>
-<li><p><a href="">曾经错过与你</a></p>
-</li>
-<li><p><a href="">嘿，姑娘</a></p>
-</li>
-<li><p><a href="">24小时摇滚聚会</a></p>
-</li>
-</ul>
-<h2 id="现场照片"><a href="#现场照片" class="headerlink" title="现场照片"></a>现场照片</h2><p><img src="/../images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%829.jpg" alt="无人应答乐队与观众合照"></p>
-<p><img src="/../images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%828.jpg" alt="朝阳音乐节演出所有乐队与观众合照"></p>
-<p><img src="/../images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%8210.jpg" alt="无人应答乐队成员合照"></p>
-<p><img src="/../images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%823.jpg" alt="华丽的口风琴，他向她靠近"></p>
-<p><img src="/../images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%821.jpg" alt="朝阳音乐节演出乐队展板"></p>
-<p><img src="/../images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%824.jpg"></p>
-<p><img src="/../images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%825.jpg"></p>
-<p><img src="/../images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%826.jpg"></p>
-<p><img src="/../images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%827.jpg"></p>
-
+        <p>我们提到过，矩阵，不只可以表示一个向量组，在其是方形时，还可以表示一种线性变换，这节我们讲探索其表示一个二次方程组时的应用。</p>
+<h2 id="二次型"><a href="#二次型" class="headerlink" title="二次型"></a>二次型</h2><h2 id="变量代换"><a href="#变量代换" class="headerlink" title="变量代换"></a>变量代换</h2><p>代换过程：balabala</p>
+<p>可见，通过变量代换，我们可以将一个二次方程，替换为一个只含有平方项的方程。</p>
+<p>如何求解代换？</p>
+<p>一种是通过配方，另一种就是将一个矩阵通过“合同变换”将二次型矩阵对角化。</p>
+<h2 id="正定矩阵"><a href="#正定矩阵" class="headerlink" title="正定矩阵"></a>正定矩阵</h2><h2 id="与对角化的奇妙联系"><a href="#与对角化的奇妙联系" class="headerlink" title="与对角化的奇妙联系"></a>与对角化的奇妙联系</h2>
     </div>
 
     
@@ -266,12 +238,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/05/03/3_SNL%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%88%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E9%83%A8%E5%88%86%EF%BC%89/" rel="prev" title="编译原理课设计SNL语言编译器（语法分析部分）">
-      <i class="fa fa-chevron-left"></i> 编译原理课设计SNL语言编译器（语法分析部分）
+    <a href="/2023/06/12/9_%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81/" rel="prev" title="矩阵的特征">
+      <i class="fa fa-chevron-left"></i> 矩阵的特征
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/05/23/5_%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" rel="next" title="常微分方程">
-      常微分方程 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/07/06/11_%E6%A6%82%E7%8E%87%E8%AE%BA%E9%87%8D%E7%82%B9%E6%80%BB%E7%BB%93/" rel="next" title="概率论重点总结">
+      概率论重点总结 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -331,7 +303,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E5%9C%BA%E8%A7%86%E9%A2%91"><span class="nav-number">1.</span> <span class="nav-text">现场视频</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E5%9C%BA%E7%85%A7%E7%89%87"><span class="nav-number">2.</span> <span class="nav-text">现场照片</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E6%AC%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">二次型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E4%BB%A3%E6%8D%A2"><span class="nav-number">2.</span> <span class="nav-text">变量代换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%AE%9A%E7%9F%A9%E9%98%B5"><span class="nav-number">3.</span> <span class="nav-text">正定矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8E%E5%AF%B9%E8%A7%92%E5%8C%96%E7%9A%84%E5%A5%87%E5%A6%99%E8%81%94%E7%B3%BB"><span class="nav-number">4.</span> <span class="nav-text">与对角化的奇妙联系</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -444,6 +416,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

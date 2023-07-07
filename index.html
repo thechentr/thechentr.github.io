@@ -156,6 +156,485 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/07/12_%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E9%87%8D%E7%82%B9%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Terrence Chen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Terrence's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/07/07/12_%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E9%87%8D%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">数理统计重点总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-07-07 00:00:00 / 修改时间：17:34:31" itemprop="dateCreated datePublished" datetime="2023-07-07T00:00:00+08:00">2023-07-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">概率论与数理统计</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>数理统计理论使得我们可以以更理性的方式，用部分数据数据（样本）推测整体。——Terrence</p>
+</blockquote>
+<p>本文用于介绍作者在学习数理统计期间，总结的一些认为较为重要的概念。</p>
+<h2 id="大数定律"><a href="#大数定律" class="headerlink" title="大数定律"></a>大数定律</h2><p>频率依概率收敛到概率。</p>
+<h2 id="中心极限定理"><a href="#中心极限定理" class="headerlink" title="中心极限定理"></a>中心极限定理</h2><p>当样本数量足够大时，样本均值服从正态分布。</p>
+<h2 id="样本方差"><a href="#样本方差" class="headerlink" title="样本方差"></a>样本方差</h2><p>为了使得样本方差的期望为总体的方差，即使其成为无偏估计量，我们必须令其除以 $(n - 1)$，具体证明如下：</p>
+<p><img src="D:\Blog\source\images\数理统计重点总结_2.jpg"></p>
+<h2 id="统计量的分布"><a href="#统计量的分布" class="headerlink" title="统计量的分布"></a>统计量的分布</h2><p>统计量就是我们对样本结果计算得到的量，常用的统计量如样本和，样本均值，样本方差等，可以看作多次实验才能得到结果的随机变量，因此<u>统计量也有期望与方差，与构成其的单次实验的期望与方差有着密切的联系。</u></p>
+<h2 id="估计量及其评价标准"><a href="#估计量及其评价标准" class="headerlink" title="估计量及其评价标准"></a>估计量及其评价标准</h2><p>用统计量估计概率的某个参数，这个统计量则称为估计量，评价其估计的是否准确有以下几个指标：</p>
+<ul>
+<li>无偏性：估计量的期望等于真实值。</li>
+<li>有效性（最小方差性）:方差越小越有效。</li>
+<li>一致型（相合性）:估计量依概率收敛到真实值。(无偏且方差有界则有效)</li>
+</ul>
+<h2 id="参数的点估计"><a href="#参数的点估计" class="headerlink" title="参数的点估计"></a>参数的点估计</h2><h3 id="矩估计"><a href="#矩估计" class="headerlink" title="矩估计"></a>矩估计</h3><p>将样本均值等于概率期望，计算参数的取值作为估计量，这种方法称为一阶矩估计，当需要估计的参数个数为k时，需要使用k阶矩估计。</p>
+<h3 id="最大似然估计"><a href="#最大似然估计" class="headerlink" title="最大似然估计"></a>最大似然估计</h3><p>选取令所得样本出现概率最大的参数作为估计量，称为最大似然估计。</p>
+<h2 id="参数的区间估计"><a href="#参数的区间估计" class="headerlink" title="参数的区间估计"></a>参数的区间估计</h2><p>获得样本之后，用样本的统计量估计参数概率较大的区间。一般估计的都是总体均值，根据<strong>总体方差是否已知</strong>使用两种不同的检验方法，如下：</p>
+<p><img src="D:\Blog\source\images\数理统计重点总结_1.jpg"></p>
+<h2 id="假设检验"><a href="#假设检验" class="headerlink" title="假设检验"></a>假设检验</h2><p>在获得样本之前，对参数做出<strong>原假设</strong>和<strong>备择假设</strong>，并根据计算统计量的接受域与拒绝域。在获得样本后按照“规定”选择拒绝&#x2F;接受原假设。</p>
+<h3 id="两种错误"><a href="#两种错误" class="headerlink" title="两种错误"></a>两种错误</h3><ul>
+<li>因<strong>拒绝</strong>原假设而犯的错误称为<strong>第一类错误</strong>（更严重）</li>
+<li>因<strong>接受</strong>原假设而犯的错误称为<strong>第二类错误</strong></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/06/11_%E6%A6%82%E7%8E%87%E8%AE%BA%E9%87%8D%E7%82%B9%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Terrence Chen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Terrence's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/07/06/11_%E6%A6%82%E7%8E%87%E8%AE%BA%E9%87%8D%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">概率论重点总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-07-06 00:00:00" itemprop="dateCreated datePublished" datetime="2023-07-06T00:00:00+08:00">2023-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-07-07 17:32:02" itemprop="dateModified" datetime="2023-07-07T17:32:02+08:00">2023-07-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">概率论与数理统计</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>即使科学规律能指导我们预测大量”必然事件”，但以人类目前的能力，这仍然是一个概率的世界。——Terrence</p>
+</blockquote>
+<p>本文用于介绍作者在学习概率论期间，总结的一些认为较为重要的概念。</p>
+<h2 id="事件与基本事件"><a href="#事件与基本事件" class="headerlink" title="事件与基本事件"></a>事件与基本事件</h2><p>概率，用来衡量即理想情况下一个<strong>事件</strong>生的可能性大小，而一个事件可能由多个<strong>样本点</strong>（不可再分的事件）组成，因此我们可以说：<u>事件就是样本点的集合</u>，而事件的运算本质上就是集合的运算。</p>
+<h2 id="全概率公式及贝叶斯公式"><a href="#全概率公式及贝叶斯公式" class="headerlink" title="全概率公式及贝叶斯公式"></a>全概率公式及贝叶斯公式</h2><h2 id="随机变量"><a href="#随机变量" class="headerlink" title="随机变量"></a>随机变量</h2><h2 id="概率密度"><a href="#概率密度" class="headerlink" title="概率密度"></a>概率密度</h2><h2 id="常见分布"><a href="#常见分布" class="headerlink" title="常见分布"></a>常见分布</h2><h3 id="0-1分布与二项分布-B-n-p"><a href="#0-1分布与二项分布-B-n-p" class="headerlink" title="0-1分布与二项分布  $B(n,p)$"></a>0-1分布与二项分布  $B(n,p)$</h3><p>将<strong>伯努利实验</strong>的结果成功计1，失败计0，化为随机变量；一次实验的结果与n次实验的结果即为0-1分布与二项分布。</p>
+<h3 id="泊松分布-P-lambda"><a href="#泊松分布-P-lambda" class="headerlink" title="泊松分布  $P(\lambda)$"></a>泊松分布  $P(\lambda)$</h3><p>用于描述单位内事件发生的次数的概率分布。</p>
+<p>（其表达式可用无穷次伯努利实验得到）</p>
+<h3 id="超几何分布-H-n-N-M"><a href="#超几何分布-H-n-N-M" class="headerlink" title="超几何分布  $H(n, N, M)$"></a>超几何分布  $H(n, N, M)$</h3><p>M件产品中有N件次品，抽取n件，抽取到次品数量的概率分布。</p>
+<h3 id="几何分布"><a href="#几何分布" class="headerlink" title="几何分布"></a>几何分布</h3><p>离散型等待分布。</p>
+<h3 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a>指数分布</h3><p>连续型等待分布。</p>
+<h3 id="均匀分布"><a href="#均匀分布" class="headerlink" title="均匀分布"></a>均匀分布</h3><p>几何上的均匀。</p>
+<h3 id="正态分布"><a href="#正态分布" class="headerlink" title="正态分布"></a>正态分布</h3><p>概率与统计的桥梁。</p>
+<h2 id="随机变量函数的分布"><a href="#随机变量函数的分布" class="headerlink" title="随机变量函数的分布"></a>随机变量函数的分布</h2><h3 id="离散型随机变量"><a href="#离散型随机变量" class="headerlink" title="离散型随机变量"></a>离散型随机变量</h3><h3 id="连续型随机变量"><a href="#连续型随机变量" class="headerlink" title="连续型随机变量"></a>连续型随机变量</h3><h3 id="卷积公式"><a href="#卷积公式" class="headerlink" title="卷积公式"></a>卷积公式</h3><p>连续型随机变量的全概率公式。</p>
+<h2 id="期望与方差"><a href="#期望与方差" class="headerlink" title="期望与方差"></a>期望与方差</h2><h3 id="平方的期望永远大于的期望的方差"><a href="#平方的期望永远大于的期望的方差" class="headerlink" title="平方的期望永远大于的期望的方差"></a>平方的期望永远大于的期望的方差</h3><h2 id="协方差与相关系数"><a href="#协方差与相关系数" class="headerlink" title="协方差与相关系数"></a>协方差与相关系数</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/21/10_%E4%BA%8C%E6%AC%A1%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Terrence Chen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Terrence's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/06/21/10_%E4%BA%8C%E6%AC%A1%E5%9E%8B/" class="post-title-link" itemprop="url">二次型</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-06-21 00:00:00" itemprop="dateCreated datePublished" datetime="2023-06-21T00:00:00+08:00">2023-06-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-06-25 19:04:42" itemprop="dateModified" datetime="2023-06-25T19:04:42+08:00">2023-06-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">线性代数</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>我们提到过，矩阵，不只可以表示一个向量组，在其是方形时，还可以表示一种线性变换，这节我们讲探索其表示一个二次方程组时的应用。</p>
+<h2 id="二次型"><a href="#二次型" class="headerlink" title="二次型"></a>二次型</h2><h2 id="变量代换"><a href="#变量代换" class="headerlink" title="变量代换"></a>变量代换</h2><p>代换过程：balabala</p>
+<p>可见，通过变量代换，我们可以将一个二次方程，替换为一个只含有平方项的方程。</p>
+<p>如何求解代换？</p>
+<p>一种是通过配方，另一种就是将一个矩阵通过“合同变换”将二次型矩阵对角化。</p>
+<h2 id="正定矩阵"><a href="#正定矩阵" class="headerlink" title="正定矩阵"></a>正定矩阵</h2><h2 id="与对角化的奇妙联系"><a href="#与对角化的奇妙联系" class="headerlink" title="与对角化的奇妙联系"></a>与对角化的奇妙联系</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/12/9_%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Terrence Chen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Terrence's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/06/12/9_%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81/" class="post-title-link" itemprop="url">矩阵的特征</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-06-12 00:00:00" itemprop="dateCreated datePublished" datetime="2023-06-12T00:00:00+08:00">2023-06-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-06-21 15:57:36" itemprop="dateModified" datetime="2023-06-21T15:57:36+08:00">2023-06-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">线性代数</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>矩阵</strong>，当作为一种<strong>线性变换</strong>时，会将整个空间及空间中的所有向量都进行某种程度上的“调整”，具体体现为当其左乘一个向量时，结果会与原来的向量有所不同。</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>设有一个矩阵（线性变换）$A&#x3D;\left|\begin{matrix}<br>   3 &amp; 1 \ 1 &amp; 3  \end{matrix}\right|$，当我们对其仔细观察其对空间中向量进行的线性变换时，会发现：在经过$A$变换后，空间中的所有向量的两个重要属性——长度和方向，并不是一定都会改变。会有一些特定方向上的向量，如：$x_1&#x3D; \left[\begin{matrix} 2 \ -2  \end{matrix}\right]$,在经过$A$变换后，会变化为$A x_1 &#x3D; \left[\begin{matrix} 4 \ -4  \end{matrix}\right]$，其方向并没有改变，只是发生了长度上伸长为原来的2倍，并且与$x_1$同向的向量在经过$A$变换后都会产生一样的效果（伸长为原来的2倍），那还有没有这样的向量呢？</p>
+<p>让我们来试图求解一下：</p>
+<blockquote>
+<p>设向量x经过A变化后方向没有改变，只是发生了长度上的变化，则有：</p>
+<p>$Ax &#x3D; kx$ （k为常数） </p>
+<p>即 $(A-kE)x &#x3D; 0$</p>
+<p>由于$(A-kE)$是一个矩阵，此时又变成了求解其次线性方程组的问题，但不同的是，其中还有一个常数k我们不知道取什么。不过我们知道的是当$(A-kE)$满秩时，这个方程组无解，也就是当$k$取某些值时，没有这样的向量，使得经过线性变化后被线性放大了$k$倍，那首先我们就要看$k$可能的取值，也就是向量被放大的<strong>“可能倍数”</strong>，同时也是令这个方程组有解的取值。因此，我们：</p>
+<p>令$|A-kE|&#x3D;0$</p>
+<p>解出$k$的可能取值分别带回到方程组里求解$x$，就找到了那些“经过A变化后方向没有改变，只是发生了长度上的变化”的向量，同时在求解时使用的$k$就是它们被放大的倍数。</p>
+</blockquote>
+<p>此时我们就称，所求解的各个$k$为矩阵的特征值，而各个$x$则为特征向量。</p>
+<h2 id="相似"><a href="#相似" class="headerlink" title="相似"></a>相似</h2><p>即使我们知道了矩阵的特征值和特征向量，那我们该如何去应用它呢，首先我们来介绍一下相似理论。</p>
+<h2 id="对角化"><a href="#对角化" class="headerlink" title="对角化"></a>对角化</h2><p>有了相似理论的基础，我们就可以将特征值和特征向量描述成一个相似矩阵，其为对角矩阵。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/12/8_%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Terrence Chen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Terrence's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/06/12/8_%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">线性代数基础</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-06-12 00:00:00" itemprop="dateCreated datePublished" datetime="2023-06-12T00:00:00+08:00">2023-06-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-06-18 10:54:13" itemprop="dateModified" datetime="2023-06-18T10:54:13+08:00">2023-06-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">线性代数</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>数缺形时少直观，形少数时难入微；数形结合百般好，隔离分家万事休。——华罗庚</p>
+</blockquote>
+<blockquote>
+<p>在学习<em>线性代数</em>时，常常在二维和三维空间中想象，将事半功倍。——Terrence</p>
+</blockquote>
+<h2 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h2><p>作为线性代数学科的基础，向量是我们的重要研究对象。与<em>标量</em>不同，向量具有<u>长度</u>和<u>方向</u>两个性质（标量只有大小），因此我们很容易就可以想到，用一个二元组<em>（长度，方向）</em>，来表示一个特定的向量，这样做毫无问题，可是却不便于我们的计算。由于特定的向量无关与其起始位置，所以我们常用<strong>当向量起于坐标原点时，其终点的坐标</strong>，来表示一个特定的向量，为了区别于单纯坐标，通常我们将终点坐标的各个元素从上到下竖着排列，也称<em>“列向量”</em>，常用$\alpha$表示。</p>
+<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><p>从形式上来看，矩阵似乎不过是一些具有特定位置信息的标量（数字），不过，最好不要把一个矩阵的每个元素看成是单独的个体，正如之前所说，<em>向量是线性代数整个学科的基础</em>，其原子性时刻提醒我们：<u>向量不可再分</u>。所以我们应该将矩阵看作多个向量的组合，即<strong>向量组</strong>。特殊的，当一个矩阵是方阵是，我们还可以将其看作为一种<strong>线性变换</strong>，下面分别来看：</p>
+<h3 id="向量组"><a href="#向量组" class="headerlink" title="向量组"></a>向量组</h3><p>将多个向量，放在一起写做$[\alpha_1,\alpha_2,…\alpha_n]$，就成为了向量组矩阵，由于此时向量的维数并不一定等于组中向量的个数，所以该终矩阵可以是任意形状的，同时也不排除其是方阵的可能。由于此时矩阵就是向量组，所以二者的各种性质息息相关。</p>
+<h4 id="线性表示"><a href="#线性表示" class="headerlink" title="线性表示"></a>线性表示</h4><p>当多个向量放在一起，我们就可以通过两个基本运算：<u>数乘</u>与<u>相加</u>，将其组中各向量进行<em><strong>线性组合</strong></em>，从而得到其他向量，而这个过程被称为<strong>线性表示</strong>，如果由向量组$(\alpha_1,\alpha_2,…\alpha_n)$通过线性组合能够得到$\beta$，我们就称$\beta$能够由$(\alpha_1,\alpha_2,…\alpha_n)$<strong>线性表出</strong>。转化为“矩阵语言”就是，存在一组系数$x_1,x_2,…x_n$，使得：<br>$$<br>[\alpha_1,\alpha_2,…\alpha_n][x_1,x_2,…,x_n]^T&#x3D;\beta<br>$$</p>
+<p>如过要用一个向量组去表示另一个向量组，则需要一个系数矩阵$A$,使得：<br>$$<br>[\alpha_1,\alpha_2,…\alpha_n]A&#x3D;[\beta_1,\beta_2,…\beta_n]<br>$$<br>此时我们可知，<strong>所有的$\beta$都在向量组$\alpha$所张成的线性空间中</strong>，而通过研究这个矩阵$A$，有时我们也可以获得$\beta$是否线性相关等性质。</p>
+<h4 id="线性相关"><a href="#线性相关" class="headerlink" title="线性相关"></a>线性相关</h4><p>当向量组中某个向量能够被其他向量线性表示，我们称之为线性相关。严格的，我们将其定义为：<br>$$<br>存在一组不全为0的数k_1,k_2,…k_n，使得:k_1\alpha_1+k_2\alpha_2+…k_n\alpha_n&#x3D;0<br>$$<br>从空间的角度理解，就是向量组中的某个向量，落在了其他向量所张成的空间中。在研究这种性质时，有一个十分重要的方法就是：<u>将各个列向量组成矩阵，做行变换对其化简，通过研究化简后的矩阵来研究各向量的线性关系。</u>这是因为，当矩阵中，出现很多$0$时，我们很容易就能看出哪些向量之间能够线性表示。</p>
+<p>比如，我们常将其化为<strong>行阶梯矩</strong>阵来<strong>判断向量组的秩</strong>并寻找<strong>极大无关向量组</strong>。</p>
+<h4 id="向量组张成的空间"><a href="#向量组张成的空间" class="headerlink" title="向量组张成的空间"></a>向量组张成的空间</h4><p>向量组所能<em>线性表示</em>的所有向量，就构成了这个向量组所张成的空间，这个空间的维数就是该向量组的<strong>秩</strong>，同时秩也是这个向量组<strong>极大无关向量组中向量的个数</strong>。</p>
+<p>并且只有在两个向量组张成的空间是同一个空间时，我们才说两个<strong>向量组等价</strong>。通常，我们也说需要“三秩相等”，即：<br>$$<br>r(A) &#x3D; r(B) &#x3D; r(A|B)<br>$$</p>
+<h3 id="线性变化"><a href="#线性变化" class="headerlink" title="线性变化"></a>线性变化</h3><p>根据b站上广受好评的视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ys411k7yQ/?spm_id_from=333.337.search-card.all.click&vd_source=6f8414b47a0218d016a8116a972d69d4">线性代数的本质</a>，我们可以想象，一个矩阵就是对空间及空间中向量一种线性变换。</p>
+<p>不过我更喜欢这样思考，设有一种线性变换，我们称它为$甲$变换，由于“变换”是一个抽象的概念，为了能让这种抽象具体化，我们将这种变换应用于一个单位矩阵上，我们就可以得到单位矩阵经过这种变换后的模样，即$AE$。又因$E$作为单位元可消去，所以我们就可以用$A$这种具体的矩阵来表示$甲$变换。同理，一个“向量”也是抽象的，我们只是用其是在标准基（即单位矩阵）下的坐标来表示，通常我们也会省略单位矩阵。</p>
+<p>可能在许多读者看来，如此思考多此一举，但在许多情况下，我们将消去的$E$还原回来，一个表达式所代表的含义就一目了然了。</p>
+<p>与向量组不同的时，两个<strong>矩阵等价</strong>（这里的矩阵指线性变换），我们只要求他们的秩相等即可，而不要求“三秩相等”。</p>
+<h3 id="方阵的运算"><a href="#方阵的运算" class="headerlink" title="方阵的运算"></a>方阵的运算</h3><h4 id="转置矩阵"><a href="#转置矩阵" class="headerlink" title="转置矩阵"></a>转置矩阵</h4><p>将矩阵中的元素沿主对角线反转，就得到了其转置矩阵。</p>
+<h4 id="逆矩阵"><a href="#逆矩阵" class="headerlink" title="逆矩阵"></a>逆矩阵</h4><p>将矩阵作为一种线性变换，其逆变换就是其逆矩阵，所以有：<br>$$<br>A A^{-1} &#x3D; E<br>$$</p>
+<h4 id="伴随矩阵"><a href="#伴随矩阵" class="headerlink" title="伴随矩阵"></a>伴随矩阵</h4><p>在求逆矩阵的过程中，一个中间产物，即矩阵各元素代数余子式矩阵的转置，由于其有一些特殊性质，我们将其命名为<strong>“伴随矩阵”</strong>。事实上，其不过<em>逆矩阵</em>的数乘：<br>$$<br>A^*&#x3D;{\left|A\right|}A^{-1}<br>$$</p>
+<p>所以在研究其性质时，可以直接研究逆矩阵的性质，再计算其与逆矩阵的数乘关系即可。</p>
+<h4 id="运算法则"><a href="#运算法则" class="headerlink" title="运算法则"></a>运算法则</h4><p>值得注意的是，上述三种运算都是作用于一个矩阵的（单目运算），因此我们可以将其想象为一个函数。</p>
+<blockquote>
+<p>例如，”逆“可以是一个函数$f$，其作用于一个矩阵后，结果是该矩阵的逆矩阵，即：$f(A) &#x3D; A^{-1}$</p>
+</blockquote>
+<p>以上提的三种运算（转置、逆、伴随），作用顺序不影响结果：</p>
+<blockquote>
+<p>例如：$(A^{-1})^{T} &#x3D; (A^{T})^{-1}$</p>
+</blockquote>
+<p>而矩阵乘法不满足交换率，所以有“穿脱原则”：</p>
+<blockquote>
+<p>例如：$(AB)^{-1}&#x3D;B^{-1}A^{-1}$</p>
+</blockquote>
+<p>虽然矩阵加法满足交换率，但两个矩阵即使可逆(伴随)，他们的和也不一定可逆(伴随)，所以只有：</p>
+<blockquote>
+<p>$(A+B)^{T}&#x3D;A^T+B^T$</p>
+</blockquote>
+<p>至于交换率，我们可以说，只有在乘法结果是单位矩阵的数乘时才满足，即：</p>
+<blockquote>
+<p>若$AB&#x3D;kE$ 则，$AB&#x3D;BA$</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/06/7_%E7%A9%BA%E9%97%B4%E7%A7%AF%E5%88%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -179,10 +658,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-06-06 00:00:00 / 修改时间：17:11:43" itemprop="dateCreated datePublished" datetime="2023-06-06T00:00:00+08:00">2023-06-06</time>
+              <time title="创建时间：2023-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2023-06-06T00:00:00+08:00">2023-06-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-06-18 11:09:29" itemprop="dateModified" datetime="2023-06-18T11:09:29+08:00">2023-06-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -220,7 +705,7 @@
 <li><p>先一后二（先积线后积面）：适用于由两个曲面围成的曲顶柱体</p>
 </li>
 </ul>
-<p>不论是<em>先二后一</em>还是<em>先一后二</em>，不过是将三重积分转换成了<em>定积分</em>和<em>二重积分</em>，在积“面”的时候如果是绕着坐标系的圆的一部分，可以考虑使用极坐标系积该面，也就是我们常说的<em>柱面坐标系</em>，不过不要忘记乘$r$。</p>
+<p> Hexo clean  # 清除当前的网页文件（上次生成的）Hexo generate  # 根据 “博客源文件” 生成 “博客网页文件”Hexo serve  # 在本地计算机启动网页服务器（启动后可在浏览器中输入 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> 预览效果）Hexo deploy  # 将”博客网页文件”部署到服务器py</p>
 <p>注⚠：</p>
 <p>在进行三重积分计算时是不能脱离其几何意义，如对某个变量积分时，其余某个变量是否能够看作为常数应考虑在进行该重积分时，这个变量的值是否发生变化，脱离图形而盲目积分就漾银笑话了🤭。</p>
 <h2 id="第一型积分"><a href="#第一型积分" class="headerlink" title="第一型积分"></a>第一型积分</h2><p>与<em>三重积分</em>类似，<em>一型积分</em>的本质为已知<em>密度函数</em>  $$\rho(x, y, z)$$，求解空间曲线&#x2F;曲面的质量（此处使用“质量”并不恰当，因为线和面是没有质量的），该型积分的基本思想即：</p>
@@ -434,7 +919,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-06-06 16:28:09" itemprop="dateModified" datetime="2023-06-06T16:28:09+08:00">2023-06-06</time>
+                <time title="修改时间：2023-07-07 16:33:30" itemprop="dateModified" datetime="2023-07-07T16:33:30+08:00">2023-07-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -788,174 +1273,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/09/2_%E7%83%AD%E6%B2%B3%EF%BC%88%E7%9B%B8%E4%BF%A1%E6%9C%AA%E6%9D%A5%E7%89%88%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Terrence Chen">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Terrence's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/02/09/2_%E7%83%AD%E6%B2%B3%EF%BC%88%E7%9B%B8%E4%BF%A1%E6%9C%AA%E6%9D%A5%E7%89%88%EF%BC%89/" class="post-title-link" itemprop="url">热河（相信未来版）吉他谱</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-02-09T00:00:00+08:00">2023-02-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-05-12 20:51:33" itemprop="dateModified" datetime="2023-05-12T20:51:33+08:00">2023-05-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9F%B3%E4%B9%90/" itemprop="url" rel="index"><span itemprop="name">音乐</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9F%B3%E4%B9%90/%E5%90%89%E4%BB%96%E8%B0%B1/" itemprop="url" rel="index"><span itemprop="name">吉他谱</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1h14y1u79N/?spm_id_from=333.999.0.0">点此观看演奏视频</a></p>
-<p><img src="/../images/%E7%83%AD%E6%B2%B31.jpg" alt="热河1.jpg"></p>
-<p><img src="/../images/%E7%83%AD%E6%B2%B32.jpg" alt="热河2.jpg"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/08/1_%E5%85%B3%E4%BA%8E%E8%AE%B0%E5%BF%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Terrence Chen">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Terrence's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/02/08/1_%E5%85%B3%E4%BA%8E%E8%AE%B0%E5%BF%86/" class="post-title-link" itemprop="url">写在前面</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-08 00:00:00" itemprop="dateCreated datePublished" datetime="2023-02-08T00:00:00+08:00">2023-02-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-06-06 16:29:10" itemprop="dateModified" datetime="2023-06-06T16:29:10+08:00">2023-06-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%9F%E6%B4%BB/%E6%97%A5%E5%B8%B8/" itemprop="url" rel="index"><span itemprop="name">日常</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="关于记忆"><a href="#关于记忆" class="headerlink" title="关于记忆"></a>关于记忆</h2><blockquote>
-<p>记忆，获取并存储简单如日常生活细节、复杂如地理或代数抽象知识等信息的能力，是人类行为中最引人注目的一个方面。</p>
-<p>为了解决日常生活中遭遇的问题记忆使我们可以同时整理若干信息，这对解决问题来说至关重要。</p>
-<p>从更广泛的意义上讲，记忆给我们的生活提供了连续性，它给我们提供了一幅过去的连贯图景，以便我们恰当地审视现在的经历。</p>
-<p>这幅图景未必合理或准确，但它会持续存在。没有记忆的黏合，经历将会分裂成很多如生活中的瞬间一样散碎的片断。</p>
-<p>没有记忆提供的心理时间旅行，我们就不会意识到我们的个人史，无法记住我们生命中有如闪亮里程碑的欢愉时刻。</p>
-<p>我们之所以成为我们，是因为那些我们学习并记住的事物。</p>
-</blockquote>
-<p>而这里,便是我的记忆……</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1022,14 +1344,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
