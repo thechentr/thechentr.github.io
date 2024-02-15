@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="矩阵，当作为一种线性变换时，会将整个空间及空间中的所有向量都进行某种程度上的“调整”，具体体现为当其左乘一个向量时，结果会与原来的向量有所不同，这也就是“调整”后的结果。 引言设有一个矩阵（线性变换）$A&#x3D;\left|\begin{matrix}   3 &amp; 1 \ 1 &amp; 3  \end{matrix}\right|$，当我们对其仔细观察其对空间中向量进行的线性变换时，">
+  <meta name="description" content="各种字长 机器字长&#x3D;字长&#x3D;寄存器中的位数：CPU内部处理的数据长度 （如32位机） 存储字长：存储器内部的数据长度 指令字长：一条指令的长度，最好是存储字长的整数倍  各种周期 时钟周期：主频倒数，计算机操作的最小工作单位 机器周期&#x3D;CPU周期：我称之为“步骤周期”，即执行指令一个步骤的时间，如取指、间指等 指令周期：一个指令周期包含若干机器周期 工作脉冲：理论上等于">
 <meta property="og:type" content="article">
-<meta property="og:title" content="矩阵的特征">
-<meta property="og:url" content="http://example.com/2023/06/12/9_%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81/index.html">
+<meta property="og:title" content="计算机组成原理易混淆概念">
+<meta property="og:url" content="http://example.com/2023/08/05/13_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%98%93%E6%B7%B7%E6%B7%86%E6%A6%82%E5%BF%B5/index.html">
 <meta property="og:site_name" content="Terrence&#39;s Blog">
-<meta property="og:description" content="矩阵，当作为一种线性变换时，会将整个空间及空间中的所有向量都进行某种程度上的“调整”，具体体现为当其左乘一个向量时，结果会与原来的向量有所不同，这也就是“调整”后的结果。 引言设有一个矩阵（线性变换）$A&#x3D;\left|\begin{matrix}   3 &amp; 1 \ 1 &amp; 3  \end{matrix}\right|$，当我们对其仔细观察其对空间中向量进行的线性变换时，">
+<meta property="og:description" content="各种字长 机器字长&#x3D;字长&#x3D;寄存器中的位数：CPU内部处理的数据长度 （如32位机） 存储字长：存储器内部的数据长度 指令字长：一条指令的长度，最好是存储字长的整数倍  各种周期 时钟周期：主频倒数，计算机操作的最小工作单位 机器周期&#x3D;CPU周期：我称之为“步骤周期”，即执行指令一个步骤的时间，如取指、间指等 指令周期：一个指令周期包含若干机器周期 工作脉冲：理论上等于">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-06-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-02-15T03:29:41.237Z">
+<meta property="article:published_time" content="2023-08-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-02-15T03:31:12.935Z">
 <meta property="article:author" content="Terrence Chen">
 <meta property="article:tag" content="IT music movie life">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2023/06/12/9_%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81/">
+<link rel="canonical" href="http://example.com/2023/08/05/13_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%98%93%E6%B7%B7%E6%B7%86%E6%A6%82%E5%BF%B5/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>矩阵的特征 | Terrence's Blog</title>
+  <title>计算机组成原理易混淆概念 | Terrence's Blog</title>
   
 
 
@@ -161,7 +161,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/12/9_%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/05/13_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%98%93%E6%B7%B7%E6%B7%86%E6%A6%82%E5%BF%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -174,7 +174,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          矩阵的特征
+          计算机组成原理易混淆概念
         </h1>
 
         <div class="post-meta">
@@ -184,14 +184,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2023-06-12 00:00:00" itemprop="dateCreated datePublished" datetime="2023-06-12T00:00:00+08:00">2023-06-12</time>
+              <time title="创建时间：2023-08-05 00:00:00" itemprop="dateCreated datePublished" datetime="2023-08-05T00:00:00+08:00">2023-08-05</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-02-15 11:29:41" itemprop="dateModified" datetime="2024-02-15T11:29:41+08:00">2024-02-15</time>
+                <time title="修改时间：2024-02-15 11:31:12" itemprop="dateModified" datetime="2024-02-15T11:31:12+08:00">2024-02-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -203,7 +203,7 @@
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">线性代数</span></a>
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">计算机科学与技术</span></a>
                 </span>
             </span>
 
@@ -218,20 +218,40 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>矩阵</strong>，当作为一种<strong>线性变换</strong>时，会将整个空间及空间中的所有向量都进行某种程度上的“调整”，具体体现为当其左乘一个向量时，结果会与原来的向量有所不同，这也就是“调整”后的结果。</p>
-<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>设有一个矩阵（线性变换）$A&#x3D;\left|\begin{matrix}<br>   3 &amp; 1 \ 1 &amp; 3  \end{matrix}\right|$，当我们对其仔细观察其对空间中向量进行的线性变换时，会发现：在经过$A$变换后，空间中的所有向量的两个重要属性——长度和方向，并不是一定都会改变。会有一些特定方向上的向量，如：$x_1&#x3D; \left[\begin{matrix} 2 \ -2  \end{matrix}\right]$,在经过$A$变换后，会变化为$A x_1 &#x3D; \left[\begin{matrix} 4 \ -4  \end{matrix}\right]$，其方向并没有改变，只是发生了长度上伸长为原来的2倍，并且与$x_1$同向的向量在经过$A$变换后都会产生一样的效果（伸长为原来的2倍），那还有没有这样的向量呢？</p>
-<p>让我们来试图求解一下：</p>
-<blockquote>
-<p>设向量x经过A变化后方向没有改变，只是发生了长度上的变化，则有：</p>
-<p>$Ax &#x3D; kx$ （k为常数） </p>
-<p>即 $(A-kE)x &#x3D; 0$</p>
-<p>由于$(A-kE)$是一个矩阵，此时又变成了求解齐次线性方程组的问题，但不同的是，其中还有一个常数k我们不知道取什么。不过我们知道的是当$(A-kE)$满秩时，这个方程组无非零解，也就是当$k$取某些值时，没有这样的向量，使得经过线性变化后被线性放大了$k$倍，那首先我们就要看$k$可能的取值，也就是向量被放大的<strong>“可能倍数”</strong>，同时也是令这个方程组有解的取值。因此，我们：</p>
-<p>令$|A-kE|&#x3D;0$</p>
-<p>解出$k$的可能取值分别带回到方程组里求解$x$，就找到了那些“经过A变化后方向没有改变，只是发生了长度上的变化”的向量，同时在求解时使用的$k$就是它们被放大的倍数。</p>
-</blockquote>
-<p>此时我们就称，所求解的各个$k$为矩阵的特征值，而各个$x$则为特征向量。</p>
-<h2 id="相似"><a href="#相似" class="headerlink" title="相似"></a>相似</h2><p>即使我们知道了矩阵的特征值和特征向量，那我们该如何去应用它呢，首先我们来介绍一下相似理论。</p>
-<h2 id="对角化"><a href="#对角化" class="headerlink" title="对角化"></a>对角化</h2><p>有了相似理论的基础，我们就可以将特征值和特征向量描述成一个相似矩阵，其为对角矩阵。</p>
+        <h2 id="各种字长"><a href="#各种字长" class="headerlink" title="各种字长"></a>各种字长</h2><ul>
+<li><strong>机器字长</strong>&#x3D;<strong>字长</strong>&#x3D;寄存器中的位数：<u>CPU内部</u>处理的数据长度 （如32位机）</li>
+<li><strong>存储字长</strong>：<u>存储器内部</u>的数据长度</li>
+<li><strong>指令字长</strong>：一条指令的长度，最好是<u>存储字长</u>的整数倍</li>
+</ul>
+<h2 id="各种周期"><a href="#各种周期" class="headerlink" title="各种周期"></a>各种周期</h2><ul>
+<li><strong>时钟周期</strong>：主频倒数，计算机操作的<u>最小工作单位</u></li>
+<li><strong>机器周期</strong>&#x3D;<strong>CPU周期</strong>：我称之为<u>“步骤周期”</u>，即执行指令一个步骤的时间，如取指、间指等</li>
+<li><strong>指令周期</strong>：一个指令周期包含若干机器周期</li>
+<li><strong>工作脉冲</strong>：理论上<u>等于时钟周期</u></li>
+<li><strong>存取周期</strong>：两次读&#x2F;写所取的最小时间隔，<u>大于存取时间</u></li>
+</ul>
+<h2 id="超线程技术"><a href="#超线程技术" class="headerlink" title="超线程技术"></a>超线程技术</h2><p>超线程技术（Hyper-Threading Technology，HTT）是由英特尔（Intel）公司推出的一种计算机处理器技术。它旨在提高处理器的性能和效率，允许处理器同时执行多个线程，从而增加处理器的并行处理能力。</p>
+<p>传统的处理器中，每个物理核心只能同时执行一个线程。但超线程技术通过在每个物理核心中增加逻辑核心（Logical Core），使得每个物理核心能够同时执行两个线程。这样，一个双核处理器实际上可以同时执行四个线程，一个四核处理器可以同时执行八个线程，以此类推。</p>
+<p>超线程技术的实现原理是在每个物理核心中增加一组额外的寄存器和处理单元，使得每个物理核心可以在同一时钟周期内处理两个线程的指令流。这样，当一个线程在执行时，另一个线程可以利用空闲的处理单元继续执行其指令，从而实现线程的并行执行。</p>
+<p>超线程技术的优势在于充分利用了处理器的资源，提高了处理器的效率和吞吐量。它尤其适用于多任务场景和多线程应用程序，可以显著提升系统的整体性能。同时，超线程技术在硬件上实现，对于软件来说是透明的，不需要对现有的应用程序进行修改，就可以享受到性能的提升。</p>
+<p>然而，超线程技术并不是在所有情况下都能带来线性的性能提升。实际效果取决于应用程序的特性和运行环境。对于某些特定类型的工作负载，超线程可能会导致资源竞争和性能下降。因此，在实际应用中，超线程技术的开启和关闭需要根据具体情况进行调整。</p>
+<h2 id="双核和双cpu"><a href="#双核和双cpu" class="headerlink" title="双核和双cpu"></a>双核和双cpu</h2><p>双核（Dual Core）和双CPU（Dual CPU）都是指计算机系统中的多核心处理器，但它们有一些区别：</p>
+<ol>
+<li><p><strong>核心数量</strong>：双核指的是一个物理处理器内部包含两个核心，每个核心可以独立执行指令。而双CPU指的是系统中有两个独立的物理处理器，每个处理器都可以有多个核心。</p>
+</li>
+<li><p><strong>物理连接</strong>：双核处理器的两个核心是集成在同一块芯片中，它们共享一些硬件资源，如高速缓存和总线连接。而双CPU是两个独立的物理处理器，它们分别连接到主板上，并通过总线进行通信。</p>
+</li>
+<li><p><strong>性能和并行性</strong>：双核处理器在同一时间内可以执行两个线程，因此它可以提供更高的并行性和性能。而双CPU系统由于有两个独立的处理器，可以同时执行更多的线程，提供更高的整体性能。</p>
+</li>
+<li><p><strong>成本和功耗</strong>：通常情况下，双核处理器相比双CPU系统更为便宜和节能，因为它们只需要一个物理芯片和较少的硬件资源。</p>
+</li>
+</ol>
+<p>总的来说，双核处理器适用于大多数个人计算机和一般服务器应用，它们提供了良好的性能和节能特性。而双CPU系统主要应用于高性能计算和服务器领域，对于需要更高性能和更多并行处理能力的应用来说，双CPU系统可能更加合适。</p>
+<h2 id="SMT和SMP"><a href="#SMT和SMP" class="headerlink" title="SMT和SMP"></a>SMT和SMP</h2><ol>
+<li><strong>SMT（Simultaneous Multithreading）</strong>： SMT是一种处理器技术，也被称为超线程技术（Hyper-Threading Technology，HTT），它允许在单个物理处理器核心上同时执行多个线程。通过在一个物理核心中增加逻辑核心，使得每个物理核心能够同时执行多个线程，从而提高处理器的并行处理能力。SMT技术通过共享硬件资源，允许多个线程共享同一个物理核心的执行单元、高速缓存等资源。SMT技术在硬件层面实现，对于操作系统和应用程序来说是透明的，不需要进行修改就可以享受到性能的提升。</li>
+<li><strong>SMP（Symmetric Multiprocessing）</strong>： SMP是一种计算机体系结构，它使用多个独立的物理处理器（通常是多个CPU），这些处理器通过共享主存储器和I&#x2F;O设备来共同完成计算任务。在SMP系统中，所有处理器都有相同的权限，它们可以同时执行不同的任务，并共享同一份内存和外设资源。SMP系统充分利用了多个处理器的并行处理能力，可以显著提高系统的整体性能。SMP系统通常用于高性能计算和服务器应用，对于多任务和多线程的应用程序来说，SMP系统能够提供更高的吞吐量和处理能力。</li>
+</ol>
+<p>总结来说，SMT是一种处理器技术，用于在单个物理核心上同时执行多个线程，提高指令级并行性；而SMP是一种计算机体系结构，使用多个独立的物理处理器来共同完成计算任务，提高系统的整体性能。两者都是在多核处理器中提高性能和并行能力的重要手段。</p>
 
     </div>
 
@@ -247,13 +267,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/06/12/8_%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E5%9F%BA%E7%A1%80/" rel="prev" title="线性代数基础">
-      <i class="fa fa-chevron-left"></i> 线性代数基础
+    <a href="/2023/07/29/12_%E8%80%83%E5%89%8D%E8%AE%B0%E4%B8%80%E8%AE%B0%EF%BC%8C%E5%96%9D%E5%89%8D%E6%91%87%E4%B8%80%E6%91%87/" rel="prev" title="考前记一记，喝前摇一摇">
+      <i class="fa fa-chevron-left"></i> 考前记一记，喝前摇一摇
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/07/06/10_%E6%A6%82%E7%8E%87%E8%AE%BA%E9%87%8D%E7%82%B9%E6%80%BB%E7%BB%93/" rel="next" title="概率论重点总结">
-      概率论重点总结 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -312,7 +329,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E4%BC%BC"><span class="nav-number">2.</span> <span class="nav-text">相似</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%A7%92%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">对角化</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E5%AD%97%E9%95%BF"><span class="nav-number">1.</span> <span class="nav-text">各种字长</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E5%91%A8%E6%9C%9F"><span class="nav-number">2.</span> <span class="nav-text">各种周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%85%E7%BA%BF%E7%A8%8B%E6%8A%80%E6%9C%AF"><span class="nav-number">3.</span> <span class="nav-text">超线程技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E6%A0%B8%E5%92%8C%E5%8F%8Ccpu"><span class="nav-number">4.</span> <span class="nav-text">双核和双cpu</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SMT%E5%92%8CSMP"><span class="nav-number">5.</span> <span class="nav-text">SMT和SMP</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -156,7 +156,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/07/12_%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E9%87%8D%E7%82%B9%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/08/05/13_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%98%93%E6%B7%B7%E6%B7%86%E6%A6%82%E5%BF%B5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -170,7 +170,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/07/07/12_%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E9%87%8D%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">数理统计重点总结</a>
+            <a href="/2023/08/05/13_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%98%93%E6%B7%B7%E6%B7%86%E6%A6%82%E5%BF%B5/" class="post-title-link" itemprop="url">计算机组成原理易混淆概念</a>
         </h2>
 
         <div class="post-meta">
@@ -179,10 +179,215 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-07-07 00:00:00 / 修改时间：17:43:40" itemprop="dateCreated datePublished" datetime="2023-07-07T00:00:00+08:00">2023-07-07</time>
+              <time title="创建时间：2023-08-05 00:00:00" itemprop="dateCreated datePublished" datetime="2023-08-05T00:00:00+08:00">2023-08-05</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-02-15 11:31:12" itemprop="dateModified" datetime="2024-02-15T11:31:12+08:00">2024-02-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">计算机科学与技术</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="各种字长"><a href="#各种字长" class="headerlink" title="各种字长"></a>各种字长</h2><ul>
+<li><strong>机器字长</strong>&#x3D;<strong>字长</strong>&#x3D;寄存器中的位数：<u>CPU内部</u>处理的数据长度 （如32位机）</li>
+<li><strong>存储字长</strong>：<u>存储器内部</u>的数据长度</li>
+<li><strong>指令字长</strong>：一条指令的长度，最好是<u>存储字长</u>的整数倍</li>
+</ul>
+<h2 id="各种周期"><a href="#各种周期" class="headerlink" title="各种周期"></a>各种周期</h2><ul>
+<li><strong>时钟周期</strong>：主频倒数，计算机操作的<u>最小工作单位</u></li>
+<li><strong>机器周期</strong>&#x3D;<strong>CPU周期</strong>：我称之为<u>“步骤周期”</u>，即执行指令一个步骤的时间，如取指、间指等</li>
+<li><strong>指令周期</strong>：一个指令周期包含若干机器周期</li>
+<li><strong>工作脉冲</strong>：理论上<u>等于时钟周期</u></li>
+<li><strong>存取周期</strong>：两次读&#x2F;写所取的最小时间隔，<u>大于存取时间</u></li>
+</ul>
+<h2 id="超线程技术"><a href="#超线程技术" class="headerlink" title="超线程技术"></a>超线程技术</h2><p>超线程技术（Hyper-Threading Technology，HTT）是由英特尔（Intel）公司推出的一种计算机处理器技术。它旨在提高处理器的性能和效率，允许处理器同时执行多个线程，从而增加处理器的并行处理能力。</p>
+<p>传统的处理器中，每个物理核心只能同时执行一个线程。但超线程技术通过在每个物理核心中增加逻辑核心（Logical Core），使得每个物理核心能够同时执行两个线程。这样，一个双核处理器实际上可以同时执行四个线程，一个四核处理器可以同时执行八个线程，以此类推。</p>
+<p>超线程技术的实现原理是在每个物理核心中增加一组额外的寄存器和处理单元，使得每个物理核心可以在同一时钟周期内处理两个线程的指令流。这样，当一个线程在执行时，另一个线程可以利用空闲的处理单元继续执行其指令，从而实现线程的并行执行。</p>
+<p>超线程技术的优势在于充分利用了处理器的资源，提高了处理器的效率和吞吐量。它尤其适用于多任务场景和多线程应用程序，可以显著提升系统的整体性能。同时，超线程技术在硬件上实现，对于软件来说是透明的，不需要对现有的应用程序进行修改，就可以享受到性能的提升。</p>
+<p>然而，超线程技术并不是在所有情况下都能带来线性的性能提升。实际效果取决于应用程序的特性和运行环境。对于某些特定类型的工作负载，超线程可能会导致资源竞争和性能下降。因此，在实际应用中，超线程技术的开启和关闭需要根据具体情况进行调整。</p>
+<h2 id="双核和双cpu"><a href="#双核和双cpu" class="headerlink" title="双核和双cpu"></a>双核和双cpu</h2><p>双核（Dual Core）和双CPU（Dual CPU）都是指计算机系统中的多核心处理器，但它们有一些区别：</p>
+<ol>
+<li><p><strong>核心数量</strong>：双核指的是一个物理处理器内部包含两个核心，每个核心可以独立执行指令。而双CPU指的是系统中有两个独立的物理处理器，每个处理器都可以有多个核心。</p>
+</li>
+<li><p><strong>物理连接</strong>：双核处理器的两个核心是集成在同一块芯片中，它们共享一些硬件资源，如高速缓存和总线连接。而双CPU是两个独立的物理处理器，它们分别连接到主板上，并通过总线进行通信。</p>
+</li>
+<li><p><strong>性能和并行性</strong>：双核处理器在同一时间内可以执行两个线程，因此它可以提供更高的并行性和性能。而双CPU系统由于有两个独立的处理器，可以同时执行更多的线程，提供更高的整体性能。</p>
+</li>
+<li><p><strong>成本和功耗</strong>：通常情况下，双核处理器相比双CPU系统更为便宜和节能，因为它们只需要一个物理芯片和较少的硬件资源。</p>
+</li>
+</ol>
+<p>总的来说，双核处理器适用于大多数个人计算机和一般服务器应用，它们提供了良好的性能和节能特性。而双CPU系统主要应用于高性能计算和服务器领域，对于需要更高性能和更多并行处理能力的应用来说，双CPU系统可能更加合适。</p>
+<h2 id="SMT和SMP"><a href="#SMT和SMP" class="headerlink" title="SMT和SMP"></a>SMT和SMP</h2><ol>
+<li><strong>SMT（Simultaneous Multithreading）</strong>： SMT是一种处理器技术，也被称为超线程技术（Hyper-Threading Technology，HTT），它允许在单个物理处理器核心上同时执行多个线程。通过在一个物理核心中增加逻辑核心，使得每个物理核心能够同时执行多个线程，从而提高处理器的并行处理能力。SMT技术通过共享硬件资源，允许多个线程共享同一个物理核心的执行单元、高速缓存等资源。SMT技术在硬件层面实现，对于操作系统和应用程序来说是透明的，不需要进行修改就可以享受到性能的提升。</li>
+<li><strong>SMP（Symmetric Multiprocessing）</strong>： SMP是一种计算机体系结构，它使用多个独立的物理处理器（通常是多个CPU），这些处理器通过共享主存储器和I&#x2F;O设备来共同完成计算任务。在SMP系统中，所有处理器都有相同的权限，它们可以同时执行不同的任务，并共享同一份内存和外设资源。SMP系统充分利用了多个处理器的并行处理能力，可以显著提高系统的整体性能。SMP系统通常用于高性能计算和服务器应用，对于多任务和多线程的应用程序来说，SMP系统能够提供更高的吞吐量和处理能力。</li>
+</ol>
+<p>总结来说，SMT是一种处理器技术，用于在单个物理核心上同时执行多个线程，提高指令级并行性；而SMP是一种计算机体系结构，使用多个独立的物理处理器来共同完成计算任务，提高系统的整体性能。两者都是在多核处理器中提高性能和并行能力的重要手段。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/29/12_%E8%80%83%E5%89%8D%E8%AE%B0%E4%B8%80%E8%AE%B0%EF%BC%8C%E5%96%9D%E5%89%8D%E6%91%87%E4%B8%80%E6%91%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Terrence Chen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Terrence's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/07/29/12_%E8%80%83%E5%89%8D%E8%AE%B0%E4%B8%80%E8%AE%B0%EF%BC%8C%E5%96%9D%E5%89%8D%E6%91%87%E4%B8%80%E6%91%87/" class="post-title-link" itemprop="url">考前记一记，喝前摇一摇</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-07-29 00:00:00" itemprop="dateCreated datePublished" datetime="2023-07-29T00:00:00+08:00">2023-07-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-02-15 11:14:15" itemprop="dateModified" datetime="2024-02-15T11:14:15+08:00">2024-02-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">高等数学</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>该部分涉及公式，只需要考试前临时背诵，不需掌握严格推导过程。在考场上翻开试卷先找所涉及题目，直接做完后立即忘掉！</p>
+<h2 id="旋转体体积"><a href="#旋转体体积" class="headerlink" title="旋转体体积"></a>旋转体体积</h2><p>$f(x)$ 绕直线 $Ax + By + C &#x3D; 0$ 旋转:<br>$$<br>V &#x3D; \frac{\pi}{(A^{2}+B^{2})^{\frac{3}{2}}}\int_{a}^{b} [Ax + Bf(x)+C]^{2}\left|Af^{\prime}(x)-B\right|dx<br>$$</p>
+<h2 id="平面曲线的切向量"><a href="#平面曲线的切向量" class="headerlink" title="平面曲线的切向量"></a>平面曲线的切向量</h2><p>先化为参数方程形式，其切向量T：<br>$$<br>T &#x3D; (\frac{dx}{dt}\cdot\vec{i}, \frac{dy}{dt}\cdot\vec{j})<br>$$</p>
+<h2 id="快速积分公式"><a href="#快速积分公式" class="headerlink" title="快速积分公式"></a>快速积分公式</h2><p>$$<br>\int e^{ax}\sin bxdx &#x3D; \frac1{a^2+b^2}\left|\begin{matrix}(e^{ax})^{\prime}(\sin bx)^{\prime}\e^{ax}\sin bx\end{matrix}\right|+C<br>$$</p>
+<p>$\cos bx$与$\sin bx$同理，<strong>不要忘记前面的系数！</strong></p>
+<h2 id="典型极坐标曲线"><a href="#典型极坐标曲线" class="headerlink" title="典型极坐标曲线"></a>典型极坐标曲线</h2><h3 id="星形线"><a href="#星形线" class="headerlink" title="星形线"></a>星形线</h3><p>$$<br>\begin{align*}<br>x &amp;&#x3D; R \cdot \cos^3(t) \<br>y &amp;&#x3D; R \cdot \sin^3(t)<br>\end{align*}<br>$$</p>
+<h3 id="摆线（参数方程）"><a href="#摆线（参数方程）" class="headerlink" title="摆线（参数方程）"></a>摆线（参数方程）</h3><p>$$<br>x(t) &#x3D; a \cdot (t - \sin(t)) \<br>y(t) &#x3D; a \cdot (1 - \cos(t))<br>$$</p>
+<h3 id="伯努利双扭线"><a href="#伯努利双扭线" class="headerlink" title="伯努利双扭线"></a>伯努利双扭线</h3><p>$$<br>r &#x3D; a \cdot \sqrt{\theta}<br>$$</p>
+<h3 id="心形线"><a href="#心形线" class="headerlink" title="心形线"></a>心形线</h3><p>$$<br>r &#x3D; a \cdot (1 - \sin(\theta))<br>$$</p>
+<h2 id="多项式函数拐点个数-z"><a href="#多项式函数拐点个数-z" class="headerlink" title="多项式函数拐点个数 z"></a>多项式函数拐点个数 z</h2><p>$$<br>k1 + 2k_偶+3k_奇-2<br>$$</p>
+<p><img src="/./../images/extreme_points_of_the_polynomial_function.png"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/07/11_%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E9%87%8D%E7%82%B9%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Terrence Chen">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Terrence's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/07/07/11_%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E9%87%8D%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">数理统计重点总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-07-07 00:00:00" itemprop="dateCreated datePublished" datetime="2023-07-07T00:00:00+08:00">2023-07-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-02-15 17:39:55" itemprop="dateModified" datetime="2024-02-15T17:39:55+08:00">2024-02-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -251,7 +456,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/06/11_%E6%A6%82%E7%8E%87%E8%AE%BA%E9%87%8D%E7%82%B9%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/07/06/10_%E6%A6%82%E7%8E%87%E8%AE%BA%E9%87%8D%E7%82%B9%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -265,7 +470,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/07/06/11_%E6%A6%82%E7%8E%87%E8%AE%BA%E9%87%8D%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">概率论重点总结</a>
+            <a href="/2023/07/06/10_%E6%A6%82%E7%8E%87%E8%AE%BA%E9%87%8D%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">概率论重点总结</a>
         </h2>
 
         <div class="post-meta">
@@ -282,7 +487,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-09 15:52:40" itemprop="dateModified" datetime="2023-07-09T15:52:40+08:00">2023-07-09</time>
+                <time title="修改时间：2023-08-06 21:15:56" itemprop="dateModified" datetime="2023-08-06T21:15:56+08:00">2023-08-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -334,7 +539,7 @@
 <li>期望即均值</li>
 <li>方差即<strong>二阶矩</strong>，描述的是随机变量分布的离散程度</li>
 </ul>
-<h3 id="平方的期望永远大于的期望的方差"><a href="#平方的期望永远大于的期望的方差" class="headerlink" title="平方的期望永远大于的期望的方差"></a>平方的期望永远大于的期望的方差</h3><p><img src="/..%5Cimages%5C%E6%A6%82%E7%8E%87%E8%AE%BA%E9%87%8D%E7%82%B9%E6%80%BB%E7%BB%93.jpg"></p>
+<h3 id="平方的期望永远大于的期望的方差"><a href="#平方的期望永远大于的期望的方差" class="headerlink" title="平方的期望永远大于的期望的方差"></a>平方的期望永远大于的期望的方差</h3><p><img src="/../images/%E6%A6%82%E7%8E%87%E8%AE%BA%E9%87%8D%E7%82%B9%E6%80%BB%E7%BB%93.jpg"></p>
 <h2 id="协方差与相关系数"><a href="#协方差与相关系数" class="headerlink" title="协方差与相关系数"></a>协方差与相关系数</h2><p><strong>协方差</strong>即<u>“两个随机变量的方差”</u>，<strong>相关系数</strong>则是协方差除以两个随机变量各自的标准差，其值介于$[0,1]$之间，说明了两个虽随机变量的<u>线性相关程度</u>。当其等于0时，只能说明两个随机变量没有线性相关性质，并不能说明两个随机变量独立。不过当两个随机变量都服从正态分布时，二者等价。</p>
 
       
@@ -355,7 +560,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/21/10_%E4%BA%8C%E6%AC%A1%E5%9E%8B/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/12/9_%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -369,7 +574,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/06/21/10_%E4%BA%8C%E6%AC%A1%E5%9E%8B/" class="post-title-link" itemprop="url">二次型</a>
+            <a href="/2023/06/12/9_%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81/" class="post-title-link" itemprop="url">矩阵的特征</a>
         </h2>
 
         <div class="post-meta">
@@ -379,14 +584,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2023-06-21 00:00:00" itemprop="dateCreated datePublished" datetime="2023-06-21T00:00:00+08:00">2023-06-21</time>
+              <time title="创建时间：2023-06-12 00:00:00" itemprop="dateCreated datePublished" datetime="2023-06-12T00:00:00+08:00">2023-06-12</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-06-25 19:04:42" itemprop="dateModified" datetime="2023-06-25T19:04:42+08:00">2023-06-25</time>
+                <time title="修改时间：2024-02-15 11:29:41" itemprop="dateModified" datetime="2024-02-15T11:29:41+08:00">2024-02-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -413,12 +618,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>我们提到过，矩阵，不只可以表示一个向量组，在其是方形时，还可以表示一种线性变换，这节我们讲探索其表示一个二次方程组时的应用。</p>
-<h2 id="二次型"><a href="#二次型" class="headerlink" title="二次型"></a>二次型</h2><h2 id="变量代换"><a href="#变量代换" class="headerlink" title="变量代换"></a>变量代换</h2><p>代换过程：balabala</p>
-<p>可见，通过变量代换，我们可以将一个二次方程，替换为一个只含有平方项的方程。</p>
-<p>如何求解代换？</p>
-<p>一种是通过配方，另一种就是将一个矩阵通过“合同变换”将二次型矩阵对角化。</p>
-<h2 id="正定矩阵"><a href="#正定矩阵" class="headerlink" title="正定矩阵"></a>正定矩阵</h2><h2 id="与对角化的奇妙联系"><a href="#与对角化的奇妙联系" class="headerlink" title="与对角化的奇妙联系"></a>与对角化的奇妙联系</h2>
+          <p><strong>矩阵</strong>，当作为一种<strong>线性变换</strong>时，会将整个空间及空间中的所有向量都进行某种程度上的“调整”，具体体现为当其左乘一个向量时，结果会与原来的向量有所不同，这也就是“调整”后的结果。</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>设有一个矩阵（线性变换）$A&#x3D;\left|\begin{matrix}<br>   3 &amp; 1 \ 1 &amp; 3  \end{matrix}\right|$，当我们对其仔细观察其对空间中向量进行的线性变换时，会发现：在经过$A$变换后，空间中的所有向量的两个重要属性——长度和方向，并不是一定都会改变。会有一些特定方向上的向量，如：$x_1&#x3D; \left[\begin{matrix} 2 \ -2  \end{matrix}\right]$,在经过$A$变换后，会变化为$A x_1 &#x3D; \left[\begin{matrix} 4 \ -4  \end{matrix}\right]$，其方向并没有改变，只是发生了长度上伸长为原来的2倍，并且与$x_1$同向的向量在经过$A$变换后都会产生一样的效果（伸长为原来的2倍），那还有没有这样的向量呢？</p>
+<p>让我们来试图求解一下：</p>
+<blockquote>
+<p>设向量x经过A变化后方向没有改变，只是发生了长度上的变化，则有：</p>
+<p>$Ax &#x3D; kx$ （k为常数） </p>
+<p>即 $(A-kE)x &#x3D; 0$</p>
+<p>由于$(A-kE)$是一个矩阵，此时又变成了求解齐次线性方程组的问题，但不同的是，其中还有一个常数k我们不知道取什么。不过我们知道的是当$(A-kE)$满秩时，这个方程组无非零解，也就是当$k$取某些值时，没有这样的向量，使得经过线性变化后被线性放大了$k$倍，那首先我们就要看$k$可能的取值，也就是向量被放大的<strong>“可能倍数”</strong>，同时也是令这个方程组有解的取值。因此，我们：</p>
+<p>令$|A-kE|&#x3D;0$</p>
+<p>解出$k$的可能取值分别带回到方程组里求解$x$，就找到了那些“经过A变化后方向没有改变，只是发生了长度上的变化”的向量，同时在求解时使用的$k$就是它们被放大的倍数。</p>
+</blockquote>
+<p>此时我们就称，所求解的各个$k$为矩阵的特征值，而各个$x$则为特征向量。</p>
+<h2 id="相似"><a href="#相似" class="headerlink" title="相似"></a>相似</h2><p>即使我们知道了矩阵的特征值和特征向量，那我们该如何去应用它呢，首先我们来介绍一下相似理论。</p>
+<h2 id="对角化"><a href="#对角化" class="headerlink" title="对角化"></a>对角化</h2><p>有了相似理论的基础，我们就可以将特征值和特征向量描述成一个相似矩阵，其为对角矩阵。</p>
+
       
     </div>
 
@@ -468,7 +682,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-06-18 10:54:13" itemprop="dateModified" datetime="2023-06-18T10:54:13+08:00">2023-06-18</time>
+                <time title="修改时间：2024-02-15 11:27:47" itemprop="dateModified" datetime="2024-02-15T11:27:47+08:00">2024-02-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -502,10 +716,10 @@
 <p>在学习<em>线性代数</em>时，常常在二维和三维空间中想象，将事半功倍。——Terrence</p>
 </blockquote>
 <h2 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h2><p>作为线性代数学科的基础，向量是我们的重要研究对象。与<em>标量</em>不同，向量具有<u>长度</u>和<u>方向</u>两个性质（标量只有大小），因此我们很容易就可以想到，用一个二元组<em>（长度，方向）</em>，来表示一个特定的向量，这样做毫无问题，可是却不便于我们的计算。由于特定的向量无关与其起始位置，所以我们常用<strong>当向量起于坐标原点时，其终点的坐标</strong>，来表示一个特定的向量，为了区别于单纯坐标，通常我们将终点坐标的各个元素从上到下竖着排列，也称<em>“列向量”</em>，常用$\alpha$表示。</p>
-<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><p>从形式上来看，矩阵似乎不过是一些具有特定位置信息的标量（数字），不过，最好不要把一个矩阵的每个元素看成是单独的个体，正如之前所说，<em>向量是线性代数整个学科的基础</em>，其原子性时刻提醒我们：<u>向量不可再分</u>。所以我们应该将矩阵看作多个向量的组合，即<strong>向量组</strong>。特殊的，当一个矩阵是方阵是，我们还可以将其看作为一种<strong>线性变换</strong>，下面分别来看：</p>
+<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><p>从形式上来看，矩阵似乎不过是一些具有特定位置信息的标量（数字），不过，最好不要把一个矩阵的每个元素看成是单独的个体，正如之前所说，<em>向量是线性代数整个学科的基础</em>，其<em>原子性</em>时刻提醒我们：<u>向量不可再分</u>。所以我们应该将矩阵看作多个向量的组合，即<strong>向量组</strong>。特殊的，当一个矩阵是方阵时，我们还可以将其看作为一种<strong>线性变换</strong>，下面分别来看：</p>
 <h3 id="向量组"><a href="#向量组" class="headerlink" title="向量组"></a>向量组</h3><p>将多个向量，放在一起写做$[\alpha_1,\alpha_2,…\alpha_n]$，就成为了向量组矩阵，由于此时向量的维数并不一定等于组中向量的个数，所以该终矩阵可以是任意形状的，同时也不排除其是方阵的可能。由于此时矩阵就是向量组，所以二者的各种性质息息相关。</p>
 <h4 id="线性表示"><a href="#线性表示" class="headerlink" title="线性表示"></a>线性表示</h4><p>当多个向量放在一起，我们就可以通过两个基本运算：<u>数乘</u>与<u>相加</u>，将其组中各向量进行<em><strong>线性组合</strong></em>，从而得到其他向量，而这个过程被称为<strong>线性表示</strong>，如果由向量组$(\alpha_1,\alpha_2,…\alpha_n)$通过线性组合能够得到$\beta$，我们就称$\beta$能够由$(\alpha_1,\alpha_2,…\alpha_n)$<strong>线性表出</strong>。转化为“矩阵语言”就是，存在一组系数$x_1,x_2,…x_n$，使得：<br>$$<br>[\alpha_1,\alpha_2,…\alpha_n][x_1,x_2,…,x_n]^T&#x3D;\beta<br>$$</p>
-<p>如过要用一个向量组去表示另一个向量组，则需要一个系数矩阵$A$,使得：<br>$$<br>[\alpha_1,\alpha_2,…\alpha_n]A&#x3D;[\beta_1,\beta_2,…\beta_n]<br>$$<br>此时我们可知，<strong>所有的$\beta$都在向量组$\alpha$所张成的线性空间中</strong>，而通过研究这个矩阵$A$，有时我们也可以获得$\beta$是否线性相关等性质。</p>
+<p>如果要用一个向量组去表示另一个向量组，则需要一个系数矩阵$A$,使得：<br>$$<br>[\alpha_1,\alpha_2,…\alpha_n]A&#x3D;[\beta_1,\beta_2,…\beta_n]<br>$$<br>此时我们可知，<strong>所有的$\beta$都在向量组$\alpha$所张成的线性空间中</strong>，而通过研究这个矩阵$A$，有时我们也可以获得$\beta$是否线性相关等性质。</p>
 <h4 id="线性相关"><a href="#线性相关" class="headerlink" title="线性相关"></a>线性相关</h4><p>当向量组中某个向量能够被其他向量线性表示，我们称之为线性相关。严格的，我们将其定义为：<br>$$<br>存在一组不全为0的数k_1,k_2,…k_n，使得:k_1\alpha_1+k_2\alpha_2+…k_n\alpha_n&#x3D;0<br>$$<br>从空间的角度理解，就是向量组中的某个向量，落在了其他向量所张成的空间中。在研究这种性质时，有一个十分重要的方法就是：<u>将各个列向量组成矩阵，做行变换对其化简，通过研究化简后的矩阵来研究各向量的线性关系。</u>这是因为，当矩阵中，出现很多$0$时，我们很容易就能看出哪些向量之间能够线性表示。</p>
 <p>比如，我们常将其化为<strong>行阶梯矩</strong>阵来<strong>判断向量组的秩</strong>并寻找<strong>极大无关向量组</strong>。</p>
 <h4 id="向量组张成的空间"><a href="#向量组张成的空间" class="headerlink" title="向量组张成的空间"></a>向量组张成的空间</h4><p>向量组所能<em>线性表示</em>的所有向量，就构成了这个向量组所张成的空间，这个空间的维数就是该向量组的<strong>秩</strong>，同时秩也是这个向量组<strong>极大无关向量组中向量的个数</strong>。</p>
@@ -557,97 +771,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/12/9_%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Terrence Chen">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Terrence's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/06/12/9_%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81/" class="post-title-link" itemprop="url">矩阵的特征</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-06-12 00:00:00" itemprop="dateCreated datePublished" datetime="2023-06-12T00:00:00+08:00">2023-06-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-09 11:29:52" itemprop="dateModified" datetime="2023-07-09T11:29:52+08:00">2023-07-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%9F%A5%E8%AF%86/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" itemprop="url" rel="index"><span itemprop="name">线性代数</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>矩阵</strong>，当作为一种<strong>线性变换</strong>时，会将整个空间及空间中的所有向量都进行某种程度上的“调整”，具体体现为当其左乘一个向量时，结果会与原来的向量有所不同。</p>
-<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>设有一个矩阵（线性变换）$A&#x3D;\left|\begin{matrix}<br>   3 &amp; 1 \ 1 &amp; 3  \end{matrix}\right|$，当我们对其仔细观察其对空间中向量进行的线性变换时，会发现：在经过$A$变换后，空间中的所有向量的两个重要属性——长度和方向，并不是一定都会改变。会有一些特定方向上的向量，如：$x_1&#x3D; \left[\begin{matrix} 2 \ -2  \end{matrix}\right]$,在经过$A$变换后，会变化为$A x_1 &#x3D; \left[\begin{matrix} 4 \ -4  \end{matrix}\right]$，其方向并没有改变，只是发生了长度上伸长为原来的2倍，并且与$x_1$同向的向量在经过$A$变换后都会产生一样的效果（伸长为原来的2倍），那还有没有这样的向量呢？</p>
-<p>让我们来试图求解一下：</p>
-<blockquote>
-<p>设向量x经过A变化后方向没有改变，只是发生了长度上的变化，则有：</p>
-<p>$Ax &#x3D; kx$ （k为常数） </p>
-<p>即 $(A-kE)x &#x3D; 0$</p>
-<p>由于$(A-kE)$是一个矩阵，此时又变成了求解其次线性方程组的问题，但不同的是，其中还有一个常数k我们不知道取什么。不过我们知道的是当$(A-kE)$满秩时，这个方程组无解，也就是当$k$取某些值时，没有这样的向量，使得经过线性变化后被线性放大了$k$倍，那首先我们就要看$k$可能的取值，也就是向量被放大的<strong>“可能倍数”</strong>，同时也是令这个方程组有解的取值。因此，我们：</p>
-<p>令$|A-kE|&#x3D;0$</p>
-<p>解出$k$的可能取值分别带回到方程组里求解$x$，就找到了那些“经过A变化后方向没有改变，只是发生了长度上的变化”的向量，同时在求解时使用的$k$就是它们被放大的倍数。</p>
-</blockquote>
-<p>此时我们就称，所求解的各个$k$为矩阵的特征值，而各个$x$则为特征向量。</p>
-<h2 id="相似"><a href="#相似" class="headerlink" title="相似"></a>相似</h2><p>即使我们知道了矩阵的特征值和特征向量，那我们该如何去应用它呢，首先我们来介绍一下相似理论。</p>
-<h2 id="对角化"><a href="#对角化" class="headerlink" title="对角化"></a>对角化</h2><p>有了相似理论的基础，我们就可以将特征值和特征向量描述成一个相似矩阵，其为对角矩阵。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/06/06/7_%E7%A9%BA%E9%97%B4%E7%A7%AF%E5%88%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -679,7 +802,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-06-18 11:09:29" itemprop="dateModified" datetime="2023-06-18T11:09:29+08:00">2023-06-18</time>
+                <time title="修改时间：2024-02-15 11:36:00" itemprop="dateModified" datetime="2024-02-15T11:36:00+08:00">2024-02-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -706,8 +829,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>首先，热烈庆祝考研数学高数部分的基础阶段复习完成，完结撒花🎉！</p>
-<p>本篇对应张宇考研数学基础30讲的第18讲，为数一的专题内容，主要内容为三重积分和第一、第二型曲线曲面积分。</p>
+          <p>首先，热烈庆祝高数部分的基础阶段复习完成，完结撒花🎉！</p>
+<p>本篇主要内容为三重积分和第一、第二型曲线曲面积分。</p>
 <hr>
 <h2 id="三重积分"><a href="#三重积分" class="headerlink" title="三重积分"></a>三重积分</h2><p><em>三重积分</em>的本质即通过<em>密度函数</em>求解空间物体的质量，基本形式即：<br>$$<br>\iiint \limits_{\Omega} \rho(x,y,z) \mathrm{d}v<br>$$<br>求解该种积分有三种基本方法（按考虑优先级）：</p>
 <ul>
@@ -718,7 +841,6 @@
 <li><p>先一后二（先积线后积面）：适用于由两个曲面围成的曲顶柱体</p>
 </li>
 </ul>
-<p> Hexo clean  # 清除当前的网页文件（上次生成的）Hexo generate  # 根据 “博客源文件” 生成 “博客网页文件”Hexo serve  # 在本地计算机启动网页服务器（启动后可在浏览器中输入 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a> 预览效果）Hexo deploy  # 将”博客网页文件”部署到服务器py</p>
 <p>注⚠：</p>
 <p>在进行三重积分计算时是不能脱离其几何意义，如对某个变量积分时，其余某个变量是否能够看作为常数应考虑在进行该重积分时，这个变量的值是否发生变化，脱离图形而盲目积分就漾银笑话了🤭。</p>
 <h2 id="第一型积分"><a href="#第一型积分" class="headerlink" title="第一型积分"></a>第一型积分</h2><p>与<em>三重积分</em>类似，<em>一型积分</em>的本质为已知<em>密度函数</em>  $$\rho(x, y, z)$$，求解空间曲线&#x2F;曲面的质量（此处使用“质量”并不恰当，因为线和面是没有质量的），该型积分的基本思想即：</p>
@@ -843,7 +965,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-06-06 16:27:40" itemprop="dateModified" datetime="2023-06-06T16:27:40+08:00">2023-06-06</time>
+                <time title="修改时间：2024-02-15 10:51:42" itemprop="dateModified" datetime="2024-02-15T10:51:42+08:00">2024-02-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -870,18 +992,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>使用<code>Hexo</code>和<code>git</code>可以使得：</p>
+          <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>结合使用<code>Hexo</code>和<code>git</code>可以使得：</p>
 <ol>
 <li>在本地使用<em>Markdown</em>格式编辑博客内容</li>
 <li>使用<em>Hexo</em>自动根据主题等配置将博客文件渲染生成网页文件</li>
 <li>使用<em>git</em>发布到网站服务器</li>
 </ol>
 <p>其中，可以修改<em>Hexo</em>的配置，使得生成不同主题的网页，并且可以指定渲染参数（如：是否渲染公式等）</p>
-<h2 id="博客格式"><a href="#博客格式" class="headerlink" title="博客格式"></a>博客格式</h2><p>Hexo的博客源文件都存放在博客根目录的 <code>.\source\_posts</code>  文件夹下，使用<em>Markdown</em>格式编写，不过需要在头部加入 <em>YAML Front Matter</em> 以标明博客信息：</p>
+<h3 id="博客格式"><a href="#博客格式" class="headerlink" title="博客格式"></a>博客格式</h3><p>Hexo的博客源文件都存放在博客根目录的 <code>.\source\_posts</code>  文件夹下，使用<em>Markdown</em>格式编写，不过需要在头部加入 <em>YAML Front Matter</em> 以标明博客信息：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="comment"># 文章网页标题</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">常微分方程</span>  </span><br><span class="line"><span class="comment"># 是否渲染数学公式（需要事先安装hexo-math）</span></span><br><span class="line"><span class="attr">mathjax:</span> <span class="literal">true</span></span><br><span class="line"><span class="comment"># 分类标签，依次为一级分类、二级分类</span></span><br><span class="line"><span class="attr">categories:</span> </span><br><span class="line"><span class="bullet">-</span> <span class="string">知识</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">高等数学</span> </span><br><span class="line"><span class="comment"># 文章创建日期</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2023-5</span><span class="number">-23</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="发布命令"><a href="#发布命令" class="headerlink" title="发布命令"></a>发布命令</h2><p>编辑好博客文件后，在博客的根文件夹中，使用<code>鼠标右键</code>，并在右键菜单中点击<code>Git Base Here</code>，出现<em>Git命令行窗口</em>后，使用以下命令：</p>
+<h3 id="发布命令"><a href="#发布命令" class="headerlink" title="发布命令"></a>发布命令</h3><p>编辑好博客文件后，在博客的根文件夹中，使用<code>鼠标右键</code>，并在右键菜单中点击<code>Git Base Here</code>，出现<em>Git命令行窗口</em>后，使用以下命令：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Hexo clean  <span class="comment"># 清除当前的网页文件（上次生成的）</span></span><br><span class="line">Hexo generate  <span class="comment"># 根据 &quot;博客源文件&quot; 生成 &quot;博客网页文件&quot;</span></span><br><span class="line">Hexo serve  <span class="comment"># 在本地计算机启动网页服务器（启动后可在浏览器中输入 http://localhost:4000/ 预览效果）</span></span><br><span class="line">Hexo deploy  <span class="comment"># 将&quot;博客网页文件&quot;部署到服务器</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li><p>安装Node.js</p>
+<p> Hexo是一个用 JavaScript 编写的静态网站生成器，基于 Node.js 平台，所以我们要先从<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">官网</a>下载 Node.js。</p>
+<p> npm 是 Node.js 平台的默认包管理工具，全称为 Node Package Manager，而安装Node.js其会自动安装npm。安装后使用<code>node --version</code> 和<code>npm --version</code>检查是否安装成功。</p>
+</li>
+<li><p>安装Hexo</p>
+<p>  hexo-cli 是 Hexo 的命令行工具，可以在命令行中直接使用 <code>hexo</code> 命令来执行这些操作，而不必手动运行 Hexo 中的 JavaScript 文件。hexo-cli 通常作为一个独立的 npm 包安装到全局环境中，以便在命令行中全局调用。</p>
+<p> 所以我们首先创建一个空文件夹，可以命名为<code>Blog</code>，在其中打开cmd使用<code>npm install hexo-cli</code>将Hexo 的命令行工具安装到全局。安装后将文件夹中的<code>\node_modules\.bin</code>添加到环境变量，并使用<code>hexo -V</code> 检查是否安装成功。</p>
+</li>
+<li><p>初始化博客</p>
+<p> 在文件夹中打开cmd，使用<code>hexo init</code>初始化之后便可以按照开头的方式编写bo’ke</p>
+</li>
+</ol>
 
       
     </div>
@@ -932,7 +1068,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-07-07 16:33:30" itemprop="dateModified" datetime="2023-07-07T16:33:30+08:00">2023-07-07</time>
+                <time title="修改时间：2024-02-15 11:33:08" itemprop="dateModified" datetime="2024-02-15T11:33:08+08:00">2024-02-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -959,7 +1095,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>考研数学终于复习到张宇基础30讲的第13讲了，常微分方程一直是我的一个梦魇，大二期末时也是糊里糊涂地背了很多公式就坐在考场上答卷，成绩自然是很不理想。如今，再次面对这个让我第一次对自己数学能力产生怀疑的领域，却无法再逃避。经过两天的学习，自以为初窥门径，现将所感在此记录，以备今后查证。</p>
+          <p>常微分方程一直是我的一个梦魇，大二期末时也是糊里糊涂地背了很多公式就坐在考场上答卷，成绩自然是很不理想。如今，再次面对这个让我第一次对自己数学能力产生怀疑的领域，却无法再逃避。经过两天的学习，自以为初窥门径，现将所感在此记录，以备今后查证。</p>
 <hr>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><strong>方程</strong>，即未知量的限定条件，解方程，则是指求解满足该限定条件的未知量的取值。</p>
 <p><strong>微分方程</strong>，即通过<em>函数的微分</em>对函数进行限制的限制条件，解微分方程，则是指求解满足该限定条件的<em>函数</em>。</p>
@@ -992,9 +1128,11 @@
 <ul>
 <li><p>分离变量：通过将 $x、dx$ 和 $y、dy$ 分别放到等号两侧，对两侧同时积分即可</p>
 </li>
-<li><p>公式求解：形如 $y’ + p(x)y &#x3D; q(x)$ 的通解为：<br>$<br>y&#x3D;e^{-\int p(x)dx}.(\int e^{\int p(x)dx}.q(x)dx+C)<br>$</p>
+<li><p>公式求解：形如 $y’ + p(x)y &#x3D; q(x)$ 的通解为：<br>$$<br>y&#x3D;e^{-\int p(x)dx}.(\int e^{\int p(x)dx}.q(x)dx+C)<br>$$</p>
 </li>
+<li></li>
 </ul>
+<p>​		技巧：将$y’$前系数化为$0$后，先算$e^{\int p(x)dx}$，令其为$H$<br>$$<br>y&#x3D;\dfrac{1}{H}.(\int H \cdot q(x)dx+C)<br>$$</p>
 <p>在使用这个两种方法时，可根据优先考虑分离变量，若无法分离，则可以使用公式直接求解。并且在解题时，可根据题目形式，考虑交换 $x$ 和 $y$ 的位置，有时会极大的简化求解。</p>
 <p>注⚠：</p>
 <p>此处所指的“一阶微分方程”，不仅包含从形式上看为 <em>一阶</em> 和 <em>线性</em>，还包括：</p>
@@ -1108,7 +1246,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-06-06 16:28:27" itemprop="dateModified" datetime="2023-06-06T16:28:27+08:00">2023-06-06</time>
+                <time title="修改时间：2024-02-15 11:16:31" itemprop="dateModified" datetime="2024-02-15T11:16:31+08:00">2024-02-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1136,17 +1274,17 @@
 
       
           <h2 id="现场视频"><a href="#现场视频" class="headerlink" title="现场视频"></a>现场视频</h2><ul>
-<li><p><a href="">公路之歌</a> </p>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Vu411t7RZ/?spm_id_from=333.999.0.0&vd_source=6f8414b47a0218d016a8116a972d69d4">公路之歌</a> </p>
 </li>
-<li><p><a href="">西湖</a></p>
+<li><p>西湖</p>
 </li>
 <li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ru41147gk/?vd_source=6f8414b47a0218d016a8116a972d69d4">极恶都市</a></p>
 </li>
-<li><p><a href="">曾经错过与你</a></p>
+<li><p>曾经错过与你</p>
 </li>
-<li><p><a href="">嘿，姑娘</a></p>
+<li><p>嘿，姑娘</p>
 </li>
-<li><p><a href="">24小时摇滚聚会</a></p>
+<li><p>24小时摇滚聚会</p>
 </li>
 </ul>
 <h2 id="现场照片"><a href="#现场照片" class="headerlink" title="现场照片"></a>现场照片</h2><p><img src="/../images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%829.jpg" alt="无人应答乐队与观众合照"></p>
@@ -1158,119 +1296,6 @@
 <p><img src="/../images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%825.jpg"></p>
 <p><img src="/../images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%826.jpg"></p>
 <p><img src="/../images/%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%827.jpg"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/03/3_SNL%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%88%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E9%83%A8%E5%88%86%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Terrence Chen">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Terrence's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/05/03/3_SNL%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%88%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E9%83%A8%E5%88%86%EF%BC%89/" class="post-title-link" itemprop="url">编译原理课设计SNL语言编译器（语法分析部分）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-05-03 00:00:00" itemprop="dateCreated datePublished" datetime="2023-05-03T00:00:00+08:00">2023-05-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-06-06 16:28:51" itemprop="dateModified" datetime="2023-06-06T16:28:51+08:00">2023-06-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index"><span itemprop="name">IT</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">编译原理</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://github.com/thechentr/SNL-compiler">项目代码链接</a></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>该项目是本人在编译原理课设计中的作业项目，本人负责部分为语法分析部分，该篇文章简要说明了整个语法分析部分的实现方案。</p>
-<h2 id="前期准备工作"><a href="#前期准备工作" class="headerlink" title="前期准备工作"></a>前期准备工作</h2><p>语法分析的基础是语法规则，即针对一门特定语言的产生式，所有语法分析的方法都要基于其进行。因此，进行SNL语法分析的主要任务是明确SNL语言的产生式，为方便后续工作的进行，我们将SNL语言的所有产生式（共112条），通过图片文字识别，以纯文本形式录入到了txt文件中，其中，符号形式的中级符被我们 按照教材上的定义，替换成了相应的字符串，并在所有 终极符前添加了@符号以和非终极符进行区分，部分产生式文档及符号对照表如下：</p>
-<img src="../images/编译原理8.jpg" alt="产生式文档" style="zoom: 30%;" />
-
-<img src="../images/编译原理10.jpg" alt="符号对照表" style="zoom: 50%;" />
-
-<p>针对该txt文件，我们使用Python代码 读取其所有产生式，并统计了统计符合非终结符的个数，结果如下：</p>
-<img src="../images/编译原理9.jpg" alt="统计结果" style="zoom:70%;" />
-
-<p>SNL的语法文法为LL1文法，即对于每个非终结符，都可以通过查看输入Token序列的下一个Token来确定使用哪个产生式进行推导，且推导方式唯一。而实现这种推导的基础是计算每个产生式右部的predict集。因此我们使用 Python语言实现了<strong>基于产生式文本的predict集求解算法</strong>，并用其对SNL语言各产生式的predict集进行求解，最终与教材中的predict集进行对比，经核对后指出了教材中的几处错误：</p>
-<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%861.jpg" alt="教材中predict集的几处错误"></p>
-<h2 id="相关声明"><a href="#相关声明" class="headerlink" title="相关声明"></a>相关声明</h2><p>在语法分析的代码实现时，考虑到LL(1)语法分析和递归下降语法分析使用相同的终极符、非终极符枚举类型声明，相同的树结点等声明，为方便代码维护、减少代码重复、提高代码可读性与复用性，我们将在语法分析阶段所涉及的必要声明都声明在“<em>PasingDec.h</em>”头文件中，供递归下降共递归下降分析和LL1语法分析使用，其调用关系如下：</p>
-<img src="../images/编译原理2.jpg" alt="头文件调用关系" style="zoom: 30%;" />
-
-<p>在该头文件中包含了，语法分析阶段所涉及的<strong>所有</strong>必要声明，其内部结构如下：</p>
-<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863.jpg" alt="PasingDec.h内部结构"></p>
-<p>其中终极符和非终结符的枚举,及枚举类型到字符串的转换函数，均由Python代码<strong>自动生成</strong>。</p>
-<p>为实现代码自动生成，我们<strong>简化了语法分析树结点的结构</strong>，仅保留了足够满足语义分析的信息。</p>
-<p>在具体编写程序代码实现两种语法分析时，我们选择采用<strong>面向对象</strong>的编程方式，极大地提高语法分析部分代码的封闭性、可读性。同时，我们充分利用Python语言的优势，编写了自动生成语义分析部分c语言代码的工具，并完善了其通用性，使其可以接受任何一门语言的产生式集合，自动生成相应的c语言递归下降语义分析代码和LL1 语义分析代码，在减小工作量的同时，提高了代码编写的统一性与准确性。</p>
-<h2 id="LL（1）语法分析："><a href="#LL（1）语法分析：" class="headerlink" title="LL（1）语法分析："></a>LL（1）语法分析：</h2><p>LL(1)语法分析采用自顶向下的分析方法，即从最开始的非终结符开始，逐步推导出符合语法规则的程序代码，这种分析方法具有简单、高效的特点，可以有效地检测语法错误。在实现该种方式的语义分析代码时 需要用到多种栈及一种专用的数据结构，即符号栈的结点结构，其结构及LL1语法分析器如下：</p>
-<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%864.jpg" alt="LL1语法分析器结构及符号栈结点的结构"></p>
-<p>其中，实现LL(1)语法分析的关键为LL(1)分析矩阵的初始化工作，即根据SNL语言语法的产生式及其predict集，将产生式中的各个符号按顺序填写到矩阵的对应位置中，由于矩阵的不同位置可能对应相同的产生式，且存在大量重复，为<strong>节约堆区空间</strong>，在构建一个产生式的符号序列之后，我们将该序列的指针作为内容填写到分析矩阵中的多个重复位置，并且使用了与符号栈元素相同的数据结构，使得在对符号栈栈顶非终极符进行推导时，只需按照LL(1)分析矩阵，查找对应符号序列，<strong>直接压入栈中</strong>即可，简化了分析过程。</p>
-<p>并且，在该部分代码的编写中 存在大量冗余重复的工作，我们仍然<strong>使用Python自动生成LL(1)分析矩阵的初始化代码</strong>。其整体思路为，按照产生式右部结构生成符号序列Vector，按照产生式左部及其predict集将符号向量指针填写到矩阵对应位置，如根据第一条产生式生成如下LL(1)分析矩阵初始化代码：</p>
-<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865.jpg" alt="根据第一条产生式生成的LL(1)分析矩阵初始化代码"></p>
-<p>进行LL(1)语法分析时，只需不断处理符号栈顶，如果是非终结符 则按照分析矩阵进行推导 如果中意符则进行符号匹配，最终以是否符号序列 全部处理完成且符号占为空 作为语法分析是否成功的依据。</p>
-<p>在此基础上，为<strong>规范语法树结构</strong>，使得推导后无子节点的节点 不会连接在语法分析树中，最终使得所有叶结点均为终极符，我们使用节点栈存储其子节点未全部生成的节点，在弹出符号栈“弹栈符号”时，弹出节点栈栈顶结点，并判断是否应将其接入语法分析树中。</p>
-<h2 id="递归下降语法分析："><a href="#递归下降语法分析：" class="headerlink" title="递归下降语法分析："></a>递归下降语法分析：</h2><p>递归下降语法分析器从语法的最高层开始，逐层向下分析。在分析过程中，如果当前的符号是非终结符，则递归调用该非终结符所对应的子程序；如果当前的符号是终结符，则匹配当前的符号，生成相应结点连接到语法树，并将输入指针指向下一个符号。在每个非终结符的处理函数中，根据其一个或多个产生式的Predict集，选择相应的处理方法，因此我们的递归下降语法分析器结构如下：</p>
-<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866.jpg" alt="归下降语法分析器结构"></p>
-<p>实现该种方法的语法分析程序时，关键在于为各个非终结符编写处理程序，从而通过一次完整的递归调用完成语法分析工作。该种语法分析方法虽然逻辑简单 但代码工作量较大，且存在规律性，因此我们仍然<strong>使用Python代码自动生成所有非终结符的处理程序</strong>，其大致思路为:  </p>
-<p>按照所有以该非终极符为左部的产生式，及其相应的 Predict集，按产生式右部顺序进行终极符号匹配或非终极符程序调用，并在无法选择产生式时进行报错。</p>
-<p>同时为避免函数名称标识符与枚举类型标识符重复，我们用“_非终极符名称”为函数命名，并且严格按照predict集合进行推导，即使非终结符只有一条产生式，也仍然判断待处理Token序列头是否属于其predict集合，使得分析过程更加严谨，如非终极符Program的处理程序为：</p>
-<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%867.jpg" alt="归下降语法分析器结构"></p>
-<h2 id="语法分析部分总结："><a href="#语法分析部分总结：" class="headerlink" title="语法分析部分总结："></a>语法分析部分总结：</h2><p>在该部分，我们仅从产生式出发，求解了SNL语言语法分析中各个产生式的predict集，并实现了两种面向对象、可读性强、代码结构统一的语法分析器.，过程中我们使用Python代码简化工作量，最终达到了</p>
-<p><strong>800行c语言代码 + 250行 python代码 -&gt; 2500行语法分析程序（c语言）</strong></p>
-<p>的效果。更重要的是实现了<strong>通用的C语言语法分析程序生成程序</strong>，该程序以一门特定编程语言的产生式集合作为输入，自动生成其相应的递归下降语法分析程序和LL(1)语法分析程序。</p>
 
       
     </div>
@@ -1357,14 +1382,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -1395,7 +1420,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-cloud"></i>
   </span>

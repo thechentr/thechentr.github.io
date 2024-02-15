@@ -28,7 +28,7 @@
 <meta property="og:description" content="数缺形时少直观，形少数时难入微；数形结合百般好，隔离分家万事休。——华罗庚   在学习线性代数时，常常在二维和三维空间中想象，将事半功倍。——Terrence  向量作为线性代数学科的基础，向量是我们的重要研究对象。与标量不同，向量具有长度和方向两个性质（标量只有大小），因此我们很容易就可以想到，用一个二元组（长度，方向），来表示一个特定的向量，这样做毫无问题，可是却不便于我们的计算。由于特定的">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-06-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-06-18T02:54:13.881Z">
+<meta property="article:modified_time" content="2024-02-15T03:27:47.720Z">
 <meta property="article:author" content="Terrence Chen">
 <meta property="article:tag" content="IT music movie life">
 <meta name="twitter:card" content="summary">
@@ -191,7 +191,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-06-18 10:54:13" itemprop="dateModified" datetime="2023-06-18T10:54:13+08:00">2023-06-18</time>
+                <time title="修改时间：2024-02-15 11:27:47" itemprop="dateModified" datetime="2024-02-15T11:27:47+08:00">2024-02-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -225,10 +225,10 @@
 <p>在学习<em>线性代数</em>时，常常在二维和三维空间中想象，将事半功倍。——Terrence</p>
 </blockquote>
 <h2 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h2><p>作为线性代数学科的基础，向量是我们的重要研究对象。与<em>标量</em>不同，向量具有<u>长度</u>和<u>方向</u>两个性质（标量只有大小），因此我们很容易就可以想到，用一个二元组<em>（长度，方向）</em>，来表示一个特定的向量，这样做毫无问题，可是却不便于我们的计算。由于特定的向量无关与其起始位置，所以我们常用<strong>当向量起于坐标原点时，其终点的坐标</strong>，来表示一个特定的向量，为了区别于单纯坐标，通常我们将终点坐标的各个元素从上到下竖着排列，也称<em>“列向量”</em>，常用$\alpha$表示。</p>
-<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><p>从形式上来看，矩阵似乎不过是一些具有特定位置信息的标量（数字），不过，最好不要把一个矩阵的每个元素看成是单独的个体，正如之前所说，<em>向量是线性代数整个学科的基础</em>，其原子性时刻提醒我们：<u>向量不可再分</u>。所以我们应该将矩阵看作多个向量的组合，即<strong>向量组</strong>。特殊的，当一个矩阵是方阵是，我们还可以将其看作为一种<strong>线性变换</strong>，下面分别来看：</p>
+<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><p>从形式上来看，矩阵似乎不过是一些具有特定位置信息的标量（数字），不过，最好不要把一个矩阵的每个元素看成是单独的个体，正如之前所说，<em>向量是线性代数整个学科的基础</em>，其<em>原子性</em>时刻提醒我们：<u>向量不可再分</u>。所以我们应该将矩阵看作多个向量的组合，即<strong>向量组</strong>。特殊的，当一个矩阵是方阵时，我们还可以将其看作为一种<strong>线性变换</strong>，下面分别来看：</p>
 <h3 id="向量组"><a href="#向量组" class="headerlink" title="向量组"></a>向量组</h3><p>将多个向量，放在一起写做$[\alpha_1,\alpha_2,…\alpha_n]$，就成为了向量组矩阵，由于此时向量的维数并不一定等于组中向量的个数，所以该终矩阵可以是任意形状的，同时也不排除其是方阵的可能。由于此时矩阵就是向量组，所以二者的各种性质息息相关。</p>
 <h4 id="线性表示"><a href="#线性表示" class="headerlink" title="线性表示"></a>线性表示</h4><p>当多个向量放在一起，我们就可以通过两个基本运算：<u>数乘</u>与<u>相加</u>，将其组中各向量进行<em><strong>线性组合</strong></em>，从而得到其他向量，而这个过程被称为<strong>线性表示</strong>，如果由向量组$(\alpha_1,\alpha_2,…\alpha_n)$通过线性组合能够得到$\beta$，我们就称$\beta$能够由$(\alpha_1,\alpha_2,…\alpha_n)$<strong>线性表出</strong>。转化为“矩阵语言”就是，存在一组系数$x_1,x_2,…x_n$，使得：<br>$$<br>[\alpha_1,\alpha_2,…\alpha_n][x_1,x_2,…,x_n]^T&#x3D;\beta<br>$$</p>
-<p>如过要用一个向量组去表示另一个向量组，则需要一个系数矩阵$A$,使得：<br>$$<br>[\alpha_1,\alpha_2,…\alpha_n]A&#x3D;[\beta_1,\beta_2,…\beta_n]<br>$$<br>此时我们可知，<strong>所有的$\beta$都在向量组$\alpha$所张成的线性空间中</strong>，而通过研究这个矩阵$A$，有时我们也可以获得$\beta$是否线性相关等性质。</p>
+<p>如果要用一个向量组去表示另一个向量组，则需要一个系数矩阵$A$,使得：<br>$$<br>[\alpha_1,\alpha_2,…\alpha_n]A&#x3D;[\beta_1,\beta_2,…\beta_n]<br>$$<br>此时我们可知，<strong>所有的$\beta$都在向量组$\alpha$所张成的线性空间中</strong>，而通过研究这个矩阵$A$，有时我们也可以获得$\beta$是否线性相关等性质。</p>
 <h4 id="线性相关"><a href="#线性相关" class="headerlink" title="线性相关"></a>线性相关</h4><p>当向量组中某个向量能够被其他向量线性表示，我们称之为线性相关。严格的，我们将其定义为：<br>$$<br>存在一组不全为0的数k_1,k_2,…k_n，使得:k_1\alpha_1+k_2\alpha_2+…k_n\alpha_n&#x3D;0<br>$$<br>从空间的角度理解，就是向量组中的某个向量，落在了其他向量所张成的空间中。在研究这种性质时，有一个十分重要的方法就是：<u>将各个列向量组成矩阵，做行变换对其化简，通过研究化简后的矩阵来研究各向量的线性关系。</u>这是因为，当矩阵中，出现很多$0$时，我们很容易就能看出哪些向量之间能够线性表示。</p>
 <p>比如，我们常将其化为<strong>行阶梯矩</strong>阵来<strong>判断向量组的秩</strong>并寻找<strong>极大无关向量组</strong>。</p>
 <h4 id="向量组张成的空间"><a href="#向量组张成的空间" class="headerlink" title="向量组张成的空间"></a>向量组张成的空间</h4><p>向量组所能<em>线性表示</em>的所有向量，就构成了这个向量组所张成的空间，这个空间的维数就是该向量组的<strong>秩</strong>，同时秩也是这个向量组<strong>极大无关向量组中向量的个数</strong>。</p>
@@ -276,12 +276,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/06/12/9_%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81/" rel="prev" title="矩阵的特征">
-      <i class="fa fa-chevron-left"></i> 矩阵的特征
+    <a href="/2023/06/06/7_%E7%A9%BA%E9%97%B4%E7%A7%AF%E5%88%86/" rel="prev" title="空间积分">
+      <i class="fa fa-chevron-left"></i> 空间积分
     </a></div>
       <div class="post-nav-item">
-    <a href="/2023/06/21/10_%E4%BA%8C%E6%AC%A1%E5%9E%8B/" rel="next" title="二次型">
-      二次型 <i class="fa fa-chevron-right"></i>
+    <a href="/2023/06/12/9_%E7%9F%A9%E9%98%B5%E7%9A%84%E7%89%B9%E5%BE%81/" rel="next" title="矩阵的特征">
+      矩阵的特征 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -357,14 +357,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -395,7 +395,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-cloud"></i>
   </span>
