@@ -1,606 +1,741 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.3.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <!-- The tag on navigation bar -->
+<meta charset="UTF-8">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="Terrence Chen">
+
+
+  <meta name="subtitle" content="陈泰然">
+
+
+  <meta name="description" content="吉林大学计算机科学与技术专业大四学生，出生长大在长春，当前在启元实验室研究计算机视觉的对抗鲁棒性 <br><br> A senior student majoring in Computer Science and Technology at Jilin University. Born and raised in Changchun, currently researching adversarial robustness in computer vision at the Qiyuan Lab.">
+
+
+  <meta name="keywords" content="IT music movie life">
+
+
+<title>Terrence Chen</title>
+
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
 
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
-  </script>
-
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Terrence&#39;s Blog">
-<meta property="og:url" content="http://example.com/page/2/index.html">
-<meta property="og:site_name" content="Terrence&#39;s Blog">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="Terrence Chen">
-<meta property="article:tag" content="IT music movie life">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="http://example.com/page/2/">
+<link rel="stylesheet" href="/css/search.css">
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'zh-CN'
+
+<script src="/lib/jquery.min.js"></script>
+
+
+<script src="/lib/iconify-icon.min.js"></script>
+
+
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
   };
 </script>
 
-  <title>Terrence's Blog</title>
-  
+<script>
+  (function () {
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+    let isDark = document.documentElement.classList.contains("dark");
+  })();
+
+  $(document).ready(function () {
+    // init icon
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = document.documentElement.classList.contains("dark");
+    $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+
+    function toggleGiscusTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const giscusFrame = document.querySelector("iframe.giscus-frame");
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: isDark ? "dark" : "light",
+              },
+            },
+          },
+          "https://giscus.app"
+        );
+      }
+    }
+
+
+    // toggle dark mode
+    function toggleDark() {
+      let isDark = document.documentElement.classList.contains("dark");
+      const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
+      document.documentElement.classList.toggle("dark", isDark);
+      $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+      if (prefersDark === isDark) {
+        localStorage.setItem("hexo-color-scheme", "auto");
+      } else {
+        localStorage.setItem("hexo-color-scheme", isDark ? "dark" : "light");
+      }
+      toggleGiscusTheme();
+    }
+    $("#toggle-dark").click(toggleDark);
+
+    // listen dark mode change
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+        if (setting === "auto") {
+          document.documentElement.classList.toggle("dark", e.matches);
+          $("#theme-icon").attr(
+            "icon",
+            e.matches ? "ic:round-dark-mode" : "ic:round-light-mode"
+          );
+          toggleGiscusTheme();
+        }
+      });
+  });
+</script>
 
 
 
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
 
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+<body 
+  class="
+    bg-[var(--c-0)]
+    text-[var(--c-80)]
+  ">
+  <!-- The navigation bar -->
+<header class="
+    flex flex-row items-center
+    w-full
+    pr-4
+    z-10
+    border-b-[1px]
+    border-b-[var(--c-border)]
+    dark:bg-[var(--c-0)]
+    dark:border-b-[var(--c-0)]
+    gap-2
+    h-[var(--h-header)]
+    text-[var(--c-80)]
+">
+    <!-- Left part -->
+    <div class="overflow-hidden h-full flex flex-row items-center">
+        <!-- Site Title on the top left -->
+        <a href="/" class="
+            whitespace-nowrap
+            text-2xl
+            text-[var(--c-theme)]
+            hover:text-[var(--c-theme)]
+            pl-4
+            font-black
+            bg-gradient-to-r from-cyan-500
+            to-blue-500 bg-clip-text text-transparent
+          ">
+            Terrence Chen
+        </a>
     </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Terrence's Blog</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-      <p class="site-subtitle" itemprop="description">welcome to the memohub</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>时间线</a>
-
-  </li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content index posts-expand">
+    <!-- Div for pushing items to both sides -->
+    <div class="flex-1"></div>
+    <!-- Right part -->
+    <div class="flex flex-row items-center z-20 h-full">
+        <!-- Page links -->
+        <div class="hidden sm:flex flex-row h-full">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/05/03/3_SNL%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%88%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E9%83%A8%E5%88%86%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Terrence Chen">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Terrence's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/05/03/3_SNL%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%99%A8%EF%BC%88%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E9%83%A8%E5%88%86%EF%BC%89/" class="post-title-link" itemprop="url">编译原理课设计SNL语言编译器（语法分析部分）</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-05-03 00:00:00" itemprop="dateCreated datePublished" datetime="2023-05-03T00:00:00+08:00">2023-05-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-06-06 16:28:51" itemprop="dateModified" datetime="2023-06-06T16:28:51+08:00">2023-06-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/" itemprop="url" rel="index"><span itemprop="name">IT</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IT/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">编译原理</span></a>
-                </span>
-            </span>
-
-          
-
+                
+                
+                    
+                    
+                
+                <a
+                    href="/about"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:mortarboard-line" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>About Me</p>
+                    
+                </a>
+            
+                
+                
+                    
+                    
+                
+                <a
+                    href="/archives"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:classify-3-fill" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>Posts</p>
+                    
+                </a>
+            
+                
+                
+                    
+                    
+                
+                <a
+                    href="/category"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:folder-2-fill" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>Categories</p>
+                    
+                </a>
+            
+                
+                
+                    
+                    
+                
+                <a
+                    href="/tag"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:tag-fill" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>Tags</p>
+                    
+                </a>
+            
         </div>
-      </header>
+        <!-- Icons on the right -->
+        <div class="flex flex-row items-center">
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+            
+  <div class="search-icon tools-bar-item w-8 flex flex-row items-center" id="search-icon">
+    <a href="javascript: void(0)" class="w-full flex flex-row items-center">
+      <iconify-icon width="24" icon="mingcute:search-2-fill"></iconify-icon>
+    </a>
+  </div>
 
-      
-          <p><a target="_blank" rel="noopener" href="https://github.com/thechentr/SNL-compiler">项目代码链接</a></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>该项目是本人在编译原理课设计中的作业项目，本人负责部分为语法分析部分，该篇文章简要说明了整个语法分析部分的实现方案。</p>
-<h2 id="前期准备工作"><a href="#前期准备工作" class="headerlink" title="前期准备工作"></a>前期准备工作</h2><p>语法分析的基础是语法规则，即针对一门特定语言的产生式，所有语法分析的方法都要基于其进行。因此，进行SNL语法分析的主要任务是明确SNL语言的产生式，为方便后续工作的进行，我们将SNL语言的所有产生式（共112条），通过图片文字识别，以纯文本形式录入到了txt文件中，其中，符号形式的中级符被我们 按照教材上的定义，替换成了相应的字符串，并在所有 终极符前添加了@符号以和非终极符进行区分，部分产生式文档及符号对照表如下：</p>
-<img src="../images/编译原理8.jpg" alt="产生式文档" style="zoom: 30%;" />
-
-<img src="../images/编译原理10.jpg" alt="符号对照表" style="zoom: 50%;" />
-
-<p>针对该txt文件，我们使用Python代码 读取其所有产生式，并统计了统计符合非终结符的个数，结果如下：</p>
-<img src="../images/编译原理9.jpg" alt="统计结果" style="zoom:70%;" />
-
-<p>SNL的语法文法为LL1文法，即对于每个非终结符，都可以通过查看输入Token序列的下一个Token来确定使用哪个产生式进行推导，且推导方式唯一。而实现这种推导的基础是计算每个产生式右部的predict集。因此我们使用 Python语言实现了<strong>基于产生式文本的predict集求解算法</strong>，并用其对SNL语言各产生式的predict集进行求解，最终与教材中的predict集进行对比，经核对后指出了教材中的几处错误：</p>
-<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%861.jpg" alt="教材中predict集的几处错误"></p>
-<h2 id="相关声明"><a href="#相关声明" class="headerlink" title="相关声明"></a>相关声明</h2><p>在语法分析的代码实现时，考虑到LL(1)语法分析和递归下降语法分析使用相同的终极符、非终极符枚举类型声明，相同的树结点等声明，为方便代码维护、减少代码重复、提高代码可读性与复用性，我们将在语法分析阶段所涉及的必要声明都声明在“<em>PasingDec.h</em>”头文件中，供递归下降共递归下降分析和LL1语法分析使用，其调用关系如下：</p>
-<img src="../images/编译原理2.jpg" alt="头文件调用关系" style="zoom: 30%;" />
-
-<p>在该头文件中包含了，语法分析阶段所涉及的<strong>所有</strong>必要声明，其内部结构如下：</p>
-<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863.jpg" alt="PasingDec.h内部结构"></p>
-<p>其中终极符和非终结符的枚举,及枚举类型到字符串的转换函数，均由Python代码<strong>自动生成</strong>。</p>
-<p>为实现代码自动生成，我们<strong>简化了语法分析树结点的结构</strong>，仅保留了足够满足语义分析的信息。</p>
-<p>在具体编写程序代码实现两种语法分析时，我们选择采用<strong>面向对象</strong>的编程方式，极大地提高语法分析部分代码的封闭性、可读性。同时，我们充分利用Python语言的优势，编写了自动生成语义分析部分c语言代码的工具，并完善了其通用性，使其可以接受任何一门语言的产生式集合，自动生成相应的c语言递归下降语义分析代码和LL1 语义分析代码，在减小工作量的同时，提高了代码编写的统一性与准确性。</p>
-<h2 id="LL（1）语法分析："><a href="#LL（1）语法分析：" class="headerlink" title="LL（1）语法分析："></a>LL（1）语法分析：</h2><p>LL(1)语法分析采用自顶向下的分析方法，即从最开始的非终结符开始，逐步推导出符合语法规则的程序代码，这种分析方法具有简单、高效的特点，可以有效地检测语法错误。在实现该种方式的语义分析代码时 需要用到多种栈及一种专用的数据结构，即符号栈的结点结构，其结构及LL1语法分析器如下：</p>
-<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%864.jpg" alt="LL1语法分析器结构及符号栈结点的结构"></p>
-<p>其中，实现LL(1)语法分析的关键为LL(1)分析矩阵的初始化工作，即根据SNL语言语法的产生式及其predict集，将产生式中的各个符号按顺序填写到矩阵的对应位置中，由于矩阵的不同位置可能对应相同的产生式，且存在大量重复，为<strong>节约堆区空间</strong>，在构建一个产生式的符号序列之后，我们将该序列的指针作为内容填写到分析矩阵中的多个重复位置，并且使用了与符号栈元素相同的数据结构，使得在对符号栈栈顶非终极符进行推导时，只需按照LL(1)分析矩阵，查找对应符号序列，<strong>直接压入栈中</strong>即可，简化了分析过程。</p>
-<p>并且，在该部分代码的编写中 存在大量冗余重复的工作，我们仍然<strong>使用Python自动生成LL(1)分析矩阵的初始化代码</strong>。其整体思路为，按照产生式右部结构生成符号序列Vector，按照产生式左部及其predict集将符号向量指针填写到矩阵对应位置，如根据第一条产生式生成如下LL(1)分析矩阵初始化代码：</p>
-<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865.jpg" alt="根据第一条产生式生成的LL(1)分析矩阵初始化代码"></p>
-<p>进行LL(1)语法分析时，只需不断处理符号栈顶，如果是非终结符 则按照分析矩阵进行推导 如果中意符则进行符号匹配，最终以是否符号序列 全部处理完成且符号占为空 作为语法分析是否成功的依据。</p>
-<p>在此基础上，为<strong>规范语法树结构</strong>，使得推导后无子节点的节点 不会连接在语法分析树中，最终使得所有叶结点均为终极符，我们使用节点栈存储其子节点未全部生成的节点，在弹出符号栈“弹栈符号”时，弹出节点栈栈顶结点，并判断是否应将其接入语法分析树中。</p>
-<h2 id="递归下降语法分析："><a href="#递归下降语法分析：" class="headerlink" title="递归下降语法分析："></a>递归下降语法分析：</h2><p>递归下降语法分析器从语法的最高层开始，逐层向下分析。在分析过程中，如果当前的符号是非终结符，则递归调用该非终结符所对应的子程序；如果当前的符号是终结符，则匹配当前的符号，生成相应结点连接到语法树，并将输入指针指向下一个符号。在每个非终结符的处理函数中，根据其一个或多个产生式的Predict集，选择相应的处理方法，因此我们的递归下降语法分析器结构如下：</p>
-<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866.jpg" alt="归下降语法分析器结构"></p>
-<p>实现该种方法的语法分析程序时，关键在于为各个非终结符编写处理程序，从而通过一次完整的递归调用完成语法分析工作。该种语法分析方法虽然逻辑简单 但代码工作量较大，且存在规律性，因此我们仍然<strong>使用Python代码自动生成所有非终结符的处理程序</strong>，其大致思路为:  </p>
-<p>按照所有以该非终极符为左部的产生式，及其相应的 Predict集，按产生式右部顺序进行终极符号匹配或非终极符程序调用，并在无法选择产生式时进行报错。</p>
-<p>同时为避免函数名称标识符与枚举类型标识符重复，我们用“_非终极符名称”为函数命名，并且严格按照predict集合进行推导，即使非终结符只有一条产生式，也仍然判断待处理Token序列头是否属于其predict集合，使得分析过程更加严谨，如非终极符Program的处理程序为：</p>
-<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%867.jpg" alt="归下降语法分析器结构"></p>
-<h2 id="语法分析部分总结："><a href="#语法分析部分总结：" class="headerlink" title="语法分析部分总结："></a>语法分析部分总结：</h2><p>在该部分，我们仅从产生式出发，求解了SNL语言语法分析中各个产生式的predict集，并实现了两种面向对象、可读性强、代码结构统一的语法分析器.，过程中我们使用Python代码简化工作量，最终达到了</p>
-<p><strong>800行c语言代码 + 250行 python代码 -&gt; 2500行语法分析程序（c语言）</strong></p>
-<p>的效果。更重要的是实现了<strong>通用的C语言语法分析程序生成程序</strong>，该程序以一门特定编程语言的产生式集合作为输入，自动生成其相应的递归下降语法分析程序和LL(1)语法分析程序。</p>
-
-      
+  <div class="search-overlay hidden z-20">
+    <div class="search-content" tabindex="0">
+      <div class="search-title">
+        <!-- <span class="search-icon-input">
+          <a href="javascript: void(0)">
+            <iconify-icon width="24" icon="mingcute:search-2-fill"></iconify-icon>
+          </a>
+        </span> -->
+        
+          <input type="text" class="search-input" id="search-input" placeholder="搜索">
+        
+        <!-- <span class="search-close-icon" id="search-close-icon">
+          <a href="javascript: void(0)">
+            <iconify-icon width="24" icon="mingcute:search-2-fill"></iconify-icon>
+          </a>
+        </span> -->
+      </div>
+      <div class="search-result" id="search-result"></div>
     </div>
+  </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+  <script type="text/javascript">
+    var inputArea = document.querySelector("#search-input")
+    var searchOverlayArea = document.querySelector(".search-overlay")
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/09/2_%E7%83%AD%E6%B2%B3%EF%BC%88%E7%9B%B8%E4%BF%A1%E6%9C%AA%E6%9D%A5%E7%89%88%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Terrence Chen">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Terrence's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/02/09/2_%E7%83%AD%E6%B2%B3%EF%BC%88%E7%9B%B8%E4%BF%A1%E6%9C%AA%E6%9D%A5%E7%89%88%EF%BC%89/" class="post-title-link" itemprop="url">热河（相信未来版）吉他谱</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-02-09T00:00:00+08:00">2023-02-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-05-12 20:51:33" itemprop="dateModified" datetime="2023-05-12T20:51:33+08:00">2023-05-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9F%B3%E4%B9%90/" itemprop="url" rel="index"><span itemprop="name">音乐</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%9F%B3%E4%B9%90/%E5%90%89%E4%BB%96%E8%B0%B1/" itemprop="url" rel="index"><span itemprop="name">吉他谱</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1h14y1u79N/?spm_id_from=333.999.0.0">点此观看演奏视频</a></p>
-<p><img src="/../images/%E7%83%AD%E6%B2%B31.jpg" alt="热河1.jpg"></p>
-<p><img src="/../images/%E7%83%AD%E6%B2%B32.jpg" alt="热河2.jpg"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/08/1_%E5%85%B3%E4%BA%8E%E8%AE%B0%E5%BF%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Terrence Chen">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Terrence's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/02/08/1_%E5%85%B3%E4%BA%8E%E8%AE%B0%E5%BF%86/" class="post-title-link" itemprop="url">写在前面</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-02-08 00:00:00" itemprop="dateCreated datePublished" datetime="2023-02-08T00:00:00+08:00">2023-02-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-02-15 11:17:18" itemprop="dateModified" datetime="2024-02-15T11:17:18+08:00">2024-02-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index"><span itemprop="name">生活</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%94%9F%E6%B4%BB/%E6%97%A5%E5%B8%B8/" itemprop="url" rel="index"><span itemprop="name">日常</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="关于记忆"><a href="#关于记忆" class="headerlink" title="关于记忆"></a>关于记忆</h2><blockquote>
-<p>记忆，获取并存储简单如日常生活细节、复杂如地理或代数抽象知识等信息的能力，是人类行为中最引人注目的一个方面。</p>
-<p>为了解决日常生活中遭遇的问题，记忆使我们可以同时整理若干信息，这对解决问题来说至关重要。</p>
-<p>从更广泛的意义上讲，记忆给我们的生活提供了连续性，它给我们提供了一幅过去的连贯图景，以便我们恰当地审视现在的经历。</p>
-<p>这幅图景未必合理或准确，但它会持续存在。没有记忆的黏合，经历将会分裂成很多如生活中的瞬间一样散碎的片断。</p>
-<p>没有记忆提供的心理时间旅行，我们就不会意识到我们的个人史，无法记住我们生命中有如闪亮里程碑的欢愉时刻。</p>
-<p>我们之所以成为我们，是因为那些我们学习并记住的事物。</p>
-</blockquote>
-<p>而这里,便是我的记忆……</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
+    inputArea.onclick = function() {
+      getSearchFile()
+      this.onclick = null
     }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
+
+    inputArea.onkeydown = function() {
+      if(event.keyCode == 13)
+        return false
+    }
+
+    function openOrHideSearchContent() {
+      let isHidden = searchOverlayArea.classList.contains('hidden')
+      if (isHidden) {
+        searchOverlayArea.classList.remove('hidden')
+        inputArea.focus()
+        // document.body.classList.add('hidden')
+      } else {
+        searchOverlayArea.classList.add('hidden')
+        // document.body.classList.remove('hidden')
       }
     }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
 
+    function blurSearchContent(e) {
+      if (e.target === searchOverlayArea) {
+        openOrHideSearchContent()
+      }
+    }
+
+    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
+    // document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
+    searchOverlayArea.addEventListener("click", blurSearchContent, false)
+
+    var searchFunc = function (path, search_id, content_id) {
+      'use strict';
+      var $input = document.getElementById(search_id);
+      var $resultContent = document.getElementById(content_id);
+      $resultContent.innerHTML = "<ul><span class='local-search-empty'>searchFirst<span></ul>";
+      $.ajax({
+        // 0x01. load xml file
+        url: path,
+        dataType: "xml",
+        success: function (xmlResponse) {
+          // 0x02. parse xml file
+          var datas = $("entry", xmlResponse).map(function () {
+            return {
+              title: $("title", this).text(),
+              content: $("content", this).text(),
+              url: $("url", this).text()
+            };
+          }).get();
+          $resultContent.innerHTML = "";
+
+          $input.addEventListener('input', function () {
+            // 0x03. parse query to keywords list
+            var str = '<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length <= 0) {
+              return;
+            }
+            // 0x04. perform local searching
+            datas.forEach(function (data) {
+              var isMatch = true;
+              var content_index = [];
+              if (!data.title || data.title.trim() === '') {
+                data.title = "Untitled";
+              }
+              var orig_data_title = data.title.trim();
+              var data_title = orig_data_title.toLowerCase();
+              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
+              var data_content = orig_data_content.toLowerCase();
+              var data_url = data.url;
+              var index_title = -1;
+              var index_content = -1;
+              var first_occur = -1;
+              // only match artiles with not empty contents
+              if (data_content !== '') {
+                keywords.forEach(function (keyword, i) {
+                  index_title = data_title.indexOf(keyword);
+                  index_content = data_content.indexOf(keyword);
+
+                  if (index_title < 0 && index_content < 0) {
+                    isMatch = false;
+                  } else {
+                    if (index_content < 0) {
+                      index_content = 0;
+                    }
+                    if (i == 0) {
+                      first_occur = index_content;
+                    }
+                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
+                  }
+                });
+              } else {
+                isMatch = false;
+              }
+              // 0x05. show search results
+              if (isMatch) {
+                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
+                var content = orig_data_content;
+                if (first_occur >= 0) {
+                  // cut out 100 characters
+                  var start = first_occur - 20;
+                  var end = first_occur + 80;
+
+                  if (start < 0) {
+                    start = 0;
+                  }
+
+                  if (start == 0) {
+                    end = 100;
+                  }
+
+                  if (end > content.length) {
+                    end = content.length;
+                  }
+
+                  var match_content = content.substr(start, end);
+
+                  // highlight all keywords
+                  keywords.forEach(function (keyword) {
+                    var regS = new RegExp(keyword, "gi");
+                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
+                  });
+
+                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
+                }
+                str += "</li>";
+              }
+            });
+            str += "</ul>";
+            if (str.indexOf('<li>') === -1) {
+              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>searchNoResult<span></ul>";
+            }
+            $resultContent.innerHTML = str;
+          });
+        },
+        error: function(xhr, status, error) {
+          $resultContent.innerHTML = ""
+          if (xhr.status === 404) {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>searchFilesNotfound<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
+          } else {
+            $resultContent.innerHTML = "<ul><span class='local-search-empty'>searchServiceErrors<span></ul>";
+          }
+        }
+      });
+      $(document).on('click', '#search-close-icon', function() {
+        $('#search-input').val('');
+        $('#search-result').html('');
+      });
+    }
+
+    var getSearchFile = function() {
+        var path = "/search.xml";
+        searchFunc(path, 'search-input', 'search-result');
+    }
+  </script>
+
+
+
+
+            <!-- Dark/light toggle icon -->
+            <a class="flex group p-1" title="toggle theme" id="toggle-dark">
+                <iconify-icon class="transition-transform
+                    group-hover:rotate-[45deg]
+                    group-hover:scale-125
+                    group-hover:text-[var(--c-theme)]
+                    " width="24" icon="" id="theme-icon">
+                </iconify-icon>
+            </a>
+            <!-- Icon for dropout menu on small screens -->
+            <div class="flex items-center justify-center gap-1 mx-1 sm:hidden">
+                <a class="w-5 h-5" aria-hidden="true" role="img" id="open-menu">
+                    <iconify-icon width="22" icon="mingcute:menu-fill"
+                        class="transition-transform hover:scale-125 hover:rotate-[5deg]">
+                    </iconify-icon>
+                </a>
+                <a class="w-5 h-5 hidden" aria-hidden="true" role="img" id="close-menu">
+                    <iconify-icon width="22" icon="mingcute:close-circle-fill"
+                        class="transition-transform hover:scale-125 hover:rotate-[80deg]">
+                    </iconify-icon>
+                </a>
+            </div>
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="Terrence Chen"
-      src="/images/avatar.gif">
-  <p class="site-author-name" itemprop="name">Terrence Chen</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">13</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">13</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="sidebar-button motion-element"><i class="fa fa-comment-alt"></i>
-    chen_tr@foxmail.com
-  </a>
-  </div>
-
-
-
-      </div>
-
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
+</header>
 
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
+<!-- Dropdown menu on small screens -->
+<div id="menu-panel"
+    class="
+        h-0
+        overflow-hidden
+        sm:hidden
+        w-full
+        z-10
+        rounded
+    ">
+  <div id="menu-content"
+        class="
+        font-bold
+        text-xl
+        border-b-[1px]
+        relative
+        z-20
+        border-[var(--c-sep)]
+        px-2
+        py-2
+        -translate-y-full
+        transition-transform
+        duration-200
+        ">
+      
         
-
         
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2024</span>
-  <span class="with-love">
-    <i class="fa fa-cloud"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Terrence Chen</span>
+          <a
+            href="/about"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:mortarboard-line" width="22">
+            </iconify-icon>
+            <p>
+              About Me
+            </p>
+          </a>
+        
+      
+        
+        
+          <a
+            href="/archives"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:classify-3-fill" width="22">
+            </iconify-icon>
+            <p>
+              Posts
+            </p>
+          </a>
+        
+      
+        
+        
+          <a
+            href="/category"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:folder-2-fill" width="22">
+            </iconify-icon>
+            <p>
+              Categories
+            </p>
+          </a>
+        
+      
+        
+        
+          <a
+            href="/tag"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:tag-fill" width="22">
+            </iconify-icon>
+            <p>
+              Tags
+            </p>
+          </a>
+        
+      
+  </div>
 </div>
-
-
-
-        
-
-
-
-
-
-
-
-
+  <main>
+    <div class="flex flex-col gap-0">
+  <div class="index-info-container pt-6 text-[var(--c-70)]">
+    <!-- Home page info, short text about me -->
+    <div class="flex flex-col items-center">
+      <a href="/about">
+        <img class="rounded-3xl w-48 hover:scale-[1.04] transition-transform" src="/images/protrait.png"
+          alt="Terrence Chen" />
+      </a>
+      <!-- Sub-title -->
+      <p class="
+        text-5xl font-extrabold text-center
+        bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent
+        text-[var(--c-80)] pt-6">
+        陈泰然
+      </p>
+      <!-- Site title -->
+      <h1 class="
+        site-title
+        text-center
+          text-4xl
+          bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent
+          py-2
+          font-black
+        ">
+        Terrence Chen
+      </h1>
+      <div class="flex flex-wrap items-center justify-center gap-4 my-6 font-bold text-lg">
+        <div class="flex flex-row items-center gap-1">
+          <iconify-icon width="24" icon="mingcute:building-1-fill"></iconify-icon>
+          <p>Changchun</p>
+        </div>
+        <div class="flex flex-row items-center gap-1 group">
+          <iconify-icon class="transition-transform
+                group-hover:scale-125" width="24" icon="mingcute:idcard-fill"></iconify-icon>
+          <a href="/pdf/cv.pdf" class="group-hover:underline">
+            CV (Feb, 2024)
+          </a>
+        </div>
       </div>
-    </footer>
+      <!-- Description from config -->
+      <div class="description-container max-w-prose mx-auto grid grid-cols-1">
+        <div class="text-left p-8">
+          <p>
+            吉林大学计算机科学与技术专业大四学生，出生长大在长春，当前在启元实验室研究计算机视觉的对抗鲁棒性 <br><br> A senior student majoring in Computer Science and Technology at Jilin University. Born and raised in Changchun, currently researching adversarial robustness in computer vision at the Qiyuan Lab.
+          </p>
+        </div>
+      </div>
+      <!-- get content from index.md -->
+      <div class="post-content mt-4">
+      </div>
+    </div>
   </div>
 
+  <!-- 分割线 -->
+  <div class="flex flex-col items-center justify-center0">
+    <hr class="w-1/2 mb-10 h-[1px] bg-[var(--c-sep)] mr-1/2">
+    </hr>
+    <div class="flex flex-row items-center gap-2 text-[var(--c-50)]">
+      <iconify-icon width="28" icon="mingcute:star-fill"></iconify-icon>
+      <p class="text-center text-3xl">Featured Posts</p>
+    </div>
+  </div>
+
+  <!-- List of featured posts -->
+  <section class="px-2 py-8 max-w-prose mx-auto gap-4 grid grid-cols-1">
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
   
+</section>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
+  </main>
+  <footer class="flex flex-col mt-12 mb-12 items-center
+  text-[var(--c-50)] text-sm">
   
 
-  
+</footer>
 
+  <div class="
+    back-to-top
+    fixed right-6
+    z-1024
+    -bottom-20
+    rounded-lg
+    font-bold
+    py-1 px-2
+    text-[var(--c-80)]
+    bg-[var(--c-20)]
+    cursor-pointer
+    text-center
+    drop-shadow-md
+  ">
+    <span class="flex justify-center items-center text-sm">
+      <span id="scrollpercent"><span>0</span> %</span>
+      <iconify-icon width="18" icon="mingcute:arrow-to-up-fill" id="go-top"></iconify-icon>
+    </span>
+  </div>
   
+<script src="/js/main.js"></script>
 
+
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
 </body>
+
 </html>
