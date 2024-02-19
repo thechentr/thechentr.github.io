@@ -22,7 +22,7 @@
   <meta name="keywords" content="IT music movie life">
 
 
-<title>编译原理课设计SNL语言编译器（语法分析部分） | Terrence Chen</title>
+<title>编译原理课程设计SNL语言编译器 | Terrence Chen</title>
 
 
 
@@ -300,196 +300,6 @@
         <div class="flex flex-row items-center">
 
             
-  <div class="search-icon tools-bar-item w-8 flex flex-row items-center" id="search-icon">
-    <a href="javascript: void(0)" class="w-full flex flex-row items-center">
-      <iconify-icon width="24" icon="mingcute:search-2-fill"></iconify-icon>
-    </a>
-  </div>
-
-  <div class="search-overlay hidden z-20">
-    <div class="search-content" tabindex="0">
-      <div class="search-title">
-        <!-- <span class="search-icon-input">
-          <a href="javascript: void(0)">
-            <iconify-icon width="24" icon="mingcute:search-2-fill"></iconify-icon>
-          </a>
-        </span> -->
-        
-          <input type="text" class="search-input" id="search-input" placeholder="搜索">
-        
-        <!-- <span class="search-close-icon" id="search-close-icon">
-          <a href="javascript: void(0)">
-            <iconify-icon width="24" icon="mingcute:search-2-fill"></iconify-icon>
-          </a>
-        </span> -->
-      </div>
-      <div class="search-result" id="search-result"></div>
-    </div>
-  </div>
-
-  <script type="text/javascript">
-    var inputArea = document.querySelector("#search-input")
-    var searchOverlayArea = document.querySelector(".search-overlay")
-
-    inputArea.onclick = function() {
-      getSearchFile()
-      this.onclick = null
-    }
-
-    inputArea.onkeydown = function() {
-      if(event.keyCode == 13)
-        return false
-    }
-
-    function openOrHideSearchContent() {
-      let isHidden = searchOverlayArea.classList.contains('hidden')
-      if (isHidden) {
-        searchOverlayArea.classList.remove('hidden')
-        inputArea.focus()
-        // document.body.classList.add('hidden')
-      } else {
-        searchOverlayArea.classList.add('hidden')
-        // document.body.classList.remove('hidden')
-      }
-    }
-
-    function blurSearchContent(e) {
-      if (e.target === searchOverlayArea) {
-        openOrHideSearchContent()
-      }
-    }
-
-    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
-    // document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
-    searchOverlayArea.addEventListener("click", blurSearchContent, false)
-
-    var searchFunc = function (path, search_id, content_id) {
-      'use strict';
-      var $input = document.getElementById(search_id);
-      var $resultContent = document.getElementById(content_id);
-      $resultContent.innerHTML = "<ul><span class='local-search-empty'>searchFirst<span></ul>";
-      $.ajax({
-        // 0x01. load xml file
-        url: path,
-        dataType: "xml",
-        success: function (xmlResponse) {
-          // 0x02. parse xml file
-          var datas = $("entry", xmlResponse).map(function () {
-            return {
-              title: $("title", this).text(),
-              content: $("content", this).text(),
-              url: $("url", this).text()
-            };
-          }).get();
-          $resultContent.innerHTML = "";
-
-          $input.addEventListener('input', function () {
-            // 0x03. parse query to keywords list
-            var str = '<ul class=\"search-result-list\">';
-            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length <= 0) {
-              return;
-            }
-            // 0x04. perform local searching
-            datas.forEach(function (data) {
-              var isMatch = true;
-              var content_index = [];
-              if (!data.title || data.title.trim() === '') {
-                data.title = "Untitled";
-              }
-              var orig_data_title = data.title.trim();
-              var data_title = orig_data_title.toLowerCase();
-              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
-              var data_content = orig_data_content.toLowerCase();
-              var data_url = data.url;
-              var index_title = -1;
-              var index_content = -1;
-              var first_occur = -1;
-              // only match artiles with not empty contents
-              if (data_content !== '') {
-                keywords.forEach(function (keyword, i) {
-                  index_title = data_title.indexOf(keyword);
-                  index_content = data_content.indexOf(keyword);
-
-                  if (index_title < 0 && index_content < 0) {
-                    isMatch = false;
-                  } else {
-                    if (index_content < 0) {
-                      index_content = 0;
-                    }
-                    if (i == 0) {
-                      first_occur = index_content;
-                    }
-                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
-                  }
-                });
-              } else {
-                isMatch = false;
-              }
-              // 0x05. show search results
-              if (isMatch) {
-                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
-                var content = orig_data_content;
-                if (first_occur >= 0) {
-                  // cut out 100 characters
-                  var start = first_occur - 20;
-                  var end = first_occur + 80;
-
-                  if (start < 0) {
-                    start = 0;
-                  }
-
-                  if (start == 0) {
-                    end = 100;
-                  }
-
-                  if (end > content.length) {
-                    end = content.length;
-                  }
-
-                  var match_content = content.substr(start, end);
-
-                  // highlight all keywords
-                  keywords.forEach(function (keyword) {
-                    var regS = new RegExp(keyword, "gi");
-                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
-                  });
-
-                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
-                }
-                str += "</li>";
-              }
-            });
-            str += "</ul>";
-            if (str.indexOf('<li>') === -1) {
-              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>searchNoResult<span></ul>";
-            }
-            $resultContent.innerHTML = str;
-          });
-        },
-        error: function(xhr, status, error) {
-          $resultContent.innerHTML = ""
-          if (xhr.status === 404) {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>searchFilesNotfound<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
-          } else {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>searchServiceErrors<span></ul>";
-          }
-        }
-      });
-      $(document).on('click', '#search-close-icon', function() {
-        $('#search-input').val('');
-        $('#search-result').html('');
-      });
-    }
-
-    var getSearchFile = function() {
-        var path = "/search.xml";
-        searchFunc(path, 'search-input', 'search-result');
-    }
-  </script>
-
-
 
 
             <!-- Dark/light toggle icon -->
@@ -653,7 +463,7 @@
     <div class="flex flex-col gap-2 pt-4 md:pt-6">
       <!-- Title -->
       <div id="article-title" class="leading-snug">
-        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">编译原理课设计SNL语言编译器（语法分析部分）</p>
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">编译原理课程设计SNL语言编译器</p>
       </div>
       <!-- Meta data -->
       <div>
@@ -667,7 +477,7 @@
             </div>
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
-              Edited: <time class="w-max">2024-02-19</time>
+              Edited: <time class="w-max">2023-05-03</time>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
@@ -677,7 +487,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>2.1k words, 7 min</span>
+              <span>2.2k words, 7 min</span>
             </span>
             <!-- Categories -->
             
@@ -725,7 +535,7 @@
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
     <p><a target="_blank" rel="noopener" href="https://github.com/thechentr/SNL-compiler">项目代码链接</a></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>该项目是本人在编译原理课设计中的作业项目，本人负责部分为语法分析部分，该篇文章简要说明了整个语法分析部分的实现方案。</p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>该项目是本人在编译原理课设计中的作业项目，本人负责部分为语法分析部分，该篇文章简要说明了整个<strong>语法分析部分</strong>的实现方案。</p>
 <h2 id="前期准备工作"><a href="#前期准备工作" class="headerlink" title="前期准备工作"></a>前期准备工作</h2><p>语法分析的基础是语法规则，即针对一门特定语言的产生式，所有语法分析的方法都要基于其进行。因此，进行SNL语法分析的主要任务是明确SNL语言的产生式，为方便后续工作的进行，我们将SNL语言的所有产生式（共112条），通过图片文字识别，以纯文本形式录入到了txt文件中，其中，符号形式的中级符被我们 按照教材上的定义，替换成了相应的字符串，并在所有 终极符前添加了@符号以和非终极符进行区分，部分产生式文档及符号对照表如下：</p>
 <img src="../images/编译原理8.jpg" alt="产生式文档" style="zoom: 30%;" />
 
@@ -748,11 +558,11 @@
 <p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%864.jpg" alt="LL1语法分析器结构及符号栈结点的结构"></p>
 <p>其中，实现LL(1)语法分析的关键为LL(1)分析矩阵的初始化工作，即根据SNL语言语法的产生式及其predict集，将产生式中的各个符号按顺序填写到矩阵的对应位置中，由于矩阵的不同位置可能对应相同的产生式，且存在大量重复，为<strong>节约堆区空间</strong>，在构建一个产生式的符号序列之后，我们将该序列的指针作为内容填写到分析矩阵中的多个重复位置，并且使用了与符号栈元素相同的数据结构，使得在对符号栈栈顶非终极符进行推导时，只需按照LL(1)分析矩阵，查找对应符号序列，<strong>直接压入栈中</strong>即可，简化了分析过程。</p>
 <p>并且，在该部分代码的编写中 存在大量冗余重复的工作，我们仍然<strong>使用Python自动生成LL(1)分析矩阵的初始化代码</strong>。其整体思路为，按照产生式右部结构生成符号序列Vector，按照产生式左部及其predict集将符号向量指针填写到矩阵对应位置，如根据第一条产生式生成如下LL(1)分析矩阵初始化代码：</p>
-<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865.jpg" alt="根据第一条产生式生成的LL(1)分析矩阵初始化代码"></p>
+<p><img src="/./assets/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865.jpg" alt="根据第一条产生式生成的LL(./../../../../Program Files/images/编译原理5.jpg)分析矩阵初始化代码"></p>
 <p>进行LL(1)语法分析时，只需不断处理符号栈顶，如果是非终结符 则按照分析矩阵进行推导 如果中意符则进行符号匹配，最终以是否符号序列 全部处理完成且符号占为空 作为语法分析是否成功的依据。</p>
 <p>在此基础上，为<strong>规范语法树结构</strong>，使得推导后无子节点的节点 不会连接在语法分析树中，最终使得所有叶结点均为终极符，我们使用节点栈存储其子节点未全部生成的节点，在弹出符号栈“弹栈符号”时，弹出节点栈栈顶结点，并判断是否应将其接入语法分析树中。</p>
 <h2 id="递归下降语法分析："><a href="#递归下降语法分析：" class="headerlink" title="递归下降语法分析："></a>递归下降语法分析：</h2><p>递归下降语法分析器从语法的最高层开始，逐层向下分析。在分析过程中，如果当前的符号是非终结符，则递归调用该非终结符所对应的子程序；如果当前的符号是终结符，则匹配当前的符号，生成相应结点连接到语法树，并将输入指针指向下一个符号。在每个非终结符的处理函数中，根据其一个或多个产生式的Predict集，选择相应的处理方法，因此我们的递归下降语法分析器结构如下：</p>
-<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866.jpg" alt="归下降语法分析器结构"></p>
+<p>![归下降语法分析器结构](.&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;Program Files&#x2F;images&#x2F;编译原理6.jpg)</p>
 <p>实现该种方法的语法分析程序时，关键在于为各个非终结符编写处理程序，从而通过一次完整的递归调用完成语法分析工作。该种语法分析方法虽然逻辑简单 但代码工作量较大，且存在规律性，因此我们仍然<strong>使用Python代码自动生成所有非终结符的处理程序</strong>，其大致思路为:  </p>
 <p>按照所有以该非终极符为左部的产生式，及其相应的 Predict集，按产生式右部顺序进行终极符号匹配或非终极符程序调用，并在无法选择产生式时进行报错。</p>
 <p>同时为避免函数名称标识符与枚举类型标识符重复，我们用“_非终极符名称”为函数命名，并且严格按照predict集合进行推导，即使非终结符只有一条产生式，也仍然判断待处理Token序列头是否属于其predict集合，使得分析过程更加严谨，如非终极符Program的处理程序为：</p>

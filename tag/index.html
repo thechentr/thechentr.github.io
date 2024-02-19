@@ -300,196 +300,6 @@
         <div class="flex flex-row items-center">
 
             
-  <div class="search-icon tools-bar-item w-8 flex flex-row items-center" id="search-icon">
-    <a href="javascript: void(0)" class="w-full flex flex-row items-center">
-      <iconify-icon width="24" icon="mingcute:search-2-fill"></iconify-icon>
-    </a>
-  </div>
-
-  <div class="search-overlay hidden z-20">
-    <div class="search-content" tabindex="0">
-      <div class="search-title">
-        <!-- <span class="search-icon-input">
-          <a href="javascript: void(0)">
-            <iconify-icon width="24" icon="mingcute:search-2-fill"></iconify-icon>
-          </a>
-        </span> -->
-        
-          <input type="text" class="search-input" id="search-input" placeholder="搜索">
-        
-        <!-- <span class="search-close-icon" id="search-close-icon">
-          <a href="javascript: void(0)">
-            <iconify-icon width="24" icon="mingcute:search-2-fill"></iconify-icon>
-          </a>
-        </span> -->
-      </div>
-      <div class="search-result" id="search-result"></div>
-    </div>
-  </div>
-
-  <script type="text/javascript">
-    var inputArea = document.querySelector("#search-input")
-    var searchOverlayArea = document.querySelector(".search-overlay")
-
-    inputArea.onclick = function() {
-      getSearchFile()
-      this.onclick = null
-    }
-
-    inputArea.onkeydown = function() {
-      if(event.keyCode == 13)
-        return false
-    }
-
-    function openOrHideSearchContent() {
-      let isHidden = searchOverlayArea.classList.contains('hidden')
-      if (isHidden) {
-        searchOverlayArea.classList.remove('hidden')
-        inputArea.focus()
-        // document.body.classList.add('hidden')
-      } else {
-        searchOverlayArea.classList.add('hidden')
-        // document.body.classList.remove('hidden')
-      }
-    }
-
-    function blurSearchContent(e) {
-      if (e.target === searchOverlayArea) {
-        openOrHideSearchContent()
-      }
-    }
-
-    document.querySelector("#search-icon").addEventListener("click", openOrHideSearchContent, false)
-    // document.querySelector("#search-close-icon").addEventListener("click", openOrHideSearchContent, false)
-    searchOverlayArea.addEventListener("click", blurSearchContent, false)
-
-    var searchFunc = function (path, search_id, content_id) {
-      'use strict';
-      var $input = document.getElementById(search_id);
-      var $resultContent = document.getElementById(content_id);
-      $resultContent.innerHTML = "<ul><span class='local-search-empty'>searchFirst<span></ul>";
-      $.ajax({
-        // 0x01. load xml file
-        url: path,
-        dataType: "xml",
-        success: function (xmlResponse) {
-          // 0x02. parse xml file
-          var datas = $("entry", xmlResponse).map(function () {
-            return {
-              title: $("title", this).text(),
-              content: $("content", this).text(),
-              url: $("url", this).text()
-            };
-          }).get();
-          $resultContent.innerHTML = "";
-
-          $input.addEventListener('input', function () {
-            // 0x03. parse query to keywords list
-            var str = '<ul class=\"search-result-list\">';
-            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length <= 0) {
-              return;
-            }
-            // 0x04. perform local searching
-            datas.forEach(function (data) {
-              var isMatch = true;
-              var content_index = [];
-              if (!data.title || data.title.trim() === '') {
-                data.title = "Untitled";
-              }
-              var orig_data_title = data.title.trim();
-              var data_title = orig_data_title.toLowerCase();
-              var orig_data_content = data.content.trim().replace(/<[^>]+>/g, "");
-              var data_content = orig_data_content.toLowerCase();
-              var data_url = data.url;
-              var index_title = -1;
-              var index_content = -1;
-              var first_occur = -1;
-              // only match artiles with not empty contents
-              if (data_content !== '') {
-                keywords.forEach(function (keyword, i) {
-                  index_title = data_title.indexOf(keyword);
-                  index_content = data_content.indexOf(keyword);
-
-                  if (index_title < 0 && index_content < 0) {
-                    isMatch = false;
-                  } else {
-                    if (index_content < 0) {
-                      index_content = 0;
-                    }
-                    if (i == 0) {
-                      first_occur = index_content;
-                    }
-                    // content_index.push({index_content:index_content, keyword_len:keyword_len});
-                  }
-                });
-              } else {
-                isMatch = false;
-              }
-              // 0x05. show search results
-              if (isMatch) {
-                str += "<li><a href='" + data_url + "' class='search-result-title'>" + orig_data_title + "</a>";
-                var content = orig_data_content;
-                if (first_occur >= 0) {
-                  // cut out 100 characters
-                  var start = first_occur - 20;
-                  var end = first_occur + 80;
-
-                  if (start < 0) {
-                    start = 0;
-                  }
-
-                  if (start == 0) {
-                    end = 100;
-                  }
-
-                  if (end > content.length) {
-                    end = content.length;
-                  }
-
-                  var match_content = content.substr(start, end);
-
-                  // highlight all keywords
-                  keywords.forEach(function (keyword) {
-                    var regS = new RegExp(keyword, "gi");
-                    match_content = match_content.replace(regS, "<span class=\"search-keyword\">" + keyword + "</span>");
-                  });
-
-                  str += "<p class=\"search-result-abstract\">" + match_content + "...</p>"
-                }
-                str += "</li>";
-              }
-            });
-            str += "</ul>";
-            if (str.indexOf('<li>') === -1) {
-              return $resultContent.innerHTML = "<ul><span class='local-search-empty'>searchNoResult<span></ul>";
-            }
-            $resultContent.innerHTML = str;
-          });
-        },
-        error: function(xhr, status, error) {
-          $resultContent.innerHTML = ""
-          if (xhr.status === 404) {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>searchFilesNotfound<a href='https://github.com/zchengsite/hexo-theme-oranges#configuration' target='_black'>configuration</a><span></ul>";
-          } else {
-            $resultContent.innerHTML = "<ul><span class='local-search-empty'>searchServiceErrors<span></ul>";
-          }
-        }
-      });
-      $(document).on('click', '#search-close-icon', function() {
-        $('#search-input').val('');
-        $('#search-result').html('');
-      });
-    }
-
-    var getSearchFile = function() {
-        var path = "/search.xml";
-        searchFunc(path, 'search-input', 'search-result');
-    }
-  </script>
-
-
 
 
             <!-- Dark/light toggle icon -->
@@ -666,7 +476,7 @@ layout: tag
     </div>
     <div class="tags-container flex flex-wrap gap-1">
       
-        <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"
+        <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/"
           class="
             tag
             flex flex-row items-center
@@ -685,8 +495,70 @@ layout: tag
             dark:hover:bg-[var(--c-theme)]
             hover:text-[var(--c-text)]
           "
-          href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">
-          #编译原理
+          href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/">
+          #概率论与数理统计
+          <span class="
+            text-[var(--c-50)]
+            dark:text-[var(--c-70)]
+            hover:dark:text-[var(--c-80)]
+            pl-1
+            text-sm">
+            ×2
+          </span>
+        </a>
+      
+        <a href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/"
+          class="
+            tag
+            flex flex-row items-center
+            text-[16px]
+            px-[8px]
+            py-[2px]
+            rounded-full
+            drop-shadow-md
+            border-[1px]
+            border-[var(--c-theme)]
+            text-[var(--c-theme)]
+            bg-[var(--c-0)]
+            dark:bg-[var(--c-0)]
+            dark:drop-shadow-none
+            hover:bg-[var(--c-theme)]
+            dark:hover:bg-[var(--c-theme)]
+            hover:text-[var(--c-text)]
+          "
+          href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/">
+          #高等数学
+          <span class="
+            text-[var(--c-50)]
+            dark:text-[var(--c-70)]
+            hover:dark:text-[var(--c-80)]
+            pl-1
+            text-sm">
+            ×4
+          </span>
+        </a>
+      
+        <a href="/tags/CS/"
+          class="
+            tag
+            flex flex-row items-center
+            text-[16px]
+            px-[8px]
+            py-[2px]
+            rounded-full
+            drop-shadow-md
+            border-[1px]
+            border-[var(--c-theme)]
+            text-[var(--c-theme)]
+            bg-[var(--c-0)]
+            dark:bg-[var(--c-0)]
+            dark:drop-shadow-none
+            hover:bg-[var(--c-theme)]
+            dark:hover:bg-[var(--c-theme)]
+            hover:text-[var(--c-text)]
+          "
+          href="/tags/CS/">
+          #CS
           <span class="
             text-[var(--c-50)]
             dark:text-[var(--c-70)]
@@ -728,6 +600,37 @@ layout: tag
           </span>
         </a>
       
+        <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"
+          class="
+            tag
+            flex flex-row items-center
+            text-[16px]
+            px-[8px]
+            py-[2px]
+            rounded-full
+            drop-shadow-md
+            border-[1px]
+            border-[var(--c-theme)]
+            text-[var(--c-theme)]
+            bg-[var(--c-0)]
+            dark:bg-[var(--c-0)]
+            dark:drop-shadow-none
+            hover:bg-[var(--c-theme)]
+            dark:hover:bg-[var(--c-theme)]
+            hover:text-[var(--c-text)]
+          "
+          href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">
+          #编译原理
+          <span class="
+            text-[var(--c-50)]
+            dark:text-[var(--c-70)]
+            hover:dark:text-[var(--c-80)]
+            pl-1
+            text-sm">
+            ×1
+          </span>
+        </a>
+      
         <a href="/tags/%E6%BC%94%E5%87%BA/"
           class="
             tag
@@ -759,7 +662,7 @@ layout: tag
           </span>
         </a>
       
-        <a href="/tags/%E5%B7%A5%E5%85%B7%E6%96%87%E6%A1%A3/"
+        <a href="/tags/IT/"
           class="
             tag
             flex flex-row items-center
@@ -778,8 +681,8 @@ layout: tag
             dark:hover:bg-[var(--c-theme)]
             hover:text-[var(--c-text)]
           "
-          href="/tags/%E5%B7%A5%E5%85%B7%E6%96%87%E6%A1%A3/">
-          #工具文档
+          href="/tags/IT/">
+          #IT
           <span class="
             text-[var(--c-50)]
             dark:text-[var(--c-70)]
@@ -790,7 +693,7 @@ layout: tag
           </span>
         </a>
       
-        <a href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/"
+        <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"
           class="
             tag
             flex flex-row items-center
@@ -809,15 +712,15 @@ layout: tag
             dark:hover:bg-[var(--c-theme)]
             hover:text-[var(--c-text)]
           "
-          href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/">
-          #高等数学
+          href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">
+          #线性代数
           <span class="
             text-[var(--c-50)]
             dark:text-[var(--c-70)]
             hover:dark:text-[var(--c-80)]
             pl-1
             text-sm">
-            ×1
+            ×2
           </span>
         </a>
       
