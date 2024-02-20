@@ -22,7 +22,7 @@
   <meta name="keywords" content="IT music movie life">
 
 
-<title>Terrence Chen</title>
+<title>标签: RL | Terrence Chen</title>
 
 
 
@@ -229,7 +229,7 @@
                         group
                     ">
                     
-                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:classify-3-fill" width="22">
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:folder-2-fill" width="22">
                         </iconify-icon>
                     
                     
@@ -258,7 +258,7 @@
                         group
                     ">
                     
-                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:folder-2-fill" width="22">
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:classify-3-fill" width="22">
                         </iconify-icon>
                     
                     
@@ -389,7 +389,7 @@
                 py-1
                 rounded-lg
             ">
-            <iconify-icon icon="mingcute:classify-3-fill" width="22">
+            <iconify-icon icon="mingcute:folder-2-fill" width="22">
             </iconify-icon>
             <p>
               Posts
@@ -411,7 +411,7 @@
                 py-1
                 rounded-lg
             ">
-            <iconify-icon icon="mingcute:folder-2-fill" width="22">
+            <iconify-icon icon="mingcute:classify-3-fill" width="22">
             </iconify-icon>
             <p>
               Categories
@@ -444,70 +444,49 @@
   </div>
 </div>
   <main>
-    <div class="flex flex-col gap-0">
-  <div class="index-info-container pt-6 text-[var(--c-70)]">
-    <!-- Home page info, short text about me -->
-    <div class="flex flex-col items-center">
-      <a href="/about">
-        <img class="rounded-3xl w-48 hover:scale-[1.04] transition-transform" src="/images/protrait.png"
-          alt="Terrence Chen" />
-      </a>
-      <!-- Sub-title -->
-      <p class="
-        text-5xl font-extrabold text-center
-        bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent
-        text-[var(--c-80)] pt-6">
-        陈泰然
-      </p>
-      <!-- Site title -->
-      <h1 class="
-        site-title
-        text-center
-          text-4xl
-          bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent
-          py-2
-          font-black
-        ">
-        Terrence Chen
-      </h1>
-      <div class="flex flex-wrap items-center justify-center gap-4 my-6 font-bold text-lg">
-        <div class="flex flex-row items-center gap-1">
-          <iconify-icon width="24" icon="mingcute:building-1-fill"></iconify-icon>
-          <p>Changchun</p>
-        </div>
-        <div class="flex flex-row items-center gap-1 group">
-          <iconify-icon class="transition-transform
-                group-hover:scale-125" width="24" icon="mingcute:idcard-fill"></iconify-icon>
-          <a href="/pdf/cv.pdf" class="group-hover:underline">
-            CV (Feb, 2024)
-          </a>
-        </div>
-      </div>
-      <!-- Description from config -->
-      <div class="description-container max-w-prose mx-auto grid grid-cols-1">
-        <div class="text-left p-8">
-          <p>
-            吉林大学计算机科学与技术专业大四学生，出生长大在长春，当前在启元实验室研究计算机视觉的对抗鲁棒性 <br><br> A senior student majoring in Computer Science and Technology at Jilin University. Born and raised in Changchun, currently researching adversarial robustness in computer vision at the Qiyuan Lab.
-          </p>
-        </div>
-      </div>
-      <!-- get content from index.md -->
-      <div class="post-content mt-4">
-      </div>
-    </div>
-  </div>
+    <!-- 
+This page has two versions, which is shown is based on whether current page
+is "tag".
 
-  <!-- 分割线 -->
-  <div class="flex flex-col items-center justify-center0">
-    <hr class="w-1/2 mb-10 h-[1px] bg-[var(--c-sep)] mr-1/2">
-    </hr>
-    <div class="flex flex-row items-center gap-2 text-[var(--c-50)]">
-      <iconify-icon width="28" icon="mingcute:star-fill"></iconify-icon>
-      <p class="text-center text-3xl">Featured Posts</p>
-    </div>
-  </div>
+  - url:'http://localhost:4000/tag/' return false.
+- url:'http://localhost:4000/tags/test/' return true.
 
-  <!-- List of featured posts -->
+The '/tag/' page shows all tags and is where you land on when you click
+on the "Tags" in the navigation bar. Otherwise if you enter 'tags' by clicking on of the tag elements in some
+posts, and it shows all posts with that tag.
+
+To add a "Tags" page.
+
+1. hexo new page "tag"
+2. cd source/tag/index.md
+3. Add the following front matter.
+
+---
+title: '''tag'''
+date: 2019-06-09 09:56:49
+layout: tag
+---
+-->
+
+  <!-- 已经选择了一个tag，显示一个 tag 的所有 post -->
+  <div class="mt-6">
+    <div class="flex flex-wrap gap-1 justify-center items-center">
+      <iconify-icon width="24" icon="mingcute:tag-fill"></iconify-icon>
+      <div class="text-xl align-middle">
+        Tag:
+      </div>
+      <div 
+      class="
+        tag
+        px-2
+        py-[1px]
+        text-xl
+        rounded-full
+        pointer-events-none
+      ">
+        #RL
+      </div>
+  </div>
   <section class="px-2 py-8 max-w-prose mx-auto gap-4 grid grid-cols-1">
   
   
@@ -522,7 +501,7 @@
             text-[var(--c-theme)]
             opacity-10
             dark:opacity-20">
-            2023
+            2024
           </p>
         </div>
       </div>
@@ -538,7 +517,7 @@
         
             <div class="flex flex-col gap-1">
                 <!-- Post title -->
-                <a href="/2023/02/09/2_%E7%83%AD%E6%B2%B3%EF%BC%88%E7%9B%B8%E4%BF%A1%E6%9C%AA%E6%9D%A5%E7%89%88%EF%BC%89/">
+                <a href="/2024/01/18/18_%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%BF%91%E7%AB%AF%E7%AD%96%E7%95%A5%E4%BC%98%E5%8C%96/">
                     <h2 class="
                         text-[var(--c-80)]
                         font-bold
@@ -546,7 +525,7 @@
                         hover:text-[var(--c-theme)]
                         transition-all
                         hover:underline">
-                        热河（相信未来版）吉他谱
+                        强化学习-近端策略优化
                     </h2>
                 </a>
             <!-- Post excerpt -->
@@ -560,21 +539,21 @@
                 <iconify-icon width="16"
                     icon="mingcute:add-circle-fill"></iconify-icon>
                 <time class="w-max">
-                    2023-02-09
+                    2024-01-18
                 </time>
             </span>
             <span class="flex flex-row items-center gap-1 group">
                 <iconify-icon width="16"
                     icon="mingcute:refresh-3-fill"></iconify-icon>
                 <time class="w-max">
-                    2023-02-09
+                    2024-01-18
                 </time>
             </span>
             <span class="flex flex-row items-center gap-1 group">
                 <iconify-icon width="16"
                     icon="mingcute:book-2-fill"></iconify-icon>
                 <p class="w-max">
-                    8 words, 1 min
+                    1.4k words, 6 min
                 </p>
             </span>
             <!-- Categories -->
@@ -590,8 +569,8 @@
                     </iconify-icon>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/music/">
-                            Music
+                            href="/categories/notebook/">
+                            Notebook
                         </a>
                     
                 
@@ -599,6 +578,31 @@
         </div>
         <!-- Tags -->
         <div>
+            
+                
+<div class="flex flex-wrap gap-1">
+  
+    
+      <a href="/tags/RL/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+        ">
+        RL
+      </a>
+    
+  
+</div>
             
         </div>
 </div>
@@ -618,7 +622,7 @@
         
             <div class="flex flex-col gap-1">
                 <!-- Post title -->
-                <a href="/2023/02/08/1_%E5%85%B3%E4%BA%8E%E8%AE%B0%E5%BF%86/">
+                <a href="/2024/01/17/17_%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/">
                     <h2 class="
                         text-[var(--c-80)]
                         font-bold
@@ -626,7 +630,7 @@
                         hover:text-[var(--c-theme)]
                         transition-all
                         hover:underline">
-                        写在前面
+                        强化学习-策略梯度
                     </h2>
                 </a>
             <!-- Post excerpt -->
@@ -640,21 +644,21 @@
                 <iconify-icon width="16"
                     icon="mingcute:add-circle-fill"></iconify-icon>
                 <time class="w-max">
-                    2023-02-08
+                    2024-01-17
                 </time>
             </span>
             <span class="flex flex-row items-center gap-1 group">
                 <iconify-icon width="16"
                     icon="mingcute:refresh-3-fill"></iconify-icon>
                 <time class="w-max">
-                    2023-02-08
+                    2024-01-17
                 </time>
             </span>
             <span class="flex flex-row items-center gap-1 group">
                 <iconify-icon width="16"
                     icon="mingcute:book-2-fill"></iconify-icon>
                 <p class="w-max">
-                    277 words, 1 min
+                    1.5k words, 6 min
                 </p>
             </span>
             <!-- Categories -->
@@ -670,8 +674,8 @@
                     </iconify-icon>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/life/">
-                            Life
+                            href="/categories/notebook/">
+                            Notebook
                         </a>
                     
                 
@@ -680,14 +684,359 @@
         <!-- Tags -->
         <div>
             
+                
+<div class="flex flex-wrap gap-1">
+  
+    
+      <a href="/tags/RL/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+        ">
+        RL
+      </a>
+    
+  
+</div>
+            
+        </div>
+</div>
+    </div>
+  
+    
+    <!-- Large text showing the year in the background -->
+    
+    <!-- The post -->
+    <div class="w-full">
+      <!-- One post item in a list -->
+<div class="
+    post-container
+    px-2 py-2
+    flex flex-col gap-3">
+    <div class="flex flex-row gap-4">
+        
+            <div class="flex flex-col gap-1">
+                <!-- Post title -->
+                <a href="/2024/01/15/16_%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%A1%A8%E6%A0%BC%E5%9E%8B%E6%96%B9%E6%B3%95/">
+                    <h2 class="
+                        text-[var(--c-80)]
+                        font-bold
+                        text-xl
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        hover:underline">
+                        强化学习-表格型方法
+                    </h2>
+                </a>
+            <!-- Post excerpt -->
+            
+            </div>
+        </div>
+        <!-- Post Statistics -->
+        <div class="flex flex-wrap items-center gap-x-2 text-sm
+            text-[var(--c-70)]">
+            <span class="flex flex-row items-center gap-1 group">
+                <iconify-icon width="16"
+                    icon="mingcute:add-circle-fill"></iconify-icon>
+                <time class="w-max">
+                    2024-01-15
+                </time>
+            </span>
+            <span class="flex flex-row items-center gap-1 group">
+                <iconify-icon width="16"
+                    icon="mingcute:refresh-3-fill"></iconify-icon>
+                <time class="w-max">
+                    2024-01-15
+                </time>
+            </span>
+            <span class="flex flex-row items-center gap-1 group">
+                <iconify-icon width="16"
+                    icon="mingcute:book-2-fill"></iconify-icon>
+                <p class="w-max">
+                    1.2k words, 5 min
+                </p>
+            </span>
+            <!-- Categories -->
+            <span class="flex flex-row items-center gap-1 group">
+                
+                    <iconify-icon class="
+                            group-hover:scale-125
+                            transition-transform
+                            group-hover:text-[var(--c-theme)]
+                        "
+                        width="16"
+                        icon="mingcute:classify-2-fill" class="mr-0">
+                    </iconify-icon>
+                    
+                        <a class="underline underline-offset-2"
+                            href="/categories/notebook/">
+                            Notebook
+                        </a>
+                    
+                
+            </span>
+        </div>
+        <!-- Tags -->
+        <div>
+            
+                
+<div class="flex flex-wrap gap-1">
+  
+    
+      <a href="/tags/RL/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+        ">
+        RL
+      </a>
+    
+  
+</div>
+            
+        </div>
+</div>
+    </div>
+  
+    
+    <!-- Large text showing the year in the background -->
+    
+    <!-- The post -->
+    <div class="w-full">
+      <!-- One post item in a list -->
+<div class="
+    post-container
+    px-2 py-2
+    flex flex-col gap-3">
+    <div class="flex flex-row gap-4">
+        
+            <div class="flex flex-col gap-1">
+                <!-- Post title -->
+                <a href="/2024/01/11/15_%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-MDP/">
+                    <h2 class="
+                        text-[var(--c-80)]
+                        font-bold
+                        text-xl
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        hover:underline">
+                        强化学习-MDP
+                    </h2>
+                </a>
+            <!-- Post excerpt -->
+            
+            </div>
+        </div>
+        <!-- Post Statistics -->
+        <div class="flex flex-wrap items-center gap-x-2 text-sm
+            text-[var(--c-70)]">
+            <span class="flex flex-row items-center gap-1 group">
+                <iconify-icon width="16"
+                    icon="mingcute:add-circle-fill"></iconify-icon>
+                <time class="w-max">
+                    2024-01-11
+                </time>
+            </span>
+            <span class="flex flex-row items-center gap-1 group">
+                <iconify-icon width="16"
+                    icon="mingcute:refresh-3-fill"></iconify-icon>
+                <time class="w-max">
+                    2024-01-11
+                </time>
+            </span>
+            <span class="flex flex-row items-center gap-1 group">
+                <iconify-icon width="16"
+                    icon="mingcute:book-2-fill"></iconify-icon>
+                <p class="w-max">
+                    2.1k words, 8 min
+                </p>
+            </span>
+            <!-- Categories -->
+            <span class="flex flex-row items-center gap-1 group">
+                
+                    <iconify-icon class="
+                            group-hover:scale-125
+                            transition-transform
+                            group-hover:text-[var(--c-theme)]
+                        "
+                        width="16"
+                        icon="mingcute:classify-2-fill" class="mr-0">
+                    </iconify-icon>
+                    
+                        <a class="underline underline-offset-2"
+                            href="/categories/notebook/">
+                            Notebook
+                        </a>
+                    
+                
+            </span>
+        </div>
+        <!-- Tags -->
+        <div>
+            
+                
+<div class="flex flex-wrap gap-1">
+  
+    
+      <a href="/tags/RL/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+        ">
+        RL
+      </a>
+    
+  
+</div>
+            
+        </div>
+</div>
+    </div>
+  
+    
+    <!-- Large text showing the year in the background -->
+    
+    <!-- The post -->
+    <div class="w-full">
+      <!-- One post item in a list -->
+<div class="
+    post-container
+    px-2 py-2
+    flex flex-col gap-3">
+    <div class="flex flex-row gap-4">
+        
+            <div class="flex flex-col gap-1">
+                <!-- Post title -->
+                <a href="/2024/01/10/14_%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E6%A6%82%E8%BF%B0/">
+                    <h2 class="
+                        text-[var(--c-80)]
+                        font-bold
+                        text-xl
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        hover:underline">
+                        强化学习-概述
+                    </h2>
+                </a>
+            <!-- Post excerpt -->
+            
+            </div>
+        </div>
+        <!-- Post Statistics -->
+        <div class="flex flex-wrap items-center gap-x-2 text-sm
+            text-[var(--c-70)]">
+            <span class="flex flex-row items-center gap-1 group">
+                <iconify-icon width="16"
+                    icon="mingcute:add-circle-fill"></iconify-icon>
+                <time class="w-max">
+                    2024-01-10
+                </time>
+            </span>
+            <span class="flex flex-row items-center gap-1 group">
+                <iconify-icon width="16"
+                    icon="mingcute:refresh-3-fill"></iconify-icon>
+                <time class="w-max">
+                    2024-01-10
+                </time>
+            </span>
+            <span class="flex flex-row items-center gap-1 group">
+                <iconify-icon width="16"
+                    icon="mingcute:book-2-fill"></iconify-icon>
+                <p class="w-max">
+                    1.6k words, 5 min
+                </p>
+            </span>
+            <!-- Categories -->
+            <span class="flex flex-row items-center gap-1 group">
+                
+                    <iconify-icon class="
+                            group-hover:scale-125
+                            transition-transform
+                            group-hover:text-[var(--c-theme)]
+                        "
+                        width="16"
+                        icon="mingcute:classify-2-fill" class="mr-0">
+                    </iconify-icon>
+                    
+                        <a class="underline underline-offset-2"
+                            href="/categories/notebook/">
+                            Notebook
+                        </a>
+                    
+                
+            </span>
+        </div>
+        <!-- Tags -->
+        <div>
+            
+                
+<div class="flex flex-wrap gap-1">
+  
+    
+      <a href="/tags/RL/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+        ">
+        RL
+      </a>
+    
+  
+</div>
+            
         </div>
 </div>
     </div>
   
 </section>
 
+<div class="border-t">
 
 </div>
+
+
+
+
   </main>
   <footer class="flex flex-col mt-12 mb-12 items-center
   text-[var(--c-50)] text-sm">

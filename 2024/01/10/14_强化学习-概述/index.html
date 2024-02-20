@@ -22,7 +22,7 @@
   <meta name="keywords" content="IT music movie life">
 
 
-<title>考前记一记，喝前摇一摇 | Terrence Chen</title>
+<title>强化学习-概述 | Terrence Chen</title>
 
 
 
@@ -463,7 +463,7 @@
     <div class="flex flex-col gap-2 pt-4 md:pt-6">
       <!-- Title -->
       <div id="article-title" class="leading-snug">
-        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">考前记一记，喝前摇一摇</p>
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">强化学习-概述</p>
       </div>
       <!-- Meta data -->
       <div>
@@ -473,11 +473,11 @@
             <!-- Dates -->
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
-              Created: <time class="w-max">2023-07-29</time>
+              Created: <time class="w-max">2024-01-10</time>
             </div>
             <div class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
-              Edited: <time class="w-max">2023-07-29</time>
+              Edited: <time class="w-max">2024-01-10</time>
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
@@ -487,7 +487,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>270 words, 1 min</span>
+              <span>1.6k words, 5 min</span>
             </span>
             <!-- Categories -->
             
@@ -509,7 +509,7 @@
 <div class="flex flex-wrap gap-1">
   
     
-      <a href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" 
+      <a href="/tags/RL/" 
         class="
           tag
           text-sm
@@ -524,7 +524,7 @@
           hover:bg-[var(--c-theme)]
           hover:text-[var(--c-0)]
         ">
-        高等数学
+        RL
       </a>
     
   
@@ -534,17 +534,43 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <p>该部分涉及公式，只需要考试前临时背诵，不需掌握严格推导过程。在考场上翻开试卷先找所涉及题目，直接做完后立即忘掉！</p>
-<h2 id="旋转体体积"><a href="#旋转体体积" class="headerlink" title="旋转体体积"></a>旋转体体积</h2><p>$f(x)$ 绕直线 $Ax + By + C &#x3D; 0$ 旋转:<br>$$<br>V &#x3D; \frac{\pi}{(A^{2}+B^{2})^{\frac{3}{2}}}\int_{a}^{b} [Ax + Bf(x)+C]^{2}\left|Af^{\prime}(x)-B\right|dx<br>$$</p>
-<h2 id="平面曲线的切向量"><a href="#平面曲线的切向量" class="headerlink" title="平面曲线的切向量"></a>平面曲线的切向量</h2><p>先化为参数方程形式，其切向量T：<br>$$<br>T &#x3D; (\frac{dx}{dt}\cdot\vec{i}, \frac{dy}{dt}\cdot\vec{j})<br>$$</p>
-<h2 id="快速积分公式"><a href="#快速积分公式" class="headerlink" title="快速积分公式"></a>快速积分公式</h2><p>$$<br>\int e^{ax}\sin bxdx &#x3D; \frac1{a^2+b^2}\left|\begin{matrix}(e^{ax})^{\prime}(\sin bx)^{\prime}\e^{ax}\sin bx\end{matrix}\right|+C<br>$$</p>
-<p>$\cos bx$与$\sin bx$同理，<strong>不要忘记前面的系数！</strong></p>
-<h2 id="典型极坐标曲线"><a href="#典型极坐标曲线" class="headerlink" title="典型极坐标曲线"></a>典型极坐标曲线</h2><h3 id="星形线"><a href="#星形线" class="headerlink" title="星形线"></a>星形线</h3><p>$$<br>\begin{align*}<br>x &amp;&#x3D; R \cdot \cos^3(t) \<br>y &amp;&#x3D; R \cdot \sin^3(t)<br>\end{align*}<br>$$</p>
-<h3 id="摆线（参数方程）"><a href="#摆线（参数方程）" class="headerlink" title="摆线（参数方程）"></a>摆线（参数方程）</h3><p>$$<br>x(t) &#x3D; a \cdot (t - \sin(t)) \<br>y(t) &#x3D; a \cdot (1 - \cos(t))<br>$$</p>
-<h3 id="伯努利双扭线"><a href="#伯努利双扭线" class="headerlink" title="伯努利双扭线"></a>伯努利双扭线</h3><p>$$<br>r &#x3D; a \cdot \sqrt{\theta}<br>$$</p>
-<h3 id="心形线"><a href="#心形线" class="headerlink" title="心形线"></a>心形线</h3><p>$$<br>r &#x3D; a \cdot (1 - \sin(\theta))<br>$$</p>
-<h2 id="多项式函数拐点个数-z"><a href="#多项式函数拐点个数-z" class="headerlink" title="多项式函数拐点个数 z"></a>多项式函数拐点个数 z</h2><p>$$<br>k1 + 2k_偶+3k_奇-2<br>$$</p>
-<p><img src="/./../images/extreme_points_of_the_polynomial_function.png"></p>
+    <h3 id="强化学习"><a href="#强化学习" class="headerlink" title="强化学习"></a><strong>强化学习</strong></h3><p>reinforcement learning(RL)讨论的问题是智能体（agent）如何在复杂、<u>不确定</u>的环境（environment）中最大化它能获得的奖励。</p>
+<h3 id="深度强化学习"><a href="#深度强化学习" class="headerlink" title="深度强化学习"></a>深度强化学习</h3><p>深度强化学习 &#x3D; 深度学习 + 强化学习 （类比于传统的计算机视觉和深度计算机视觉）</p>
+<h3 id="与监督学习的区别"><a href="#与监督学习的区别" class="headerlink" title="与监督学习的区别"></a>与监督学习的区别</h3><p>没有非常强的监督者（supervisor），只有<strong>奖励信号（reward signal</strong>），并且奖励信号是延迟的</p>
+<p>智能体获得自己能力的过程，其实是不断地试错探索（trial-and-error exploration）的过程。</p>
+<p><strong>探索 （exploration）</strong>和<strong>利用（exploitation）</strong>是强化学习里面非常核心的问题。</p>
+<p><u>监督学习算法的上限（upper bound）就是人类的表现</u></p>
+<h3 id="名词"><a href="#名词" class="headerlink" title="名词"></a>名词</h3><p><strong>预演（rollout）</strong>是指我们从当前帧对动作进行采样，生成很多局游戏。</p>
+<p><strong>轨迹（trajectory）</strong>是当前帧以及它采取的策略，即状态和动作的序列：$ τ&#x3D;(s_0,a_0,s_1,a_1,…) $</p>
+<p>一场游戏称为一个<strong>回合（episode）</strong>或者<strong>试验（trial）</strong></p>
+<h2 id="决策序列"><a href="#决策序列" class="headerlink" title="决策序列"></a>决策序列</h2><p><strong>奖励</strong>：是<u>由环境给的</u>一种标量的反馈信号（scalar feedback signal）。在棋类游戏中，只有最后才会获得，强化学习里面一个重要的课题就是近期奖励和远期奖励的权衡 （trade-off）。</p>
+<p><strong>历史</strong>是观测、动作、奖励的序列：$H_t &#x3D; o_1, a_1, r_1, …, o_t, a_t, r_t$</p>
+<p>智能体如何采取当前<strong>动作</strong>会依赖于它之前得到的历史：$S_t &#x3D; f(H_t)$</p>
+<p><strong>状态</strong>是对世界的完整描述，不会隐藏世界的信息。</p>
+<p><strong>观测</strong>是对状态的部分描述。</p>
+<h3 id="马尔可夫决策过程"><a href="#马尔可夫决策过程" class="headerlink" title="马尔可夫决策过程"></a>马尔可夫决策过程</h3><p>环境有自己的<strong>状态更新函数</strong>$s_t^e&#x3D;f^e(H_t)$，智能体的内部也有一个更新函数$s_t^a&#x3D;f^a(H_t)$，当智能体能够观察到环境的所有状态时，我们称这个环 境是完全可观测的（fully observed）。在这种情况下面，强化学习通常被建模成一个Markov decision process（MDP）的问题。</p>
+<h3 id="部分可观测马尔可夫决策过程"><a href="#部分可观测马尔可夫决策过程" class="headerlink" title="部分可观测马尔可夫决策过程"></a><strong>部分可观测马尔可夫决策过程</strong></h3><p>partially observable Markov decision process (POMDP）具有马尔可夫性质，但是假设智能体无法感知环境的状态，只能知道部分观测值。可以用一个七元组描述：$(S, A, T, R, Ω, O, γ)$，其中 <em>S</em> 表示状态空间，为隐变量，<em>A</em> 为动作空间，T*(<em>s</em>′∣<em>s</em>,<em>a</em>) 为状态转移概率，R* 为奖励函数，Ω(<em>o</em>∣<em>s</em>,<em>a</em>) 为观测概率，<em>O</em> 为观测空间，<em>γ</em> 为折扣系数。</p>
+<h2 id="智能体"><a href="#智能体" class="headerlink" title="智能体"></a>智能体</h2><ul>
+<li><strong>策略（policy）</strong>：智能体会用策略来选取下一步的动作。</li>
+<li><strong>价值函数（value function）</strong>：<u>在某个策略下</u>，从一个给定状态开始，智能体期望获得的累积未来奖励。</li>
+<li><strong>模型（model）</strong>。模型表示智能体对环境的状态进行理解，预测了“如果我做这个行动，会发生什么？”。</li>
+</ul>
+<h3 id="策略"><a href="#策略" class="headerlink" title="策略"></a>策略</h3><p><strong>随机性策略（stochastic policy）</strong>： <em>π</em> 函数：$\pi(a|s)&#x3D;p\left(a_t&#x3D;a|s_t&#x3D;s\right)$，给定状态，输出执行各种动作的概率。</p>
+<p><strong>确定性策略（deterministic policy）</strong>：智能体直接采取最有可能的动作，$a^*&#x3D;\arg\max_a\pi(a\mid s)$，采用确定性策略的智能体总是对同样的状态采取相同的动作，这会导致它的策略<u>很容易被对手预测</u></p>
+<h3 id="价值函数"><a href="#价值函数" class="headerlink" title="价值函数"></a>价值函数</h3><p>价值函数的值是对<em>采取某个策略对未来奖励</em>的预测，我们用它来评估状态的好坏。 里面有一个<strong>折扣因子（discount factor）</strong>。</p>
+<p><strong>G收益：</strong>一个特定决策序列某个时间步之后的长期收益<br>$$<br>G_t&#x3D;\gamma^kr_{t+k+1}<br>$$</p>
+<p><strong>V函数：</strong>在状态 <em>s</em> 下并遵循特定策略的期望回报：<br>$$<br>V_\pi(s)\doteq\mathbb{E}<em>\pi\left[G_t\mid s_t&#x3D;s\right]&#x3D;\mathbb{E}<em>\pi\left[\sum</em>{k&#x3D;0}^\infty\gamma^kr</em>{t+k+1}\mid s_t&#x3D;s\right],\text{对于所有的}s\in S<br>$$<br>其中$\mathbb{E}_\pi$是指求概率平均（期望值），这个期望并不好求，因为穷举所有可能的决策序列并不显示</p>
+<p><strong>Q函数：</strong>表示在状态 <em>s</em> 下采取行动 a 并遵循特定策略的期望回报：<br>$$<br>Q_\pi(s,a)\doteq\mathbb{E}<em>\pi\left[G_t\mid s_t&#x3D;s,a_t&#x3D;a\right]&#x3D;\mathbb{E}<em>\pi\left[\sum</em>{k&#x3D;0}^\infty\gamma^kr</em>{t+k+1}\mid s_t&#x3D;s,a_t&#x3D;a\right]<br>$$<br>这个函数指定了当前步所采取的动作，而之后的动作依然根据策略$\pi$，所以$\pi$不可省略</p>
+<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><p>智能体对环境的模拟，它由两个部分组成：</p>
+<p><strong>状态转移概率</strong><br>$$<br>\begin{aligned}p_{ss^{\prime}}^a&amp;&#x3D;p\left(s_{t+1}&#x3D;s^{\prime}\mid s_t&#x3D;s,a_t&#x3D;a\right)\end{aligned}<br>$$<br><strong>奖励函数</strong><br>$$<br>\R(s,a)&amp;&#x3D;\mathbb{E}\left[r_{t+1}\mid s_t&#x3D;s,a_t&#x3D;a\right]<br>$$<br>通常不是通过学习得到的，而是预先定义好的。除了环境给出的真实奖励，有些奖励也由人工设定或蒙特卡洛。</p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><img src="./assets/image-20240110110139155.png" alt="image-20240110110139155" style="zoom: 50%;" />
+
+<h2 id="学习-vs-规划"><a href="#学习-vs-规划" class="headerlink" title="学习 vs 规划"></a>学习 vs 规划</h2><p>学习：学习环境如何工作，也就是了解环境工作的方式，即学习得到一个模型</p>
+<p>规划：寻找最优解</p>
+<h2 id="探索-vs-利用"><a href="#探索-vs-利用" class="headerlink" title="探索 vs 利用"></a>探索 vs 利用</h2><p><strong>K-臂赌博机</strong>：有 <em>K</em> 个摇臂，赌徒在投入一个硬币后可选择按下其中一个摇臂，每个摇臂以一定的概率吐出硬币（对赌徒未知）。赌徒的目标是通过一定的策略最大化自己的奖励，即获得最多的硬币。</p>
+<p><strong>仅探索（exploration-only）法</strong>：想要知道每个臂的吐币概率，将所有的尝试机会平均分配给每个摇臂，最后以每个摇臂各自的平均吐币概率作为其奖励期望的近似估计。</p>
+<p><strong>仅利用（exploitation-only）法</strong>：按下目前最优的（即到目前为止平均奖励最大的）摇臂，若有多个摇臂同为最优，则从中随机选取一个。</p>
+<p>事实上，因为尝试次数（总投币数）有限，加强了一方则自然会削弱另一方，这就是强化学习所面临的<strong>探索-利用窘境（exploration-exploitation dilemma）</strong>，想要累积奖励最大，则必须在探索与利用之间达成较好的折中。</p>
 
   </article>
 
@@ -555,7 +581,7 @@
   ">
     <div>
       
-        <a href="/2023/08/05/13_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%98%93%E6%B7%B7%E6%B7%86%E6%A6%82%E5%BF%B5/"
+        <a href="/2024/01/11/15_%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-MDP/"
           class="
             transition-all
             flex justify-center
@@ -564,13 +590,13 @@
           ">
           <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
           </iconify-icon>
-          计算机组成原理易混淆概念
+          强化学习-MDP
         </a>
       
     </div>
     <div>
       
-        <a href="/2023/07/07/11_%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E9%87%8D%E7%82%B9%E6%80%BB%E7%BB%93/"
+        <a href="/2023/08/05/13_%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E6%98%93%E6%B7%B7%E6%B7%86%E6%A6%82%E5%BF%B5/"
           class="
             flex 
             justify-center
@@ -579,7 +605,7 @@
             hover:text-[var(--c-100)]
           "
         >
-          数理统计重点总结
+          计算机组成原理易混淆概念
           <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
         </a>
       

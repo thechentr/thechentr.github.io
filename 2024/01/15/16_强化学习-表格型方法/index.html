@@ -22,7 +22,7 @@
   <meta name="keywords" content="IT music movie life">
 
 
-<title>&#39;tag&#39; | Terrence Chen</title>
+<title>强化学习-表格型方法 | Terrence Chen</title>
 
 
 
@@ -444,320 +444,330 @@
   </div>
 </div>
   <main>
-    <!-- 
-This page has two versions, which is shown is based on whether current page
-is "tag".
+    <!-- css -->
 
-  - url:'http://localhost:4000/tag/' return false.
-- url:'http://localhost:4000/tags/test/' return true.
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
 
-The '/tag/' page shows all tags and is where you land on when you click
-on the "Tags" in the navigation bar. Otherwise if you enter 'tags' by clicking on of the tag elements in some
-posts, and it shows all posts with that tag.
+  
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
 
-To add a "Tags" page.
+    <!-- toc -->
+    
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
 
-1. hexo new page "tag"
-2. cd source/tag/index.md
-3. Add the following front matter.
 
----
-title: '''tag'''
-date: 2019-06-09 09:56:49
-layout: tag
----
--->
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">强化学习-表格型方法</p>
+      </div>
+      <!-- Meta data -->
+      <div>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              Created: <time class="w-max">2024-01-15</time>
+            </div>
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
+              Edited: <time class="w-max">2024-01-15</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
 
-  <!-- 显示所有tag，让用户选择 -->
-  <div class="flex flex-col gap-2 px-6 max-w-prose mx-auto md:px-0 my-8">
-    <div class="flex flex-row items-center gap-2">
-      <iconify-icon width="28" icon="mingcute:tag-fill"></iconify-icon>
-      <h2 class="font-bold text-2xl">Tags</h2>
+            <!-- Word count -->
+            <span class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>1.2k words, 5 min</span>
+            </span>
+            <!-- Categories -->
+            
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/categories/Notebook/">Notebook</a>
+              </span>
+            
+          </div>
+        </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
+<div class="flex flex-wrap gap-1">
+  
+    
+      <a href="/tags/RL/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+        ">
+        RL
+      </a>
+    
+  
+</div>
+      </div>
     </div>
-    <div class="tags-container flex flex-wrap gap-1">
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto dark:prose-invert">
+    <p><strong>强化</strong>是指我们可以用下一个状态的价值来更新当前状态的价值，其实就是强化学习里面自举的概念。在强化学习里面，我们可以每走一步更新一次 Q 表格，用下一个状态的 Q 值来更新当前状态的 Q 值，这种单步更新的方法被称为时序差分方法。</p>
+<p>巴甫洛夫效应揭示的是，当中性刺激（铃声）与无条件刺激（食物）相邻反复出现的时候，中性刺激也可以引起无条件刺激引起的唾液分泌，然后形成条件刺激。 我们称这种中性刺激与无条件刺激在时间上面的结合为强化，强化的次数越多，条件反射就会越巩固。</p>
+<p>本节我们讨论<strong>免模型</strong>的方法</p>
+<h2 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h2><p>即预测各个$(s, a)$的价值</p>
+<h3 id="蒙特卡洛方法"><a href="#蒙特卡洛方法" class="headerlink" title="蒙特卡洛方法"></a><strong>蒙特卡洛方法</strong></h3><p>采样大量的轨迹，计算所有轨迹的真实回报，然后使用经验平均回报（empirical mean return）的方法来估计状态价值<br>$$<br>V\left(s_t\right)\leftarrow V\left(s_t\right)+\alpha\left(G_{i,t}-V\left(s_t\right)\right)<br>$$<br>上式本质上就是求平均值，只是写成了增量形式，并将$\frac{1}{N(s)}$换成了$\alpha$，不再严格地取期望。</p>
+<p>蒙特卡洛方法适用于环境未知的情况，而且只更新这条轨迹上的所有状态，与这条轨迹没有关系的状态都不进行更新。</p>
+<h3 id="时序差分方法"><a href="#时序差分方法" class="headerlink" title="时序差分方法"></a><strong>时序差分方法</strong></h3><p>在每个时间步更新状态值函数，因此它可以在线（online）地进行学习，即时地适应环境，<br>$$<br>V\left(s_t\right)\leftarrow V\left(s_t\right)+\alpha\left(r_{t+1}+\gamma V\left(s_{t+1}\right)-V\left(s_t\right)\right)<br>$$<br>其中$\alpha$后面的整体叫做<strong>时序差分误差</strong>（TD error）</p>
+<p>与MC不同的是，由于每步进行更新时，没有得到完整的轨迹，也就没有得到$G_t$，所以只能通过直接使用$V$来更新。</p>
+<p>同时可以通过步数来调整算法需要的实际奖励和自举：<br>$$<br>\begin{matrix}n&#x3D;1\text{(TD)}&amp;G_t^{(1)}&amp;&#x3D;r_{t+1}+\gamma V\left(s_{t+1}\right)\n&#x3D;2\text{(TD)}&amp;G_t^{(2)}&amp;&#x3D;r_{t+1}+\gamma r_{t+2}+\gamma^2V\left(s_{t+2}\right)\&amp;&amp;\vdots\n&#x3D;\infty\text{(MC)}&amp;G_t^\infty&amp;&#x3D;r_{t+1}+\gamma r_{t+2}+\ldots+\gamma^{T-t-1}r_T\end{matrix}<br>$$</p>
+<h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><p>这两种方法都是为了估计”理想价值函数“的</p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>蒙特卡洛方法 (MC)</th>
+<th>时序差分方法 (TD)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>估计类型</td>
+<td>无偏估计</td>
+<td>有偏估计</td>
+</tr>
+<tr>
+<td>更新时机</td>
+<td>每个回合结束后</td>
+<td>每个时间步之后</td>
+</tr>
+<tr>
+<td>数据依赖</td>
+<td>基于完整回合的实际结果</td>
+<td>基于当前奖励和下一个状态的估计值</td>
+</tr>
+<tr>
+<td>方差</td>
+<td>较大</td>
+<td>较小</td>
+</tr>
+<tr>
+<td>特点</td>
+<td>直接反映实际经验，波动较大</td>
+<td>更新平滑，适应性强</td>
+</tr>
+</tbody></table>
+<h2 id="控制"><a href="#控制" class="headerlink" title="控制"></a>控制</h2><p>现在，我们已经得到了$V$函数，这是一个一维表格，表示每一个状态的价值，但是在不了解环境（奖励函数和状态转移）的情况下，如何进行策略优化呢？</p>
+<p>我们可以将V函数“扩展为”Q函数，即一个$(S × A)$的表格，通过预测这张表格来进行策略优化。</p>
+<h3 id="Sarsa"><a href="#Sarsa" class="headerlink" title="Sarsa"></a>Sarsa</h3><p>使用与预测V函数同样的TD方法来预测Q表格：<br>$$<br>Q\left(s_t,a_t\right)\leftarrow Q\left(s_t,a_t\right)+\alpha\left[r_{t+1}+\gamma Q\left(s_{t+1},a_{t+1}\right)-Q\left(s_t,a_t\right)\right]<br>$$<br>注意此时与TD不同的是，更新预测时需要使用$A’$，即下一个状态的<u>策略选择</u></p>
+<blockquote>
+<p>此策略选择指的可能是$\max Q$，也可能是$\epsilon-贪心$d，甚至可能是随机动作，但Sarsa都将其作为更新的依据，体现了其“谨慎性”</p>
+</blockquote>
+<p>其因需要知道$(s_t,a_t,r_{t+1},s_{t+1},a_{t+1})$而得名，同样虑 <em>n</em> 步的回报时有：<br>$$<br>\begin{aligned}<br>&amp;n&#x3D;1\text{ (Sarsa)}&amp;&amp; Q_{t}^{1} &amp;&amp;&amp;&amp; &#x3D;r_{t+1}+\gamma Q\left(s_{t+1},a_{t+1}\right)  \<br>&amp;n&#x3D;2\text{ (Sarsa)}&amp;&amp; Q_{t}^{2} &amp;&amp;&amp;&amp; &#x3D;r_{t+1}+\gamma r_{t+2}+\gamma^2Q\left(s_{t+2},a_{t+2}\right)  \<br>&amp;n&#x3D;\infty\mathrm{~(MC)}&amp;&amp; Q_{t}^{\infty} &amp;&amp;&amp;&amp; &#x3D;r_{t+1}+\gamma r_{t+2}+\ldots+\gamma^{T-t-1}r_T<br>\end{aligned}<br>$$<br><strong>Q-学习</strong></p>
+<p>与Sarsa不同的时，Q学习是一种”离线学习“，即计算Q表格（目标策略）时不care最终究竟会做出什么选择（行为策略），其更新公式为：<br>$$<br>Q\left(s_t,a_t\right)\leftarrow Q\left(s_t,a_t\right)+\alpha\left[r_{t+1}+\gamma\max_aQ\left(s_{t+1},a\right)-Q\left(s_t,a_t\right)\right]<br>$$</p>
+<blockquote>
+<p>可以注意到，与Sarsa唯一的不同就是$Q\left(s_{t+1},a_{t+1}\right)$和$\max_aQ\left(s_{t+1},a\right)$，这表明不管决策过程最终采取什么选择，Q学习在更新表格时始终选择使用Q值最高的$a’$来计算，体现了其”谨慎性”。</p>
+</blockquote>
+
+  </article>
+
+  <!-- prev and next -->
+  <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
+    <div>
       
-        <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/"
+        <a href="/2024/01/17/17_%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/"
           class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-text)]
-          "
-          href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/">
-          #概率论与数理统计
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            pl-1
-            text-sm">
-            ×2
-          </span>
+            transition-all
+            flex justify-center
+            hover:-translate-x-1
+            hover:text-[var(--c-80)]
+          ">
+          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
+          </iconify-icon>
+          强化学习-策略梯度
         </a>
       
-        <a href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-text)]
-          "
-          href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/">
-          #高等数学
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            pl-1
-            text-sm">
-            ×4
-          </span>
-        </a>
+    </div>
+    <div>
       
-        <a href="/tags/CS/"
+        <a href="/2024/01/11/15_%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-MDP/"
           class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-text)]
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
           "
-          href="/tags/CS/">
-          #CS
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            pl-1
-            text-sm">
-            ×1
-          </span>
-        </a>
-      
-        <a href="/tags/RL/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-text)]
-          "
-          href="/tags/RL/">
-          #RL
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            pl-1
-            text-sm">
-            ×5
-          </span>
-        </a>
-      
-        <a href="/tags/%E5%90%89%E4%BB%96%E8%B0%B1/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-text)]
-          "
-          href="/tags/%E5%90%89%E4%BB%96%E8%B0%B1/">
-          #吉他谱
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            pl-1
-            text-sm">
-            ×1
-          </span>
-        </a>
-      
-        <a href="/tags/%E6%BC%94%E5%87%BA/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-text)]
-          "
-          href="/tags/%E6%BC%94%E5%87%BA/">
-          #演出
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            pl-1
-            text-sm">
-            ×1
-          </span>
-        </a>
-      
-        <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-text)]
-          "
-          href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">
-          #编译原理
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            pl-1
-            text-sm">
-            ×1
-          </span>
-        </a>
-      
-        <a href="/tags/IT/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-text)]
-          "
-          href="/tags/IT/">
-          #IT
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            pl-1
-            text-sm">
-            ×1
-          </span>
-        </a>
-      
-        <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-text)]
-          "
-          href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">
-          #线性代数
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            pl-1
-            text-sm">
-            ×2
-          </span>
+        >
+          强化学习-MDP
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
         </a>
       
     </div>
   </div>
 
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+<script
+  src="https://giscus.app/client.js"
+  data-repo=""
+  data-repo-id=""
+  data-category=""
+  data-category-id=""
+  data-mapping=""
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  crossorigin="anonymous"
+  async
+></script>
+<script>
+  window.onload = function () {
+    console.log("giscus loaded");
+    const isDark = document.documentElement.classList.contains("dark");
+    const giscusFrame = document.querySelector("iframe.giscus-frame");
+    giscusFrame.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: isDark ? "dark" : "light",
+          },
+        },
+      },
+      "https://giscus.app"
+    );
+  };
+</script>
+
+
+  </div>
+</section>
+<!-- js inspect -->
+
+<script src="/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        var title = this.title;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        if (title) $(this).after('<span class="fancybox-title">' + title + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
 
   </main>
   <footer class="flex flex-col mt-12 mb-12 items-center

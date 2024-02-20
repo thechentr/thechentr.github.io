@@ -22,7 +22,7 @@
   <meta name="keywords" content="IT music movie life">
 
 
-<title>&#39;tag&#39; | Terrence Chen</title>
+<title>强化学习-近端策略优化 | Terrence Chen</title>
 
 
 
@@ -444,320 +444,284 @@
   </div>
 </div>
   <main>
-    <!-- 
-This page has two versions, which is shown is based on whether current page
-is "tag".
+    <!-- css -->
 
-  - url:'http://localhost:4000/tag/' return false.
-- url:'http://localhost:4000/tags/test/' return true.
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
 
-The '/tag/' page shows all tags and is where you land on when you click
-on the "Tags" in the navigation bar. Otherwise if you enter 'tags' by clicking on of the tag elements in some
-posts, and it shows all posts with that tag.
+  
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
 
-To add a "Tags" page.
+    <!-- toc -->
+    
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
 
-1. hexo new page "tag"
-2. cd source/tag/index.md
-3. Add the following front matter.
 
----
-title: '''tag'''
-date: 2019-06-09 09:56:49
-layout: tag
----
--->
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">强化学习-近端策略优化</p>
+      </div>
+      <!-- Meta data -->
+      <div>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              Created: <time class="w-max">2024-01-18</time>
+            </div>
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
+              Edited: <time class="w-max">2024-01-18</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
 
-  <!-- 显示所有tag，让用户选择 -->
-  <div class="flex flex-col gap-2 px-6 max-w-prose mx-auto md:px-0 my-8">
-    <div class="flex flex-row items-center gap-2">
-      <iconify-icon width="28" icon="mingcute:tag-fill"></iconify-icon>
-      <h2 class="font-bold text-2xl">Tags</h2>
+            <!-- Word count -->
+            <span class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>1.4k words, 6 min</span>
+            </span>
+            <!-- Categories -->
+            
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/categories/Notebook/">Notebook</a>
+              </span>
+            
+          </div>
+        </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
+<div class="flex flex-wrap gap-1">
+  
+    
+      <a href="/tags/RL/" 
+        class="
+          tag
+          text-sm
+          rounded-full
+          px-[5px]
+          border-[1px]
+          border-[var(--c-theme)]
+          text-[var(--c-theme)]
+          bg-[var(--c-0)]
+          dark:bg-[var(--c-0)]
+          dark:drop-shadow-none
+          hover:bg-[var(--c-theme)]
+          hover:text-[var(--c-0)]
+        ">
+        RL
+      </a>
+    
+  
+</div>
+      </div>
     </div>
-    <div class="tags-container flex flex-wrap gap-1">
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto dark:prose-invert">
+    <p>策略梯度本质上是一种同策略模型，即学习的模型和与环境交互的模型是一个模型。这种方法的缺点是所采样的数据只能使用一次，因为使用梯度上升的方法来最大化策略模型的奖励期望，这必须保证策略是正在学习的模型做出的，即<strong>必须保证决策是从模型的决策分布中采样的</strong>。</p>
+<blockquote>
+<p>梯度依赖与模型和输入位置而存在，使用其他模型的梯度来更新自己，无异于东施效颦。</p>
+</blockquote>
+<p>但由于我们在计算梯度的过程中使用了均值近似，所以只要我们<strong>保证均值的期望是实际的期望</strong>，即可避免这种拙劣的模仿，而这种“差距”可以通过修正所采样的分布而修正。</p>
+<p>本节我们讨论如何利用从别的决策分布中采样的数据进行训练。</p>
+<h2 id="重要性采样"><a href="#重要性采样" class="headerlink" title="重要性采样"></a>重要性采样</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>假设我们有一个函数 $f(x)$，要计算从分布 $p$ 采样 $x$，再把 $x$ 代入 $f$ ,得到 $f(x)$。我们该怎么计算 $f(x)$ 的期望值呢？</p>
+<p>假设我们不能对分布 $p$ 做积分，但可以从分布 $p$ 采样一些数据 $x^i$。把 $x^i$ 代入 $f(x)$, 取它的平均值，就可以近似 $f(x)$ 的期望值。</p>
+<p>现在有另外一个问题，假设我们不能从分布 $p$ 采样数据，只能从另外一个分布 $q$ 采样数据$x$, $q$ 可以是任何分布，此时该如何计算呢？</p>
+<p>考虑如下变换：<br>$$<br>\int f(x)p(x)\mathrm{d}x&#x3D;\int f(x)\frac{p(x)}{q(x)}q(x)\mathrm{d}x&#x3D;\mathbb{E}<em>{x\sim q}[f(x)\frac{p(x)}{q(x)}]<br>$$<br>可得：<br>$$<br>\mathbb{E}</em>{x\sim p}[f(x)]&#x3D;\mathbb{E}_{x\sim q}\left\lfloor f(x)\frac{p(x)}{q(x)}\right\rfloor<br>$$<br>这样，我们就完成了分布修正！即可以从一个分布采样，并使用<strong>重要性权重</strong>将其修正成另一个分布，使得我们计算的期望没有误差。</p>
+<p>和之前的梯度策略公式相结合，我们可以得到：<br>$$<br>\nabla\bar{R}<em>\theta&#x3D;\mathbb{E}</em>{\tau\sim p_{\theta’(\tau)}}\left[\frac{p_\theta(\tau)}{p_{\theta’}(\tau)}R(\tau)\nabla\log p_\theta(\tau)\right]<br>$$<br>这里的$\theta$，是要学习的模型，$\theta’$是实际采样的模型，$\frac{p_\theta(\tau)}{p_{\theta’}(\tau)}$是用来修正分布的重要性权重。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>与策略梯度的实现结合，我们可以通过一下公式将同策略转化为异策略：<br>$$<br>\mathbb{E}<em>{(s_t,a_t)\sim\pi</em>{\theta’}}\left[\frac{p_\theta\left(s_t,a_t\right)}{p_{\theta’}\left(s_t,a_t\right)}A^\theta\left(s_t,a_t\right)\nabla\log p_\theta\left(a_t^n|s_t^n\right)\right]<br>$$<br>接下来，我们可以拆解$p_\theta\left(s_t,a_t\right)$和$p_{\theta^{\prime}}\left(s_t,a_t\right)$,即</p>
+<p>$$<br>p_\theta\left(s_t,a_t\right)&#x3D;p_\theta\left(a_t|s_t\right)p_\theta(s_t) \<br>p_{\theta’}\left(s_t,a_t\right)&#x3D;p_{\theta’}\left(a_t|s_t\right)p_{\theta’}(s_t)<br>$$<br>于是我们可得<br>$$<br>\mathbb{E}<em>{(s_t,a_t)\sim\pi</em>{\theta^{\prime}}}\left[\frac{p_\theta\left(a_t|s_t\right)}{p_{\theta^{\prime}}\left(a_t|s_t\right)}\frac{p_\theta\left(s_t\right)}{p_{\theta^{\prime}}\left(s_t\right)}A^{\theta^{\prime}}\left(s_t,a_t\right)\nabla\log p_\theta\left(a_t^n|s_t^n\right)\right]<br>$$<br>这里需要做的一件事情是，假设模型是$\theta$的时候，我们看到$s_t$的概率，与模型是$\theta^{\prime}$的时候，我们看到 $s_t$ 的概率是一样的，即 $p_\theta(s_t)&#x3D;p_\theta(s_t)$。因为$p_\theta(s_t)$和$p_{\theta^{\prime}}(s_t)$是一样的，所以我们可得<br>$$<br>\mathbb{E}<em>{(s_t,a_t)\sim\pi</em>{\theta^{\prime}}}\left[\frac{p_\theta\left(a_t|s_t\right)}{p_{\theta^{\prime}}\left(a_t|s_t\right)}A^{\theta^{\prime}}\left(s_t,a_t\right)\nabla\log p_\theta\left(a_t^n|s_t^n\right)\right]<br>$$</p>
+<blockquote>
+<p> Q：为什么假设成一样的？</p>
+<p>因为我们会看到状态往往与采取的动作是没有太大的关系的，更直接的理由就是$p_\theta(s_t)$ 很难$p_\theta(s_t)$有一个参数 $\theta$,<br> 我们根本没有办法估计$p_\theta(s_t)$，所以干脆就无视这个问题。</p>
+</blockquote>
+<p>所以实际上，当我们使用重要性采样的时候，要去优化的目标函数为<br>$$<br>J^{\theta^{\prime}}(\theta)&#x3D;\mathbb{E}<em>{(s_t,a_t)\sim\pi</em>{\theta^{\prime}}}\left[\frac{p_\theta\left(a_t|s_t\right)}{p_{\theta^{\prime}}\left(a_t|s_t\right)}A^{\theta^{\prime}}\left(s_t,a_t\right)\right]<br>$$<br>括号里面的 $\theta$ 代表我们要去优化的参数，$\theta^{\prime}$ 是指我们用 $\theta^{\prime}$ 做示范。</p>
+<h2 id="近端策略优化"><a href="#近端策略优化" class="headerlink" title="近端策略优化"></a>近端策略优化</h2><p> 虽然重要性采样在理想情况下是正确的，即期望是相同的，但方差会有显著影响：如果$\frac{p(x)}{q(x)}$差距很大，$f(x)\frac{p(x)}{q(x)}$的方差就会很大，进而如果我们采样的次数不够多，我们就有可能得到差别非常大的结果！</p>
+<p>怎么避免它们相差太多呢？简单地，我们可以使用<strong>信任区域策略优化</strong>（trust region policy optimization，TRPO）：<br>$$<br>J_{\mathrm{TRPO}}^{\theta’}(\theta)&#x3D;\mathbb{E}<em>{(s_t,a_t)\sim\pi</em>{\theta’}}\left\lfloor\frac{p_\theta\left(a_t|s_t\right)}{p_{\theta’}\left(a_t|s_t\right)}A^{\theta’}\left(s_t,a_t\right)\right\rfloor,\mathrm{KL}\left(\theta,\theta’\right)&lt;\delta<br>$$<br>即，只使用相差不大的$\theta’$来优化$\theta$，公式中的<strong>KL散度</strong>（Kullback-Leibler Divergence），也称为相对熵，是一个用于衡量两个概率分布差异的统计量。它量化了一个概率分布P与另一个参考概率分布Q之间的差异。</p>
+<p>更进一步，我们可以使用<strong>近端策略优化</strong>（proximal policy optimization，PPO） ：<br>$$<br>J_{\mathrm{PPO}}^{\theta^{\prime}}(\theta)&#x3D;J^{\theta^{\prime}}(\theta)-\beta\mathrm{KL}\left(\theta,\theta^{\prime}\right)<br>$$<br>即，在目标函数中加入了 KL 散度的约束，类似于正则化的手段。</p>
+
+  </article>
+
+  <!-- prev and next -->
+  <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
+    <div>
       
-        <a href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-text)]
-          "
-          href="/tags/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/">
-          #概率论与数理统计
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            pl-1
-            text-sm">
-            ×2
-          </span>
-        </a>
+    </div>
+    <div>
       
-        <a href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/"
+        <a href="/2024/01/17/17_%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6/"
           class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-text)]
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
           "
-          href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/">
-          #高等数学
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            pl-1
-            text-sm">
-            ×4
-          </span>
-        </a>
-      
-        <a href="/tags/CS/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-text)]
-          "
-          href="/tags/CS/">
-          #CS
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            pl-1
-            text-sm">
-            ×1
-          </span>
-        </a>
-      
-        <a href="/tags/RL/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-text)]
-          "
-          href="/tags/RL/">
-          #RL
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            pl-1
-            text-sm">
-            ×5
-          </span>
-        </a>
-      
-        <a href="/tags/%E5%90%89%E4%BB%96%E8%B0%B1/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-text)]
-          "
-          href="/tags/%E5%90%89%E4%BB%96%E8%B0%B1/">
-          #吉他谱
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            pl-1
-            text-sm">
-            ×1
-          </span>
-        </a>
-      
-        <a href="/tags/%E6%BC%94%E5%87%BA/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-text)]
-          "
-          href="/tags/%E6%BC%94%E5%87%BA/">
-          #演出
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            pl-1
-            text-sm">
-            ×1
-          </span>
-        </a>
-      
-        <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-text)]
-          "
-          href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">
-          #编译原理
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            pl-1
-            text-sm">
-            ×1
-          </span>
-        </a>
-      
-        <a href="/tags/IT/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-text)]
-          "
-          href="/tags/IT/">
-          #IT
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            pl-1
-            text-sm">
-            ×1
-          </span>
-        </a>
-      
-        <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"
-          class="
-            tag
-            flex flex-row items-center
-            text-[16px]
-            px-[8px]
-            py-[2px]
-            rounded-full
-            drop-shadow-md
-            border-[1px]
-            border-[var(--c-theme)]
-            text-[var(--c-theme)]
-            bg-[var(--c-0)]
-            dark:bg-[var(--c-0)]
-            dark:drop-shadow-none
-            hover:bg-[var(--c-theme)]
-            dark:hover:bg-[var(--c-theme)]
-            hover:text-[var(--c-text)]
-          "
-          href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">
-          #线性代数
-          <span class="
-            text-[var(--c-50)]
-            dark:text-[var(--c-70)]
-            hover:dark:text-[var(--c-80)]
-            pl-1
-            text-sm">
-            ×2
-          </span>
+        >
+          强化学习-策略梯度
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
         </a>
       
     </div>
   </div>
 
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+<script
+  src="https://giscus.app/client.js"
+  data-repo=""
+  data-repo-id=""
+  data-category=""
+  data-category-id=""
+  data-mapping=""
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  crossorigin="anonymous"
+  async
+></script>
+<script>
+  window.onload = function () {
+    console.log("giscus loaded");
+    const isDark = document.documentElement.classList.contains("dark");
+    const giscusFrame = document.querySelector("iframe.giscus-frame");
+    giscusFrame.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: isDark ? "dark" : "light",
+          },
+        },
+      },
+      "https://giscus.app"
+    );
+  };
+</script>
+
+
+  </div>
+</section>
+<!-- js inspect -->
+
+<script src="/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        var title = this.title;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        if (title) $(this).after('<span class="fancybox-title">' + title + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
 
   </main>
   <footer class="flex flex-col mt-12 mb-12 items-center
