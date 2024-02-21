@@ -537,18 +537,14 @@
     <p><a target="_blank" rel="noopener" href="https://github.com/thechentr/SNL-compiler">项目代码链接</a></p>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>该项目是本人在编译原理课设计中的作业项目，本人负责部分为语法分析部分，该篇文章简要说明了整个<strong>语法分析部分</strong>的实现方案。</p>
 <h2 id="前期准备工作"><a href="#前期准备工作" class="headerlink" title="前期准备工作"></a>前期准备工作</h2><p>语法分析的基础是语法规则，即针对一门特定语言的产生式，所有语法分析的方法都要基于其进行。因此，进行SNL语法分析的主要任务是明确SNL语言的产生式，为方便后续工作的进行，我们将SNL语言的所有产生式（共112条），通过图片文字识别，以纯文本形式录入到了txt文件中，其中，符号形式的中级符被我们 按照教材上的定义，替换成了相应的字符串，并在所有 终极符前添加了@符号以和非终极符进行区分，部分产生式文档及符号对照表如下：</p>
-<img src="../images/编译原理8.jpg" alt="产生式文档" style="zoom: 30%;" />
-
-<img src="../images/编译原理10.jpg" alt="符号对照表" style="zoom: 50%;" />
-
+<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%868.jpg" alt="产生式文档"></p>
+<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%8610.jpg" alt="符号对照表"></p>
 <p>针对该txt文件，我们使用Python代码 读取其所有产生式，并统计了统计符合非终结符的个数，结果如下：</p>
-<img src="../images/编译原理9.jpg" alt="统计结果" style="zoom:70%;" />
-
+<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%869.jpg" alt="统计结果"></p>
 <p>SNL的语法文法为LL1文法，即对于每个非终结符，都可以通过查看输入Token序列的下一个Token来确定使用哪个产生式进行推导，且推导方式唯一。而实现这种推导的基础是计算每个产生式右部的predict集。因此我们使用 Python语言实现了<strong>基于产生式文本的predict集求解算法</strong>，并用其对SNL语言各产生式的predict集进行求解，最终与教材中的predict集进行对比，经核对后指出了教材中的几处错误：</p>
 <p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%861.jpg" alt="教材中predict集的几处错误"></p>
 <h2 id="相关声明"><a href="#相关声明" class="headerlink" title="相关声明"></a>相关声明</h2><p>在语法分析的代码实现时，考虑到LL(1)语法分析和递归下降语法分析使用相同的终极符、非终极符枚举类型声明，相同的树结点等声明，为方便代码维护、减少代码重复、提高代码可读性与复用性，我们将在语法分析阶段所涉及的必要声明都声明在“<em>PasingDec.h</em>”头文件中，供递归下降共递归下降分析和LL1语法分析使用，其调用关系如下：</p>
-<img src="../images/编译原理2.jpg" alt="头文件调用关系" style="zoom: 30%;" />
-
+<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%862.jpg" alt="头文件调用关系"></p>
 <p>在该头文件中包含了，语法分析阶段所涉及的<strong>所有</strong>必要声明，其内部结构如下：</p>
 <p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%863.jpg" alt="PasingDec.h内部结构"></p>
 <p>其中终极符和非终结符的枚举,及枚举类型到字符串的转换函数，均由Python代码<strong>自动生成</strong>。</p>
