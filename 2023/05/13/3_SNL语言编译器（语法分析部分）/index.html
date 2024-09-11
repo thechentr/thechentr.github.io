@@ -16,13 +16,11 @@
   <meta name="subtitle" content="陈泰然">
 
 
-  <meta name="description" content="吉林大学计算机科学与技术专业大四学生，出生长大在长春，当前在启元实验室研究计算机视觉的对抗鲁棒性 <br><br> A senior student majoring in Computer Science and Technology at Jilin University. Born and raised in Changchun, currently researching adversarial robustness in computer vision at the Qiyuan Lab.">
-
 
   <meta name="keywords" content="IT music movie life">
 
 
-<title>编译原理课程设计SNL语言编译器 | Terrence Chen</title>
+<title>编译原理课程设计SNL语言编译器 | Tairan Chen</title>
 
 
 
@@ -169,7 +167,7 @@
             bg-gradient-to-r from-cyan-500
             to-blue-500 bg-clip-text text-transparent
           ">
-            Terrence Chen
+            Tairan Chen
         </a>
     </div>
     <!-- Div for pushing items to both sides -->
@@ -263,35 +261,6 @@
                     
                     
                         <p>Categories</p>
-                    
-                </a>
-            
-                
-                
-                    
-                    
-                
-                <a
-                    href="/tag"
-                    class="
-                        flex flex-row items-center
-                        gap-1
-                        hover:underline
-                        hover:bg-[var(--c-20)]
-                        hover:text-[var(--c-theme)]
-                        transition-all
-                        px-2
-                        py-1
-                        my-1
-                        rounded-lg
-                        group
-                    ">
-                    
-                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:tag-fill" width="22">
-                        </iconify-icon>
-                    
-                    
-                        <p>Tags</p>
                     
                 </a>
             
@@ -419,28 +388,6 @@
           </a>
         
       
-        
-        
-          <a
-            href="/tag"
-            class="
-                flex flex-row items-center
-                gap-2
-                h-12
-                hover:underline
-                hover:bg-[var(--c-20)]
-                px-3
-                py-1
-                rounded-lg
-            ">
-            <iconify-icon icon="mingcute:tag-fill" width="22">
-            </iconify-icon>
-            <p>
-              Tags
-            </p>
-          </a>
-        
-      
   </div>
 </div>
   <main>
@@ -487,7 +434,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>2.2k words, 7 min</span>
+              <span>2.1k words, 7 min</span>
             </span>
             <!-- Categories -->
             
@@ -507,26 +454,6 @@
       <div>
         
 <div class="flex flex-wrap gap-1">
-  
-    
-      <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-        ">
-        编译原理
-      </a>
-    
   
 </div>
       </div>
@@ -550,21 +477,21 @@
 <p>其中终极符和非终结符的枚举,及枚举类型到字符串的转换函数，均由Python代码<strong>自动生成</strong>。</p>
 <p>为实现代码自动生成，我们<strong>简化了语法分析树结点的结构</strong>，仅保留了足够满足语义分析的信息。</p>
 <p>在具体编写程序代码实现两种语法分析时，我们选择采用<strong>面向对象</strong>的编程方式，极大地提高语法分析部分代码的封闭性、可读性。同时，我们充分利用Python语言的优势，编写了自动生成语义分析部分c语言代码的工具，并完善了其通用性，使其可以接受任何一门语言的产生式集合，自动生成相应的c语言递归下降语义分析代码和LL1 语义分析代码，在减小工作量的同时，提高了代码编写的统一性与准确性。</p>
-<h2 id="LL（1）语法分析："><a href="#LL（1）语法分析：" class="headerlink" title="LL（1）语法分析："></a>LL（1）语法分析：</h2><p>LL(1)语法分析采用自顶向下的分析方法，即从最开始的非终结符开始，逐步推导出符合语法规则的程序代码，这种分析方法具有简单、高效的特点，可以有效地检测语法错误。在实现该种方式的语义分析代码时 需要用到多种栈及一种专用的数据结构，即符号栈的结点结构，其结构及LL1语法分析器如下：</p>
+<h2 id="LL（1）语法分析"><a href="#LL（1）语法分析" class="headerlink" title="LL（1）语法分析"></a>LL（1）语法分析</h2><p>LL(1)语法分析采用自顶向下的分析方法，即从最开始的非终结符开始，逐步推导出符合语法规则的程序代码，这种分析方法具有简单、高效的特点，可以有效地检测语法错误。在实现该种方式的语义分析代码时 需要用到多种栈及一种专用的数据结构，即符号栈的结点结构，其结构及LL1语法分析器如下：</p>
 <p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%864.jpg" alt="LL1语法分析器结构及符号栈结点的结构"></p>
 <p>其中，实现LL(1)语法分析的关键为LL(1)分析矩阵的初始化工作，即根据SNL语言语法的产生式及其predict集，将产生式中的各个符号按顺序填写到矩阵的对应位置中，由于矩阵的不同位置可能对应相同的产生式，且存在大量重复，为<strong>节约堆区空间</strong>，在构建一个产生式的符号序列之后，我们将该序列的指针作为内容填写到分析矩阵中的多个重复位置，并且使用了与符号栈元素相同的数据结构，使得在对符号栈栈顶非终极符进行推导时，只需按照LL(1)分析矩阵，查找对应符号序列，<strong>直接压入栈中</strong>即可，简化了分析过程。</p>
 <p>并且，在该部分代码的编写中 存在大量冗余重复的工作，我们仍然<strong>使用Python自动生成LL(1)分析矩阵的初始化代码</strong>。其整体思路为，按照产生式右部结构生成符号序列Vector，按照产生式左部及其predict集将符号向量指针填写到矩阵对应位置，如根据第一条产生式生成如下LL(1)分析矩阵初始化代码：</p>
-<p><img src="/./assets/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865.jpg" alt="根据第一条产生式生成的LL(./../../../../Program Files/images/编译原理5.jpg)分析矩阵初始化代码"></p>
+<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%865.jpg" alt="根据第一条产生式生成的LL分析矩阵初始化代码"></p>
 <p>进行LL(1)语法分析时，只需不断处理符号栈顶，如果是非终结符 则按照分析矩阵进行推导 如果中意符则进行符号匹配，最终以是否符号序列 全部处理完成且符号占为空 作为语法分析是否成功的依据。</p>
 <p>在此基础上，为<strong>规范语法树结构</strong>，使得推导后无子节点的节点 不会连接在语法分析树中，最终使得所有叶结点均为终极符，我们使用节点栈存储其子节点未全部生成的节点，在弹出符号栈“弹栈符号”时，弹出节点栈栈顶结点，并判断是否应将其接入语法分析树中。</p>
-<h2 id="递归下降语法分析："><a href="#递归下降语法分析：" class="headerlink" title="递归下降语法分析："></a>递归下降语法分析：</h2><p>递归下降语法分析器从语法的最高层开始，逐层向下分析。在分析过程中，如果当前的符号是非终结符，则递归调用该非终结符所对应的子程序；如果当前的符号是终结符，则匹配当前的符号，生成相应结点连接到语法树，并将输入指针指向下一个符号。在每个非终结符的处理函数中，根据其一个或多个产生式的Predict集，选择相应的处理方法，因此我们的递归下降语法分析器结构如下：</p>
-<p>![归下降语法分析器结构](.&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;Program Files&#x2F;images&#x2F;编译原理6.jpg)</p>
+<h2 id="递归下降语法分析"><a href="#递归下降语法分析" class="headerlink" title="递归下降语法分析"></a>递归下降语法分析</h2><p>递归下降语法分析器从语法的最高层开始，逐层向下分析。在分析过程中，如果当前的符号是非终结符，则递归调用该非终结符所对应的子程序；如果当前的符号是终结符，则匹配当前的符号，生成相应结点连接到语法树，并将输入指针指向下一个符号。在每个非终结符的处理函数中，根据其一个或多个产生式的Predict集，选择相应的处理方法，因此我们的递归下降语法分析器结构如下：</p>
+<p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%866.jpg" alt="归下降语法分析器结构"></p>
 <p>实现该种方法的语法分析程序时，关键在于为各个非终结符编写处理程序，从而通过一次完整的递归调用完成语法分析工作。该种语法分析方法虽然逻辑简单 但代码工作量较大，且存在规律性，因此我们仍然<strong>使用Python代码自动生成所有非终结符的处理程序</strong>，其大致思路为:  </p>
 <p>按照所有以该非终极符为左部的产生式，及其相应的 Predict集，按产生式右部顺序进行终极符号匹配或非终极符程序调用，并在无法选择产生式时进行报错。</p>
 <p>同时为避免函数名称标识符与枚举类型标识符重复，我们用“_非终极符名称”为函数命名，并且严格按照predict集合进行推导，即使非终结符只有一条产生式，也仍然判断待处理Token序列头是否属于其predict集合，使得分析过程更加严谨，如非终极符Program的处理程序为：</p>
 <p><img src="/../images/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%867.jpg" alt="归下降语法分析器结构"></p>
-<h2 id="语法分析部分总结："><a href="#语法分析部分总结：" class="headerlink" title="语法分析部分总结："></a>语法分析部分总结：</h2><p>在该部分，我们仅从产生式出发，求解了SNL语言语法分析中各个产生式的predict集，并实现了两种面向对象、可读性强、代码结构统一的语法分析器.，过程中我们使用Python代码简化工作量，最终达到了</p>
-<p><strong>800行c语言代码 + 250行 python代码 -&gt; 2500行语法分析程序（c语言）</strong></p>
+<h2 id="语法分析部分总结"><a href="#语法分析部分总结" class="headerlink" title="语法分析部分总结"></a>语法分析部分总结</h2><p>在该部分，我们仅从产生式出发，求解了SNL语言语法分析中各个产生式的predict集，并实现了两种面向对象、可读性强、代码结构统一的语法分析器.，过程中我们使用Python代码简化工作量，最终达到了</p>
+<p><em><strong>800行c语言代码 + 250行 python代码 -&gt; 2500行语法分析程序（c语言）</strong></em></p>
 <p>的效果。更重要的是实现了<strong>通用的C语言语法分析程序生成程序</strong>，该程序以一门特定编程语言的产生式集合作为输入，自动生成其相应的递归下降语法分析程序和LL(1)语法分析程序。</p>
 
   </article>

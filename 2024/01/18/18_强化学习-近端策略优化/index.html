@@ -16,13 +16,11 @@
   <meta name="subtitle" content="陈泰然">
 
 
-  <meta name="description" content="吉林大学计算机科学与技术专业大四学生，出生长大在长春，当前在启元实验室研究计算机视觉的对抗鲁棒性 <br><br> A senior student majoring in Computer Science and Technology at Jilin University. Born and raised in Changchun, currently researching adversarial robustness in computer vision at the Qiyuan Lab.">
-
 
   <meta name="keywords" content="IT music movie life">
 
 
-<title>强化学习-近端策略优化 | Terrence Chen</title>
+<title>强化学习-近端策略优化 | Tairan Chen</title>
 
 
 
@@ -169,7 +167,7 @@
             bg-gradient-to-r from-cyan-500
             to-blue-500 bg-clip-text text-transparent
           ">
-            Terrence Chen
+            Tairan Chen
         </a>
     </div>
     <!-- Div for pushing items to both sides -->
@@ -263,35 +261,6 @@
                     
                     
                         <p>Categories</p>
-                    
-                </a>
-            
-                
-                
-                    
-                    
-                
-                <a
-                    href="/tag"
-                    class="
-                        flex flex-row items-center
-                        gap-1
-                        hover:underline
-                        hover:bg-[var(--c-20)]
-                        hover:text-[var(--c-theme)]
-                        transition-all
-                        px-2
-                        py-1
-                        my-1
-                        rounded-lg
-                        group
-                    ">
-                    
-                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:tag-fill" width="22">
-                        </iconify-icon>
-                    
-                    
-                        <p>Tags</p>
                     
                 </a>
             
@@ -419,28 +388,6 @@
           </a>
         
       
-        
-        
-          <a
-            href="/tag"
-            class="
-                flex flex-row items-center
-                gap-2
-                h-12
-                hover:underline
-                hover:bg-[var(--c-20)]
-                px-3
-                py-1
-                rounded-lg
-            ">
-            <iconify-icon icon="mingcute:tag-fill" width="22">
-            </iconify-icon>
-            <p>
-              Tags
-            </p>
-          </a>
-        
-      
   </div>
 </div>
   <main>
@@ -497,7 +444,7 @@
                   width="18"
                   icon="mingcute:classify-2-fill">
                 </iconify-icon>
-                <a class="article-category-link" href="/categories/Notebook/">Notebook</a>
+                <a class="article-category-link" href="/categories/Notebook/">Notebook</a>/<a class="article-category-link" href="/categories/Notebook/Reinforcement-Learning/">Reinforcement Learning</a>
               </span>
             
           </div>
@@ -507,26 +454,6 @@
       <div>
         
 <div class="flex flex-wrap gap-1">
-  
-    
-      <a href="/tags/RL/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-        ">
-        RL
-      </a>
-    
   
 </div>
       </div>
@@ -543,13 +470,14 @@
 <h2 id="重要性采样"><a href="#重要性采样" class="headerlink" title="重要性采样"></a>重要性采样</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>假设我们有一个函数 $f(x)$，要计算从分布 $p$ 采样 $x$，再把 $x$ 代入 $f$ ,得到 $f(x)$。我们该怎么计算 $f(x)$ 的期望值呢？</p>
 <p>假设我们不能对分布 $p$ 做积分，但可以从分布 $p$ 采样一些数据 $x^i$。把 $x^i$ 代入 $f(x)$, 取它的平均值，就可以近似 $f(x)$ 的期望值。</p>
 <p>现在有另外一个问题，假设我们不能从分布 $p$ 采样数据，只能从另外一个分布 $q$ 采样数据$x$, $q$ 可以是任何分布，此时该如何计算呢？</p>
-<p>考虑如下变换：<br>$$<br>\int f(x)p(x)\mathrm{d}x&#x3D;\int f(x)\frac{p(x)}{q(x)}q(x)\mathrm{d}x&#x3D;\mathbb{E}<em>{x\sim q}[f(x)\frac{p(x)}{q(x)}]<br>$$<br>可得：<br>$$<br>\mathbb{E}</em>{x\sim p}[f(x)]&#x3D;\mathbb{E}_{x\sim q}\left\lfloor f(x)\frac{p(x)}{q(x)}\right\rfloor<br>$$<br>这样，我们就完成了分布修正！即可以从一个分布采样，并使用<strong>重要性权重</strong>将其修正成另一个分布，使得我们计算的期望没有误差。</p>
+<p>考虑如下变换：<br>$$<br>\int f(x)p(x)\mathrm{d}x&#x3D;\int f(x)\frac{p(x)}{q(x)}q(x)\mathrm{d}x&#x3D;\mathbb{E}_{x\sim q}[f(x)\frac{p(x)}{q(x)}]<br>$$</p>
+<p>可得：<br>$$<br>\mathbb{E}<em>{x\sim p}[f(x)]&#x3D;\mathbb{E}</em>{x\sim q}\left\lfloor f(x)\frac{p(x)}{q(x)}\right\rfloor<br>$$<br>这样，我们就完成了分布修正！即可以从一个分布采样，并使用<strong>重要性权重</strong>将其修正成另一个分布，使得我们计算的期望没有误差。</p>
 <p>和之前的梯度策略公式相结合，我们可以得到：<br>$$<br>\nabla\bar{R}<em>\theta&#x3D;\mathbb{E}</em>{\tau\sim p_{\theta’(\tau)}}\left[\frac{p_\theta(\tau)}{p_{\theta’}(\tau)}R(\tau)\nabla\log p_\theta(\tau)\right]<br>$$<br>这里的$\theta$，是要学习的模型，$\theta’$是实际采样的模型，$\frac{p_\theta(\tau)}{p_{\theta’}(\tau)}$是用来修正分布的重要性权重。</p>
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>与策略梯度的实现结合，我们可以通过一下公式将同策略转化为异策略：<br>$$<br>\mathbb{E}<em>{(s_t,a_t)\sim\pi</em>{\theta’}}\left[\frac{p_\theta\left(s_t,a_t\right)}{p_{\theta’}\left(s_t,a_t\right)}A^\theta\left(s_t,a_t\right)\nabla\log p_\theta\left(a_t^n|s_t^n\right)\right]<br>$$<br>接下来，我们可以拆解$p_\theta\left(s_t,a_t\right)$和$p_{\theta^{\prime}}\left(s_t,a_t\right)$,即</p>
 <p>$$<br>p_\theta\left(s_t,a_t\right)&#x3D;p_\theta\left(a_t|s_t\right)p_\theta(s_t) \<br>p_{\theta’}\left(s_t,a_t\right)&#x3D;p_{\theta’}\left(a_t|s_t\right)p_{\theta’}(s_t)<br>$$<br>于是我们可得<br>$$<br>\mathbb{E}<em>{(s_t,a_t)\sim\pi</em>{\theta^{\prime}}}\left[\frac{p_\theta\left(a_t|s_t\right)}{p_{\theta^{\prime}}\left(a_t|s_t\right)}\frac{p_\theta\left(s_t\right)}{p_{\theta^{\prime}}\left(s_t\right)}A^{\theta^{\prime}}\left(s_t,a_t\right)\nabla\log p_\theta\left(a_t^n|s_t^n\right)\right]<br>$$<br>这里需要做的一件事情是，假设模型是$\theta$的时候，我们看到$s_t$的概率，与模型是$\theta^{\prime}$的时候，我们看到 $s_t$ 的概率是一样的，即 $p_\theta(s_t)&#x3D;p_\theta(s_t)$。因为$p_\theta(s_t)$和$p_{\theta^{\prime}}(s_t)$是一样的，所以我们可得<br>$$<br>\mathbb{E}<em>{(s_t,a_t)\sim\pi</em>{\theta^{\prime}}}\left[\frac{p_\theta\left(a_t|s_t\right)}{p_{\theta^{\prime}}\left(a_t|s_t\right)}A^{\theta^{\prime}}\left(s_t,a_t\right)\nabla\log p_\theta\left(a_t^n|s_t^n\right)\right]<br>$$</p>
 <blockquote>
-<p> Q：为什么假设成一样的？</p>
-<p>因为我们会看到状态往往与采取的动作是没有太大的关系的，更直接的理由就是$p_\theta(s_t)$ 很难$p_\theta(s_t)$有一个参数 $\theta$,<br> 我们根本没有办法估计$p_\theta(s_t)$，所以干脆就无视这个问题。</p>
+<p>Q：为什么假设成一样的？</p>
+<p>因为我们会看到状态往往与采取的动作是没有太大的关系的，更直接的理由就是$p_\theta(s_t)$ 很难$p_\theta(s_t)$有一个参数 $\theta$,<br>我们根本没有办法估计$p_\theta(s_t)$，所以干脆就无视这个问题。</p>
 </blockquote>
 <p>所以实际上，当我们使用重要性采样的时候，要去优化的目标函数为<br>$$<br>J^{\theta^{\prime}}(\theta)&#x3D;\mathbb{E}<em>{(s_t,a_t)\sim\pi</em>{\theta^{\prime}}}\left[\frac{p_\theta\left(a_t|s_t\right)}{p_{\theta^{\prime}}\left(a_t|s_t\right)}A^{\theta^{\prime}}\left(s_t,a_t\right)\right]<br>$$<br>括号里面的 $\theta$ 代表我们要去优化的参数，$\theta^{\prime}$ 是指我们用 $\theta^{\prime}$ 做示范。</p>
 <h2 id="近端策略优化"><a href="#近端策略优化" class="headerlink" title="近端策略优化"></a>近端策略优化</h2><p> 虽然重要性采样在理想情况下是正确的，即期望是相同的，但方差会有显著影响：如果$\frac{p(x)}{q(x)}$差距很大，$f(x)\frac{p(x)}{q(x)}$的方差就会很大，进而如果我们采样的次数不够多，我们就有可能得到差别非常大的结果！</p>

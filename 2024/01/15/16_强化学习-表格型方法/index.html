@@ -16,13 +16,11 @@
   <meta name="subtitle" content="陈泰然">
 
 
-  <meta name="description" content="吉林大学计算机科学与技术专业大四学生，出生长大在长春，当前在启元实验室研究计算机视觉的对抗鲁棒性 <br><br> A senior student majoring in Computer Science and Technology at Jilin University. Born and raised in Changchun, currently researching adversarial robustness in computer vision at the Qiyuan Lab.">
-
 
   <meta name="keywords" content="IT music movie life">
 
 
-<title>强化学习-表格型方法 | Terrence Chen</title>
+<title>强化学习-表格型方法 | Tairan Chen</title>
 
 
 
@@ -169,7 +167,7 @@
             bg-gradient-to-r from-cyan-500
             to-blue-500 bg-clip-text text-transparent
           ">
-            Terrence Chen
+            Tairan Chen
         </a>
     </div>
     <!-- Div for pushing items to both sides -->
@@ -263,35 +261,6 @@
                     
                     
                         <p>Categories</p>
-                    
-                </a>
-            
-                
-                
-                    
-                    
-                
-                <a
-                    href="/tag"
-                    class="
-                        flex flex-row items-center
-                        gap-1
-                        hover:underline
-                        hover:bg-[var(--c-20)]
-                        hover:text-[var(--c-theme)]
-                        transition-all
-                        px-2
-                        py-1
-                        my-1
-                        rounded-lg
-                        group
-                    ">
-                    
-                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:tag-fill" width="22">
-                        </iconify-icon>
-                    
-                    
-                        <p>Tags</p>
                     
                 </a>
             
@@ -419,28 +388,6 @@
           </a>
         
       
-        
-        
-          <a
-            href="/tag"
-            class="
-                flex flex-row items-center
-                gap-2
-                h-12
-                hover:underline
-                hover:bg-[var(--c-20)]
-                px-3
-                py-1
-                rounded-lg
-            ">
-            <iconify-icon icon="mingcute:tag-fill" width="22">
-            </iconify-icon>
-            <p>
-              Tags
-            </p>
-          </a>
-        
-      
   </div>
 </div>
   <main>
@@ -497,7 +444,7 @@
                   width="18"
                   icon="mingcute:classify-2-fill">
                 </iconify-icon>
-                <a class="article-category-link" href="/categories/Notebook/">Notebook</a>
+                <a class="article-category-link" href="/categories/Notebook/">Notebook</a>/<a class="article-category-link" href="/categories/Notebook/Reinforcement-Learning/">Reinforcement Learning</a>
               </span>
             
           </div>
@@ -507,26 +454,6 @@
       <div>
         
 <div class="flex flex-wrap gap-1">
-  
-    
-      <a href="/tags/RL/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-        ">
-        RL
-      </a>
-    
   
 </div>
       </div>
@@ -580,12 +507,12 @@
 </tbody></table>
 <h2 id="控制"><a href="#控制" class="headerlink" title="控制"></a>控制</h2><p>现在，我们已经得到了$V$函数，这是一个一维表格，表示每一个状态的价值，但是在不了解环境（奖励函数和状态转移）的情况下，如何进行策略优化呢？</p>
 <p>我们可以将V函数“扩展为”Q函数，即一个$(S × A)$的表格，通过预测这张表格来进行策略优化。</p>
-<h3 id="Sarsa"><a href="#Sarsa" class="headerlink" title="Sarsa"></a>Sarsa</h3><p>使用与预测V函数同样的TD方法来预测Q表格：<br>$$<br>Q\left(s_t,a_t\right)\leftarrow Q\left(s_t,a_t\right)+\alpha\left[r_{t+1}+\gamma Q\left(s_{t+1},a_{t+1}\right)-Q\left(s_t,a_t\right)\right]<br>$$<br>注意此时与TD不同的是，更新预测时需要使用$A’$，即下一个状态的<u>策略选择</u></p>
+<h3 id="Sarsa"><a href="#Sarsa" class="headerlink" title="Sarsa"></a>Sarsa</h3><p>使用与预测V函数同样的TD方法来预测Q表格：<br>$$<br>Q\left(s_t,a_t\right)\leftarrow Q\left(s_t,a_t\right)+\alpha\left[r_{t+1}+\gamma Q\left(s_{t+1},a_{t+1}\right)-Q\left(s_t,a_t\right)\right]<br>$$<br>注意此时与TD不同的是，更新预测时需要使用$A’$，即下一个状态的<strong>策略选择</strong></p>
 <blockquote>
 <p>此策略选择指的可能是$\max Q$，也可能是$\epsilon-贪心$d，甚至可能是随机动作，但Sarsa都将其作为更新的依据，体现了其“谨慎性”</p>
 </blockquote>
-<p>其因需要知道$(s_t,a_t,r_{t+1},s_{t+1},a_{t+1})$而得名，同样虑 <em>n</em> 步的回报时有：<br>$$<br>\begin{aligned}<br>&amp;n&#x3D;1\text{ (Sarsa)}&amp;&amp; Q_{t}^{1} &amp;&amp;&amp;&amp; &#x3D;r_{t+1}+\gamma Q\left(s_{t+1},a_{t+1}\right)  \<br>&amp;n&#x3D;2\text{ (Sarsa)}&amp;&amp; Q_{t}^{2} &amp;&amp;&amp;&amp; &#x3D;r_{t+1}+\gamma r_{t+2}+\gamma^2Q\left(s_{t+2},a_{t+2}\right)  \<br>&amp;n&#x3D;\infty\mathrm{~(MC)}&amp;&amp; Q_{t}^{\infty} &amp;&amp;&amp;&amp; &#x3D;r_{t+1}+\gamma r_{t+2}+\ldots+\gamma^{T-t-1}r_T<br>\end{aligned}<br>$$<br><strong>Q-学习</strong></p>
-<p>与Sarsa不同的时，Q学习是一种”离线学习“，即计算Q表格（目标策略）时不care最终究竟会做出什么选择（行为策略），其更新公式为：<br>$$<br>Q\left(s_t,a_t\right)\leftarrow Q\left(s_t,a_t\right)+\alpha\left[r_{t+1}+\gamma\max_aQ\left(s_{t+1},a\right)-Q\left(s_t,a_t\right)\right]<br>$$</p>
+<p>其因需要知道$(s_t,a_t,r_{t+1},s_{t+1},a_{t+1})$而得名，同样虑 <em>n</em> 步的回报时有：<br>$$<br>\begin{aligned}<br>&amp;n&#x3D;1\text{ (Sarsa)}&amp;&amp; Q_{t}^{1} &amp;&amp;&amp;&amp; &#x3D;r_{t+1}+\gamma Q\left(s_{t+1},a_{t+1}\right)  \<br>&amp;n&#x3D;2\text{ (Sarsa)}&amp;&amp; Q_{t}^{2} &amp;&amp;&amp;&amp; &#x3D;r_{t+1}+\gamma r_{t+2}+\gamma^2Q\left(s_{t+2},a_{t+2}\right)  \<br>&amp;n&#x3D;\infty\mathrm{~(MC)}&amp;&amp; Q_{t}^{\infty} &amp;&amp;&amp;&amp; &#x3D;r_{t+1}+\gamma r_{t+2}+\ldots+\gamma^{T-t-1}r_T<br>\end{aligned}<br>$$</p>
+<h3 id="Q-学习"><a href="#Q-学习" class="headerlink" title="Q-学习"></a>Q-学习</h3><p>与Sarsa不同的时，Q学习是一种”离线学习“，即计算Q表格（目标策略）时不care最终究竟会做出什么选择（行为策略），其更新公式为：<br>$$<br>Q\left(s_t,a_t\right)\leftarrow Q\left(s_t,a_t\right)+\alpha\left[r_{t+1}+\gamma\max_aQ\left(s_{t+1},a\right)-Q\left(s_t,a_t\right)\right]<br>$$</p>
 <blockquote>
 <p>可以注意到，与Sarsa唯一的不同就是$Q\left(s_{t+1},a_{t+1}\right)$和$\max_aQ\left(s_{t+1},a\right)$，这表明不管决策过程最终采取什么选择，Q学习在更新表格时始终选择使用Q值最高的$a’$来计算，体现了其”谨慎性”。</p>
 </blockquote>

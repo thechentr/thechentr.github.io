@@ -16,13 +16,11 @@
   <meta name="subtitle" content="陈泰然">
 
 
-  <meta name="description" content="吉林大学计算机科学与技术专业大四学生，出生长大在长春，当前在启元实验室研究计算机视觉的对抗鲁棒性 <br><br> A senior student majoring in Computer Science and Technology at Jilin University. Born and raised in Changchun, currently researching adversarial robustness in computer vision at the Qiyuan Lab.">
-
 
   <meta name="keywords" content="IT music movie life">
 
 
-<title>标签: 演出 | Terrence Chen</title>
+<title>experiences | Tairan Chen</title>
 
 
 
@@ -169,7 +167,7 @@
             bg-gradient-to-r from-cyan-500
             to-blue-500 bg-clip-text text-transparent
           ">
-            Terrence Chen
+            Tairan Chen
         </a>
     </div>
     <!-- Div for pushing items to both sides -->
@@ -263,35 +261,6 @@
                     
                     
                         <p>Categories</p>
-                    
-                </a>
-            
-                
-                
-                    
-                    
-                
-                <a
-                    href="/tag"
-                    class="
-                        flex flex-row items-center
-                        gap-1
-                        hover:underline
-                        hover:bg-[var(--c-20)]
-                        hover:text-[var(--c-theme)]
-                        transition-all
-                        px-2
-                        py-1
-                        my-1
-                        rounded-lg
-                        group
-                    ">
-                    
-                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:tag-fill" width="22">
-                        </iconify-icon>
-                    
-                    
-                        <p>Tags</p>
                     
                 </a>
             
@@ -419,203 +388,220 @@
           </a>
         
       
-        
-        
-          <a
-            href="/tag"
-            class="
-                flex flex-row items-center
-                gap-2
-                h-12
-                hover:underline
-                hover:bg-[var(--c-20)]
-                px-3
-                py-1
-                rounded-lg
-            ">
-            <iconify-icon icon="mingcute:tag-fill" width="22">
-            </iconify-icon>
-            <p>
-              Tags
-            </p>
-          </a>
-        
-      
   </div>
 </div>
   <main>
-    <!-- 
-This page has two versions, which is shown is based on whether current page
-is "tag".
+    <!-- css -->
 
-  - url:'http://localhost:4000/tag/' return false.
-- url:'http://localhost:4000/tags/test/' return true.
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
 
-The '/tag/' page shows all tags and is where you land on when you click
-on the "Tags" in the navigation bar. Otherwise if you enter 'tags' by clicking on of the tag elements in some
-posts, and it shows all posts with that tag.
-
-To add a "Tags" page.
-
-1. hexo new page "tag"
-2. cd source/tag/index.md
-3. Add the following front matter.
-
----
-title: '''tag'''
-date: 2019-06-09 09:56:49
-layout: tag
----
--->
-
-  <!-- 已经选择了一个tag，显示一个 tag 的所有 post -->
-  <div class="mt-6">
-    <div class="flex flex-wrap gap-1 justify-center items-center">
-      <iconify-icon width="24" icon="mingcute:tag-fill"></iconify-icon>
-      <div class="text-xl align-middle">
-        Tag:
-      </div>
-      <div 
-      class="
-        tag
-        px-2
-        py-[1px]
-        text-xl
-        rounded-full
-        pointer-events-none
-      ">
-        #演出
-      </div>
-  </div>
-  <section class="px-2 py-8 max-w-prose mx-auto gap-4 grid grid-cols-1">
   
-  
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+    <!-- toc -->
     
-    <!-- Large text showing the year in the background -->
-    
-      <div class="relative pointer-events-none h-[30px]">
-        <div class="absolute -top-6 w-[100%]">
-          <p class="
-            text-clip overflow-hidden -translate-x-3 text-9xl
-            font-extrabold
-            text-[var(--c-theme)]
-            opacity-10
-            dark:opacity-20">
-            2023
-          </p>
-        </div>
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">experiences</p>
       </div>
-    
-    <!-- The post -->
-    <div class="w-full">
-      <!-- One post item in a list -->
-<div class="
-    post-container
-    px-2 py-2
-    flex flex-col gap-3">
-    <div class="flex flex-row gap-4">
-        
-            <div class="flex flex-col gap-1">
-                <!-- Post title -->
-                <a href="/2023/05/12/4_%E6%9C%9D%E9%98%B3%E9%9F%B3%E4%B9%90%E8%8A%82%E6%BC%94%E5%87%BA/">
-                    <h2 class="
-                        text-[var(--c-80)]
-                        font-bold
-                        text-xl
-                        hover:text-[var(--c-theme)]
-                        transition-all
-                        hover:underline">
-                        无人应答乐队-朝阳音乐节
-                    </h2>
-                </a>
-            <!-- Post excerpt -->
-            
+      <!-- Meta data -->
+      <div>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              Created: <time class="w-max">2024-09-10</time>
             </div>
-        </div>
-        <!-- Post Statistics -->
-        <div class="flex flex-wrap items-center gap-x-2 text-sm
-            text-[var(--c-70)]">
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:add-circle-fill"></iconify-icon>
-                <time class="w-max">
-                    2023-05-12
-                </time>
-            </span>
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:refresh-3-fill"></iconify-icon>
-                <time class="w-max">
-                    2023-05-12
-                </time>
-            </span>
-            <span class="flex flex-row items-center gap-1 group">
-                <iconify-icon width="16"
-                    icon="mingcute:book-2-fill"></iconify-icon>
-                <p class="w-max">
-                    34 words, 1 min
-                </p>
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
+              Edited: <time class="w-max">2024-09-10</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+
+            <!-- Word count -->
+            <span class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>0 words, 1 min</span>
             </span>
             <!-- Categories -->
-            <span class="flex flex-row items-center gap-1 group">
-                
-                    <iconify-icon class="
-                            group-hover:scale-125
-                            transition-transform
-                            group-hover:text-[var(--c-theme)]
-                        "
-                        width="16"
-                        icon="mingcute:classify-2-fill" class="mr-0">
-                    </iconify-icon>
-                    
-                        <a class="underline underline-offset-2"
-                            href="/categories/Music/">
-                            Music
-                        </a>
-                    
-                
-            </span>
-        </div>
-        <!-- Tags -->
-        <div>
             
-                
+          </div>
+        </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
 <div class="flex flex-wrap gap-1">
   
-    
-      <a href="/tags/%E6%BC%94%E5%87%BA/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-        ">
-        演出
-      </a>
-    
-  
 </div>
-            
-        </div>
-</div>
+      </div>
     </div>
-  
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto dark:prose-invert">
+    
+  </article>
+
+  <!-- prev and next -->
+  <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
+    <div>
+      
+    </div>
+    <div>
+      
+    </div>
+  </div>
+
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+<script
+  src="https://giscus.app/client.js"
+  data-repo=""
+  data-repo-id=""
+  data-category=""
+  data-category-id=""
+  data-mapping=""
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  crossorigin="anonymous"
+  async
+></script>
+<script>
+  window.onload = function () {
+    console.log("giscus loaded");
+    const isDark = document.documentElement.classList.contains("dark");
+    const giscusFrame = document.querySelector("iframe.giscus-frame");
+    giscusFrame.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: isDark ? "dark" : "light",
+          },
+        },
+      },
+      "https://giscus.app"
+    );
+  };
+</script>
+
+
+  </div>
 </section>
+<!-- js inspect -->
 
-<div class="border-t">
-
-</div>
-
+<script src="/lib/clipboard.min.js"></script>
 
 
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        var title = this.title;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        if (title) $(this).after('<span class="fancybox-title">' + title + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
 
   </main>
   <footer class="flex flex-col mt-12 mb-12 items-center

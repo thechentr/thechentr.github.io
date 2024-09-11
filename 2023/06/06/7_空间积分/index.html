@@ -16,13 +16,11 @@
   <meta name="subtitle" content="陈泰然">
 
 
-  <meta name="description" content="吉林大学计算机科学与技术专业大四学生，出生长大在长春，当前在启元实验室研究计算机视觉的对抗鲁棒性 <br><br> A senior student majoring in Computer Science and Technology at Jilin University. Born and raised in Changchun, currently researching adversarial robustness in computer vision at the Qiyuan Lab.">
-
 
   <meta name="keywords" content="IT music movie life">
 
 
-<title>空间积分 | Terrence Chen</title>
+<title>空间积分 | Tairan Chen</title>
 
 
 
@@ -169,7 +167,7 @@
             bg-gradient-to-r from-cyan-500
             to-blue-500 bg-clip-text text-transparent
           ">
-            Terrence Chen
+            Tairan Chen
         </a>
     </div>
     <!-- Div for pushing items to both sides -->
@@ -263,35 +261,6 @@
                     
                     
                         <p>Categories</p>
-                    
-                </a>
-            
-                
-                
-                    
-                    
-                
-                <a
-                    href="/tag"
-                    class="
-                        flex flex-row items-center
-                        gap-1
-                        hover:underline
-                        hover:bg-[var(--c-20)]
-                        hover:text-[var(--c-theme)]
-                        transition-all
-                        px-2
-                        py-1
-                        my-1
-                        rounded-lg
-                        group
-                    ">
-                    
-                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:tag-fill" width="22">
-                        </iconify-icon>
-                    
-                    
-                        <p>Tags</p>
                     
                 </a>
             
@@ -419,28 +388,6 @@
           </a>
         
       
-        
-        
-          <a
-            href="/tag"
-            class="
-                flex flex-row items-center
-                gap-2
-                h-12
-                hover:underline
-                hover:bg-[var(--c-20)]
-                px-3
-                py-1
-                rounded-lg
-            ">
-            <iconify-icon icon="mingcute:tag-fill" width="22">
-            </iconify-icon>
-            <p>
-              Tags
-            </p>
-          </a>
-        
-      
   </div>
 </div>
   <main>
@@ -497,7 +444,7 @@
                   width="18"
                   icon="mingcute:classify-2-fill">
                 </iconify-icon>
-                <a class="article-category-link" href="/categories/Notebook/">Notebook</a>
+                <a class="article-category-link" href="/categories/Notebook/">Notebook</a>/<a class="article-category-link" href="/categories/Notebook/Further-Mathematics/">Further Mathematics</a>
               </span>
             
           </div>
@@ -507,26 +454,6 @@
       <div>
         
 <div class="flex flex-wrap gap-1">
-  
-    
-      <a href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-        ">
-        高等数学
-      </a>
-    
   
 </div>
       </div>
@@ -552,7 +479,7 @@
 <h2 id="第一型积分"><a href="#第一型积分" class="headerlink" title="第一型积分"></a>第一型积分</h2><p>与<em>三重积分</em>类似，<em>一型积分</em>的本质为已知<em>密度函数</em>  $$\rho(x, y, z)$$，求解空间曲线&#x2F;曲面的质量（此处使用“质量”并不恰当，因为线和面是没有质量的），该型积分的基本思想即：</p>
 <ol>
 <li>使用图形的<strong>限定方程</strong>对被积函数降维（也就是我们常说的投影），并确定积分范围</li>
-<li><u>使用<em>弧长公式转化为定积分</em></u>  或  <u>使用<em>曲面面积公式</em>转化二重积分</u></li>
+<li><strong>使用<em>弧长公式转化为定积分</em></strong>  或  <strong>使用<em>曲面面积公式</em>转化二重积分</strong></li>
 <li>计算积分</li>
 </ol>
 <p>下面就分别来看看这三步在两种积分中如何应用。</p>
@@ -570,18 +497,17 @@
 </ol>
 <p>$$<br>\mathrm{d}s &#x3D; \sqrt{(x_t’)^2+(y_t’)^2+(z_t’)^2}\mathrm{dt}<br>$$</p>
 <p>  特殊的，当一型平面曲线积分降维为关于x的函数时有<br>$$<br>\mathrm{d}s &#x3D; \sqrt{1+(y_x’)^2}\mathrm{d}x<br>$$</p>
-<ol start="3">
+<ol>
 <li>计算定积分</li>
 </ol>
 <h3 id="第一型曲面积分"><a href="#第一型曲面积分" class="headerlink" title="第一型曲面积分"></a>第一型曲面积分</h3><ol>
 <li><p>曲面降维即投影到坐标轴平面上，但在选择平面时要选择投影后<strong>没有重合点</strong>的平面</p>
 </li>
 <li><p>曲面面积公式：（以投影到$xOy$平面上为例）</p>
+<p> $$<br> \mathrm{d}\sigma &#x3D; \sqrt{1+(z_x’)^2+(z_y’)^2}\mathrm{d}x\mathrm{d}y<br> $$</p>
 </li>
-</ol>
-<p>$$<br>\mathrm{d}\sigma &#x3D; \sqrt{1+(z_x’)^2+(z_y’)^2}\mathrm{d}x\mathrm{d}y<br>$$</p>
-<ol start="3">
-<li>计算二重积分</li>
+<li><p>计算二重积分</p>
+</li>
 </ol>
 <h2 id="第二型积分"><a href="#第二型积分" class="headerlink" title="第二型积分"></a>第二型积分</h2><p><em>二型积分</em>的本质为：已知<em>向量场</em>：<br>$$<br>F(x, y, z) &#x3D; P(x, y, z) \overrightarrow{i} + Q(x, y, z) \overrightarrow{j} + R(x, y, z) \overrightarrow{k}<br>$$<br> 求解该场中某一曲线的做功或某一曲面的通量问题，观察等式右边，该向量场亦可以看作三个沿坐标轴正方向的<strong>分向量场的叠加</strong>。</p>
 <p>下面分别来看：</p>
@@ -601,7 +527,7 @@
 <p>  当积分曲线$\Gamma$是<strong>空间曲线</strong>，则封闭区域$\Sigma$则为空间平面，此时应用斯托克斯公式：<br>  $$<br>  \oint \limits_{\Gamma} P(x_0, y_0, z_0) \mathrm{d}x + Q(x_0, y_0, z_0) \mathrm{d}y + R(x_0, y_0, z_0) \mathrm{d}z &#x3D; \iint \limits_{\Sigma}<br>  \left|\begin{matrix}<br> cos{\alpha} &amp; cos{\beta} &amp; cos{\gamma}\<br> \frac{\partial}{\partial x} &amp; \frac{\partial}{\partial y} &amp;  \frac{\partial}{\partial z}\<br> P &amp; Q &amp; R\<br>\end{matrix}\right|\mathrm{d}\sigma<br>  $$</p>
 </li>
 </ul>
-<p>​		其中第一行为该曲线“法向量”的三个方向角</p>
+<p>​其中第一行为该曲线“法向量”的三个方向角</p>
 <h3 id="第二型曲面积分"><a href="#第二型曲面积分" class="headerlink" title="第二型曲面积分"></a>第二型曲面积分</h3><p>若一个向量场为电&#x2F;磁场，或某一流体的速度场，若要确定该场通过某一曲面的流量，则引出了第二型曲面积分：<br>$$<br>\iint \limits_{\Sigma} F(x, y, z) \mathrm{d}\sigma &#x3D; \iint \limits_{\Sigma} P(x_0, y_0, z_0) \mathrm{d}y\mathrm{d}z + Q(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}z + R(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}y<br>$$<br>和曲线积分一样，该积分同样等于三个<strong>分向量场通量的和</strong>，即：<br>$$<br>\iint \limits_{\Sigma} F(x, y, z) \mathrm{d}\sigma &#x3D; \iint \limits_{\Sigma} P(x_0, y_0, z_0) \mathrm{d}y\mathrm{d}z +  \iint \limits_{\Sigma} Q(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}z +   \iint \limits_{\Sigma}R(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}y<br>$$<br>和第一型曲面积分一样，使用该方法要求该曲面在坐标轴上的投影不能有重合点！不过，若该曲面满足：</p>
 <ul>
 <li><strong>曲面封闭</strong></li>
@@ -611,7 +537,7 @@
 <hr>
 <h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>以上所述皆为基本方法，尤其是实际题目，想要使用</p>
 <ul>
-<li><strong>格林公式</strong> </li>
+<li><strong>格林公式</strong></li>
 <li><strong>斯托克斯公式</strong></li>
 <li><strong>高斯公式</strong></li>
 </ul>

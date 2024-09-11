@@ -16,13 +16,11 @@
   <meta name="subtitle" content="陈泰然">
 
 
-  <meta name="description" content="吉林大学计算机科学与技术专业大四学生，出生长大在长春，当前在启元实验室研究计算机视觉的对抗鲁棒性 <br><br> A senior student majoring in Computer Science and Technology at Jilin University. Born and raised in Changchun, currently researching adversarial robustness in computer vision at the Qiyuan Lab.">
-
 
   <meta name="keywords" content="IT music movie life">
 
 
-<title>线性代数基础 | Terrence Chen</title>
+<title>线性代数基础 | Tairan Chen</title>
 
 
 
@@ -169,7 +167,7 @@
             bg-gradient-to-r from-cyan-500
             to-blue-500 bg-clip-text text-transparent
           ">
-            Terrence Chen
+            Tairan Chen
         </a>
     </div>
     <!-- Div for pushing items to both sides -->
@@ -263,35 +261,6 @@
                     
                     
                         <p>Categories</p>
-                    
-                </a>
-            
-                
-                
-                    
-                    
-                
-                <a
-                    href="/tag"
-                    class="
-                        flex flex-row items-center
-                        gap-1
-                        hover:underline
-                        hover:bg-[var(--c-20)]
-                        hover:text-[var(--c-theme)]
-                        transition-all
-                        px-2
-                        py-1
-                        my-1
-                        rounded-lg
-                        group
-                    ">
-                    
-                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:tag-fill" width="22">
-                        </iconify-icon>
-                    
-                    
-                        <p>Tags</p>
                     
                 </a>
             
@@ -419,28 +388,6 @@
           </a>
         
       
-        
-        
-          <a
-            href="/tag"
-            class="
-                flex flex-row items-center
-                gap-2
-                h-12
-                hover:underline
-                hover:bg-[var(--c-20)]
-                px-3
-                py-1
-                rounded-lg
-            ">
-            <iconify-icon icon="mingcute:tag-fill" width="22">
-            </iconify-icon>
-            <p>
-              Tags
-            </p>
-          </a>
-        
-      
   </div>
 </div>
   <main>
@@ -497,7 +444,7 @@
                   width="18"
                   icon="mingcute:classify-2-fill">
                 </iconify-icon>
-                <a class="article-category-link" href="/categories/Notebook/">Notebook</a>
+                <a class="article-category-link" href="/categories/Notebook/">Notebook</a>/<a class="article-category-link" href="/categories/Notebook/Linear-Algebra/">Linear Algebra</a>
               </span>
             
           </div>
@@ -508,26 +455,6 @@
         
 <div class="flex flex-wrap gap-1">
   
-    
-      <a href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" 
-        class="
-          tag
-          text-sm
-          rounded-full
-          px-[5px]
-          border-[1px]
-          border-[var(--c-theme)]
-          text-[var(--c-theme)]
-          bg-[var(--c-0)]
-          dark:bg-[var(--c-0)]
-          dark:drop-shadow-none
-          hover:bg-[var(--c-theme)]
-          hover:text-[var(--c-0)]
-        ">
-        线性代数
-      </a>
-    
-  
 </div>
       </div>
     </div>
@@ -536,16 +463,14 @@
   <article class="post-content prose m-auto dark:prose-invert">
     <blockquote>
 <p>数缺形时少直观，形少数时难入微；数形结合百般好，隔离分家万事休。——华罗庚</p>
-</blockquote>
-<blockquote>
 <p>在学习<em>线性代数</em>时，常常在二维和三维空间中想象，将事半功倍。——Terrence</p>
 </blockquote>
-<h2 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h2><p>作为线性代数学科的基础，向量是我们的重要研究对象。与<em>标量</em>不同，向量具有<u>长度</u>和<u>方向</u>两个性质（标量只有大小），因此我们很容易就可以想到，用一个二元组<em>（长度，方向）</em>，来表示一个特定的向量，这样做毫无问题，可是却不便于我们的计算。由于特定的向量无关与其起始位置，所以我们常用<strong>当向量起于坐标原点时，其终点的坐标</strong>，来表示一个特定的向量，为了区别于单纯坐标，通常我们将终点坐标的各个元素从上到下竖着排列，也称<em>“列向量”</em>，常用$\alpha$表示。</p>
-<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><p>从形式上来看，矩阵似乎不过是一些具有特定位置信息的标量（数字），不过，最好不要把一个矩阵的每个元素看成是单独的个体，正如之前所说，<em>向量是线性代数整个学科的基础</em>，其<em>原子性</em>时刻提醒我们：<u>向量不可再分</u>。所以我们应该将矩阵看作多个向量的组合，即<strong>向量组</strong>。特殊的，当一个矩阵是方阵时，我们还可以将其看作为一种<strong>线性变换</strong>，下面分别来看：</p>
+<h2 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h2><p>作为线性代数学科的基础，向量是我们的重要研究对象。与<em>标量</em>不同，向量具有<strong>长度</strong>和<strong>方向</strong>两个性质（标量只有大小），因此我们很容易就可以想到，用一个二元组<em>（长度，方向）</em>，来表示一个特定的向量，这样做毫无问题，可是却不便于我们的计算。由于特定的向量无关与其起始位置，所以我们常用<strong>当向量起于坐标原点时，其终点的坐标</strong>，来表示一个特定的向量，为了区别于单纯坐标，通常我们将终点坐标的各个元素从上到下竖着排列，也称<em>“列向量”</em>，常用$\alpha$表示。</p>
+<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><p>从形式上来看，矩阵似乎不过是一些具有特定位置信息的标量（数字），不过，最好不要把一个矩阵的每个元素看成是单独的个体，正如之前所说，<em>向量是线性代数整个学科的基础</em>，其<em>原子性</em>时刻提醒我们：<strong>向量不可再分</strong>。所以我们应该将矩阵看作多个向量的组合，即<strong>向量组</strong>。特殊的，当一个矩阵是方阵时，我们还可以将其看作为一种<strong>线性变换</strong>，下面分别来看：</p>
 <h3 id="向量组"><a href="#向量组" class="headerlink" title="向量组"></a>向量组</h3><p>将多个向量，放在一起写做$[\alpha_1,\alpha_2,…\alpha_n]$，就成为了向量组矩阵，由于此时向量的维数并不一定等于组中向量的个数，所以该终矩阵可以是任意形状的，同时也不排除其是方阵的可能。由于此时矩阵就是向量组，所以二者的各种性质息息相关。</p>
-<h4 id="线性表示"><a href="#线性表示" class="headerlink" title="线性表示"></a>线性表示</h4><p>当多个向量放在一起，我们就可以通过两个基本运算：<u>数乘</u>与<u>相加</u>，将其组中各向量进行<em><strong>线性组合</strong></em>，从而得到其他向量，而这个过程被称为<strong>线性表示</strong>，如果由向量组$(\alpha_1,\alpha_2,…\alpha_n)$通过线性组合能够得到$\beta$，我们就称$\beta$能够由$(\alpha_1,\alpha_2,…\alpha_n)$<strong>线性表出</strong>。转化为“矩阵语言”就是，存在一组系数$x_1,x_2,…x_n$，使得：<br>$$<br>[\alpha_1,\alpha_2,…\alpha_n][x_1,x_2,…,x_n]^T&#x3D;\beta<br>$$</p>
+<h4 id="线性表示"><a href="#线性表示" class="headerlink" title="线性表示"></a>线性表示</h4><p>当多个向量放在一起，我们就可以通过两个基本运算：<strong>数乘</strong>与<strong>相加</strong>，将其组中各向量进行<em><strong>线性组合</strong></em>，从而得到其他向量，而这个过程被称为<strong>线性表示</strong>，如果由向量组$(\alpha_1,\alpha_2,…\alpha_n)$通过线性组合能够得到$\beta$，我们就称$\beta$能够由$(\alpha_1,\alpha_2,…\alpha_n)$<strong>线性表出</strong>。转化为“矩阵语言”就是，存在一组系数$x_1,x_2,…x_n$，使得：<br>$$<br>[\alpha_1,\alpha_2,…\alpha_n][x_1,x_2,…,x_n]^T&#x3D;\beta<br>$$</p>
 <p>如果要用一个向量组去表示另一个向量组，则需要一个系数矩阵$A$,使得：<br>$$<br>[\alpha_1,\alpha_2,…\alpha_n]A&#x3D;[\beta_1,\beta_2,…\beta_n]<br>$$<br>此时我们可知，<strong>所有的$\beta$都在向量组$\alpha$所张成的线性空间中</strong>，而通过研究这个矩阵$A$，有时我们也可以获得$\beta$是否线性相关等性质。</p>
-<h4 id="线性相关"><a href="#线性相关" class="headerlink" title="线性相关"></a>线性相关</h4><p>当向量组中某个向量能够被其他向量线性表示，我们称之为线性相关。严格的，我们将其定义为：<br>$$<br>存在一组不全为0的数k_1,k_2,…k_n，使得:k_1\alpha_1+k_2\alpha_2+…k_n\alpha_n&#x3D;0<br>$$<br>从空间的角度理解，就是向量组中的某个向量，落在了其他向量所张成的空间中。在研究这种性质时，有一个十分重要的方法就是：<u>将各个列向量组成矩阵，做行变换对其化简，通过研究化简后的矩阵来研究各向量的线性关系。</u>这是因为，当矩阵中，出现很多$0$时，我们很容易就能看出哪些向量之间能够线性表示。</p>
+<h4 id="线性相关"><a href="#线性相关" class="headerlink" title="线性相关"></a>线性相关</h4><p>当向量组中某个向量能够被其他向量线性表示，我们称之为线性相关。严格的，我们将其定义为：<br>$$<br>存在一组不全为0的数k_1,k_2,…k_n，使得:k_1\alpha_1+k_2\alpha_2+…k_n\alpha_n&#x3D;0<br>$$<br>从空间的角度理解，就是向量组中的某个向量，落在了其他向量所张成的空间中。在研究这种性质时，有一个十分重要的方法就是：<strong>将各个列向量组成矩阵，做行变换对其化简，通过研究化简后的矩阵来研究各向量的线性关系。</strong>这是因为，当矩阵中，出现很多$0$时，我们很容易就能看出哪些向量之间能够线性表示。</p>
 <p>比如，我们常将其化为<strong>行阶梯矩</strong>阵来<strong>判断向量组的秩</strong>并寻找<strong>极大无关向量组</strong>。</p>
 <h4 id="向量组张成的空间"><a href="#向量组张成的空间" class="headerlink" title="向量组张成的空间"></a>向量组张成的空间</h4><p>向量组所能<em>线性表示</em>的所有向量，就构成了这个向量组所张成的空间，这个空间的维数就是该向量组的<strong>秩</strong>，同时秩也是这个向量组<strong>极大无关向量组中向量的个数</strong>。</p>
 <p>并且只有在两个向量组张成的空间是同一个空间时，我们才说两个<strong>向量组等价</strong>。通常，我们也说需要“三秩相等”，即：<br>$$<br>r(A) &#x3D; r(B) &#x3D; r(A|B)<br>$$</p>
