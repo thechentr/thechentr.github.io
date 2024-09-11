@@ -59,7 +59,7 @@
 
 <script>
   (function () {
-    const prefersDark =
+    const prefersDark = false;  // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const setting = localStorage.getItem("hexo-color-scheme") || "auto";
@@ -70,7 +70,7 @@
 
   $(document).ready(function () {
     // init icon
-    const prefersDark =
+    const prefersDark = false;   // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const isDark = document.documentElement.classList.contains("dark");
@@ -434,7 +434,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>672 words, 2 min</span>
+              <span>666 words, 2 min</span>
             </span>
             <!-- Categories -->
             
@@ -444,7 +444,7 @@
                   width="18"
                   icon="mingcute:classify-2-fill">
                 </iconify-icon>
-                <a class="article-category-link" href="/categories/Notebook/">Notebook</a>/<a class="article-category-link" href="/categories/Notebook/Linear-Algebra/">Linear Algebra</a>
+                <a class="article-category-link" href="/categories/Mathematics/">Mathematics</a>/<a class="article-category-link" href="/categories/Mathematics/Linear-Algebra/">Linear Algebra</a>
               </span>
             
           </div>
@@ -462,14 +462,14 @@
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
     <p><strong>矩阵</strong>，当作为一种<strong>线性变换</strong>时，会将整个空间及空间中的所有向量都进行某种程度上的“调整”，具体体现为当其左乘一个向量时，结果会与原来的向量有所不同，这也就是“调整”后的结果。</p>
-<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>设有一个矩阵（线性变换）$A&#x3D;\left|\begin{matrix}<br>   3 &amp; 1 \ 1 &amp; 3  \end{matrix}\right|$，当我们对其仔细观察其对空间中向量进行的线性变换时，会发现：在经过$A$变换后，空间中的所有向量的两个重要属性——长度和方向，并不是一定都会改变。会有一些特定方向上的向量，如：$x_1&#x3D; \left[\begin{matrix} 2 \ -2  \end{matrix}\right]$,在经过$A$变换后，会变化为$A x_1 &#x3D; \left[\begin{matrix} 4 \ -4  \end{matrix}\right]$，其方向并没有改变，只是发生了长度上伸长为原来的2倍，并且与$x_1$同向的向量在经过$A$变换后都会产生一样的效果（伸长为原来的2倍），那还有没有这样的向量呢？</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>设有一个矩阵（线性变换）$A=\left|\begin{matrix}<br>   3 &amp; 1 \ 1 &amp; 3  \end{matrix}\right|$，当我们对其仔细观察其对空间中向量进行的线性变换时，会发现：在经过$A$变换后，空间中的所有向量的两个重要属性——长度和方向，并不是一定都会改变。会有一些特定方向上的向量，如：$x_1= \left[\begin{matrix} 2 \ -2  \end{matrix}\right]$,在经过$A$变换后，会变化为$A x_1 = \left[\begin{matrix} 4 \ -4  \end{matrix}\right]$，其方向并没有改变，只是发生了长度上伸长为原来的2倍，并且与$x_1$同向的向量在经过$A$变换后都会产生一样的效果（伸长为原来的2倍），那还有没有这样的向量呢？</p>
 <p>让我们来试图求解一下：</p>
 <blockquote>
 <p>设向量x经过A变化后方向没有改变，只是发生了长度上的变化，则有：</p>
-<p>$Ax &#x3D; kx$ （k为常数）</p>
-<p>即 $(A-kE)x &#x3D; 0$</p>
+<p>$Ax = kx$ （k为常数）</p>
+<p>即 $(A-kE)x = 0$</p>
 <p>由于$(A-kE)$是一个矩阵，此时又变成了求解齐次线性方程组的问题，但不同的是，其中还有一个常数k我们不知道取什么。不过我们知道的是当$(A-kE)$满秩时，这个方程组无非零解，也就是当$k$取某些值时，没有这样的向量，使得经过线性变化后被线性放大了$k$倍，那首先我们就要看$k$可能的取值，也就是向量被放大的<strong>“可能倍数”</strong>，同时也是令这个方程组有解的取值。因此，我们：</p>
-<p>令$|A-kE|&#x3D;0$</p>
+<p>令$|A-kE|=0$</p>
 <p>解出$k$的可能取值分别带回到方程组里求解$x$，就找到了那些“经过A变化后方向没有改变，只是发生了长度上的变化”的向量，同时在求解时使用的$k$就是它们被放大的倍数。</p>
 </blockquote>
 <p>此时我们就称，所求解的各个$k$为矩阵的特征值，而各个$x$则为特征向量。</p>

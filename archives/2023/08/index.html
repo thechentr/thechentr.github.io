@@ -59,7 +59,7 @@
 
 <script>
   (function () {
-    const prefersDark =
+    const prefersDark = false;  // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const setting = localStorage.getItem("hexo-color-scheme") || "auto";
@@ -70,7 +70,7 @@
 
   $(document).ready(function () {
     // init icon
-    const prefersDark =
+    const prefersDark = false;   // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const isDark = document.documentElement.classList.contains("dark");
@@ -473,13 +473,13 @@
                     </iconify-icon>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/Notebook/">
-                            Notebook
+                            href="/categories/Computer-Science-and-Technology/">
+                            Computer Science and Technology
                         </a>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/Notebook/Computer-Science/">
-                            Computer Science
+                            href="/categories/Computer-Science-and-Technology/Principles-of-Computer-Organization/">
+                            Principles of Computer Organization
                         </a>
                     
                 

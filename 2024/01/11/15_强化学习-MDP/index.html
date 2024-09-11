@@ -59,7 +59,7 @@
 
 <script>
   (function () {
-    const prefersDark =
+    const prefersDark = false;  // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const setting = localStorage.getItem("hexo-color-scheme") || "auto";
@@ -70,7 +70,7 @@
 
   $(document).ready(function () {
     // init icon
-    const prefersDark =
+    const prefersDark = false;   // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const isDark = document.documentElement.classList.contains("dark");
@@ -444,7 +444,7 @@
                   width="18"
                   icon="mingcute:classify-2-fill">
                 </iconify-icon>
-                <a class="article-category-link" href="/categories/Notebook/">Notebook</a>/<a class="article-category-link" href="/categories/Notebook/Reinforcement-Learning/">Reinforcement Learning</a>
+                <a class="article-category-link" href="/categories/Computer-Science-and-Technology/">Computer Science and Technology</a>/<a class="article-category-link" href="/categories/Computer-Science-and-Technology/Reinforcement-Learning/">Reinforcement Learning</a>
               </span>
             
           </div>
@@ -462,47 +462,80 @@
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
     <h2 id="马尔可夫过程"><a href="#马尔可夫过程" class="headerlink" title="马尔可夫过程"></a>马尔可夫过程</h2><p><strong>马尔可夫性质</strong>（Markov property）：一个<strong>随机过程</strong>在给定现在状态及所有过去状态情况下，其未来状态的条件概率分布仅依赖于当前状态。</p>
-<p><strong>马尔可夫过程</strong>：一组具有<em>马尔可夫性质</em>的随机变量序列 $s_1,…,s_t$，其中下一个时刻的状态$s_{t+1}$只取决于当前状态$s_t$，离散时间的马尔可夫过程也称为<em>马尔可夫链</em>（Markov chain），是最简单的马尔可夫过程。</p>
-<p><strong>状态转移矩阵</strong>（state transition matrix）：用 来描述状态转移 $p\left(s_{t+1}&#x3D;s^{\prime}\mid s_t&#x3D;s\right)$</p>
-<h2 id="马尔可夫奖励过程"><a href="#马尔可夫奖励过程" class="headerlink" title="马尔可夫奖励过程"></a><strong>马尔可夫奖励过程</strong></h2><p><strong>MRP</strong> (Markov reward process)&#x3D; <em>马尔可夫过程</em> + <em><strong>奖励函数</strong></em>（reward function）&#x3D; 状态转移 + 奖励函数</p>
+<p><strong>马尔可夫过程</strong>：一组具有<em>马尔可夫性质</em>的随机变量序列 $s<em>1,…,s_t$，其中下一个时刻的状态$s</em>{t+1}$只取决于当前状态$s_t$，离散时间的马尔可夫过程也称为<em>马尔可夫链</em>（Markov chain），是最简单的马尔可夫过程。</p>
+<p><strong>状态转移矩阵</strong>（state transition matrix）：用 来描述状态转移 $p\left(s_{t+1}=s^{\prime}\mid s_t=s\right)$</p>
+<h2 id="马尔可夫奖励过程"><a href="#马尔可夫奖励过程" class="headerlink" title="马尔可夫奖励过程"></a><strong>马尔可夫奖励过程</strong></h2><p><strong>MRP</strong> (Markov reward process)= <em>马尔可夫过程</em> + <strong><em>奖励函数</em></strong>（reward function）= 状态转移 + 奖励函数</p>
 <p><strong>范围</strong>（horizon）：一个回合的长度（每个回合最大的时间步数）</p>
-<p><strong>回报</strong>（return）：奖励的逐步叠加，也称<em>折扣回报</em>，其中 $γ$ 是折扣因子（超参数）<br>$$<br>G_t&#x3D;r_{t+1}+\gamma r_{t+2}+\gamma^2r_{t+3}+\gamma^3r_{t+4}+\ldots+\gamma^{T-t-1}r_T<br>$$<br>使用折扣因子的原因：</p>
+<p><strong>回报</strong>（return）：奖励的逐步叠加，也称<em>折扣回报</em>，其中 $γ$ 是折扣因子（超参数）</p>
+<script type="math/tex; mode=display">
+G_t=r_{t+1}+\gamma r_{t+2}+\gamma^2r_{t+3}+\gamma^3r_{t+4}+\ldots+\gamma^{T-t-1}r_T</script><p>使用折扣因子的原因：</p>
 <ul>
 <li>有些马尔可夫过程是带环的，它并不会终结，我们想避免无穷的奖励。</li>
 <li>$r_t$是对环境的建模，不一定准确，不能完全信任。</li>
 <li>及时奖励更重要</li>
 </ul>
-<p><strong>状态价值函数</strong>（state-value function）：一个特定状态后续回报的期望<br>$$<br>\begin{aligned}<br>V^{t}(s)&amp; &#x3D;\mathbb{E}\left[G_t\mid s_t&#x3D;s\right]<br>&#x3D;\mathbb{E}\left[r_{t+1}+\gamma r_{t+2}+\gamma^2r_{t+3}+\ldots+\gamma^{T-t-1}r_T\mid s_t&#x3D;s\right]<br>\end{aligned}<br>$$<br>这是一个极其复杂的树状过程，求期望可以用蒙特卡洛方法或贝尔曼方程</p>
-<h3 id="贝尔曼方程"><a href="#贝尔曼方程" class="headerlink" title="贝尔曼方程"></a>贝尔曼方程</h3><p>求解一个状态的V价值：<br>$$<br>V(s) &#x3D; \underbrace{R(s)}<em>{\text{即时奖励}} + \gamma \underbrace{\sum</em>{s’ \in S} p(s’ \mid s) V(s’)}_{\text{未来奖励的折扣总和}}<br>$$</p>
-<p>写成矩阵的形式：<br>$$<br>\left.\left(\begin{array}{c}V\left(s_{1}\right)\V\left(s_{2}\right)\\vdots\V\left(s_{N}\right)\end{array}\right.\right)&#x3D;\left(\begin{array}{c}R\left(s_{1}\right)\R\left(s_{2}\right)\\vdots\R\left(s_{N}\right)\end{array}\right)+\gamma\left(\begin{array}{cccc}p\left(s_{1}\mid s_{1}\right)&amp;p\left(s_{2}\mid s_{1}\right)&amp;\ldots&amp;p\left(s_{N}\mid s_{1}\right)\p\left(s_{1}\mid s_{2}\right)&amp;p\left(s_{2}\mid s_{2}\right)&amp;\ldots&amp;p\left(s_{N}\mid s_{2}\right)\\vdots&amp;\vdots&amp;\ddots&amp;\vdots\p\left(s_{1}\mid s_{N}\right)&amp;p\left(s_{2}\mid s_{N}\right)&amp;\ldots&amp;p\left(s_{N}\mid s_{N}\right)\end{array}\right)\left(\begin{array}{c}V\left(s_{1}\right)\V\left(s_{2}\right)\\vdots\V\left(s_{N}\right)\end{array}\right)<br>$$<br>即：<br>$$<br>V &#x3D; R + \gamma P V  \tag{1}<br>$$<br>其中R为即时奖励，此时可以得到<strong>解析解</strong>！<br>$$<br>V &#x3D; (I - \gamma P)^{-1}R<br>$$<br>但是一个问题是这个矩阵求逆的过程的复杂度是$O(N^3)$，所以一般用<strong>迭代法</strong>求近似解：</p>
+<p><strong>状态价值函数</strong>（state-value function）：一个特定状态后续回报的期望</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+V^{t}(s)& =\mathbb{E}\left[G_t\mid s_t=s\right]
+=\mathbb{E}\left[r_{t+1}+\gamma r_{t+2}+\gamma^2r_{t+3}+\ldots+\gamma^{T-t-1}r_T\mid s_t=s\right]
+\end{aligned}</script><p>这是一个极其复杂的树状过程，求期望可以用蒙特卡洛方法或贝尔曼方程</p>
+<h3 id="贝尔曼方程"><a href="#贝尔曼方程" class="headerlink" title="贝尔曼方程"></a>贝尔曼方程</h3><p>求解一个状态的V价值：</p>
+<script type="math/tex; mode=display">
+V(s) = \underbrace{R(s)}_{\text{即时奖励}} + \gamma \underbrace{\sum_{s' \in S} p(s' \mid s) V(s')}_{\text{未来奖励的折扣总和}}</script><p>写成矩阵的形式：</p>
+<script type="math/tex; mode=display">
+\left.\left(\begin{array}{c}V\left(s_{1}\right)\\V\left(s_{2}\right)\\\vdots\\V\left(s_{N}\right)\end{array}\right.\right)=\left(\begin{array}{c}R\left(s_{1}\right)\\R\left(s_{2}\right)\\\vdots\\R\left(s_{N}\right)\end{array}\right)+\gamma\left(\begin{array}{cccc}p\left(s_{1}\mid s_{1}\right)&p\left(s_{2}\mid s_{1}\right)&\ldots&p\left(s_{N}\mid s_{1}\right)\\p\left(s_{1}\mid s_{2}\right)&p\left(s_{2}\mid s_{2}\right)&\ldots&p\left(s_{N}\mid s_{2}\right)\\\vdots&\vdots&\ddots&\vdots\\p\left(s_{1}\mid s_{N}\right)&p\left(s_{2}\mid s_{N}\right)&\ldots&p\left(s_{N}\mid s_{N}\right)\end{array}\right)\left(\begin{array}{c}V\left(s_{1}\right)\\V\left(s_{2}\right)\\\vdots\\V\left(s_{N}\right)\end{array}\right)</script><p>即：</p>
+<script type="math/tex; mode=display">
+V = R + \gamma P V  \tag{1}</script><p>其中R为即时奖励，此时可以得到<strong>解析解</strong>！</p>
+<script type="math/tex; mode=display">
+V = (I - \gamma P)^{-1}R</script><p>但是一个问题是这个矩阵求逆的过程的复杂度是$O(N^3)$，所以一般用<strong>迭代法</strong>求近似解：</p>
 <blockquote>
 <p>初始化$V$后带入$(1)$式右侧 求$V’$</p>
 <p>将$V’$重新赋值给$V$进行迭代计算，直到二者差距足够小</p>
 </blockquote>
-<h2 id="马尔可夫决策过程（确定性策略）"><a href="#马尔可夫决策过程（确定性策略）" class="headerlink" title="马尔可夫决策过程（确定性策略）"></a>马尔可夫决策过程（确定性策略）</h2><p>MDP &#x3D; MRP + 决策（Decision）</p>
-<p><strong>策略</strong>：在某一个状态应该采取什么样的动作 $\pi(a\mid s)&#x3D;p\left(a_t&#x3D;a\mid s_t&#x3D;s\right)$</p>
+<h2 id="马尔可夫决策过程（确定性策略）"><a href="#马尔可夫决策过程（确定性策略）" class="headerlink" title="马尔可夫决策过程（确定性策略）"></a>马尔可夫决策过程（确定性策略）</h2><p>MDP = MRP + 决策（Decision）</p>
+<p><strong>策略</strong>：在某一个状态应该采取什么样的动作 $\pi(a\mid s)=p\left(a_t=a\mid s_t=s\right)$</p>
 <p>当策略给定时，我们可以通过加权平均”消掉“a，使得其还原为MRP，此时可以理解为人工干预导致<em>状态转移函数</em>发生了变化（想象一下消掉下面备份图中的中间层），同样发生变换的还有<em>奖励函数</em></p>
-<p><strong>Q函数</strong>：动作价值函数（action-value function）,是在某一个状态采取某一个动作，它有可能得到的回报的一个期望<br>$$<br>Q(s,a)&#x3D;R(s,a)+\gamma\sum_{s^{\prime}\in S}p\left(s^{\prime}\mid s,a\right)V\left(s^{\prime}\right)<br>$$<br><strong>备份图</strong>（也称为回溯图）：将未来的价值备份到黑色节点上</p>
-<p><img src="/../images/dd270761d2d9bd844680452d5a5851b.jpg" alt="备份图"></p>
-<h3 id="策略评估"><a href="#策略评估" class="headerlink" title="策略评估"></a><strong>策略评估</strong></h3><p>已知马尔可夫决策过程以及要采取的策略$\pi$，计算<strong>在一个特定的状态下</strong>，我们<strong>当前采取的策略</strong>最终会产生多少价值，即计算<br>$$<br>V_\pi^t(s)&#x3D;\sum_ap(\pi(s)&#x3D;a)\left(r(s,a)+\gamma\sum_{s’\in S}p\left(s’\mid s,a\right)V_\pi^{t-1}\left(s’\right)\right)<br>$$<br>可以看出，一个状态的价值与策略有关（而不仅仅是环境的规则）。由于我们要求的是一个确定的$V_\pi(s)$，即上式中的$t-&gt;\inf$时的值，所以可以通过迭代法求解：初始化$V_0$带入上式右侧，得到$V_1$后再带入右侧直至$V_\pi(s)$收敛（用于近似t趋于无穷时的值）。</p>
-<h3 id="策略搜索"><a href="#策略搜索" class="headerlink" title="策略搜索"></a><strong>策略搜索</strong></h3><p>如何找到最佳策略，使价值函数最大化？我们可以很简单在每次选择时使用确定性策略（贪心算法）：<br>$$<br>\left.\pi^*(a\mid s)&#x3D;\left{\begin{array}{ll}1,&amp;a&#x3D;\arg\max Q^*(s,a)\0,&amp;\text{其他}\end{array}\right.\right.<br>$$</p>
-<p>而计算$Q$函数还是依赖于所选择的策略，此时我们可以使用<strong>穷举</strong>：</p>
+<p><strong>Q函数</strong>：动作价值函数（action-value function）,是在某一个状态采取某一个动作，它有可能得到的回报的一个期望</p>
+<script type="math/tex; mode=display">
+Q(s,a)=R(s,a)+\gamma\sum_{s^{\prime}\in S}p\left(s^{\prime}\mid s,a\right)V\left(s^{\prime}\right)</script><p><strong>备份图</strong>（也称为回溯图）：将未来的价值备份到黑色节点上</p>
+<p><img src="/images/dd270761d2d9bd844680452d5a5851b.jpg" alt="备份图"></p>
+<h3 id="策略评估"><a href="#策略评估" class="headerlink" title="策略评估"></a><strong>策略评估</strong></h3><p>已知马尔可夫决策过程以及要采取的策略$\pi$，计算<strong>在一个特定的状态下</strong>，我们<strong>当前采取的策略</strong>最终会产生多少价值，即计算</p>
+<script type="math/tex; mode=display">
+V_\pi^t(s)=\sum_ap(\pi(s)=a)\left(r(s,a)+\gamma\sum_{s'\in S}p\left(s'\mid s,a\right)V_\pi^{t-1}\left(s'\right)\right)</script><p>可以看出，一个状态的价值与策略有关（而不仅仅是环境的规则）。由于我们要求的是一个确定的$V<em>\pi(s)$，即上式中的$t-&gt;\inf$时的值，所以可以通过迭代法求解：初始化$V_0$带入上式右侧，得到$V_1$后再带入右侧直至$V</em>\pi(s)$收敛（用于近似t趋于无穷时的值）。</p>
+<h3 id="策略搜索"><a href="#策略搜索" class="headerlink" title="策略搜索"></a><strong>策略搜索</strong></h3><p>如何找到最佳策略，使价值函数最大化？我们可以很简单在每次选择时使用确定性策略（贪心算法）：</p>
+<script type="math/tex; mode=display">
+\left.\pi^*(a\mid s)=\left\{\begin{array}{ll}1,&a=\arg\max Q^*(s,a)\\0,&\text{其他}\end{array}\right.\right.</script><p>而计算$Q$函数还是依赖于所选择的策略，此时我们可以使用<strong>穷举</strong>：</p>
 <blockquote>
 <p>每个状态我们可以采取 $A$ 种动作的策略，总共就是$A^S$个可能的策略。我们可以把策略穷举一遍，算出每种策略的价值函数，对比一下就可以得到最佳策略。</p>
 </blockquote>
-<p>但这种方法太低效了，重新表述我们的问题，我们想要找到一种策略 $\pi$ 使得每个状态的价值最大：<br>$$<br>\pi^*(s)&#x3D;\arg\max_\pi V_\pi(s)<br>$$</p>
-<p>而且：对于一个事先定好的马尔可夫决策过程，当智能体采取最佳策略的时候，最佳策略一般都是确定的，而且是稳定的（它不会随着时间的变化而变化）。但最佳策略不一定是唯一的，多种动作可能会取得相同的价值。</p>
-<h4 id="策略迭代"><a href="#策略迭代" class="headerlink" title="策略迭代"></a><strong>策略迭代</strong></h4><p>先思考这样一个事实：虽然在备份图的形式上，V函数似乎依赖于Q函数。但<strong>实际上正好相反</strong>，根据Q函数公式，我们其实是先计算V函数再根据其计算Q函数的。而V函数的计算仅仅依赖于具体策略（暂时不考虑我们不能改变的环境），所以我们就有了：<br>$$<br>制定策略 → 计算V函数 → 计算Q函数<br>$$<br>此时的Q函数可以看作一个（状态 X 动作）的表格：</p>
-<p><img src="/../images/image-20240111142353208.png" alt="Q函数table"></p>
-<p>对于每个状态，我们可以直接取使它得到最大值的动作（贪心操作）：<br>$$<br>\pi_{i+1}(s)&#x3D;\arg\max_aQ_{\pi_i}(s,a)<br>$$<br>这样就优化了我们的策略，从而又可以依照上述公式进行新的优化，形成了一个完美的闭环！</p>
-<h4 id="价值迭代"><a href="#价值迭代" class="headerlink" title="价值迭代"></a>价值迭代</h4><p><em><strong>贝尔曼最优方程</strong></em></p>
+<p>但这种方法太低效了，重新表述我们的问题，我们想要找到一种策略 $\pi$ 使得每个状态的价值最大：</p>
+<script type="math/tex; mode=display">
+\pi^*(s)=\arg\max_\pi V_\pi(s)</script><p>而且：对于一个事先定好的马尔可夫决策过程，当智能体采取最佳策略的时候，最佳策略一般都是确定的，而且是稳定的（它不会随着时间的变化而变化）。但最佳策略不一定是唯一的，多种动作可能会取得相同的价值。</p>
+<h4 id="策略迭代"><a href="#策略迭代" class="headerlink" title="策略迭代"></a><strong>策略迭代</strong></h4><p>先思考这样一个事实：虽然在备份图的形式上，V函数似乎依赖于Q函数。但<strong>实际上正好相反</strong>，根据Q函数公式，我们其实是先计算V函数再根据其计算Q函数的。而V函数的计算仅仅依赖于具体策略（暂时不考虑我们不能改变的环境），所以我们就有了：</p>
+<script type="math/tex; mode=display">
+制定策略 → 计算V函数 → 计算Q函数</script><p>此时的Q函数可以看作一个（状态 X 动作）的表格：</p>
+<p><img src="/images/image-20240111142353208.png" alt="Q函数table"></p>
+<p>对于每个状态，我们可以直接取使它得到最大值的动作（贪心操作）：</p>
+<script type="math/tex; mode=display">
+\pi_{i+1}(s)=\arg\max_aQ_{\pi_i}(s,a)</script><p>这样就优化了我们的策略，从而又可以依照上述公式进行新的优化，形成了一个完美的闭环！</p>
+<h4 id="价值迭代"><a href="#价值迭代" class="headerlink" title="价值迭代"></a>价值迭代</h4><p><strong><em>贝尔曼最优方程</em></strong></p>
 <p>通过上述方法不断优化策略，当其收敛后，我们就会得到一个<em>最佳策略</em>，此时：</p>
 <blockquote>
 <p>每一个状态的价值必须等于在这个状态下采取最好动作得到的回报的期望</p>
 </blockquote>
-<p>这就是 Bellman optimality equation：<br>$$<br>V^*<em>\pi(s)&#x3D;\max</em>{a\in A}Q^*<em>\pi(s,a)<br>$$<br><strong>上述的方程只有在策略收敛到最佳策略时才成立</strong>，所以V和Q都加了星号。将这个方程带入<em>Q函数的计算方程</em>消掉V，我们就可以得到 Q 函数之间的转移：<br>$$<br>Q^*(s,a)&#x3D;R(s,a)+\gamma\sum</em>{s’\in S}p\left(s’\mid s,a\right)\max_{a’}Q^<em>\left(s’,a’\right)<br>$$<br>同样的，我们也可以把</em>Q函数的计算方程<em>带入贝尔曼最优方程消掉Q得到：<br>$$<br>V^</em><em>\pi(s)&#x3D;\max_a\left(R(s,a)+\gamma\sum</em>{s^{\prime}\in S}p\left(s^{\prime}\mid s,a\right)V^*\left(s^{\prime}\right)\right)<br>$$<br><strong>最优性原理定理（principle of optimality theorem）</strong>：个策略$\pi(a|s)$ 在状态 $s$ 达到了最优价值，也就是 $V_\pi(s)&#x3D;V^*(s)$成立，当且仅当对于任何能够从$s$到达的$s’$，都已经达到了最优价值。</p>
-<p>虽然这个规则只有在$s’$达到最优时才成立，但是我们依然可以在器不成立时不断使用它，使$V$不断收敛到最优价值：<br>$$<br>V(s)\leftarrow\max_{a\in A} Q(s, a)&#x3D;\max_{a\in A}\left(R(s,a)+\gamma\sum_{s’\in S}p\left(s’\mid s,a\right)V\left(s’\right)\right)<br>$$<br>到最优价值后使用贪心算法得到最优策略：<br>$$<br>\pi(s)&#x3D;\arg\max_{a}\left[R(s,a)+\gamma\sum_{s’\in S}p\left(s’\mid s,a\right)V_{H+1}\left(s’\right)\right]<br>$$</p>
-
+<p>这就是 Bellman optimality equation：</p>
+<script type="math/tex; mode=display">
+V^*_\pi(s)=\max_{a\in A}Q^*_\pi(s,a)</script><p><strong>上述的方程只有在策略收敛到最佳策略时才成立</strong>，所以V和Q都加了星号。将这个方程带入<em>Q函数的计算方程</em>消掉V，我们就可以得到 Q 函数之间的转移：</p>
+<script type="math/tex; mode=display">
+Q^*(s,a)=R(s,a)+\gamma\sum_{s'\in S}p\left(s'\mid s,a\right)\max_{a'}Q^*\left(s',a'\right)</script><p>同样的，我们也可以把<em>Q函数的计算方程</em>带入贝尔曼最优方程消掉Q得到：</p>
+<script type="math/tex; mode=display">
+V^*_\pi(s)=\max_a\left(R(s,a)+\gamma\sum_{s^{\prime}\in S}p\left(s^{\prime}\mid s,a\right)V^*\left(s^{\prime}\right)\right)</script><p><strong>最优性原理定理（principle of optimality theorem）</strong>：个策略$\pi(a|s)$ 在状态 $s$ 达到了最优价值，也就是 $V_\pi(s)=V^*(s)$成立，当且仅当对于任何能够从$s$到达的$s’$，都已经达到了最优价值。</p>
+<p>虽然这个规则只有在$s’$达到最优时才成立，但是我们依然可以在器不成立时不断使用它，使$V$不断收敛到最优价值：</p>
+<script type="math/tex; mode=display">
+V(s)\leftarrow\max_{a\in A} Q(s, a)=\max_{a\in A}\left(R(s,a)+\gamma\sum_{s'\in S}p\left(s'\mid s,a\right)V\left(s'\right)\right)</script><p>到最优价值后使用贪心算法得到最优策略：</p>
+<script type="math/tex; mode=display">
+\pi(s)=\arg\max_{a}\left[R(s,a)+\gamma\sum_{s'\in S}p\left(s'\mid s,a\right)V_{H+1}\left(s'\right)\right]</script>
   </article>
 
   <!-- prev and next -->

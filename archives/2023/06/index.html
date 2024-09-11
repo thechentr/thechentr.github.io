@@ -59,7 +59,7 @@
 
 <script>
   (function () {
-    const prefersDark =
+    const prefersDark = false;  // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const setting = localStorage.getItem("hexo-color-scheme") || "auto";
@@ -70,7 +70,7 @@
 
   $(document).ready(function () {
     // init icon
-    const prefersDark =
+    const prefersDark = false;   // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const isDark = document.documentElement.classList.contains("dark");
@@ -473,12 +473,12 @@
                     </iconify-icon>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/Notebook/">
-                            Notebook
+                            href="/categories/Mathematics/">
+                            Mathematics
                         </a>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/Notebook/Linear-Algebra/">
+                            href="/categories/Mathematics/Linear-Algebra/">
                             Linear Algebra
                         </a>
                     
@@ -547,7 +547,7 @@
                 <iconify-icon width="16"
                     icon="mingcute:book-2-fill"></iconify-icon>
                 <p class="w-max">
-                    672 words, 2 min
+                    666 words, 2 min
                 </p>
             </span>
             <!-- Categories -->
@@ -563,12 +563,12 @@
                     </iconify-icon>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/Notebook/">
-                            Notebook
+                            href="/categories/Mathematics/">
+                            Mathematics
                         </a>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/Notebook/Linear-Algebra/">
+                            href="/categories/Mathematics/Linear-Algebra/">
                             Linear Algebra
                         </a>
                     
@@ -637,7 +637,7 @@
                 <iconify-icon width="16"
                     icon="mingcute:book-2-fill"></iconify-icon>
                 <p class="w-max">
-                    1.8k words, 7 min
+                    1.7k words, 7 min
                 </p>
             </span>
             <!-- Categories -->
@@ -653,12 +653,12 @@
                     </iconify-icon>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/Notebook/">
-                            Notebook
+                            href="/categories/Mathematics/">
+                            Mathematics
                         </a>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/Notebook/Further-Mathematics/">
+                            href="/categories/Mathematics/Further-Mathematics/">
                             Further Mathematics
                         </a>
                     

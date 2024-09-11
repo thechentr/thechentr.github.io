@@ -59,7 +59,7 @@
 
 <script>
   (function () {
-    const prefersDark =
+    const prefersDark = false;  // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const setting = localStorage.getItem("hexo-color-scheme") || "auto";
@@ -70,7 +70,7 @@
 
   $(document).ready(function () {
     // init icon
-    const prefersDark =
+    const prefersDark = false;   // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const isDark = document.documentElement.classList.contains("dark");
@@ -444,7 +444,7 @@
                   width="18"
                   icon="mingcute:classify-2-fill">
                 </iconify-icon>
-                <a class="article-category-link" href="/categories/Notebook/">Notebook</a>/<a class="article-category-link" href="/categories/Notebook/Computer-Science/">Computer Science</a>
+                <a class="article-category-link" href="/categories/Computer-Science-and-Technology/">Computer Science and Technology</a>/<a class="article-category-link" href="/categories/Computer-Science-and-Technology/Principles-of-Computer-Organization/">Principles of Computer Organization</a>
               </span>
             
           </div>
@@ -462,16 +462,16 @@
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
     <h2 id="各种字长"><a href="#各种字长" class="headerlink" title="各种字长"></a>各种字长</h2><ul>
-<li><strong>机器字长</strong>&#x3D;<strong>字长</strong>&#x3D;寄存器中的位数：<strong>CPU内部</strong>处理的数据长度 （如32位机）</li>
+<li><strong>机器字长</strong>=<strong>字长</strong>=寄存器中的位数：<strong>CPU内部</strong>处理的数据长度 （如32位机）</li>
 <li><strong>存储字长</strong>：<strong>存储器内部</strong>的数据长度</li>
 <li><strong>指令字长</strong>：一条指令的长度，最好是<strong>存储字长</strong>的整数倍</li>
 </ul>
 <h2 id="各种周期"><a href="#各种周期" class="headerlink" title="各种周期"></a>各种周期</h2><ul>
 <li><strong>时钟周期</strong>：主频倒数，计算机操作的<strong>最小工作单位</strong></li>
-<li><strong>机器周期</strong>&#x3D;<strong>CPU周期</strong>：我称之为<strong>“步骤周期”</strong>，即执行指令一个步骤的时间，如取指、间指等</li>
+<li><strong>机器周期</strong>=<strong>CPU周期</strong>：我称之为<strong>“步骤周期”</strong>，即执行指令一个步骤的时间，如取指、间指等</li>
 <li><strong>指令周期</strong>：一个指令周期包含若干机器周期</li>
 <li><strong>工作脉冲</strong>：理论上<strong>等于时钟周期</strong></li>
-<li><strong>存取周期</strong>：两次读&#x2F;写所取的最小时间隔，<strong>大于存取时间</strong></li>
+<li><strong>存取周期</strong>：两次读/写所取的最小时间隔，<strong>大于存取时间</strong></li>
 </ul>
 <h2 id="超线程技术"><a href="#超线程技术" class="headerlink" title="超线程技术"></a>超线程技术</h2><p>超线程技术（Hyper-Threading Technology，HTT）是由英特尔（Intel）公司推出的一种计算机处理器技术。它旨在提高处理器的性能和效率，允许处理器同时执行多个线程，从而增加处理器的并行处理能力。</p>
 <p>传统的处理器中，每个物理核心只能同时执行一个线程。但超线程技术通过在每个物理核心中增加逻辑核心（Logical Core），使得每个物理核心能够同时执行两个线程。这样，一个双核处理器实际上可以同时执行四个线程，一个四核处理器可以同时执行八个线程，以此类推。</p>
@@ -492,7 +492,7 @@
 <p>总的来说，双核处理器适用于大多数个人计算机和一般服务器应用，它们提供了良好的性能和节能特性。而双CPU系统主要应用于高性能计算和服务器领域，对于需要更高性能和更多并行处理能力的应用来说，双CPU系统可能更加合适。</p>
 <h2 id="SMT和SMP"><a href="#SMT和SMP" class="headerlink" title="SMT和SMP"></a>SMT和SMP</h2><ol>
 <li><strong>SMT（Simultaneous Multithreading）</strong>： SMT是一种处理器技术，也被称为超线程技术（Hyper-Threading Technology，HTT），它允许在单个物理处理器核心上同时执行多个线程。通过在一个物理核心中增加逻辑核心，使得每个物理核心能够同时执行多个线程，从而提高处理器的并行处理能力。SMT技术通过共享硬件资源，允许多个线程共享同一个物理核心的执行单元、高速缓存等资源。SMT技术在硬件层面实现，对于操作系统和应用程序来说是透明的，不需要进行修改就可以享受到性能的提升。</li>
-<li><strong>SMP（Symmetric Multiprocessing）</strong>： SMP是一种计算机体系结构，它使用多个独立的物理处理器（通常是多个CPU），这些处理器通过共享主存储器和I&#x2F;O设备来共同完成计算任务。在SMP系统中，所有处理器都有相同的权限，它们可以同时执行不同的任务，并共享同一份内存和外设资源。SMP系统充分利用了多个处理器的并行处理能力，可以显著提高系统的整体性能。SMP系统通常用于高性能计算和服务器应用，对于多任务和多线程的应用程序来说，SMP系统能够提供更高的吞吐量和处理能力。</li>
+<li><strong>SMP（Symmetric Multiprocessing）</strong>： SMP是一种计算机体系结构，它使用多个独立的物理处理器（通常是多个CPU），这些处理器通过共享主存储器和I/O设备来共同完成计算任务。在SMP系统中，所有处理器都有相同的权限，它们可以同时执行不同的任务，并共享同一份内存和外设资源。SMP系统充分利用了多个处理器的并行处理能力，可以显著提高系统的整体性能。SMP系统通常用于高性能计算和服务器应用，对于多任务和多线程的应用程序来说，SMP系统能够提供更高的吞吐量和处理能力。</li>
 </ol>
 <p>总结来说，SMT是一种处理器技术，用于在单个物理核心上同时执行多个线程，提高指令级并行性；而SMP是一种计算机体系结构，使用多个独立的物理处理器来共同完成计算任务，提高系统的整体性能。两者都是在多核处理器中提高性能和并行能力的重要手段。</p>
 

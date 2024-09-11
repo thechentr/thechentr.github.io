@@ -59,7 +59,7 @@
 
 <script>
   (function () {
-    const prefersDark =
+    const prefersDark = false;  // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const setting = localStorage.getItem("hexo-color-scheme") || "auto";
@@ -70,7 +70,7 @@
 
   $(document).ready(function () {
     // init icon
-    const prefersDark =
+    const prefersDark = false;   // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const isDark = document.documentElement.classList.contains("dark");
@@ -434,7 +434,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>270 words, 1 min</span>
+              <span>258 words, 1 min</span>
             </span>
             <!-- Categories -->
             
@@ -444,7 +444,7 @@
                   width="18"
                   icon="mingcute:classify-2-fill">
                 </iconify-icon>
-                <a class="article-category-link" href="/categories/Notebook/">Notebook</a>/<a class="article-category-link" href="/categories/Notebook/Further-Mathematics/">Further Mathematics</a>
+                <a class="article-category-link" href="/categories/Mathematics/">Mathematics</a>/<a class="article-category-link" href="/categories/Mathematics/Further-Mathematics/">Further Mathematics</a>
               </span>
             
           </div>
@@ -462,16 +462,22 @@
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
     <p>该部分涉及公式，只需要考试前临时背诵，不需掌握严格推导过程。在考场上翻开试卷先找所涉及题目，直接做完后立即忘掉！</p>
-<h2 id="旋转体体积"><a href="#旋转体体积" class="headerlink" title="旋转体体积"></a>旋转体体积</h2><p>$f(x)$ 绕直线 $Ax + By + C &#x3D; 0$ 旋转:<br>$$<br>V &#x3D; \frac{\pi}{(A^{2}+B^{2})^{\frac{3}{2}}}\int_{a}^{b} [Ax + Bf(x)+C]^{2}\left|Af^{\prime}(x)-B\right|dx<br>$$</p>
-<h2 id="平面曲线的切向量"><a href="#平面曲线的切向量" class="headerlink" title="平面曲线的切向量"></a>平面曲线的切向量</h2><p>先化为参数方程形式，其切向量T：<br>$$<br>T &#x3D; (\frac{dx}{dt}\cdot\vec{i}, \frac{dy}{dt}\cdot\vec{j})<br>$$</p>
-<h2 id="快速积分公式"><a href="#快速积分公式" class="headerlink" title="快速积分公式"></a>快速积分公式</h2><p>$$<br>\int e^{ax}\sin bxdx &#x3D; \frac1{a^2+b^2}\left|\begin{matrix}(e^{ax})^{\prime}(\sin bx)^{\prime}\e^{ax}\sin bx\end{matrix}\right|+C<br>$$</p>
-<p>$\cos bx$与$\sin bx$同理，<strong>不要忘记前面的系数！</strong></p>
-<h2 id="典型极坐标曲线"><a href="#典型极坐标曲线" class="headerlink" title="典型极坐标曲线"></a>典型极坐标曲线</h2><h3 id="星形线"><a href="#星形线" class="headerlink" title="星形线"></a>星形线</h3><p>$$<br>\begin{align*}<br>x &amp;&#x3D; R \cdot \cos^3(t) \<br>y &amp;&#x3D; R \cdot \sin^3(t)<br>\end{align*}<br>$$</p>
-<h3 id="摆线（参数方程）"><a href="#摆线（参数方程）" class="headerlink" title="摆线（参数方程）"></a>摆线（参数方程）</h3><p>$$<br>x(t) &#x3D; a \cdot (t - \sin(t)) \<br>y(t) &#x3D; a \cdot (1 - \cos(t))<br>$$</p>
-<h3 id="伯努利双扭线"><a href="#伯努利双扭线" class="headerlink" title="伯努利双扭线"></a>伯努利双扭线</h3><p>$$<br>r &#x3D; a \cdot \sqrt{\theta}<br>$$</p>
-<h3 id="心形线"><a href="#心形线" class="headerlink" title="心形线"></a>心形线</h3><p>$$<br>r &#x3D; a \cdot (1 - \sin(\theta))<br>$$</p>
-<h2 id="多项式函数拐点个数-z"><a href="#多项式函数拐点个数-z" class="headerlink" title="多项式函数拐点个数 z"></a>多项式函数拐点个数 z</h2><p>$$<br>k1 + 2k_偶+3k_奇-2<br>$$</p>
-<p><img src="/./../images/extreme_points_of_the_polynomial_function.png" alt="extreme_points_of_the_polynomial_function"></p>
+<h2 id="旋转体体积"><a href="#旋转体体积" class="headerlink" title="旋转体体积"></a>旋转体体积</h2><p>$f(x)$ 绕直线 $Ax + By + C = 0$ 旋转:</p>
+<script type="math/tex; mode=display">
+V = \frac{\pi}{(A^{2}+B^{2})^{\frac{3}{2}}}\int_{a}^{b} [Ax + Bf(x)+C]^{2}\left|Af^{\prime}(x)-B\right|dx</script><h2 id="平面曲线的切向量"><a href="#平面曲线的切向量" class="headerlink" title="平面曲线的切向量"></a>平面曲线的切向量</h2><p>先化为参数方程形式，其切向量T：</p>
+<script type="math/tex; mode=display">
+T = (\frac{dx}{dt}\cdot\vec{i}, \frac{dy}{dt}\cdot\vec{j})</script><h2 id="快速积分公式"><a href="#快速积分公式" class="headerlink" title="快速积分公式"></a>快速积分公式</h2><script type="math/tex; mode=display">
+\int e^{ax}\sin bxdx = \frac1{a^2+b^2}\left|\begin{matrix}(e^{ax})^{\prime}(\sin bx)^{\prime}\\e^{ax}\sin bx\end{matrix}\right|+C</script><p>$\cos bx$与$\sin bx$同理，<strong>不要忘记前面的系数！</strong></p>
+<h2 id="典型极坐标曲线"><a href="#典型极坐标曲线" class="headerlink" title="典型极坐标曲线"></a>典型极坐标曲线</h2><h3 id="星形线"><a href="#星形线" class="headerlink" title="星形线"></a>星形线</h3><script type="math/tex; mode=display">
+\begin{align*}
+x &= R \cdot \cos^3(t) \\
+y &= R \cdot \sin^3(t)
+\end{align*}</script><h3 id="摆线（参数方程）"><a href="#摆线（参数方程）" class="headerlink" title="摆线（参数方程）"></a>摆线（参数方程）</h3><script type="math/tex; mode=display">
+x(t) = a \cdot (t - \sin(t)) \\
+y(t) = a \cdot (1 - \cos(t))</script><h3 id="伯努利双扭线"><a href="#伯努利双扭线" class="headerlink" title="伯努利双扭线"></a>伯努利双扭线</h3><script type="math/tex; mode=display">
+r = a \cdot \sqrt{\theta}</script><h3 id="心形线"><a href="#心形线" class="headerlink" title="心形线"></a>心形线</h3><script type="math/tex; mode=display">
+r = a \cdot (1 - \sin(\theta))</script><h2 id="多项式函数拐点个数-z"><a href="#多项式函数拐点个数-z" class="headerlink" title="多项式函数拐点个数 z"></a>多项式函数拐点个数 z</h2><script type="math/tex; mode=display">
+k1 + 2k_偶+3k_奇-2</script><p><img src="/images/extreme_points_of_the_polynomial_function.png" alt="extreme_points_of_the_polynomial_function"></p>
 
   </article>
 

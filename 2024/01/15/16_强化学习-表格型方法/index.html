@@ -59,7 +59,7 @@
 
 <script>
   (function () {
-    const prefersDark =
+    const prefersDark = false;  // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const setting = localStorage.getItem("hexo-color-scheme") || "auto";
@@ -70,7 +70,7 @@
 
   $(document).ready(function () {
     // init icon
-    const prefersDark =
+    const prefersDark = false;   // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const isDark = document.documentElement.classList.contains("dark");
@@ -434,7 +434,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>1.2k words, 5 min</span>
+              <span>1.2k words, 4 min</span>
             </span>
             <!-- Categories -->
             
@@ -444,7 +444,7 @@
                   width="18"
                   icon="mingcute:classify-2-fill">
                 </iconify-icon>
-                <a class="article-category-link" href="/categories/Notebook/">Notebook</a>/<a class="article-category-link" href="/categories/Notebook/Reinforcement-Learning/">Reinforcement Learning</a>
+                <a class="article-category-link" href="/categories/Computer-Science-and-Technology/">Computer Science and Technology</a>/<a class="article-category-link" href="/categories/Computer-Science-and-Technology/Reinforcement-Learning/">Reinforcement Learning</a>
               </span>
             
           </div>
@@ -465,12 +465,18 @@
 <p>巴甫洛夫效应揭示的是，当中性刺激（铃声）与无条件刺激（食物）相邻反复出现的时候，中性刺激也可以引起无条件刺激引起的唾液分泌，然后形成条件刺激。 我们称这种中性刺激与无条件刺激在时间上面的结合为强化，强化的次数越多，条件反射就会越巩固。</p>
 <p>本节我们讨论<strong>免模型</strong>的方法</p>
 <h2 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h2><p>即预测各个$(s, a)$的价值</p>
-<h3 id="蒙特卡洛方法"><a href="#蒙特卡洛方法" class="headerlink" title="蒙特卡洛方法"></a><strong>蒙特卡洛方法</strong></h3><p>采样大量的轨迹，计算所有轨迹的真实回报，然后使用经验平均回报（empirical mean return）的方法来估计状态价值<br>$$<br>V\left(s_t\right)\leftarrow V\left(s_t\right)+\alpha\left(G_{i,t}-V\left(s_t\right)\right)<br>$$<br>上式本质上就是求平均值，只是写成了增量形式，并将$\frac{1}{N(s)}$换成了$\alpha$，不再严格地取期望。</p>
+<h3 id="蒙特卡洛方法"><a href="#蒙特卡洛方法" class="headerlink" title="蒙特卡洛方法"></a><strong>蒙特卡洛方法</strong></h3><p>采样大量的轨迹，计算所有轨迹的真实回报，然后使用经验平均回报（empirical mean return）的方法来估计状态价值</p>
+<script type="math/tex; mode=display">
+V\left(s_t\right)\leftarrow V\left(s_t\right)+\alpha\left(G_{i,t}-V\left(s_t\right)\right)</script><p>上式本质上就是求平均值，只是写成了增量形式，并将$\frac{1}{N(s)}$换成了$\alpha$，不再严格地取期望。</p>
 <p>蒙特卡洛方法适用于环境未知的情况，而且只更新这条轨迹上的所有状态，与这条轨迹没有关系的状态都不进行更新。</p>
-<h3 id="时序差分方法"><a href="#时序差分方法" class="headerlink" title="时序差分方法"></a><strong>时序差分方法</strong></h3><p>在每个时间步更新状态值函数，因此它可以在线（online）地进行学习，即时地适应环境，<br>$$<br>V\left(s_t\right)\leftarrow V\left(s_t\right)+\alpha\left(r_{t+1}+\gamma V\left(s_{t+1}\right)-V\left(s_t\right)\right)<br>$$<br>其中$\alpha$后面的整体叫做<strong>时序差分误差</strong>（TD error）</p>
+<h3 id="时序差分方法"><a href="#时序差分方法" class="headerlink" title="时序差分方法"></a><strong>时序差分方法</strong></h3><p>在每个时间步更新状态值函数，因此它可以在线（online）地进行学习，即时地适应环境，</p>
+<script type="math/tex; mode=display">
+V\left(s_t\right)\leftarrow V\left(s_t\right)+\alpha\left(r_{t+1}+\gamma V\left(s_{t+1}\right)-V\left(s_t\right)\right)</script><p>其中$\alpha$后面的整体叫做<strong>时序差分误差</strong>（TD error）</p>
 <p>与MC不同的是，由于每步进行更新时，没有得到完整的轨迹，也就没有得到$G_t$，所以只能通过直接使用$V$来更新。</p>
-<p>同时可以通过步数来调整算法需要的实际奖励和自举：<br>$$<br>\begin{matrix}n&#x3D;1\text{(TD)}&amp;G_t^{(1)}&amp;&#x3D;r_{t+1}+\gamma V\left(s_{t+1}\right)\n&#x3D;2\text{(TD)}&amp;G_t^{(2)}&amp;&#x3D;r_{t+1}+\gamma r_{t+2}+\gamma^2V\left(s_{t+2}\right)\&amp;&amp;\vdots\n&#x3D;\infty\text{(MC)}&amp;G_t^\infty&amp;&#x3D;r_{t+1}+\gamma r_{t+2}+\ldots+\gamma^{T-t-1}r_T\end{matrix}<br>$$</p>
-<h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><p>这两种方法都是为了估计”理想价值函数“的</p>
+<p>同时可以通过步数来调整算法需要的实际奖励和自举：</p>
+<script type="math/tex; mode=display">
+\begin{matrix}n=1\text{(TD)}&G_t^{(1)}&=r_{t+1}+\gamma V\left(s_{t+1}\right)\\n=2\text{(TD)}&G_t^{(2)}&=r_{t+1}+\gamma r_{t+2}+\gamma^2V\left(s_{t+2}\right)\\&&\vdots\\n=\infty\text{(MC)}&G_t^\infty&=r_{t+1}+\gamma r_{t+2}+\ldots+\gamma^{T-t-1}r_T\end{matrix}</script><h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><p>这两种方法都是为了估计”理想价值函数“的</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -479,7 +485,8 @@
 <th>时序差分方法 (TD)</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>估计类型</td>
 <td>无偏估计</td>
 <td>有偏估计</td>
@@ -504,17 +511,27 @@
 <td>直接反映实际经验，波动较大</td>
 <td>更新平滑，适应性强</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="控制"><a href="#控制" class="headerlink" title="控制"></a>控制</h2><p>现在，我们已经得到了$V$函数，这是一个一维表格，表示每一个状态的价值，但是在不了解环境（奖励函数和状态转移）的情况下，如何进行策略优化呢？</p>
 <p>我们可以将V函数“扩展为”Q函数，即一个$(S × A)$的表格，通过预测这张表格来进行策略优化。</p>
-<h3 id="Sarsa"><a href="#Sarsa" class="headerlink" title="Sarsa"></a>Sarsa</h3><p>使用与预测V函数同样的TD方法来预测Q表格：<br>$$<br>Q\left(s_t,a_t\right)\leftarrow Q\left(s_t,a_t\right)+\alpha\left[r_{t+1}+\gamma Q\left(s_{t+1},a_{t+1}\right)-Q\left(s_t,a_t\right)\right]<br>$$<br>注意此时与TD不同的是，更新预测时需要使用$A’$，即下一个状态的<strong>策略选择</strong></p>
+<h3 id="Sarsa"><a href="#Sarsa" class="headerlink" title="Sarsa"></a>Sarsa</h3><p>使用与预测V函数同样的TD方法来预测Q表格：</p>
+<script type="math/tex; mode=display">
+Q\left(s_t,a_t\right)\leftarrow Q\left(s_t,a_t\right)+\alpha\left[r_{t+1}+\gamma Q\left(s_{t+1},a_{t+1}\right)-Q\left(s_t,a_t\right)\right]</script><p>注意此时与TD不同的是，更新预测时需要使用$A’$，即下一个状态的<strong>策略选择</strong></p>
 <blockquote>
 <p>此策略选择指的可能是$\max Q$，也可能是$\epsilon-贪心$d，甚至可能是随机动作，但Sarsa都将其作为更新的依据，体现了其“谨慎性”</p>
 </blockquote>
-<p>其因需要知道$(s_t,a_t,r_{t+1},s_{t+1},a_{t+1})$而得名，同样虑 <em>n</em> 步的回报时有：<br>$$<br>\begin{aligned}<br>&amp;n&#x3D;1\text{ (Sarsa)}&amp;&amp; Q_{t}^{1} &amp;&amp;&amp;&amp; &#x3D;r_{t+1}+\gamma Q\left(s_{t+1},a_{t+1}\right)  \<br>&amp;n&#x3D;2\text{ (Sarsa)}&amp;&amp; Q_{t}^{2} &amp;&amp;&amp;&amp; &#x3D;r_{t+1}+\gamma r_{t+2}+\gamma^2Q\left(s_{t+2},a_{t+2}\right)  \<br>&amp;n&#x3D;\infty\mathrm{~(MC)}&amp;&amp; Q_{t}^{\infty} &amp;&amp;&amp;&amp; &#x3D;r_{t+1}+\gamma r_{t+2}+\ldots+\gamma^{T-t-1}r_T<br>\end{aligned}<br>$$</p>
-<h3 id="Q-学习"><a href="#Q-学习" class="headerlink" title="Q-学习"></a>Q-学习</h3><p>与Sarsa不同的时，Q学习是一种”离线学习“，即计算Q表格（目标策略）时不care最终究竟会做出什么选择（行为策略），其更新公式为：<br>$$<br>Q\left(s_t,a_t\right)\leftarrow Q\left(s_t,a_t\right)+\alpha\left[r_{t+1}+\gamma\max_aQ\left(s_{t+1},a\right)-Q\left(s_t,a_t\right)\right]<br>$$</p>
-<blockquote>
-<p>可以注意到，与Sarsa唯一的不同就是$Q\left(s_{t+1},a_{t+1}\right)$和$\max_aQ\left(s_{t+1},a\right)$，这表明不管决策过程最终采取什么选择，Q学习在更新表格时始终选择使用Q值最高的$a’$来计算，体现了其”谨慎性”。</p>
+<p>其因需要知道$(s<em>t,a_t,r</em>{t+1},s<em>{t+1},a</em>{t+1})$而得名，同样虑 <em>n</em> 步的回报时有：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&n=1\text{ (Sarsa)}&& Q_{t}^{1} &&&& =r_{t+1}+\gamma Q\left(s_{t+1},a_{t+1}\right)  \\
+&n=2\text{ (Sarsa)}&& Q_{t}^{2} &&&& =r_{t+1}+\gamma r_{t+2}+\gamma^2Q\left(s_{t+2},a_{t+2}\right)  \\
+&n=\infty\mathrm{~(MC)}&& Q_{t}^{\infty} &&&& =r_{t+1}+\gamma r_{t+2}+\ldots+\gamma^{T-t-1}r_T
+\end{aligned}</script><h3 id="Q-学习"><a href="#Q-学习" class="headerlink" title="Q-学习"></a>Q-学习</h3><p>与Sarsa不同的时，Q学习是一种”离线学习“，即计算Q表格（目标策略）时不care最终究竟会做出什么选择（行为策略），其更新公式为：</p>
+<script type="math/tex; mode=display">
+Q\left(s_t,a_t\right)\leftarrow Q\left(s_t,a_t\right)+\alpha\left[r_{t+1}+\gamma\max_aQ\left(s_{t+1},a\right)-Q\left(s_t,a_t\right)\right]</script><blockquote>
+<p>可以注意到，与Sarsa唯一的不同就是$Q\left(s<em>{t+1},a</em>{t+1}\right)$和$\max<em>aQ\left(s</em>{t+1},a\right)$，这表明不管决策过程最终采取什么选择，Q学习在更新表格时始终选择使用Q值最高的$a’$来计算，体现了其”谨慎性”。</p>
 </blockquote>
 
   </article>

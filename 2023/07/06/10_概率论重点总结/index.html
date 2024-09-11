@@ -59,7 +59,7 @@
 
 <script>
   (function () {
-    const prefersDark =
+    const prefersDark = false;  // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const setting = localStorage.getItem("hexo-color-scheme") || "auto";
@@ -70,7 +70,7 @@
 
   $(document).ready(function () {
     // init icon
-    const prefersDark =
+    const prefersDark = false;   // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const isDark = document.documentElement.classList.contains("dark");
@@ -444,7 +444,7 @@
                   width="18"
                   icon="mingcute:classify-2-fill">
                 </iconify-icon>
-                <a class="article-category-link" href="/categories/Notebook/">Notebook</a>/<a class="article-category-link" href="/categories/Notebook/Probability-Theory/">Probability Theory</a>
+                <a class="article-category-link" href="/categories/Mathematics/">Mathematics</a>/<a class="article-category-link" href="/categories/Mathematics/Probability-Theory-and-Mathematical-Statistics/">Probability Theory and Mathematical Statistics</a>
               </span>
             
           </div>
@@ -486,7 +486,7 @@
 <li>期望即均值</li>
 <li>方差即<strong>二阶矩</strong>，描述的是随机变量分布的离散程度</li>
 </ul>
-<h3 id="平方的期望永远大于的期望的方差"><a href="#平方的期望永远大于的期望的方差" class="headerlink" title="平方的期望永远大于的期望的方差"></a>平方的期望永远大于的期望的方差</h3><p><img src="/../images/%E6%A6%82%E7%8E%87%E8%AE%BA%E9%87%8D%E7%82%B9%E6%80%BB%E7%BB%93.jpg" alt="一点思考"></p>
+<h3 id="平方的期望永远大于的期望的方差"><a href="#平方的期望永远大于的期望的方差" class="headerlink" title="平方的期望永远大于的期望的方差"></a>平方的期望永远大于的期望的方差</h3><p><img src="/images/概率论重点总结.jpg" alt="一点思考"></p>
 <h2 id="协方差与相关系数"><a href="#协方差与相关系数" class="headerlink" title="协方差与相关系数"></a>协方差与相关系数</h2><p><strong>协方差</strong>即<strong>“两个随机变量的方差”</strong>，<strong>相关系数</strong>则是协方差除以两个随机变量各自的标准差，其值介于$[0,1]$之间，说明了两个虽随机变量的<strong>线性相关程度</strong>。当其等于0时，只能说明两个随机变量没有线性相关性质，并不能说明两个随机变量独立。不过当两个随机变量都服从正态分布时，二者等价。</p>
 
   </article>

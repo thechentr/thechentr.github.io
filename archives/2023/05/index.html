@@ -59,7 +59,7 @@
 
 <script>
   (function () {
-    const prefersDark =
+    const prefersDark = false;  // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const setting = localStorage.getItem("hexo-color-scheme") || "auto";
@@ -70,7 +70,7 @@
 
   $(document).ready(function () {
     // init icon
-    const prefersDark =
+    const prefersDark = false;   // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const isDark = document.documentElement.classList.contains("dark");
@@ -457,7 +457,7 @@
                 <iconify-icon width="16"
                     icon="mingcute:book-2-fill"></iconify-icon>
                 <p class="w-max">
-                    637 words, 2 min
+                    930 words, 3 min
                 </p>
             </span>
             <!-- Categories -->
@@ -473,12 +473,12 @@
                     </iconify-icon>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/Notebook/">
-                            Notebook
+                            href="/categories/Computer-Science-and-Technology/">
+                            Computer Science and Technology
                         </a>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/Notebook/toolkit/">
+                            href="/categories/Computer-Science-and-Technology/toolkit/">
                             toolkit
                         </a>
                     
@@ -547,7 +547,7 @@
                 <iconify-icon width="16"
                     icon="mingcute:book-2-fill"></iconify-icon>
                 <p class="w-max">
-                    2.3k words, 8 min
+                    2.2k words, 8 min
                 </p>
             </span>
             <!-- Categories -->
@@ -563,12 +563,12 @@
                     </iconify-icon>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/Notebook/">
-                            Notebook
+                            href="/categories/Mathematics/">
+                            Mathematics
                         </a>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/Notebook/Further-Mathematics/">
+                            href="/categories/Mathematics/Further-Mathematics/">
                             Further Mathematics
                         </a>
                     

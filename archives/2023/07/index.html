@@ -59,7 +59,7 @@
 
 <script>
   (function () {
-    const prefersDark =
+    const prefersDark = false;  // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const setting = localStorage.getItem("hexo-color-scheme") || "auto";
@@ -70,7 +70,7 @@
 
   $(document).ready(function () {
     // init icon
-    const prefersDark =
+    const prefersDark = false;   // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const isDark = document.documentElement.classList.contains("dark");
@@ -457,7 +457,7 @@
                 <iconify-icon width="16"
                     icon="mingcute:book-2-fill"></iconify-icon>
                 <p class="w-max">
-                    270 words, 1 min
+                    258 words, 1 min
                 </p>
             </span>
             <!-- Categories -->
@@ -473,12 +473,12 @@
                     </iconify-icon>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/Notebook/">
-                            Notebook
+                            href="/categories/Mathematics/">
+                            Mathematics
                         </a>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/Notebook/Further-Mathematics/">
+                            href="/categories/Mathematics/Further-Mathematics/">
                             Further Mathematics
                         </a>
                     
@@ -547,7 +547,7 @@
                 <iconify-icon width="16"
                     icon="mingcute:book-2-fill"></iconify-icon>
                 <p class="w-max">
-                    621 words, 2 min
+                    620 words, 2 min
                 </p>
             </span>
             <!-- Categories -->
@@ -563,12 +563,12 @@
                     </iconify-icon>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/Notebook/">
-                            Notebook
+                            href="/categories/Mathematics/">
+                            Mathematics
                         </a>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/Notebook/Probability-Theory-and-Mathematical-Statistics/">
+                            href="/categories/Mathematics/Probability-Theory-and-Mathematical-Statistics/">
                             Probability Theory and Mathematical Statistics
                         </a>
                     
@@ -653,13 +653,13 @@
                     </iconify-icon>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/Notebook/">
-                            Notebook
+                            href="/categories/Mathematics/">
+                            Mathematics
                         </a>
                     
                         <a class="underline underline-offset-2"
-                            href="/categories/Notebook/Probability-Theory/">
-                            Probability Theory
+                            href="/categories/Mathematics/Probability-Theory-and-Mathematical-Statistics/">
+                            Probability Theory and Mathematical Statistics
                         </a>
                     
                 

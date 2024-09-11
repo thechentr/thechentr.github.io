@@ -59,7 +59,7 @@
 
 <script>
   (function () {
-    const prefersDark =
+    const prefersDark = false;  // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const setting = localStorage.getItem("hexo-color-scheme") || "auto";
@@ -70,7 +70,7 @@
 
   $(document).ready(function () {
     // init icon
-    const prefersDark =
+    const prefersDark = false;   // 默认白色
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches;
     const isDark = document.documentElement.classList.contains("dark");
@@ -434,7 +434,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>1.8k words, 7 min</span>
+              <span>1.7k words, 7 min</span>
             </span>
             <!-- Categories -->
             
@@ -444,7 +444,7 @@
                   width="18"
                   icon="mingcute:classify-2-fill">
                 </iconify-icon>
-                <a class="article-category-link" href="/categories/Notebook/">Notebook</a>/<a class="article-category-link" href="/categories/Notebook/Further-Mathematics/">Further Mathematics</a>
+                <a class="article-category-link" href="/categories/Mathematics/">Mathematics</a>/<a class="article-category-link" href="/categories/Mathematics/Further-Mathematics/">Further Mathematics</a>
               </span>
             
           </div>
@@ -463,12 +463,15 @@
   <article class="post-content prose m-auto dark:prose-invert">
     <p>首先，热烈庆祝高数部分的基础阶段复习完成，完结撒花🎉！</p>
 <p>本篇主要内容为三重积分和第一、第二型曲线曲面积分。</p>
-<p><img src="/../images/e41aff7ab71d138ad906929a5ea37ed.jpg" alt="各种积分之间的内在联系"></p>
+<p><img src="/images/e41aff7ab71d138ad906929a5ea37ed.jpg" alt="各种积分之间的内在联系"></p>
 <hr>
-<h2 id="三重积分"><a href="#三重积分" class="headerlink" title="三重积分"></a>三重积分</h2><p><em>三重积分</em>的本质即通过<em>密度函数</em>求解空间物体的质量，基本形式即：<br>$$<br>\iiint \limits_{\Omega} \rho(x,y,z) \mathrm{d}v<br>$$<br>求解该种积分有三种基本方法（按考虑优先级）：</p>
+<h2 id="三重积分"><a href="#三重积分" class="headerlink" title="三重积分"></a>三重积分</h2><p><em>三重积分</em>的本质即通过<em>密度函数</em>求解空间物体的质量，基本形式即：</p>
+<script type="math/tex; mode=display">
+\iiint \limits_{\Omega} \rho(x,y,z) \mathrm{d}v</script><p>求解该种积分有三种基本方法（按考虑优先级）：</p>
 <ul>
-<li><p>球面坐标系：适用于积分区域是球的一部分<br>  $$<br>  \iiint \limits_{\Omega} \rho(x,y,z) \mathrm{d}v&#x3D; \int\mathrm{d}\theta \int\mathrm{d}\varphi\int \rho(x,y,z) r^2 \sin{\varphi} \mathrm{d}r<br>  $$</p>
-</li>
+<li><p>球面坐标系：适用于积分区域是球的一部分</p>
+<script type="math/tex; mode=display">
+  \iiint \limits_{\Omega} \rho(x,y,z) \mathrm{d}v= \int\mathrm{d}\theta \int\mathrm{d}\varphi\int \rho(x,y,z) r^2 \sin{\varphi} \mathrm{d}r</script></li>
 <li><p>先二后一（先积面后积线）：适用与以某一坐标轴为中心的柱体</p>
 </li>
 <li><p>先一后二（先积线后积面）：适用于由两个曲面围成的曲顶柱体</p>
@@ -476,7 +479,7 @@
 </ul>
 <p>注⚠：</p>
 <p>在进行三重积分计算时是不能脱离其几何意义，如对某个变量积分时，其余某个变量是否能够看作为常数应考虑在进行该重积分时，这个变量的值是否发生变化，脱离图形而盲目积分就漾银笑话了🤭。</p>
-<h2 id="第一型积分"><a href="#第一型积分" class="headerlink" title="第一型积分"></a>第一型积分</h2><p>与<em>三重积分</em>类似，<em>一型积分</em>的本质为已知<em>密度函数</em>  $$\rho(x, y, z)$$，求解空间曲线&#x2F;曲面的质量（此处使用“质量”并不恰当，因为线和面是没有质量的），该型积分的基本思想即：</p>
+<h2 id="第一型积分"><a href="#第一型积分" class="headerlink" title="第一型积分"></a>第一型积分</h2><p>与<em>三重积分</em>类似，<em>一型积分</em>的本质为已知<em>密度函数</em>  <script type="math/tex">\rho(x, y, z)</script>，求解空间曲线/曲面的质量（此处使用“质量”并不恰当，因为线和面是没有质量的），该型积分的基本思想即：</p>
 <ol>
 <li>使用图形的<strong>限定方程</strong>对被积函数降维（也就是我们常说的投影），并确定积分范围</li>
 <li><strong>使用<em>弧长公式转化为定积分</em></strong>  或  <strong>使用<em>曲面面积公式</em>转化二重积分</strong></li>
@@ -495,25 +498,30 @@
 <li><p>弧长公式：</p>
 </li>
 </ol>
-<p>$$<br>\mathrm{d}s &#x3D; \sqrt{(x_t’)^2+(y_t’)^2+(z_t’)^2}\mathrm{dt}<br>$$</p>
-<p>  特殊的，当一型平面曲线积分降维为关于x的函数时有<br>$$<br>\mathrm{d}s &#x3D; \sqrt{1+(y_x’)^2}\mathrm{d}x<br>$$</p>
-<ol>
+<script type="math/tex; mode=display">
+\mathrm{d}s = \sqrt{(x_t')^2+(y_t')^2+(z_t')^2}\mathrm{dt}</script><p>  特殊的，当一型平面曲线积分降维为关于x的函数时有</p>
+<script type="math/tex; mode=display">
+\mathrm{d}s = \sqrt{1+(y_x')^2}\mathrm{d}x</script><ol>
 <li>计算定积分</li>
 </ol>
 <h3 id="第一型曲面积分"><a href="#第一型曲面积分" class="headerlink" title="第一型曲面积分"></a>第一型曲面积分</h3><ol>
 <li><p>曲面降维即投影到坐标轴平面上，但在选择平面时要选择投影后<strong>没有重合点</strong>的平面</p>
 </li>
 <li><p>曲面面积公式：（以投影到$xOy$平面上为例）</p>
-<p> $$<br> \mathrm{d}\sigma &#x3D; \sqrt{1+(z_x’)^2+(z_y’)^2}\mathrm{d}x\mathrm{d}y<br> $$</p>
-</li>
+<script type="math/tex; mode=display">
+ \mathrm{d}\sigma = \sqrt{1+(z_x')^2+(z_y')^2}\mathrm{d}x\mathrm{d}y</script></li>
 <li><p>计算二重积分</p>
 </li>
 </ol>
-<h2 id="第二型积分"><a href="#第二型积分" class="headerlink" title="第二型积分"></a>第二型积分</h2><p><em>二型积分</em>的本质为：已知<em>向量场</em>：<br>$$<br>F(x, y, z) &#x3D; P(x, y, z) \overrightarrow{i} + Q(x, y, z) \overrightarrow{j} + R(x, y, z) \overrightarrow{k}<br>$$<br> 求解该场中某一曲线的做功或某一曲面的通量问题，观察等式右边，该向量场亦可以看作三个沿坐标轴正方向的<strong>分向量场的叠加</strong>。</p>
+<h2 id="第二型积分"><a href="#第二型积分" class="headerlink" title="第二型积分"></a>第二型积分</h2><p><em>二型积分</em>的本质为：已知<em>向量场</em>：</p>
+<script type="math/tex; mode=display">
+F(x, y, z) = P(x, y, z) \overrightarrow{i} + Q(x, y, z) \overrightarrow{j} + R(x, y, z) \overrightarrow{k}</script><p> 求解该场中某一曲线的做功或某一曲面的通量问题，观察等式右边，该向量场亦可以看作三个沿坐标轴正方向的<strong>分向量场的叠加</strong>。</p>
 <p>下面分别来看：</p>
-<h3 id="第二次曲线积分"><a href="#第二次曲线积分" class="headerlink" title="第二次曲线积分"></a>第二次曲线积分</h3><p>若一个向量场为力场，则每一点$(x_0, y_0, z_0)$都能确定一个力$P(x_0, y_0, z_0) \overrightarrow{i} + Q(x_0, y_0, z_0) \overrightarrow{j} + R(x_0, y_0, z_0) \overrightarrow{k} $, 若要确定一个单位质量的物体沿该力场中某一特定<strong>有向路径</strong>移动，该力场所做的功，则引出了第二型曲线积分：<br>$$<br>\int \limits_{\Gamma} F(x, y, z) \mathrm{d}s &#x3D; \int \limits_{\Gamma} P(x_0, y_0, z_0) \mathrm{d}x + Q(x_0, y_0, z_0) \mathrm{d}y + R(x_0, y_0, z_0) \mathrm{d}z<br>$$</p>
-<p>结合其物理意义，不难理解，等式右边即三个<strong>分向量场做功的和</strong>，因此完全可以分三个定积分来计算：<br>$$<br>\int \limits_{\Gamma} F(x, y, z) \mathrm{d}s &#x3D; \int \limits_{\Gamma} P(x, y, z) x_t’ \mathrm{d}t + \int \limits_{\Gamma} Q(x, y, z) y_t’ \mathrm{d}t + \int \limits_{\Gamma} R(x, y, z) z_t’ \mathrm{d}t<br>$$</p>
-<p>不过这种方法，需要求出有向路径的<strong>参数方程</strong>，且计算量较大。当满足：</p>
+<h3 id="第二次曲线积分"><a href="#第二次曲线积分" class="headerlink" title="第二次曲线积分"></a>第二次曲线积分</h3><p>若一个向量场为力场，则每一点$(x_0, y_0, z_0)$都能确定一个力$P(x_0, y_0, z_0) \overrightarrow{i} + Q(x_0, y_0, z_0) \overrightarrow{j} + R(x_0, y_0, z_0) \overrightarrow{k} $, 若要确定一个单位质量的物体沿该力场中某一特定<strong>有向路径</strong>移动，该力场所做的功，则引出了第二型曲线积分：</p>
+<script type="math/tex; mode=display">
+\int \limits_{\Gamma} F(x, y, z) \mathrm{d}s = \int \limits_{\Gamma} P(x_0, y_0, z_0) \mathrm{d}x + Q(x_0, y_0, z_0) \mathrm{d}y + R(x_0, y_0, z_0) \mathrm{d}z</script><p>结合其物理意义，不难理解，等式右边即三个<strong>分向量场做功的和</strong>，因此完全可以分三个定积分来计算：</p>
+<script type="math/tex; mode=display">
+\int \limits_{\Gamma} F(x, y, z) \mathrm{d}s = \int \limits_{\Gamma} P(x, y, z) x_t' \mathrm{d}t + \int \limits_{\Gamma} Q(x, y, z) y_t' \mathrm{d}t + \int \limits_{\Gamma} R(x, y, z) z_t' \mathrm{d}t</script><p>不过这种方法，需要求出有向路径的<strong>参数方程</strong>，且计算量较大。当满足：</p>
 <ul>
 <li>有向路径是<strong>封闭曲线</strong></li>
 <li>被积函数在封闭区域内<strong>连续</strong></li>
@@ -521,19 +529,37 @@
 <p>就可以应用公式，将其转化为关于封闭区域的面积分：</p>
 <ul>
 <li><p><strong>格林公式</strong></p>
-<p>  当积分曲线$\Gamma$是$xOy$上的<strong>平面曲线</strong>，则封闭区域$\Sigma$则为$xOy$上的平面，此时应用格林公式：<br>  $$<br>  \oint \limits_{\Gamma} P(x_0, y_0, z_0) \mathrm{d}x + Q(x_0, y_0, z_0) \mathrm{d}y &#x3D; \pm \iint \limits_{\Sigma}<br>  \left|\begin{matrix}<br> \frac{\partial}{\partial x} &amp; \frac{\partial}{\partial y} \<br> P &amp; Q \<br>\end{matrix}\right|\mathrm{d}x\mathrm{d}y<br>  $$<br>  其中的$\pm$取值为该曲线“法向量”（右手向量）的正负</p>
+<p>  当积分曲线$\Gamma$是$xOy$上的<strong>平面曲线</strong>，则封闭区域$\Sigma$则为$xOy$上的平面，此时应用格林公式：</p>
+<script type="math/tex; mode=display">
+  \oint \limits_{\Gamma} P(x_0, y_0, z_0) \mathrm{d}x + Q(x_0, y_0, z_0) \mathrm{d}y = \pm \iint \limits_{\Sigma}
+  \left|\begin{matrix}
+     \frac{\partial}{\partial x} & \frac{\partial}{\partial y} \\
+     P & Q \\
+    \end{matrix}\right|\mathrm{d}x\mathrm{d}y</script><p>  其中的$\pm$取值为该曲线“法向量”（右手向量）的正负</p>
 </li>
 <li><p><strong>斯托克斯公式</strong></p>
-<p>  当积分曲线$\Gamma$是<strong>空间曲线</strong>，则封闭区域$\Sigma$则为空间平面，此时应用斯托克斯公式：<br>  $$<br>  \oint \limits_{\Gamma} P(x_0, y_0, z_0) \mathrm{d}x + Q(x_0, y_0, z_0) \mathrm{d}y + R(x_0, y_0, z_0) \mathrm{d}z &#x3D; \iint \limits_{\Sigma}<br>  \left|\begin{matrix}<br> cos{\alpha} &amp; cos{\beta} &amp; cos{\gamma}\<br> \frac{\partial}{\partial x} &amp; \frac{\partial}{\partial y} &amp;  \frac{\partial}{\partial z}\<br> P &amp; Q &amp; R\<br>\end{matrix}\right|\mathrm{d}\sigma<br>  $$</p>
-</li>
+<p>  当积分曲线$\Gamma$是<strong>空间曲线</strong>，则封闭区域$\Sigma$则为空间平面，此时应用斯托克斯公式：</p>
+<script type="math/tex; mode=display">
+  \oint \limits_{\Gamma} P(x_0, y_0, z_0) \mathrm{d}x + Q(x_0, y_0, z_0) \mathrm{d}y + R(x_0, y_0, z_0) \mathrm{d}z = \iint \limits_{\Sigma}
+  \left|\begin{matrix}
+     cos{\alpha} & cos{\beta} & cos{\gamma}\\
+     \frac{\partial}{\partial x} & \frac{\partial}{\partial y} &  \frac{\partial}{\partial z}\\
+     P & Q & R\\
+    \end{matrix}\right|\mathrm{d}\sigma</script></li>
 </ul>
 <p>​其中第一行为该曲线“法向量”的三个方向角</p>
-<h3 id="第二型曲面积分"><a href="#第二型曲面积分" class="headerlink" title="第二型曲面积分"></a>第二型曲面积分</h3><p>若一个向量场为电&#x2F;磁场，或某一流体的速度场，若要确定该场通过某一曲面的流量，则引出了第二型曲面积分：<br>$$<br>\iint \limits_{\Sigma} F(x, y, z) \mathrm{d}\sigma &#x3D; \iint \limits_{\Sigma} P(x_0, y_0, z_0) \mathrm{d}y\mathrm{d}z + Q(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}z + R(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}y<br>$$<br>和曲线积分一样，该积分同样等于三个<strong>分向量场通量的和</strong>，即：<br>$$<br>\iint \limits_{\Sigma} F(x, y, z) \mathrm{d}\sigma &#x3D; \iint \limits_{\Sigma} P(x_0, y_0, z_0) \mathrm{d}y\mathrm{d}z +  \iint \limits_{\Sigma} Q(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}z +   \iint \limits_{\Sigma}R(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}y<br>$$<br>和第一型曲面积分一样，使用该方法要求该曲面在坐标轴上的投影不能有重合点！不过，若该曲面满足：</p>
+<h3 id="第二型曲面积分"><a href="#第二型曲面积分" class="headerlink" title="第二型曲面积分"></a>第二型曲面积分</h3><p>若一个向量场为电/磁场，或某一流体的速度场，若要确定该场通过某一曲面的流量，则引出了第二型曲面积分：</p>
+<script type="math/tex; mode=display">
+\iint \limits_{\Sigma} F(x, y, z) \mathrm{d}\sigma = \iint \limits_{\Sigma} P(x_0, y_0, z_0) \mathrm{d}y\mathrm{d}z + Q(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}z + R(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}y</script><p>和曲线积分一样，该积分同样等于三个<strong>分向量场通量的和</strong>，即：</p>
+<script type="math/tex; mode=display">
+\iint \limits_{\Sigma} F(x, y, z) \mathrm{d}\sigma = \iint \limits_{\Sigma} P(x_0, y_0, z_0) \mathrm{d}y\mathrm{d}z +  \iint \limits_{\Sigma} Q(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}z +   \iint \limits_{\Sigma}R(x_0, y_0, z_0) \mathrm{d}x\mathrm{d}y</script><p>和第一型曲面积分一样，使用该方法要求该曲面在坐标轴上的投影不能有重合点！不过，若该曲面满足：</p>
 <ul>
 <li><strong>曲面封闭</strong></li>
 <li>被积函数在封闭空间内<strong>连续</strong></li>
 </ul>
-<p>就可以应用公式，将其转化为关于封闭空间的三重积分，即<strong>高斯公式</strong>：<br>$$<br>\iint \limits_{\Sigma} F(x, y, z) \mathrm{d}\sigma &#x3D; \pm\iiint \limits_{\Omega}(\frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z})\mathrm{d}v<br>$$<br>其中的当曲面为外侧时取$+$，内侧取$-$</p>
+<p>就可以应用公式，将其转化为关于封闭空间的三重积分，即<strong>高斯公式</strong>：</p>
+<script type="math/tex; mode=display">
+\iint \limits_{\Sigma} F(x, y, z) \mathrm{d}\sigma = \pm\iiint \limits_{\Omega}(\frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z})\mathrm{d}v</script><p>其中的当曲面为外侧时取$+$，内侧取$-$</p>
 <hr>
 <h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>以上所述皆为基本方法，尤其是实际题目，想要使用</p>
 <ul>
@@ -541,12 +567,12 @@
 <li><strong>斯托克斯公式</strong></li>
 <li><strong>高斯公式</strong></li>
 </ul>
-<p>往往需要<strong>补充线&#x2F;面</strong>使之封闭或挖去其中<strong>奇点</strong>才可</p>
+<p>往往需要<strong>补充线/面</strong>使之封闭或挖去其中<strong>奇点</strong>才可</p>
 <p>此外,第一型积分的应用有时需要读者熟知以下公式:</p>
-<h3 id="计算重心-以平面薄片为例"><a href="#计算重心-以平面薄片为例" class="headerlink" title="计算重心 (以平面薄片为例)"></a>计算重心 (以平面薄片为例)</h3><p>$$<br>\overline{x} &#x3D; \frac{\iint x \rho(x, y) \mathrm{d} \sigma}{\iint \rho(x, y) \mathrm{d} \sigma}<br>$$</p>
-<h3 id="转动惯量"><a href="#转动惯量" class="headerlink" title="转动惯量"></a>转动惯量</h3><p>$$<br>I &#x3D; m r^2<br>$$</p>
-<h3 id="xOy-平面上某一薄片对于某点-x-0-y-0-z-0-沿某一轴方向的引力-以-x-轴为例"><a href="#xOy-平面上某一薄片对于某点-x-0-y-0-z-0-沿某一轴方向的引力-以-x-轴为例" class="headerlink" title="$xOy$平面上某一薄片对于某点$(x_0,y_0,z_0)$沿某一轴方向的引力 (以$x$轴为例)"></a>$xOy$平面上某一薄片对于某点$(x_0,y_0,z_0)$沿某一轴方向的引力 (以$x$轴为例)</h3><p>$$<br>F_x &#x3D; \frac{GMm}{R^2}. \frac{R_x}{R} &#x3D; \iint \limits_{D} \frac{\rho(x, y)}{[(x-x_0)^2 + (y-y_0)^2 + z_0^2]}. \frac{(x - x_0)}{\sqrt{(x-x_0)^2 + (y-y_0)^2 + z_0^2}}\mathrm{d}\sigma<br>$$</p>
-
+<h3 id="计算重心-以平面薄片为例"><a href="#计算重心-以平面薄片为例" class="headerlink" title="计算重心 (以平面薄片为例)"></a>计算重心 (以平面薄片为例)</h3><script type="math/tex; mode=display">
+\overline{x} = \frac{\iint x \rho(x, y) \mathrm{d} \sigma}{\iint \rho(x, y) \mathrm{d} \sigma}</script><h3 id="转动惯量"><a href="#转动惯量" class="headerlink" title="转动惯量"></a>转动惯量</h3><script type="math/tex; mode=display">
+I = m r^2</script><h3 id="xOy-平面上某一薄片对于某点-x-0-y-0-z-0-沿某一轴方向的引力-以-x-轴为例"><a href="#xOy-平面上某一薄片对于某点-x-0-y-0-z-0-沿某一轴方向的引力-以-x-轴为例" class="headerlink" title="$xOy$平面上某一薄片对于某点$(x_0,y_0,z_0)$沿某一轴方向的引力 (以$x$轴为例)"></a>$xOy$平面上某一薄片对于某点$(x_0,y_0,z_0)$沿某一轴方向的引力 (以$x$轴为例)</h3><script type="math/tex; mode=display">
+F_x = \frac{GMm}{R^2}. \frac{R_x}{R} = \iint \limits_{D} \frac{\rho(x, y)}{[(x-x_0)^2 + (y-y_0)^2 + z_0^2]}. \frac{(x - x_0)}{\sqrt{(x-x_0)^2 + (y-y_0)^2 + z_0^2}}\mathrm{d}\sigma</script>
   </article>
 
   <!-- prev and next -->
