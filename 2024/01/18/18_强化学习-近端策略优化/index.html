@@ -477,19 +477,19 @@
 \mathbb{E}_{x\sim p}[f(x)]=\mathbb{E}_{x\sim q}\left\lfloor f(x)\frac{p(x)}{q(x)}\right\rfloor</script><p>这样，我们就完成了分布修正！即可以从一个分布采样，并使用<strong>重要性权重</strong>将其修正成另一个分布，使得我们计算的期望没有误差。</p>
 <p>和之前的梯度策略公式相结合，我们可以得到：</p>
 <script type="math/tex; mode=display">
-\nabla\bar{R}_\theta=\mathbb{E}_{\tau\sim p_{\theta'(\tau)}}\left[\frac{p_\theta(\tau)}{p_{\theta'}(\tau)}R(\tau)\nabla\log p_\theta(\tau)\right]</script><p>这里的$\theta$，是要学习的模型，$\theta’$是实际采样的模型，$\frac{p<em>\theta(\tau)}{p</em>{\theta’}(\tau)}$是用来修正分布的重要性权重。</p>
+\nabla\bar{R}_\theta=\mathbb{E}_{\tau\sim p_{\theta'(\tau)}}\left[\frac{p_\theta(\tau)}{p_{\theta'}(\tau)}R(\tau)\nabla\log p_\theta(\tau)\right]</script><p>这里的 $\theta$ ，是要学习的模型，$\theta’$ 是实际采样的模型$\frac{p_\theta(\tau)}{p_{\theta’}(\tau)}$ 是用来修正分布的重要性权重。</p>
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>与策略梯度的实现结合，我们可以通过一下公式将同策略转化为异策略：</p>
 <script type="math/tex; mode=display">
-\mathbb{E}_{(s_t,a_t)\sim\pi_{\theta'}}\left[\frac{p_\theta\left(s_t,a_t\right)}{p_{\theta'}\left(s_t,a_t\right)}A^\theta\left(s_t,a_t\right)\nabla\log p_\theta\left(a_t^n|s_t^n\right)\right]</script><p>接下来，我们可以拆解$p<em>\theta\left(s_t,a_t\right)$和$p</em>{\theta^{\prime}}\left(s_t,a_t\right)$,即</p>
+\mathbb{E}_{(s_t,a_t)\sim\pi_{\theta'}}\left[\frac{p_\theta\left(s_t,a_t\right)}{p_{\theta'}\left(s_t,a_t\right)}A^\theta\left(s_t,a_t\right)\nabla\log p_\theta\left(a_t^n|s_t^n\right)\right]</script><p>接下来，我们可以拆解 $p_\theta\left(s_t,a_t\right)$ 和 $p_{\theta^{\prime}}\left(s_t,a_t\right)$ ,即</p>
 <script type="math/tex; mode=display">
 p_\theta\left(s_t,a_t\right)=p_\theta\left(a_t|s_t\right)p_\theta(s_t) \\
 p_{\theta'}\left(s_t,a_t\right)=p_{\theta'}\left(a_t|s_t\right)p_{\theta'}(s_t)</script><p>于是我们可得</p>
 <script type="math/tex; mode=display">
-\mathbb{E}_{(s_t,a_t)\sim\pi_{\theta^{\prime}}}\left[\frac{p_\theta\left(a_t|s_t\right)}{p_{\theta^{\prime}}\left(a_t|s_t\right)}\frac{p_\theta\left(s_t\right)}{p_{\theta^{\prime}}\left(s_t\right)}A^{\theta^{\prime}}\left(s_t,a_t\right)\nabla\log p_\theta\left(a_t^n|s_t^n\right)\right]</script><p>这里需要做的一件事情是，假设模型是$\theta$的时候，我们看到$s<em>t$的概率，与模型是$\theta^{\prime}$的时候，我们看到 $s_t$ 的概率是一样的，即 $p</em>\theta(s<em>t)=p</em>\theta(s<em>t)$。因为$p</em>\theta(s<em>t)$和$p</em>{\theta^{\prime}}(s_t)$是一样的，所以我们可得</p>
+\mathbb{E}_{(s_t,a_t)\sim\pi_{\theta^{\prime}}}\left[\frac{p_\theta\left(a_t|s_t\right)}{p_{\theta^{\prime}}\left(a_t|s_t\right)}\frac{p_\theta\left(s_t\right)}{p_{\theta^{\prime}}\left(s_t\right)}A^{\theta^{\prime}}\left(s_t,a_t\right)\nabla\log p_\theta\left(a_t^n|s_t^n\right)\right]</script><p>这里需要做的一件事情是，假设模型是 $\theta$ 的时候，我们看到 $s_t$ 的概率，与模型是 $\theta^{\prime}$ 的时候，我们看到 $s_t$ 的概率是一样的，即 $p_\theta(s_t)=p_\theta(s_t)$ 。因为 $p_\theta(s_t)$ 和 $p_{\theta^{\prime}}(s_t)$ 是一样的，所以我们可得</p>
 <script type="math/tex; mode=display">
 \mathbb{E}_{(s_t,a_t)\sim\pi_{\theta^{\prime}}}\left[\frac{p_\theta\left(a_t|s_t\right)}{p_{\theta^{\prime}}\left(a_t|s_t\right)}A^{\theta^{\prime}}\left(s_t,a_t\right)\nabla\log p_\theta\left(a_t^n|s_t^n\right)\right]</script><blockquote>
 <p>Q：为什么假设成一样的？</p>
-<p>因为我们会看到状态往往与采取的动作是没有太大的关系的，更直接的理由就是$p<em>\theta(s_t)$ 很难$p</em>\theta(s<em>t)$有一个参数 $\theta$,<br>我们根本没有办法估计$p</em>\theta(s_t)$，所以干脆就无视这个问题。</p>
+<p>因为我们会看到状态往往与采取的动作是没有太大的关系的，更直接的理由就是 $p_\theta(s_t)$ 很难 $p_\theta(s_t)$ 有一个参数 $\theta$ ,<br>我们根本没有办法估计 $p_\theta(s_t)$，所以干脆就无视这个问题。</p>
 </blockquote>
 <p>所以实际上，当我们使用重要性采样的时候，要去优化的目标函数为</p>
 <script type="math/tex; mode=display">

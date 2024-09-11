@@ -522,7 +522,7 @@ Q\left(s_t,a_t\right)\leftarrow Q\left(s_t,a_t\right)+\alpha\left[r_{t+1}+\gamma
 <blockquote>
 <p>此策略选择指的可能是$\max Q$，也可能是$\epsilon-贪心$d，甚至可能是随机动作，但Sarsa都将其作为更新的依据，体现了其“谨慎性”</p>
 </blockquote>
-<p>其因需要知道$(s<em>t,a_t,r</em>{t+1},s<em>{t+1},a</em>{t+1})$而得名，同样虑 <em>n</em> 步的回报时有：</p>
+<p>其因需要知道$(s_t,a_t,r_{t+1},s_{t+1},a_{t+1})$而得名，同样虑 <em>n</em> 步的回报时有：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 &n=1\text{ (Sarsa)}&& Q_{t}^{1} &&&& =r_{t+1}+\gamma Q\left(s_{t+1},a_{t+1}\right)  \\
@@ -531,7 +531,7 @@ Q\left(s_t,a_t\right)\leftarrow Q\left(s_t,a_t\right)+\alpha\left[r_{t+1}+\gamma
 \end{aligned}</script><h3 id="Q-学习"><a href="#Q-学习" class="headerlink" title="Q-学习"></a>Q-学习</h3><p>与Sarsa不同的时，Q学习是一种”离线学习“，即计算Q表格（目标策略）时不care最终究竟会做出什么选择（行为策略），其更新公式为：</p>
 <script type="math/tex; mode=display">
 Q\left(s_t,a_t\right)\leftarrow Q\left(s_t,a_t\right)+\alpha\left[r_{t+1}+\gamma\max_aQ\left(s_{t+1},a\right)-Q\left(s_t,a_t\right)\right]</script><blockquote>
-<p>可以注意到，与Sarsa唯一的不同就是$Q\left(s<em>{t+1},a</em>{t+1}\right)$和$\max<em>aQ\left(s</em>{t+1},a\right)$，这表明不管决策过程最终采取什么选择，Q学习在更新表格时始终选择使用Q值最高的$a’$来计算，体现了其”谨慎性”。</p>
+<p>可以注意到，与Sarsa唯一的不同就是$Q\left(s_{t+1},a_{t+1}\right)$和$\max_aQ\left(s_{t+1},a\right)$，这表明不管决策过程最终采取什么选择，Q学习在更新表格时始终选择使用Q值最高的$a’$来计算，体现了其”谨慎性”。</p>
 </blockquote>
 
   </article>

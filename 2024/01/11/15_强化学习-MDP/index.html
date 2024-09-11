@@ -462,7 +462,7 @@
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
     <h2 id="马尔可夫过程"><a href="#马尔可夫过程" class="headerlink" title="马尔可夫过程"></a>马尔可夫过程</h2><p><strong>马尔可夫性质</strong>（Markov property）：一个<strong>随机过程</strong>在给定现在状态及所有过去状态情况下，其未来状态的条件概率分布仅依赖于当前状态。</p>
-<p><strong>马尔可夫过程</strong>：一组具有<em>马尔可夫性质</em>的随机变量序列 $s<em>1,…,s_t$，其中下一个时刻的状态$s</em>{t+1}$只取决于当前状态$s_t$，离散时间的马尔可夫过程也称为<em>马尔可夫链</em>（Markov chain），是最简单的马尔可夫过程。</p>
+<p><strong>马尔可夫过程</strong>：一组具有<em>马尔可夫性质</em>的随机变量序列 $s_1,…,s_t$，其中下一个时刻的状态$s_{t+1}$只取决于当前状态$s_t$，离散时间的马尔可夫过程也称为<em>马尔可夫链</em>（Markov chain），是最简单的马尔可夫过程。</p>
 <p><strong>状态转移矩阵</strong>（state transition matrix）：用 来描述状态转移 $p\left(s_{t+1}=s^{\prime}\mid s_t=s\right)$</p>
 <h2 id="马尔可夫奖励过程"><a href="#马尔可夫奖励过程" class="headerlink" title="马尔可夫奖励过程"></a><strong>马尔可夫奖励过程</strong></h2><p><strong>MRP</strong> (Markov reward process)= <em>马尔可夫过程</em> + <strong><em>奖励函数</em></strong>（reward function）= 状态转移 + 奖励函数</p>
 <p><strong>范围</strong>（horizon）：一个回合的长度（每个回合最大的时间步数）</p>
@@ -502,7 +502,7 @@ Q(s,a)=R(s,a)+\gamma\sum_{s^{\prime}\in S}p\left(s^{\prime}\mid s,a\right)V\left
 <p><img src="/images/dd270761d2d9bd844680452d5a5851b.jpg" alt="备份图"></p>
 <h3 id="策略评估"><a href="#策略评估" class="headerlink" title="策略评估"></a><strong>策略评估</strong></h3><p>已知马尔可夫决策过程以及要采取的策略$\pi$，计算<strong>在一个特定的状态下</strong>，我们<strong>当前采取的策略</strong>最终会产生多少价值，即计算</p>
 <script type="math/tex; mode=display">
-V_\pi^t(s)=\sum_ap(\pi(s)=a)\left(r(s,a)+\gamma\sum_{s'\in S}p\left(s'\mid s,a\right)V_\pi^{t-1}\left(s'\right)\right)</script><p>可以看出，一个状态的价值与策略有关（而不仅仅是环境的规则）。由于我们要求的是一个确定的$V<em>\pi(s)$，即上式中的$t-&gt;\inf$时的值，所以可以通过迭代法求解：初始化$V_0$带入上式右侧，得到$V_1$后再带入右侧直至$V</em>\pi(s)$收敛（用于近似t趋于无穷时的值）。</p>
+V_\pi^t(s)=\sum_ap(\pi(s)=a)\left(r(s,a)+\gamma\sum_{s'\in S}p\left(s'\mid s,a\right)V_\pi^{t-1}\left(s'\right)\right)</script><p>可以看出，一个状态的价值与策略有关（而不仅仅是环境的规则）。由于我们要求的是一个确定的$V_\pi(s)$，即上式中的$t-&gt;\inf$时的值，所以可以通过迭代法求解：初始化$V_0$带入上式右侧，得到$V_1$后再带入右侧直至$V_\pi(s)$收敛（用于近似t趋于无穷时的值）。</p>
 <h3 id="策略搜索"><a href="#策略搜索" class="headerlink" title="策略搜索"></a><strong>策略搜索</strong></h3><p>如何找到最佳策略，使价值函数最大化？我们可以很简单在每次选择时使用确定性策略（贪心算法）：</p>
 <script type="math/tex; mode=display">
 \left.\pi^*(a\mid s)=\left\{\begin{array}{ll}1,&a=\arg\max Q^*(s,a)\\0,&\text{其他}\end{array}\right.\right.</script><p>而计算$Q$函数还是依赖于所选择的策略，此时我们可以使用<strong>穷举</strong>：</p>

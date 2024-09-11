@@ -473,7 +473,7 @@ p_{\theta}(\tau)& =p\left(s_1\right)p_\theta\left(a_1|s_1\right)p\left(s_2|s_1,a
 \bar{R}_\theta=\sum_\tau R(\tau)p_\theta(\tau)</script><p>因为我们要让奖励越大越好，所以可以<strong>使用梯度上升的方法来最大化奖励期望</strong>，这便是梯度策略算法的<strong>本质</strong>：</p>
 <script type="math/tex; mode=display">
 \nabla\bar{R}_\theta=\sum_\tau R(\tau)\nabla p_\theta(\tau)\tag{1}</script><p>其中，只有$p_\theta(\tau)$与$\theta$有关。</p>
-<p>又由于真实期望其实无法计算（需要无穷多采样），所以我们使用样本均值近似期望。这就要求我们把整个式子转化成整体求期望的形式，又由于$\sum<em>\tau p</em>\theta(\tau)*$ 等于求期望，所以我们进行如下推导：</p>
+<p>又由于真实期望其实无法计算（需要无穷多采样），所以我们使用样本均值近似期望。这就要求我们把整个式子转化成整体求期望的形式，又由于$\sum_\tau p_\theta(\tau)*$ 等于求期望，所以我们进行如下推导：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 \sum_\tau R(\tau)\nabla p_\theta(\tau)
