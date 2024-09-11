@@ -173,3 +173,18 @@ $(document).ready(function () {
     changeFootenoteBackref();
   }
 });
+
+// 保持主页头像块始终可见
+var stickyElement = document.getElementById('stickyElement');
+  var initialOffsetTop = stickyElement.offsetTop; // 获取元素初始垂直位置
+  var initialOffsetLeft = stickyElement.offsetLeft; // 获取元素初始水平位置
+
+  window.onscroll = function() {
+    if (window.pageYOffset > initialOffsetTop) { // 当滚动超过元素的初始位置时
+      stickyElement.style.position = 'fixed';
+      stickyElement.style.top = '0'; // 固定在视口顶部
+      stickyElement.style.left = initialOffsetLeft + 'px'; // 保持原始水平位置
+    } else {
+      stickyElement.style.position = 'static'; // 恢复默认位置
+    }
+  };

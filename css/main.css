@@ -459,6 +459,15 @@ figure.highlight .copy-icon:hover {
   font-size: 1.6rem;
   color: var(--color-text-a);
 }
+.sticky-element {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0; /* 元素在视口顶部粘性定位 */
+  background-color: #add8e6;
+  padding: 10px;
+  border: 1px solid #ddd;
+  width: 200px;
+}
 @-moz-keyframes enter {
   0% {
     opacity: 0;
