@@ -465,6 +465,9 @@ figure.highlight .copy-icon:hover {
   flex-direction: row; /* Ensure horizontal layout */
   flex-wrap: wrap;
   border-bottom: 1px #efefef solid;
+  max-width: 800px; /* Set the maximum width */
+  margin: 0 auto; /* Center the box horizontally */
+  padding-bottom: 20px;
 }
 @media (min-width: 48em) {
   .paper-box .paper-box-image {

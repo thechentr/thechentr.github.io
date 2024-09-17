@@ -20,7 +20,7 @@
   <meta name="keywords" content="IT music movie life">
 
 
-<title>Hex Game Algorithm Based on Queenbee Evaluation | Terrence</title>
+<title>Hex Game Algorithm Based on Queenbee&#39;s Evaluation | Terrence</title>
 
 
 
@@ -413,7 +413,7 @@
     <div class="flex flex-col gap-2 pt-4 md:pt-6">
       <!-- Title -->
       <div id="article-title" class="leading-snug">
-        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">Hex Game Algorithm Based on Queenbee Evaluation</p>
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">Hex Game Algorithm Based on Queenbee's Evaluation</p>
       </div>
       <!-- Meta data -->
       <div>
@@ -437,7 +437,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>1 words, 1 min</span>
+              <span>1.4k words, 8 min</span>
             </span>
             <!-- Categories -->
             
@@ -464,8 +464,46 @@
   </header>
   <!-- content -->
   <article class="post-content prose m-auto dark:prose-invert">
-    <p><img src="/images/Hex_six.png" alt="Hex game board"></p>
-<h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><h2 id="Mathodology"><a href="#Mathodology" class="headerlink" title="Mathodology"></a>Mathodology</h2><h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2>
+    <p><img src="/images/Hex_six.png" alt="Figure 1: Hex game board"></p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Hex is a classic strategy board game, first invented by Danish mathematician Piet Hein in 1942 and independently rediscovered by John Nash at Princeton University in 1948. The game is played on a diamond-shaped hexagonal grid, typically 11x11 or larger. Hex’s rules are simple and straightforward, yet its strategy is profoundly complex, making it an ideal platform for research in artificial intelligence and game theory.In this paper, for ease of discussion and demonstration, we utilize a 5x5 board and employ the board coordinates as shown in Figure 2.</p>
+<p><img src="/images/hex1.png" alt="Figure 2: Cell coordinates"></p>
+<p>The game involves two players, each using black and white pieces. Players take turns placing their pieces on empty cells, aiming to connect their respective colored edges with an unbroken chain of pieces. A notable feature of Hex is that the game cannot end in a draw, ensuring that one player will inevitably win each match. </p>
+<p>The complexity of Hex lies not only in its deep strategy under simple rules but also in its close ties to graph theory. In fact, Hex is a special case of the Shannon switching game, which has been proven to be PSPACE-complete. This indicates that decision-making in Hex is computationally challenging, especially as the board size increases.</p>
+<p>In this paper, we propose a novel algorithm designed to enhance decision-making capabilities in Hex for computer players. By integrating advanced search techniques and evaluation strategies, our algorithm demonstrates exceptional performance across various board sizes, showcasing its potential application in Hex gameplay.</p>
+<h2 id="Queenbee’s-Evaluation-Function"><a href="#Queenbee’s-Evaluation-Function" class="headerlink" title="Queenbee’s Evaluation Function"></a>Queenbee’s Evaluation Function</h2><p>A game program requires a good evaluation function to guide its search. However, for the game of Hex, constructing a meaningful evaluation function is not immediately obvious. For example, unlike many other board games, the concepts of material balance and mobility are completely useless in Hex. This chapter contains some new ideas about the evaluation function for Hex, which have been implemented in the Hex program Queenbee. The function calculates the distance from all unoccupied cells on the board to each edge based on an unconventional distance metric called “two-distance.” The resulting distances are referred to as “potential.”</p>
+<h3 id="Two-Distance"><a href="#Two-Distance" class="headerlink" title="Two-Distance"></a>Two-Distance</h3><p>Given a graph $ \Gamma $ with an adjacency function $ n(p) $ that maps a vertex $ p $ to the set of vertices adjacent to it, there is a distance metric $ d_z $ to generalize the traditional distance metric:</p>
+<script type="math/tex; mode=display">
+
+d_z(p, q) = \begin{cases}
+0 & \text{if } q = p, \\
+1 & \text{if } q \in n(p), \\
+\min_k c_k(p) \geq z & \text{otherwise},
+\end{cases}</script><p>where</p>
+<script type="math/tex; mode=display">
+c_k(p) = \{ r \in n(p) | d_z(r, q) < k \}.</script><p>The traditional distance metric corresponds to $ z = 1 $, in which case the distance from a cell to an edge represents the number of “free moves” a player needs to connect the cell to a given edge. Unfortunately, this distance function is not very useful for constructing an evaluation function for Hex. Instead, the concept of two-distance is used.</p>
+<p>The image below shows the distance from each cell on a 5x5 board to the lower black edge, according to these two metrics. The intuition behind two-distance is that in the game, one can always choose to force the opponent to choose a suboptimal option by blocking the best choice. Consider e4, the cell with boxed numbers in the image. The traditional distance indicates that it takes only four steps directly to the lower black edge. However, only one path from e4 achieves this distance. In contrast, the two-distance equals because the best two adjacent connections have distances of 5 and 6. Two-distance thus captures the essence of “<strong>suboptimal choices</strong>.”</p>
+<p><img src="/images/hex2.png" alt="Figure 3: Cornparison between conventional distance and two-distance to the lower black edge"></p>
+<p>Note that the two-distance for the rightmost cell e5 on the board is 7, even though its directly adjacent neighbor also has a two-distance of 7. This number is still correct because calculating two-distance requires considering the entire neighborhood. Adjacency implies neighborhood, but not vice versa. Two cells are adjacent if they share a common edge. The concept of neighborhood considers the black and white stones already present on the board. Two unoccupied cells are neighbors from the perspective of white stones if they are adjacent or connected by a string of white stones.</p>
+<p>Note that a cell’s neighborhood can differ from the perspective of white stones. These two neighborhoods will be referred to as W-neighborhood and B-neighborhood, respectively. Accordingly, W-distance and B-distance will be distinguished. This explains why the two-distance from cell e5 to the lower black edge is 7; due to edge stones, its B-neighborhood includes cells a5 and b5, with distances of 5 and 6, respectively.</p>
+<p>In Figure 5.2, two black stones have been added. Figure 5.2-I shows the B-distance from unoccupied cells to the lower black edge, and Figure 5.2-II shows the W-distance to the upper white edge. Adding these two black stones causes, for example, cells c2 and b5 to become B-neighbors but not W-neighbors.</p>
+<p><img src="/images/hex3.png" alt="Figure 4: Two-distances on a non-empty board"></p>
+<h3 id="Potentials"><a href="#Potentials" class="headerlink" title="Potentials"></a>Potentials</h3><p>The goal in Hex is to connect two sides of the board. To help achieve this, one might look for an unoccupied cell that is as close as possible to being connected to both sides, as this would be a promising candidate for being part of a winning chain. The evaluation function calculates <strong>potentials</strong> that capture this concept. Each unoccupied cell is assigned two potentials, based on the two-distance metric. A cell’s W-potential is defined as the sum of its W-distance to both white edges; its B-potential is the sum of its B-distance to both black edges. Figure 5 shows the potentials for a position with two white and two black stones on the board.</p>
+<p>Cells with low W-potentials are the ones that are closest to being connected to both white borders by White. If White can connect a cell to both white borders, this would establish a winning chain. White will therefore focus on those cells that have the lowest W-potentials. The white <strong>board potential</strong> is defined as the lowest W-potential that occurs on the board. In the example of Figure 5, the white board potential is 5, and the black board potential is 4. As lower potentials are better, it appears that Black is ahead.</p>
+<p>In the same figure, it can be seen that both Black and White have only one cell that actually realizes their board potential. For both players, it is the cell c2. It would be better to have more than one cell that realizes the board potential, so as to have more attack options and be less easy to block. The <strong>attack mobility</strong> is defined for each player as the number of cells that realize that player’s board potential.</p>
+<p><img src="/images/hex4.png" alt="Figure 5: Cell Potentials"></p>
+<p>Queenbee’s evaluation function uses only the two concepts of board potential and attack mobility. The evaluation function returns the following number:</p>
+<script type="math/tex; mode=display">
+ e = M(p_B - p_W) - (a_B - a_W)</script><p>where:</p>
+<ul>
+<li>$ p_W $ = white board potential;</li>
+<li>$ p_B $ = black board potential;</li>
+<li>$ a_W $ = white attack mobility;</li>
+<li>$ a_B $ = black attack mobility;</li>
+<li>$ M $ = a large number.</li>
+</ul>
+<p>If $ M $ is set to be sufficiently large, the evaluation function will prefer one position over another if its board potential difference is better, and only use the attack mobility difference as a tie-breaker for positions with equal board potential difference. The potential of a cell, if it is finite, cannot be larger than $ 2n^2 $ on an $ n \times n $ board. Therefore, using a value for $ M $ of the order of magnitude of $ n^2 $ will achieve this. In our work, we use $ M = 100 $.</p>
+<h2 id="Game-tree"><a href="#Game-tree" class="headerlink" title="Game tree"></a>Game tree</h2><p>Although Queenbee’s Evaluation functions can provide immediate value judgments for specific situations, they are limited to static analysis of the current state. To make more comprehensive and strategic decisions in the game of Hex, the use of game trees is essential. Game trees allow us to simulate sequences of possible future moves, thereby predicting the opponent’s responses and potential game progress. Combined with evaluation functions, game trees can help identify the best moves; by searching through the tree, we can compare the outcomes of different moves and choose strategies that maximize our chances of winning.</p>
+<h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2>
   </article>
 
   <!-- prev and next -->
