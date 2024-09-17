@@ -459,14 +459,36 @@ figure.highlight .copy-icon:hover {
   font-size: 1.6rem;
   color: var(--color-text-a);
 }
-.sticky-element {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0; /* 元素在视口顶部粘性定位 */
-  background-color: #add8e6;
-  padding: 10px;
-  border: 1px solid #ddd;
-  width: 200px;
+.paper-box {
+  display: flex;
+  align-items: center; /* Vertically center the elements */
+  flex-direction: row; /* Ensure horizontal layout */
+  flex-wrap: wrap;
+  border-bottom: 1px #efefef solid;
+}
+@media (min-width: 48em) {
+  .paper-box .paper-box-image {
+    min-width: 100px;
+    max-width: 40%;
+    order: 1;
+  }
+}
+.paper-box .paper-box-image img {
+  box-shadow: 3px 3px 6px #888;
+  object-fit: cover;
+}
+@media (min-width: 48em) {
+  .paper-box .paper-box-text {
+    justify-content: left;
+    padding-left: 2em;
+    max-width: 60%;
+    order: 2;
+  }
+}
+.paper-box .paper-box-text {
+  max-width: 100%;
+  order: 2;
+  flex: 1;
 }
 @-moz-keyframes enter {
   0% {

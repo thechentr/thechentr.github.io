@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- The tag on navigation bar -->
+<meta charset="UTF-8">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="Terrence Chen">
+
+
+  <meta name="subtitle" content="陈泰然">
+
+
+
+  <meta name="keywords" content="IT music movie life">
+
+
+<title>Automated C++ Code Generator for Syntax Analysis | Terrence</title>
+
+
+
+<link rel="icon" href="/favicon.ico">
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/css/search.css">
+
+
+
+<script src="/lib/jquery.min.js"></script>
+
+
+<script src="/lib/iconify-icon.min.js"></script>
+
+
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+  };
+</script>
+
+<script>
+  (function () {
+    const prefersDark = false;  // 默认白色
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+    let isDark = document.documentElement.classList.contains("dark");
+  })();
+
+  $(document).ready(function () {
+    // init icon
+    const prefersDark = false;   // 默认白色
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = document.documentElement.classList.contains("dark");
+    $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+
+    function toggleGiscusTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const giscusFrame = document.querySelector("iframe.giscus-frame");
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: isDark ? "dark" : "light",
+              },
+            },
+          },
+          "https://giscus.app"
+        );
+      }
+    }
+
+
+    // toggle dark mode
+    function toggleDark() {
+      let isDark = document.documentElement.classList.contains("dark");
+      const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
+      document.documentElement.classList.toggle("dark", isDark);
+      $("#theme-icon").attr("icon", isDark ? "ic:round-dark-mode" : "ic:round-light-mode");
+      if (prefersDark === isDark) {
+        localStorage.setItem("hexo-color-scheme", "auto");
+      } else {
+        localStorage.setItem("hexo-color-scheme", isDark ? "dark" : "light");
+      }
+      toggleGiscusTheme();
+    }
+    $("#toggle-dark").click(toggleDark);
+
+    // listen dark mode change
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+        if (setting === "auto") {
+          document.documentElement.classList.toggle("dark", e.matches);
+          $("#theme-icon").attr(
+            "icon",
+            e.matches ? "ic:round-dark-mode" : "ic:round-light-mode"
+          );
+          toggleGiscusTheme();
+        }
+      });
+  });
+</script>
+
+
+
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+<body 
+  class="
+    bg-[var(--c-0)]
+    text-[var(--c-80)]
+  ">
+  <!-- The navigation bar -->
+<header class="
+    fixed   /* 修改这里，使导航条固定 */  
+    top-0  /* 确保固定在页面顶部 */
+    bg-white  /* 设置为不透明的白色背景 */  
+    flex flex-row items-center
+    w-full
+    pr-4
+    z-10
+    border-b-[1px]
+    border-b-[var(--c-border)]
+    dark:bg-[var(--c-0)]
+    dark:border-b-[var(--c-0)]
+    gap-2
+    h-[var(--h-header)]
+    text-[var(--c-80)]
+">
+    <!-- Left part -->
+    <div class="overflow-hidden h-full flex flex-row items-center">
+        <!-- Site Title on the top left -->
+        <a href="/" class="
+            whitespace-nowrap
+            text-2xl
+            text-[var(--c-theme)]
+            hover:text-[var(--c-theme)]
+            pl-4
+            font-black
+            bg-gradient-to-r from-cyan-500
+            to-blue-500 bg-clip-text text-transparent
+          ">
+            Terrence
+        </a>
+    </div>
+    <!-- Div for pushing items to both sides -->
+    <div class="flex-1"></div>
+    <!-- Right part -->
+    <div class="flex flex-row items-center z-20 h-full">
+        <!-- Page links -->
+        <div class="hidden sm:flex flex-row h-full">
+            
+                
+                
+                    
+                    
+                
+                <a
+                    href="/about"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:mortarboard-line" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>About Me</p>
+                    
+                </a>
+            
+                
+                
+                    
+                    
+                
+                <a
+                    href="/archives"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:pencil-fill" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>Posts</p>
+                    
+                </a>
+            
+                
+                
+                    
+                    
+                
+                <a
+                    href="/category"
+                    class="
+                        flex flex-row items-center
+                        gap-1
+                        hover:underline
+                        hover:bg-[var(--c-20)]
+                        hover:text-[var(--c-theme)]
+                        transition-all
+                        px-2
+                        py-1
+                        my-1
+                        rounded-lg
+                        group
+                    ">
+                    
+                        <iconify-icon class="group-hover:scale-125 transition-transform" icon="mingcute:classify-3-fill" width="22">
+                        </iconify-icon>
+                    
+                    
+                        <p>Categories</p>
+                    
+                </a>
+            
+        </div>
+        <!-- Icons on the right -->
+        <div class="flex flex-row items-center">
+
+            
+
+
+            <!-- Dark/light toggle icon -->
+            <a class="flex group p-1" title="toggle theme" id="toggle-dark">
+                <iconify-icon class="transition-transform
+                    group-hover:rotate-[45deg]
+                    group-hover:scale-125
+                    group-hover:text-[var(--c-theme)]
+                    " width="24" icon="" id="theme-icon">
+                </iconify-icon>
+            </a>
+            <!-- Icon for dropout menu on small screens -->
+            <div class="flex items-center justify-center gap-1 mx-1 sm:hidden">
+                <a class="w-5 h-5" aria-hidden="true" role="img" id="open-menu">
+                    <iconify-icon width="22" icon="mingcute:menu-fill"
+                        class="transition-transform hover:scale-125 hover:rotate-[5deg]">
+                    </iconify-icon>
+                </a>
+                <a class="w-5 h-5 hidden" aria-hidden="true" role="img" id="close-menu">
+                    <iconify-icon width="22" icon="mingcute:close-circle-fill"
+                        class="transition-transform hover:scale-125 hover:rotate-[80deg]">
+                    </iconify-icon>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Dropdown menu on small screens -->
+<div id="menu-panel"
+    class="
+        h-0
+        overflow-hidden
+        sm:hidden
+        w-full
+        z-10
+        rounded
+    ">
+  <div id="menu-content"
+        class="
+        font-bold
+        text-xl
+        border-b-[1px]
+        relative
+        z-20
+        border-[var(--c-sep)]
+        px-2
+        py-2
+        -translate-y-full
+        transition-transform
+        duration-200
+        ">
+      
+        
+        
+          <a
+            href="/about"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:mortarboard-line" width="22">
+            </iconify-icon>
+            <p>
+              About Me
+            </p>
+          </a>
+        
+      
+        
+        
+          <a
+            href="/archives"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:pencil-fill" width="22">
+            </iconify-icon>
+            <p>
+              Posts
+            </p>
+          </a>
+        
+      
+        
+        
+          <a
+            href="/category"
+            class="
+                flex flex-row items-center
+                gap-2
+                h-12
+                hover:underline
+                hover:bg-[var(--c-20)]
+                px-3
+                py-1
+                rounded-lg
+            ">
+            <iconify-icon icon="mingcute:classify-3-fill" width="22">
+            </iconify-icon>
+            <p>
+              Categories
+            </p>
+          </a>
+        
+      
+  </div>
+</div>
+  <main>
+    <!-- css -->
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
+  
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+    <!-- toc -->
+    
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- Post header before content -->
+  <header class="py-4">
+    <div class="flex flex-col gap-2 pt-4 md:pt-6">
+      <!-- Title -->
+      <div id="article-title" class="leading-snug">
+        <p class="text-3xl font-bold text-[var(--c-100)] mb-4">Automated C++ Code Generator for Syntax Analysis</p>
+      </div>
+      <!-- Meta data -->
+      <div>
+        <section class="
+          flex flex-col gap-x-2 gap-y-1 text-sm text-[var(--c-100)]">
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <!-- Dates -->
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:add-circle-fill" ></iconify-icon>
+              Created: <time class="w-max">2024-09-12</time>
+            </div>
+            <div class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:refresh-3-fill" ></iconify-icon>
+              Edited: <time class="w-max">2024-09-12</time>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-3">
+            <!-- Author -->
+            
+
+            <!-- Word count -->
+            <span class="flex items-center gap-1">
+              <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
+              <span>1.8k words, 11 min</span>
+            </span>
+            <!-- Categories -->
+            
+              <!-- <span class="text-gray-400">·</span> -->
+              <span class="flex flex-row items-center gap-1 group hover:underline">
+                <iconify-icon class="transition-all group-hover:scale-125 mr-0"
+                  width="18"
+                  icon="mingcute:classify-2-fill">
+                </iconify-icon>
+                <a class="article-category-link" href="/categories/Research/">Research</a>
+              </span>
+            
+          </div>
+        </section>
+      </div>
+      <!-- tags -->
+      <div>
+        
+<div class="flex flex-wrap gap-1">
+  
+</div>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto dark:prose-invert">
+    <p><img src="/images/snl.png" alt="Overall Framework Figure"></p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Syntax analysis, or parsing, is a key phase in compiler construction, used to determine the grammatical structure of source code. Traditional methods like LL(1) parsing and recursive descent parsing are often implemented in low-level languages such as C for better performance. However, writing syntax analysis programs manually is time-consuming and error-prone due to the repetitive nature of grammar-specific code.</p>
+<p>To improve efficiency and adaptability, especially when creating compilers for new languages or adapting to changes in existing languages, we developed a tool that automatically generates syntax analysis programs in C for any programming language. This generator increases code reuse, reduces manual effort, and maintains high execution efficiency. The overall framework of our solution is shown in Overall Framework Figure.</p>
+<p>Key contributions of this work are summarized as follows:</p>
+<ul>
+<li><p><strong>Universal Tool Development</strong>: Python scripts were used to automate the generation of syntax analyzer code, significantly reducing manual coding efforts. A universal C language syntax analysis tool was created, capable of taking any language’s production rules as input to generate recursive descent and LL(1) syntax analysis programs, facilitating compiler development across languages.</p>
+</li>
+<li><p><strong>Automated Predict Set Calculation</strong>: Python scripts were implemented to automatically compute predict sets from syntax production text, eliminating manual calculations and greatly improving efficiency and accuracy.</p>
+</li>
+<li><p><strong>Error Correction and Validation</strong>: Errors in the textbook’s predict sets for SNL language production rules were identified and corrected, enhancing analysis accuracy and providing a solid foundation for further syntax analysis.</p>
+</li>
+</ul>
+<h2 id="Production-Analysis"><a href="#Production-Analysis" class="headerlink" title="Production Analysis"></a>Production Analysis</h2><p>The foundation of syntax analysis is grammar rules, which are generative for a specific language. All methods of syntax analysis are based on these rules. Thus, the main task of SNL syntax analysis is to clearly define the production rules of the SNL language. To facilitate future work, we have digitized all 112 production rules of the SNL language into a txt file using image text recognition. We replaced intermediate symbols with the corresponding strings as defined in the textbook and added an @ symbol in front of all terminal symbols to distinguish them from non-terminal symbols. Below are some documents of production rules and the symbol correspondence table:</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Program ::= ProgramHead DeclarePart ProgramBody  </span><br><span class="line">ProgramHead ::= @PROGRAM ProgramName  </span><br><span class="line">ProgramName ::= @ID  </span><br><span class="line">DeclarePart ::= TypeDecpart VarDecpart ProcDecpart  </span><br><span class="line">TypeDecpart ::= @NONE  </span><br><span class="line">TypeDecpart ::= TypeDec  </span><br><span class="line">TypeDec ::= @TYPE TypeDecList  </span><br><span class="line">TypeDecList ::= TypeId @EQ TypeDef @SEMI  </span><br><span class="line">TypeDecMore ::= @NONE  </span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<p>The grammar of SNL is an LL(1) grammar, which means that for each non-terminal, you can determine which production to use for derivation by looking at the next token in the input token sequence, and the method of derivation is unique. The foundation for this derivation is calculating the predict set for each production’s right side. Therefore, <strong>we implemented a predict set calculation algorithm based on production text in Python</strong> and used it to solve the predict sets for each production in the SNL language. In the end, we compared our results with the predict sets in the textbook and pointed out a few errors in the textbook after verification.</p>
+<h2 id="Generation-of-declare-code"><a href="#Generation-of-declare-code" class="headerlink" title="Generation of declare code"></a>Generation of declare code</h2><p>In the implementation of grammar analysis code, considering that both LL(1) parsing and recursive descent parsing use the same terminal and non-terminal enumerations, as well as similar tree node declarations, we will declare all the necessary declarations related to the parsing stage in the “PasingDec.h” header file. This approach aims to facilitate code maintenance, reduce code duplication, and improve code readability and reusability, making it available for both recursive descent analysis and LL1 parsing. The call relationship is as follows:</p>
+<p><img src="/images/snl1.png" alt="Header file call relationship"></p>
+<p>This header file includes all the necessary declarations involved in the syntax analysis phase, and its internal structure is as follows:</p>
+<p><img src="/images/snl2.png" alt="Internal Structure of PasingDec.h"></p>
+<p>The enumeration of terminal and non-terminal symbols, as well as the conversion function from enumeration types to strings, are <strong>all automatically generated by Python code.</strong></p>
+<p>To achieve automatic code generation, we <strong>simplified the structure of the syntax analysis tree nodes</strong>, keeping only the information necessary for semantic analysis.</p>
+<p>When specifically writing program code to implement the two types of syntax analysis, we chose an <strong>object-oriented programming approach</strong>, which significantly enhanced the encapsulation and readability of the syntax analysis code. At the same time, we fully leveraged the advantages of the Python language to create a tool that automatically generates semantic analysis code in C language. We improved its versatility so that it can accept production sets from any programming language and automatically generate the corresponding C language recursive descent semantic analysis code and LL1 semantic analysis code, reducing workload while improving the uniformity and accuracy of the code writing.</p>
+<h2 id="Generation-of-LL-1-Parsing-Code"><a href="#Generation-of-LL-1-Parsing-Code" class="headerlink" title="Generation of LL(1) Parsing Code"></a>Generation of LL(1) Parsing Code</h2><p>In LL(1) syntax analysis, a top-down parsing method is used, starting from the initial non-terminal symbol and gradually deriving program code that conforms to the grammar rules. This analysis method is characterized by its simplicity and efficiency, which can effectively detect syntax errors. When implementing the semantic analysis code for this method, various stacks and a specialized data structure, namely the node structure of the symbol stack, are needed, as well as the structure and LL(1) syntax analyzer outlined below.</p>
+<p><img src="/images/snl3.png" alt="Structure of the LL1 parser and the structure of the symbol stack node"></p>
+<p>The key to implementing LL(1) syntax analysis lies in the initialization of the LL(1) parse table. This involves filling in the corresponding positions in the matrix with the symbols from the production rules of the SNL language grammar and their predict sets in order. Since different positions in the matrix can correspond to the same production rule and there are many repetitions, to save space in the heap, we use the pointer to the symbol sequence of a production as the content to fill multiple repeated positions in the parse matrix. We also use the same data structure as the elements in the symbol stack. This way, when we need to derive a non-terminal symbol at the top of the symbol stack, we simply refer to the LL(1) parse table, look up the corresponding symbol sequence, and push it onto the stack, which simplifies the analysis process.</p>
+<p>Additionally, in writing this part of the code, there was a lot of redundant and repetitive work. We still utilize Python to automatically generate the initialization code for the LL(1) parse table. The overall idea is to generate a vector of symbols based on the structure of the right-hand side of the production rules, and then fill in the pointer to the symbol vector in the corresponding positions of the matrix according to the left-hand side of the production rule and its predict set. For instance, we generate the following initialization code for the LL(1) parse table based on the first production rule.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Generate symbol sequence vector  </span></span><br><span class="line">temp = <span class="keyword">new</span> vector&lt;Symbol&gt;;  </span><br><span class="line"><span class="comment">// Fill the vector in reverse order according to the structure of the right-hand side of the production  </span></span><br><span class="line">temp-&gt;<span class="built_in">push_back</span>(&#123;<span class="number">0</span>, ProgramBody, nullTerminal&#125;);  </span><br><span class="line">temp-&gt;<span class="built_in">push_back</span>(&#123;<span class="number">0</span>, DeclarePart, nullTerminal&#125;);  </span><br><span class="line">temp-&gt;<span class="built_in">push_back</span>(&#123;<span class="number">0</span>, ProgramHead, nullTerminal&#125;);  </span><br><span class="line"><span class="comment">// Fill the LL(1) parsing matrix according to the Predict set  </span></span><br><span class="line">LL1matrix[Program][PROGRAM] = temp;</span><br></pre></td></tr></table></figure>
+<p>When performing LL(1) syntax analysis, you just keep processing the top of the symbol stack. If it’s a non-terminal symbol, you derive it according to the parsing table. If it’s a terminal symbol, you match it with the input. Ultimately, whether the syntax analysis is successful relies on whether the entire symbol sequence is processed and the symbol stack is empty.</p>
+<p>On this basis, to standardize the structure of the syntax tree and ensure that nodes with no child nodes after derivation aren’t connected in the syntax analysis tree, we use a node stack to store nodes that haven’t fully generated their child nodes. When popping from the symbol stack (“popping a symbol”), we also pop the top node from the node stack and determine whether it should be added to the syntax analysis tree.</p>
+<h2 id="Generation-of-recursive-descent-parsing"><a href="#Generation-of-recursive-descent-parsing" class="headerlink" title="Generation of recursive descent parsing"></a>Generation of recursive descent parsing</h2><p>The recursive descent parser starts analyzing the grammar from the highest level and works its way down step by step. During the analysis, if the current symbol is a non-terminal, it recursively calls the corresponding subroutine for that non-terminal; if the current symbol is a terminal, it matches the symbol, generates the corresponding node, connects it to the syntax tree, and moves the input pointer to the next symbol. In each handling function for a non-terminal, it selects the appropriate processing method based on the Predict set of one or more of its productions. This is how our recursive descent parser is structured:</p>
+<p><img src="/images/snl4.png" alt="Return to Descending Syntax Analyzer Structure"></p>
+<p>When implementing the syntax analysis program for this method, the key is to write handlers for each non-terminal symbol, allowing the syntax analysis to be completed through a single comprehensive recursive call. Although this syntax analysis method is logically simple, it requires a substantial amount of coding and follows certain patterns. Therefore, we still use Python code to automatically generate handlers for all non-terminal symbols, with the general approach being:</p>
+<p>Based on all the production rules that have the non-terminal as the left-hand side and their corresponding Predict sets, we match terminal symbols or call non-terminal procedures in the order of the production’s right-hand side, and throw an error if we can’t select a production.</p>
+<p>To avoid conflicts between function name identifiers and enum type identifiers, we name functions using “_non-terminal name” and strictly follow the predict set for derivation. Even if a non-terminal has only one production, we still check whether the head of the token sequence to be processed belongs to its predict set, making the analysis process more rigorous. For example, the handler for the non-terminal Program is:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">TreeNode *RDparsinger::_Program()</span><br><span class="line">&#123;</span><br><span class="line">TreeNode *t = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(<span class="string">&quot;Program&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (currentToken-&gt;wd.tok == PROGRAM)</span><br><span class="line">&#123;</span><br><span class="line">t-&gt;<span class="built_in">addChild</span>(_ProgramHead());</span><br><span class="line">t-&gt;<span class="built_in">addChild</span>(_DeclarePart());</span><br><span class="line">t-&gt;<span class="built_in">addChild</span>(_ProgramBody());</span><br><span class="line"><span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot; fd &quot;</span>&lt;&lt; <span class="built_in">getString</span>(currentToken-&gt;wd.tok) &lt;&lt; endl;</span><br><span class="line"><span class="built_in">unExcept</span>();</span><br><span class="line"><span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><p>Starting from the production rules, we solved the predict sets for each production in the syntax analysis of the SNL language. We implemented two object-oriented, highly readable, and uniformly structured syntax analyzers. During this process, we used Python code to simplify the workload, ultimately achieving the transformation from:</p>
+<blockquote>
+<p>800 lines of C code + 250 lines of Python code -&gt; 2500 lines of syntax analysis program (C code).</p>
+</blockquote>
+<p>More importantly, we developed a general-purpose C language syntax analysis program generator. This program takes a set of production rules for a specific programming language as input and automatically generates the corresponding recursive descent syntax analysis program and LL(1) syntax analysis program.</p>
+
+  </article>
+
+  <!-- prev and next -->
+  <div class="flex justify-between mt-4 pt-4
+    border-t border-[var(--c-sep)] text-sm
+    gap-2 text-[var(--c-50)]
+  ">
+    <div>
+      
+        <a href="/2024/09/12/19_Hex-game/"
+          class="
+            transition-all
+            flex justify-center
+            hover:-translate-x-1
+            hover:text-[var(--c-80)]
+          ">
+          <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
+          </iconify-icon>
+          Hex Game Algorithm Based on Queenbee Evaluation
+        </a>
+      
+    </div>
+    <div>
+      
+        <a href="/2024/09/12/21_%20jailbreak_attack%20/"
+          class="
+            flex 
+            justify-center
+            hover:translate-x-1 
+            transition-transform
+            hover:text-[var(--c-100)]
+          "
+        >
+          A jailbreak attack on Visual Language Model based on FigStep
+          <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div>
+
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+<script
+  src="https://giscus.app/client.js"
+  data-repo=""
+  data-repo-id=""
+  data-category=""
+  data-category-id=""
+  data-mapping=""
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  crossorigin="anonymous"
+  async
+></script>
+<script>
+  window.onload = function () {
+    console.log("giscus loaded");
+    const isDark = document.documentElement.classList.contains("dark");
+    const giscusFrame = document.querySelector("iframe.giscus-frame");
+    giscusFrame.contentWindow.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: isDark ? "dark" : "light",
+          },
+        },
+      },
+      "https://giscus.app"
+    );
+  };
+</script>
+
+
+  </div>
+</section>
+<!-- js inspect -->
+
+<script src="/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        var title = this.title;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        if (title) $(this).after('<span class="fancybox-title">' + title + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
+
+  </main>
+  <footer class="flex flex-col mt-12 mb-12 items-center
+  text-[var(--c-50)] text-sm">
+  
+
+</footer>
+
+  <div class="
+    back-to-top
+    fixed right-6
+    z-1024
+    -bottom-20
+    rounded-lg
+    font-bold
+    py-1 px-2
+    text-[var(--c-80)]
+    bg-[var(--c-20)]
+    cursor-pointer
+    text-center
+    drop-shadow-md
+  ">
+    <span class="flex justify-center items-center text-sm">
+      <span id="scrollpercent"><span>0</span> %</span>
+      <iconify-icon width="18" icon="mingcute:arrow-to-up-fill" id="go-top"></iconify-icon>
+    </span>
+  </div>
+  
+<script src="/js/main.js"></script>
+
+
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
+</body>
+
+</html>

@@ -142,6 +142,9 @@
   ">
   <!-- The navigation bar -->
 <header class="
+    fixed   /* 修改这里，使导航条固定 */  
+    top-0  /* 确保固定在页面顶部 */
+    bg-white  /* 设置为不透明的白色背景 */  
     flex flex-row items-center
     w-full
     pr-4
@@ -434,7 +437,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>933 words, 3 min</span>
+              <span>1k words, 4 min</span>
             </span>
             <!-- Categories -->
             
@@ -485,7 +488,7 @@
 <p>在文件夹中打开cmd，使用<code>hexo init</code>初始化之后便可以按照开头的方式编写博客了</p>
 </li>
 </ol>
-<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="公式渲染"><a href="#公式渲染" class="headerlink" title="公式渲染"></a>公式渲染</h3><p>hexo默认的渲染器是marked，但并不支持mathjax，需要我们手动安装</p>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><h3 id="公式渲染"><a href="#公式渲染" class="headerlink" title="公式渲染"></a>公式渲染</h3><p>hexo默认的渲染器是marked，但并不支持mathjax，需要我们手动安装 (在Blog文件夹下)</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line">npm install hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure>
 <p>然后在博客项目下的<code>_config.yml</code>文件中加入：</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">math:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
@@ -497,9 +500,12 @@
 \sum_{k=0}^{\infty} \gamma^k r_{t+k+1}</script><script type="math/tex; mode=display">
 \mid s_t = s</script><script type="math/tex; mode=display">
 \mathbb{E}_{\pi} \left[ \sum_{k=0}^{\infty} \gamma^k r_{t+k+1} \mid s_t = s \right]</script><p><a target="_blank" rel="noopener" href="https://xingkunz.github.io/2020/01/13/hexo-%E8%A7%A3%E5%86%B3%E5%8D%9A%E5%AE%A2%E6%B8%B2%E6%9F%93%E5%85%AC%E5%BC%8F%E7%9A%84%E9%97%AE%E9%A2%98/">参考文献</a></p>
-<h3 id="图片路径"><a href="#图片路径" class="headerlink" title="图片路径"></a>图片路径</h3><p>当生成网页后，所有图片都无法显示，并且鼠标悬停图片链接后发现路径中间多了一部分：正常网页生成后，图片都会存放在<code>public/images</code>中，但是我的图片路径是<code>public/文章路径/images</code>，因此需要更改图片路径的生成格式。</p>
-<p>找到<code>node_modules\hexo-asset-image\index.js</code>并修改以下部分即可解决：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">src = srcArray.<span class="title function_">join</span>(<span class="string">&#x27;/&#x27;</span>);</span><br><span class="line">$(<span class="variable language_">this</span>).<span class="title function_">attr</span>(<span class="string">&#x27;src&#x27;</span>, config.<span class="property">root</span> + src);</span><br><span class="line"><span class="variable language_">console</span>.<span class="property">info</span>&amp;&amp;<span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="string">&quot;update link as:--&gt;&quot;</span>+config.<span class="property">root</span> + src);</span><br></pre></td></tr></table></figure>
+<h3 id="图片路径"><a href="#图片路径" class="headerlink" title="图片路径"></a>图片路径</h3><p>在<code>Blog/_config.yaml</code>中有一项配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>当这个选项设置为<code>true</code>后，生成网页时会自动调用<code>Blog\node_modules\hexo-asset-image\index.js</code>来重定位图片路径。</p>
+<p>我遇到的问题是，当生成网页后，所有图片都无法显示，并且鼠标悬停图片链接后发现路径中间多了一部分：正常网页生成后，图片都会存放在<code>public/images</code>中，但是我的图片路径是<code>public/文章路径/images</code>，因此需要更改图片路径的生成格式。</p>
+<p>在<code>node_modules\hexo-asset-image\index.js</code>修改以下部分即可解决：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src = srcArray.join(&#x27;/&#x27;);</span></span><br><span class="line"><span class="comment">// $(this).attr(&#x27;src&#x27;,  link + src);</span></span><br><span class="line"><span class="comment">// console.info&amp;&amp;console.info(&quot;update link as:--&gt;&quot;+ link + src);</span></span><br><span class="line">src = srcArray.<span class="title function_">join</span>(<span class="string">&#x27;/&#x27;</span>);</span><br><span class="line">$(<span class="variable language_">this</span>).<span class="title function_">attr</span>(<span class="string">&#x27;src&#x27;</span>, config.<span class="property">root</span> + src);</span><br><span class="line"><span class="variable language_">console</span>.<span class="property">info</span>&amp;&amp;<span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="string">&quot;update link as:--&gt;&quot;</span>+config.<span class="property">root</span> + src);</span><br></pre></td></tr></table></figure>
 
   </article>
 
