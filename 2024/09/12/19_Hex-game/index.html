@@ -436,7 +436,7 @@
             <!-- Word count -->
             <span class="flex items-center gap-1">
               <iconify-icon width="18" icon="mingcute:book-2-fill" ></iconify-icon>
-              <span>1.4k words, 8 min</span>
+              <span>1.9k words, 11 min</span>
             </span>
             <!-- Categories -->
             
@@ -466,7 +466,7 @@
     <p><img src="/images/Hex_six.png" alt="Figure 1: Hex game board"></p>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Hex is a classic strategy board game, first invented by Danish mathematician Piet Hein in 1942 and independently rediscovered by John Nash at Princeton University in 1948. The game is played on a diamond-shaped hexagonal grid, typically 11x11 or larger. Hex’s rules are simple and straightforward, yet its strategy is profoundly complex, making it an ideal platform for research in artificial intelligence and game theory.In this paper, for ease of discussion and demonstration, we utilize a 5x5 board and employ the board coordinates as shown in Figure 2.</p>
 <p><img src="/images/hex1.png" alt="Figure 2: Cell coordinates"></p>
-<p>The game involves two players, each using black and white pieces. Players take turns placing their pieces on empty cells, aiming to connect their respective colored edges with an unbroken chain of pieces. A notable feature of Hex is that the game cannot end in a draw, ensuring that one player will inevitably win each match. </p>
+<p>The game involves two players, each using black and white pieces. Players take turns placing their pieces on empty cells, aiming to connect their respective colored edges with an unbroken chain of pieces. A notable feature of Hex is that the game cannot end in a draw, ensuring that one player will inevitably win each match.</p>
 <p>The complexity of Hex lies not only in its deep strategy under simple rules but also in its close ties to graph theory. In fact, Hex is a special case of the Shannon switching game, which has been proven to be PSPACE-complete. This indicates that decision-making in Hex is computationally challenging, especially as the board size increases.</p>
 <p>In this paper, we propose a novel algorithm designed to enhance decision-making capabilities in Hex for computer players. By integrating advanced search techniques and evaluation strategies, our algorithm demonstrates exceptional performance across various board sizes, showcasing its potential application in Hex gameplay.</p>
 <h2 id="Queenbee’s-Evaluation-Function"><a href="#Queenbee’s-Evaluation-Function" class="headerlink" title="Queenbee’s Evaluation Function"></a>Queenbee’s Evaluation Function</h2><p>A game program requires a good evaluation function to guide its search. However, for the game of Hex, constructing a meaningful evaluation function is not immediately obvious. For example, unlike many other board games, the concepts of material balance and mobility are completely useless in Hex. This chapter contains some new ideas about the evaluation function for Hex, which have been implemented in the Hex program Queenbee. The function calculates the distance from all unoccupied cells on the board to each edge based on an unconventional distance metric called “two-distance.” The resulting distances are referred to as “potential.”</p>
@@ -501,8 +501,27 @@ c_k(p) = \{ r \in n(p) | d_z(r, q) < k \}.</script><p>The traditional distance m
 <li>$ M $ = a large number.</li>
 </ul>
 <p>If $ M $ is set to be sufficiently large, the evaluation function will prefer one position over another if its board potential difference is better, and only use the attack mobility difference as a tie-breaker for positions with equal board potential difference. The potential of a cell, if it is finite, cannot be larger than $ 2n^2 $ on an $ n \times n $ board. Therefore, using a value for $ M $ of the order of magnitude of $ n^2 $ will achieve this. In our work, we use $ M = 100 $.</p>
-<h2 id="Game-tree"><a href="#Game-tree" class="headerlink" title="Game tree"></a>Game tree</h2><p>Although Queenbee’s Evaluation functions can provide immediate value judgments for specific situations, they are limited to static analysis of the current state. To make more comprehensive and strategic decisions in the game of Hex, the use of game trees is essential. Game trees allow us to simulate sequences of possible future moves, thereby predicting the opponent’s responses and potential game progress. Combined with evaluation functions, game trees can help identify the best moves; by searching through the tree, we can compare the outcomes of different moves and choose strategies that maximize our chances of winning.</p>
-<h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2>
+<h2 id="Game-Tree"><a href="#Game-Tree" class="headerlink" title="Game Tree"></a>Game Tree</h2><p>In the game of Hex, while Queenbee’s evaluation functions provide immediate value judgments for specific situations, they are limited to static analysis of the current state. To make more comprehensive and strategic decisions, the use of game trees is essential. Game trees allow us to simulate sequences of possible future moves, thereby predicting the opponent’s responses and potential game progress. By combining game trees with evaluation functions, players can identify the best moves by exploring the tree, comparing the outcomes of different strategies, and choosing those that maximize their chances of winning.</p>
+<p>A game tree is a structure used to simulate possible future sequences of moves in a game. By constructing a game tree, players can anticipate the opponent’s responses and the potential progression of the game. Each node represents a game state, while the edges represent possible moves from one state to another.</p>
+<h3 id="Minimax-Algorithm"><a href="#Minimax-Algorithm" class="headerlink" title="Minimax Algorithm"></a>Minimax Algorithm</h3><p>The Minimax algorithm is a classic decision-making algorithm, particularly suited for zero-sum games. Its basic idea is to maximize the player’s minimum gain, assuming the opponent will make the most detrimental choices for the player. The pseudocode is as follows:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function minimax(node, depth, maximizingPlayer):</span><br><span class="line">    if depth = 0 or node is a terminal node:</span><br><span class="line">        return the heuristic value of the node</span><br><span class="line">    if maximizingPlayer:</span><br><span class="line">        bestValue = -infinity</span><br><span class="line">        for each child node of node:</span><br><span class="line">            v = minimax(child, depth - 1, FALSE)</span><br><span class="line">            bestValue = max(bestValue, v)</span><br><span class="line">        return bestValue</span><br><span class="line">    else:</span><br><span class="line">        bestValue = +infinity</span><br><span class="line">        for each child node of node:</span><br><span class="line">            v = minimax(child, depth - 1, TRUE)</span><br><span class="line">            bestValue = min(bestValue, v)</span><br><span class="line">        return bestValue</span><br></pre></td></tr></table></figure>
+<h3 id="Alpha-Beta-Pruning"><a href="#Alpha-Beta-Pruning" class="headerlink" title="Alpha-Beta Pruning"></a>Alpha-Beta Pruning</h3><p>Alpha-Beta pruning is an optimization technique for the Minimax algorithm, aimed at reducing the number of nodes that need to be evaluated, thereby improving efficiency. The basic principle is to prune unnecessary branches, avoiding the evaluation of moves that are clearly disadvantageous. The specific steps are as follows:</p>
+<ul>
+<li><strong>Alpha value:</strong> Represents the minimum score that the current player is assured of.</li>
+<li><strong>Beta value:</strong> Represents the minimum score that the opponent is assured of.</li>
+<li><strong>Pruning condition:</strong> If at any node, the Beta value is less than or equal to the Alpha value, further evaluation of that node can be stopped, as the opponent will not choose that path.</li>
+</ul>
+<p>Through Alpha-Beta pruning, the algorithm can skip a large number of unnecessary calculations without affecting the final decision, significantly improving efficiency. This is particularly important for complex games like Hex, where the number of possible states grows exponentially with the board size. The pseudocode is as follows:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function alphabeta(node, depth, α, β, Player)         </span><br><span class="line">    if depth = 0 or node is a terminal node  </span><br><span class="line">        return the heuristic value of node  </span><br><span class="line">    if Player = MaxPlayer  </span><br><span class="line">        for each child of node  </span><br><span class="line">            α := max(α, alphabeta(child, depth-1, α, β, not(Player)))  </span><br><span class="line">            if β ≤ α  </span><br><span class="line">                break  </span><br><span class="line">        return α  </span><br><span class="line">    else  </span><br><span class="line">        for each child of node  </span><br><span class="line">            β := min(β, alphabeta(child, depth-1, α, β, not(Player)))  </span><br><span class="line">            if β ≤ α  </span><br><span class="line">                break  </span><br><span class="line">        return β</span><br></pre></td></tr></table></figure>
+<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><p>To evaluate the performance of our algorithm, we conducted experiments on the <a target="_blank" rel="noopener" href="https://botzone.org.cn/game/Hex">Botzone</a> platform. Due to time constraints, we did not perform an exhaustive search for optimal hyperparameters. Instead, we used heuristic methods to select parameters suitable for an 11x11 board. Following the initial setup, we uploaded our Bot to the competition platform under the ID <code>6266ba6e351b6f7f90682672</code>, where users can search for this ID to engage in matches.</p>
+<h2 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h2><p>After achieving promising initial results, we plan to further optimize the algorithm to enhance its performance on larger board sizes. Our future work includes:</p>
+<ul>
+<li><p><strong>Hyperparameter Optimization</strong>: A more systematic approach to adjusting hyperparameters, aiming to discover potentially superior configurations.</p>
+</li>
+<li><p><strong>Incorporating Machine Learning</strong>: Exploring the integration of machine learning techniques to allow the algorithm to autonomously learn optimal strategies and improve decision-making.</p>
+</li>
+</ul>
+
   </article>
 
   <!-- prev and next -->
@@ -515,7 +534,7 @@ c_k(p) = \{ r \in n(p) | d_z(r, q) < k \}.</script><p>The traditional distance m
     </div>
     <div>
       
-        <a href="/2024/09/12/21_jailbreak_attack/"
+        <a href="/2024/09/12/20_SNL/"
           class="
             flex 
             justify-center
@@ -524,7 +543,7 @@ c_k(p) = \{ r \in n(p) | d_z(r, q) < k \}.</script><p>The traditional distance m
             hover:text-[var(--c-100)]
           "
         >
-          A jailbreak attack on Visual Language Model based on FigStep
+          Automated C++ Code Generator for Syntax Analysis
           <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
         </a>
       
