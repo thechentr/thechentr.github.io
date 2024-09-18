@@ -230,6 +230,8 @@ hr {
   color: var(--c-0);
 }
 .prose {
+  max-width: none !important;
+  text-align: justify;
   color: var(--c-text);
 }
 .prose h2 {

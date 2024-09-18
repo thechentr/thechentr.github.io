@@ -406,7 +406,7 @@
 <nav class="post-toc toc text-sm w-40 relative top-32 right-4 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
 
 
-<section class="px-6 max-w-prose mx-auto md:px-0">
+<section class="px-6 max-w-4xl mx-auto md:px-0">
   <!-- Post header before content -->
   <header class="py-4">
     <div class="flex flex-col gap-2 pt-4 md:pt-6">
@@ -488,9 +488,9 @@ M(x) := < S, A, T ></script><p>In this context, each specific scene $ x $ define
 <script type="math/tex; mode=display">\overline{y}_{t} = f(o_0, o_1, \ldots o_{t}; \eta)</script><p>In certain visual tasks such as classification or facial recognition, changes in perspective do not alter the labeling of the scene— for instance, regardless of the angle from which it is viewed, the true label of an apple remains “apple.” However, in tasks like object detection or instance segmentation, changes in perspective can significantly impact the labeling. This study focuses on object detection, aiming to enhance the labeling performance for the observation $ o_t $, particularly in terms of labeling accuracy in the presence of perspective changes.</p>
 <h3 id="Differentiable-Rendering-Environment"><a href="#Differentiable-Rendering-Environment" class="headerlink" title="Differentiable Rendering Environment"></a>Differentiable Rendering Environment</h3><p>In the training of deep learning models, ensuring the differentiability of the loss function with respect to the model parameters is crucial. This is because the optimization process of the model—especially through the Stochastic Gradient Descent (SGD) method—relies on the ability to compute the gradient of the loss function at each parameter point. The calculation of the gradient depends on the backpropagation algorithm, which propagates the loss back through the computation graph, utilizing the chain rule to compute gradients layer by layer. If the loss function is not differentiable at certain parameter points, it becomes impossible to determine the gradient, leading to a loss of guidance for parameter updates during SGD. The foundational requirement for the implementation of backpropagation is that every node operation in the computation graph must be differentiable; any non-differentiable node may prevent gradients from propagating further in the network, thus interrupting the entire computation graph. Therefore, for effective learning and optimization of the model, selecting or designing a well-defined loss function that is differentiable with respect to the model parameters is fundamental. This ensures the existence of gradients and the feasibility of computation, which are key to achieving effective parameter updates and successful model training.</p>
 <p>In traditional rendering environments, such as CARLA, although the scenes support complex graphics and physical simulations, the rendering process relies on GPU-accelerated graphics pipelines, which involve a large number of nonlinear operations, such as lighting, shadows, and reflections, that are typically non-differentiable. In contrast, EG3D (Explicit Generative 3D) is an advanced generative model designed to create high-quality three-dimensional content while supporting detailed two-dimensional rendering outputs. The main characteristic of this model is its ability to explicitly model and render objects in three-dimensional space, thus providing realistic visual effects while maintaining the differentiability of the rendering process. Based on this feature, we designed a novel rendering environment on the foundation of the EG3D model. This environment is capable of modifying the viewpoint based on actions, thereby providing the model with multi-view observation images. Simultaneously, its differentiability allows us to use the loss function from the object detection task to optimize the parameters of both the decision model and the detection model, ensuring the continuity and differentiability of the entire computation process, as illustrated in the computation graph of the model.</p>
-<p><img src="/images/ead3.png" alt="model structure"></p>
+<p><img src="/images/ead3.png" alt="Computation graph"></p>
 <p>Specifically, we utilize the EG3D model pre-trained on the ShapeNet Cars dataset to generate multi-view images of vehicles. The vehicle scene $x$ is uniquely determined by the random seed $r$ of the latent representation that generates the vehicle, and the generated images have a resolution of $128 \times 128$. Meanwhile, we employ fixed camera intrinsic parameters and radial distance to control the observational camera’s movement on a fixed spherical surface, ensuring that the camera always points toward the position of the vehicle (i.e., the origin) and maintains a fixed radial rotation angle. Thus, the camera pose is uniquely determined by the observation angles $v$, namely the polar angle $ \theta $ and the azimuthal angle $ \varphi $. Through this setup, we construct a differentiable rendering function $\mathcal{R}(v, r)$, as illustrated below, which effectively supports the optimization of model performance from different observation angles.</p>
-<p><img src="/images/ead4.png" alt="model structure"></p>
+<p><img src="/images/ead4.png" alt="Multiview cars"></p>
 <p>Overall, we propose a deterministic environmental model suitable for our experimental environment:</p>
 <script type="math/tex; mode=display">\begin{aligned}
 \text{State}&~~s_t=(v_t, o_0, o_1, ... o_t), \\
@@ -502,8 +502,8 @@ M(x) := < S, A, T ></script><p>In this context, each specific scene $ x $ define
 <p>To balance the model’s parameter scale and computational efficiency, we flattened the last two dimensions of each feature map, forming 64 tokens, each with a length of 256. These tokens, along with the previously obtained feature maps, form a sequence of feature tokens, which are further processed through BETR for deep feature fusion. The fused feature map is then restored to its original shape and fed back into the YOLOv5s model to perform prediction tasks.</p>
 <p>Additionally, to enable the model to actively adapt to the environment, we introduced learnable action tokens in this experiment. These action tokens are used to query the optimal viewpoint transformation strategy based on the current environmental state. Specifically, these action tokens are processed alongside the feature token sequence through BETR, after which a multi-layer perceptron (MLP) generates decision actions $a_t$ to guide the model in adjusting its observation perspective, thus optimizing detection performance. The specific model structure is illustrated in the accompanying figure.</p>
 <p><img src="/images/ead.png" alt="Model structure"></p>
-<p><strong>Model Training:</strong> As shown in Figure \ref{fig:forward_propagation_computation_graph}, we create a connected computation graph between the policy and perception models to support the use of backpropagation, optimizing the parameters of the policy model $ \phi $ and the parameters of the detection model $ \eta $ simultaneously through stochastic gradient descent. To maximize training efficiency, we compute the loss and accumulate it as total loss after each prediction step in every training scenario, updating the model parameters only after the final step is completed. The algorithm described below outlines the overall training process.</p>
-<p><img src="/images/ead2.png" alt="Perspective transformation of patches sampled from a Gaussian distribution in 3D space through rotation.换"></p>
+<p><strong>Model Training:</strong> As shown in computation graph, we create a connected computation graph between the policy and perception models to support the use of backpropagation, optimizing the parameters of the policy model $ \phi $ and the parameters of the detection model $ \eta $ simultaneously through stochastic gradient descent. To maximize training efficiency, we compute the loss and accumulate it as total loss after each prediction step in every training scenario, updating the model parameters only after the final step is completed. The algorithm described below outlines the overall training process.</p>
+<p><img src="/images/ead2.png" alt="Perspective transformation of patches sampled from a Gaussian distribution in 3D space through rotation."></p>
 <h3 id="Adversarial-Patch-Generation"><a href="#Adversarial-Patch-Generation" class="headerlink" title="Adversarial Patch Generation"></a>Adversarial Patch Generation</h3><p>The goal of this section is to construct adversarial patches for detection, so as to deceive the YOLOv5s model in the rendering environment we have developed, thereby verifying the effectiveness of detection defense methods. For our rendering environment, it is crucial to implement a patch application function $A$ that better simulates patches in the physical world. Given the camera intrinsic parameters $K$ used in the rendering environment, the function attaches the patch $p$ to the output image $o$ from the renderer, adhering to the physical laws of the real world, which can be formally expressed as:</p>
 <script type="math/tex; mode=display">o^{\prime} = A(p, v, o; K),~~ \text{where} {K}\in\mathbb{R}^{3\times3}</script><p>Our rendering environment primarily handles angular changes; therefore, when implementing the application function $A$, we mainly consider perspective transformations. A key task in applying the perspective transformation is determining the pixel positions of the vertices of the patch after the transformation on the 2D image. </p>
 <p>First, we consider rotational transformations. Establishing a coordinate system with the camera as the origin, since the camera always points toward the vehicle’s location, the transformation caused by camera rotation is equivalent to the rotation of the patch around its center. Assuming the origin of the coordinate system is at the patch center, the transformation matrix for its world coordinates concerning the polar angle $ \theta $ and azimuthal angle $ \varphi $ can be represented as:</p>
@@ -543,7 +543,7 @@ E_t = \boldsymbol{T_1}(p) \times \boldsymbol{R_1} \times \boldsymbol{R_2}(\varph
   ">
     <div>
       
-        <a href="/2024/09/12/20_SNL/"
+        <a href="/2024/09/12/21_jailbreak_attack/"
           class="
             transition-all
             flex justify-center
@@ -552,13 +552,13 @@ E_t = \boldsymbol{T_1}(p) \times \boldsymbol{R_1} \times \boldsymbol{R_2}(\varph
           ">
           <iconify-icon width="20" icon="mingcute:left-fill" data-inline="false">
           </iconify-icon>
-          Automated C++ Code Generator for Syntax Analysis
+          A jailbreak attack on Visual Language Model based on FigStep
         </a>
       
     </div>
     <div>
       
-        <a href="/2024/09/12/21_jailbreak_attack/"
+        <a href="/2024/01/18/18_%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0-%E8%BF%91%E7%AB%AF%E7%AD%96%E7%95%A5%E4%BC%98%E5%8C%96/"
           class="
             flex 
             justify-center
@@ -567,7 +567,7 @@ E_t = \boldsymbol{T_1}(p) \times \boldsymbol{R_1} \times \boldsymbol{R_2}(\varph
             hover:text-[var(--c-100)]
           "
         >
-          A jailbreak attack on Visual Language Model based on FigStep
+          强化学习-近端策略优化
           <iconify-icon width="20" icon="mingcute:right-fill" data-inline="false"></iconify-icon>
         </a>
       
