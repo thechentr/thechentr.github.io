@@ -471,6 +471,9 @@ figure.highlight .copy-icon:hover {
   margin: 0 auto; /* Center the box horizontally */
   padding-bottom: 20px;
 }
+.paper-box a:hover {
+  text-decoration: underline; /* Add underline on hover */
+}
 @media (min-width: 48em) {
   .paper-box .paper-box-image {
     min-width: 100px;
