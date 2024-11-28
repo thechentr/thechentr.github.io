@@ -497,7 +497,7 @@ figure.highlight .copy-icon:hover {
   margin-left: -0.5em;
   color: #fff;
   background-color: #00369f;
-  z-index: 10;
+  z-index: 1000;
 }
 .paper-box .paper-box-text {
   max-width: 100%;
