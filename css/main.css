@@ -463,41 +463,73 @@ figure.highlight .copy-icon:hover {
 }
 .paper-box {
   display: flex;
-  align-items: center; /* Vertically center the elements */
-  flex-direction: row; /* Ensure horizontal layout */
+  align-items: center;
+  flex-direction: row;
   flex-wrap: wrap;
-  border-bottom: 1px #efefef solid;
-  max-width: 800px; /* Set the maximum width */
-  margin: 0 auto; /* Center the box horizontally */
+  border-bottom: 1px solid #efefef;
+  max-width: 800px;
+  margin: 0 auto;
   padding-bottom: 20px;
 }
 .paper-box a:hover {
-  text-decoration: underline; /* Add underline on hover */
+  text-decoration: underline;
 }
-@media (min-width: 48em) {
-  .paper-box .paper-box-image {
-    min-width: 100px;
-    max-width: 40%;
-    order: 1;
-  }
+.paper-box .paper-box-image {
+  min-width: 100px;
+  max-width: 40%;
+  order: 1;
+  position: relative;
 }
 .paper-box .paper-box-image img {
   box-shadow: 3px 3px 6px #888;
   object-fit: cover;
   max-width: 100%;
 }
-@media (min-width: 48em) {
-  .paper-box .paper-box-text {
-    justify-content: left;
-    padding-left: 2em;
-    max-width: 100%;
-    order: 2;
-  }
+.paper-box .badge {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: 0.8em;
+  line-height: 1.5;
+  box-sizing: border-box;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  position: absolute;
+  margin-top: 0.5em;
+  margin-left: -0.5em;
+  color: #fff;
+  background-color: #00369f;
+  z-index: 10;
 }
 .paper-box .paper-box-text {
   max-width: 100%;
-  order: 2;
   flex: 1;
+  order: 2;
+  padding-left: 2em;
+}
+@media (min-width: 48em) {
+  .paper-box .paper-box-image {
+    order: 1;
+    max-width: 40%;
+  }
+  .paper-box .paper-box-text {
+    justify-content: flex-start;
+  }
+}
+.subtitle {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700; /* 加粗 */
+  font-size: 1.5em; /* 适中的字号 */
+  line-height: 1.3333333; /* 行高 */
+  color: #111827; /* 文字颜色 */
+  margin-top: 1em; /* 上外边距 */
+  margin-bottom: 0.6em; /* 下外边距 */
+  text-align: left; /* 左对齐 */
+  box-sizing: border-box; /* 盒子模型 */
+  border-width: 0; /* 无边框 */
+  border-style: solid;
+  border-color: #e5e7eb; /* 边框颜色 */
+  padding: 0; /* 无内边距 */
+  text-underline-offset: 2px; /* 下划线偏移量 */
+  width: 100%; /* 确保占满整个宽度 */
 }
 @-moz-keyframes enter {
   0% {
