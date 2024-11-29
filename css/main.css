@@ -475,15 +475,15 @@ figure.highlight .copy-icon:hover {
   text-decoration: underline;
 }
 .paper-box .paper-box-image {
-  min-width: 100px;
-  max-width: 40%;
+  width: 300px; /* Fixed width for the image container */
   order: 1;
   position: relative;
 }
 .paper-box .paper-box-image img {
   box-shadow: 3px 3px 6px #888;
   object-fit: cover;
-  max-width: 100%;
+  width: 100%; /* The width will be fixed */
+  height: auto; /* The height will adjust automatically based on the image's aspect ratio */
 }
 .paper-box .badge {
   font-family: "Trebuchet MS", Helvetica, sans-serif;
@@ -514,6 +514,23 @@ figure.highlight .copy-icon:hover {
     justify-content: flex-start;
   }
 }
+@media (max-width: 47.99em) {
+  .paper-box {
+    flex-direction: column;
+    align-items: center; /* Center images and text in column layout */
+  }
+  .paper-box .paper-box-image {
+    width: 300px; /* Keep the image width fixed for mobile */
+    order: 1;
+    max-width: none; /* Disable max-width restriction to prevent image scaling */
+    height: 200px; /* Fixed height to ensure image consistency */
+  }
+  .paper-box .paper-box-text {
+    padding-left: 0;
+    order: 2;
+    width: 100%; /* Ensure text takes full width in mobile view */
+  }
+}
 .subtitle {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700; /* 加粗 */
@@ -530,6 +547,23 @@ figure.highlight .copy-icon:hover {
   padding: 0; /* 无内边距 */
   text-underline-offset: 2px; /* 下划线偏移量 */
   width: 100%; /* 确保占满整个宽度 */
+}
+.bilibili-video {
+  width: 100%; /* 宽度100%，使其适配父容器 */
+  max-width: 100%; /* 最大宽度为100% */
+  height: auto; /* 高度自动调整 */
+  aspect-ratio: 16/9; /* 保持16:9的宽高比 */
+  border: none; /* 移除边框 */
+}
+.container {
+  position: relative; /* 让子元素（ClustrMaps）能绝对定位 */
+  width: 100%; /* 宽度占满父容器 */
+  height: auto; /* 自定义容器高度（可以调整） */
+}
+.clustrmaps {
+  width: 100%; /* 宽度占满父容器 */
+  height: auto; /* 高度占满父容器 */
+  display: block; /* 确保它是一个块级元素 */
 }
 @-moz-keyframes enter {
   0% {
