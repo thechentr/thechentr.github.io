@@ -492,6 +492,20 @@ figure.highlight .copy-icon:hover {
   gap: 1.25rem; /* gap-5， 即 1.25rem */
   max-width: 56rem; /* max-w-4xl， 即 4xl，宽度为 56rem */
 }
+.link-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.link-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.link-item span {
+  display: inline;
+}
 .paper-box {
   display: flex;
   align-items: center;
@@ -545,7 +559,7 @@ figure.highlight .copy-icon:hover {
     justify-content: flex-start;
   }
 }
-/* 屏幕较窄时 */
+/* 小屏幕媒体查询 */
 @media (max-width: 47.99em) {
   .homepage-container {
     flex-direction: column; /* Change to vertical layout on narrow screens */
@@ -560,6 +574,14 @@ figure.highlight .copy-icon:hover {
     width: 100%; /* Make info-bar take up the full width of its container */
     padding-left: 1rem; /* Optional: add some padding if needed */
     padding-right: 1rem; /* Optional: add some padding if needed */
+  }
+  .link-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .link-item span {
+    display: none;
   }
   .paper-box {
     flex-direction: column;
